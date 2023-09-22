@@ -51,6 +51,7 @@
             <div class="box-body">
               <table id="example1" class="table table-bordered">
                 <thead>
+                  <th>ID</th>
                   <th>Pay Scale Name</th>
                   <th>Action</th>
                 </thead>
@@ -62,6 +63,7 @@
                     while($row = $query->fetch_assoc()){
                       echo "
                         <tr>
+                        <td>".$row['RecId']."</td>
                           <td>".$row['pay_name']."</td>
                           
                           

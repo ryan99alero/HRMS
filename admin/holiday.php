@@ -11,11 +11,11 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>
-        Holi Day
+        Holiday
       </h1>
       <ol class="breadcrumb">
         <li><a href="home.php"><i class="fa fa-dashboard"></i> Home</a></li>
-        <li class="active">Holi Day</li>
+        <li class="active">Holiday</li>
       </ol>
     </section>
     <!-- Main content -->
@@ -54,6 +54,7 @@
                   <th>ID</th>
                   <th>Title</th>
                   <th>Holiday Date</th>
+                  <th>Action</th>
                 </thead>
                 <tbody>
                   <?php

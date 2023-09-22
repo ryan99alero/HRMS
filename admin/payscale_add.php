@@ -8,7 +8,7 @@
 		//$sql = "INSERT INTO pay_scale (pay_name) 
         // VALUES ('$title')";
 		//$sql = "call StrProc_InsertPayScaleInfo('$title',1')";
-		$sql = "CALL `StrProc_InsertPayScaleInfo`('$title', 1)";
+		$sql = "CALL `StrProc_InsertPayScaleInfo`('$title')";
         if($conn->query($sql)){
 			$_SESSION['success'] = 'Payscale added successfully';
 		}

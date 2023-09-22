@@ -5,12 +5,12 @@
           	<div class="modal-header">
             	<button type="button" class="close" data-dismiss="modal" aria-label="Close">
               		<span aria-hidden="true">&times;</span></button>
-            	<h4 class="modal-title"><b>Add Position</b></h4>
+            	<h4 class="modal-title"><b>Add Designation</b></h4>
           	</div>
           	<div class="modal-body">
             	<form class="form-horizontal" method="POST" action="position_add.php">
           		  <div class="form-group">
-                  	<label for="title" class="col-sm-3 control-label">Position Title</label>
+                  	<label for="title" class="col-sm-3 control-label">Designation</label>
 
                   	<div class="col-sm-9">
                     	<input type="text" class="form-control" id="title" name="title" required>
@@ -40,13 +40,13 @@
           	<div class="modal-header">
             	<button type="button" class="close" data-dismiss="modal" aria-label="Close">
               		<span aria-hidden="true">&times;</span></button>
-            	<h4 class="modal-title"><b>Update Position</b></h4>
+            	<h4 class="modal-title"><b>Update Designation</b></h4>
           	</div>
           	<div class="modal-body">
             	<form class="form-horizontal" method="POST" action="position_edit.php">
             		<input type="hidden" id="posid" name="id">
                 <div class="form-group">
-                    <label for="edit_title" class="col-sm-3 control-label">Position Title</label>
+                    <label for="edit_title" class="col-sm-3 control-label">Designation</label>
 
                     <div class="col-sm-9">
                       <input type="text" class="form-control" id="edit_title" name="title">
@@ -82,7 +82,7 @@
             	<form class="form-horizontal" method="POST" action="position_delete.php">
             		<input type="hidden" id="del_posid" name="id">
             		<div class="text-center">
-	                	<p>DELETE POSITION</p>
+	                	<p>DELETE Designation</p>
 	                	<h2 id="del_position" class="bold"></h2>
 	            	</div>
           	</div>
@@ -100,7 +100,7 @@
         // Edit button click event
         $('.edit').click(function() {
             var id = $(this).data('id');
-            var positionTitle = $(this).closest('tr').find('td:eq(0)').text(); // Extract position title from table
+            var positionTitle = $(this).closest('tr').find('td:eq(1)').text(); // Extract position title from table
             $('#posid').val(id);
             $('#edit_title').val(positionTitle);
             $('#edit').modal('show');
@@ -109,7 +109,7 @@
         // Delete button click event
         $('.delete').click(function() {
             var id = $(this).data('id');
-            var positionTitle = $(this).closest('tr').find('td:eq(0)').text(); // Extract position title from table
+            var positionTitle = $(this).closest('tr').find('td:eq(1)').text(); // Extract position title from table
             $('#del_posid').val(id);
             $('#del_position').text(positionTitle);
             $('#delete').modal('show');

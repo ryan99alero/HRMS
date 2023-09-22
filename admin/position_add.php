@@ -6,7 +6,7 @@
 		// $rate = $_POST['rate'];
 
 		// $sql = "INSERT INTO designation (designation_name ) VALUES ('$title')";
-		$sql = "Call `StrProc_InsertDesignationInfo`('$title',1)";
+		$sql = "Call `StrProc_InsertDesignationInfo`('$title')";
 		if($conn->query($sql)){
 			$_SESSION['success'] = 'Position added successfully';
 		}

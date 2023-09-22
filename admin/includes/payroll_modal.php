@@ -34,7 +34,7 @@
 </div>
 
 <!-- Edit -->
-<div class="modal fade" id="edit">
+<div class="modal fade" id="payrolledit">
     <div class="modal-dialog">
         <div class="modal-content">
           	<div class="modal-header">
@@ -46,106 +46,127 @@
             	<form class="form-horizontal payrollFormSubmit" method="POST" action="payroll_edit.php">
                                 <input type="hidden" id="posid" name="id">
                             <div class="form-group">
-                                <label for="edit_RecId" class="col-sm-3 control-label">RecId</label>
+                                <label for="edit_RecId" class="col-sm-3 control-label">User Id</label>
 
                                 <div class="col-sm-9">
                                 <input type="text" class="form-control" id="edit_RecId" name="RecId" disabled>
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label for="edit_Employee_Name" class="col-sm-3 control-label">Employee_Name</label>
+                                <label for="edit_Employee_Name" class="col-sm-3 control-label">Employee Name</label>
 
                                 <div class="col-sm-9">
                                 <input type="text" class="form-control" id="edit_Employee_Name" name="Employee_Name" disabled>
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label for="edit_designation_name" class="col-sm-3 control-label">designation_name</label>
+                                <label for="edit_designation_name" class="col-sm-3 control-label">Designation Name</label>
 
                                 <div class="col-sm-9">
                                 <input type="text" class="form-control" id="edit_designation_name" name="designation_name" disabled>
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label for="edit_shift_name" class="col-sm-3 control-label">shift_name</label>
+                                <label for="edit_shift_name" class="col-sm-3 control-label">Shift Name</label>
 
                                 <div class="col-sm-9">
                                 <input type="text" class="form-control" id="edit_shift_name" name="shift_name" disabled>
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label for="edit_pay_name" class="col-sm-3 control-label">pay_name</label>
+                                <label for="edit_pay_name" class="col-sm-3 control-label">Pay Name</label>
 
                                 <div class="col-sm-9">
                                 <input type="text" class="form-control" id="edit_pay_name" name="pay_name" disabled>
                                 </div>
                             </div>
-                        
+                            
                             <div class="form-group">
-                                <label for="edit_time_in" class="col-sm-3 control-label">time_in</label>
-
+                                <label for="edit_time_in" class="col-sm-3 control-label">Time In</label>
+                                
                                 <div class="col-sm-9">
-                                <input type="text" class="form-control" id="edit_time_in" name="time_in" disabled>
+                                    <input type="text" class="form-control" id="edit_time_in" name="time_in" disabled>
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label for="edit_time_out" class="col-sm-3 control-label">time_out</label>
+                                <label for="edit_time_out" class="col-sm-3 control-label">Time Out</label>
 
                                 <div class="col-sm-9">
                                 <input type="text" class="form-control" id="edit_time_out" name="time_out" disabled>
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label for="edit_salary" class="col-sm-3 control-label">salary</label>
+                                <label for="edit_payroll_type" class="col-sm-3 control-label">Payroll Type</label>
 
                                 <div class="col-sm-9">
-                                <input type="text" class="form-control" id="edit_salary" name="salary" disabled>
+                                <input type="text" class="form-control" id="edit_payroll_type" name="payroll_type" disabled>
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label for="edit_deducted_days" class="col-sm-3 control-label">deducted_days</label>
+                                <label for="edit_salary" class="col-sm-3 control-label">Salary</label>
+
+                                <div class="col-sm-9">
+                                    <input type="text" class="form-control" id="edit_salary" name="salary" disabled>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="edit_deducted_days" class="col-sm-3 control-label">Deducted Days</label>
 
                                 <div class="col-sm-9">
                                 <input type="text" class="form-control" id="edit_deducted_days" name="deducted_days" disabled>
-                                </div>
                             </div>
-                            <div class="form-group">
-                                <label for="edit_late" class="col-sm-3 control-label">late</label>
+                        </div>
+                        <div class="form-group">
+                                <label for="edit_late" class="col-sm-3 control-label">Late</label>
 
                                 <div class="col-sm-9">
                                 <input type="text" class="form-control" id="edit_late" name="late" disabled>
-                                </div>
                             </div>
-                            <div class="form-group">
-                                <label for="edit_absent" class="col-sm-3 control-label">absent</label>
-
-                                <div class="col-sm-9">
+                        </div>
+                        <div class="form-group">
+                            <label for="edit_absent" class="col-sm-3 control-label">Absent</label>
+                            
+                            <div class="col-sm-9">
                                 <input type="text" class="form-control" id="edit_absent" name="absent" disabled>
-                                </div>
                             </div>
-                            <div class="form-group">
-                                <label for="edit_Deduction" class="col-sm-3 control-label">Deduction</label>
+                        </div>
+                        <div class="form-group">
+                            <label for="edit_advance" class="col-sm-3 control-label">Advance</label>
 
-                                <div class="col-sm-9">
+                            <div class="col-sm-9">
+                            <input type="text" class="form-control" id="edit_advance" name="advance" disabled>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="edit_M_Advance" class="col-sm-3 control-label">Modify Advance</label>
+
+                            <div class="col-sm-9">
+                            <input type="text" class="form-control" id="edit_M_Advance" name="M_Advance">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="edit_Deduction" class="col-sm-3 control-label">Deduction</label>
+                            
+                            <div class="col-sm-9">
                                 <input type="text" class="form-control" id="edit_Deduction" name="Deduction" disabled>
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label for="edit_M_Deducted" class="col-sm-3 control-label">M_Deducted</label>
+                                <label for="edit_M_Deducted" class="col-sm-3 control-label">Modify Deduction</label>
 
                                 <div class="col-sm-9">
                                 <input type="text" class="form-control" id="edit_M_Deducted" name="M_Deducted">
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label for="edit_M_Salary" class="col-sm-3 control-label">M_Salary</label>
+                                <label for="edit_M_Salary" class="col-sm-3 control-label">Modify Salary</label>
 
                                 <div class="col-sm-9">
-                                <input type="text" class="form-control" id="edit_M_Salary" name="M_Salary">
+                                <input type="text" class="form-control" id="edit_M_Salary" name="M_Salary" readonly>
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label for="edit_Total_Pay" class="col-sm-3 control-label">Total_Pay</label>
+                                <label for="edit_Total_Pay" class="col-sm-3 control-label">Total Pay</label>
 
                                 <div class="col-sm-9">
                                 <input type="text" class="form-control" id="edit_Total_Pay" name="Total_Pay" disabled>
@@ -187,7 +208,7 @@
                         </div>
                         <div class="modal-footer">
                                             <button type="button" class="btn btn-default btn-flat pull-left" data-dismiss="modal"><i class="fa fa-close"></i> Close</button>
-                                            <button type="submit" class="payrollFormSubmit-btn btn btn-success btn-flat" name="edit" ><i class="fa fa-check-square-o"></i> Generate Payroll</button>
+                                            <button type="submit" class="payrollFormSubmit-btn btn btn-success btn-flat" name="edit" ><i class="fa fa-check-square-o"></i> Edit Payroll</button>
             	</form>
           	</div>
         </div>
@@ -258,14 +279,17 @@
             var time_in = $(this).closest('tr').find('td:eq(5)').text(); // Extract Deduction from table
            
             var time_out = $(this).closest('tr').find('td:eq(6)').text(); // Extract salary from table
-            var salary = $(this).closest('tr').find('td:eq(7)').text(); // Extract Total_Pay from table
-            var deducted_days = $(this).closest('tr').find('td:eq(8)').text(); // Extract M_Deduction from table
-            var late = $(this).closest('tr').find('td:eq(9)').text(); // Extract M_Total_Pay from table
-            var absent = $(this).closest('tr').find('td:eq(10)').text(); // Extract M_Total_Pay from table
-            var Deduction = $(this).closest('tr').find('td:eq(11)').text(); // Extract M_Total_Pay from table
-            var M_Deducted = $(this).closest('tr').find('td:eq(12)').text(); // Extract M_Total_Pay from table
-            var M_Salary = $(this).closest('tr').find('td:eq(13)').text(); // Extract M_Total_Pay from table
-            var Total_Pay = $(this).closest('tr').find('td:eq(14)').text(); // Extract M_Total_Pay from table
+            var payroll_type = $(this).closest('tr').find('td:eq(7)').text(); // Extract salary from table
+            var salary = $(this).closest('tr').find('td:eq(8)').text(); // Extract Total_Pay from table
+            var deducted_days = $(this).closest('tr').find('td:eq(9)').text(); // Extract M_Deduction from table
+            var late = $(this).closest('tr').find('td:eq(10)').text(); // Extract late from table
+            var absent = $(this).closest('tr').find('td:eq(11)').text(); // Extract absent from table
+            var advance = $(this).closest('tr').find('td:eq(12)').text(); // Extract advance from table
+            var M_Advance = $(this).closest('tr').find('td:eq(13)').text(); // Extract M_Advance from table
+            var Deduction = $(this).closest('tr').find('td:eq(14)').text(); // Extract Deduction from table
+            var M_Deducted = $(this).closest('tr').find('td:eq(15)').text(); // Extract M_Deducted from table
+            var M_Salary = $(this).closest('tr').find('td:eq(16)').text(); // Extract M_Salary from table
+            var Total_Pay = $(this).closest('tr').find('td:eq(17)').text(); // Extract Total_Pay from table
             $('#posid').val(id);
             $('#edit_RecId').val(RecId);
             $('#edit_Employee_Name').val(Employee_Name);
@@ -275,11 +299,14 @@
             $('#edit_pay_name').val(pay_name);
             $('#edit_time_in').val(time_in);
             $('#edit_time_out').val(time_out);
+            $('#edit_payroll_type').val(payroll_type);
             $('#edit_salary').val(salary);
 
             $('#edit_deducted_days').val(deducted_days);
             $('#edit_late').val(late);
             $('#edit_absent').val(absent);
+            $('#edit_advance').val(advance);
+            $('#edit_M_Advance').val(M_Advance);
             $('#edit_Deduction').val(Deduction);
             $('#edit_M_Deducted').val(M_Deducted);
             $('#edit_M_Salary').val(M_Salary);
@@ -358,6 +385,30 @@ document.addEventListener("DOMContentLoaded", function() {
     // Call the function initially to set the initial display state
     checkShowTextarea();
 });
+</script>
+
+<!-- To calculate Total_Pay by subtracting M_Deducted from salary and updating the corresponding input field when the user enters a value for M_Deducted, you can use JavaScript. Here's a script to achieve this: -->
+
+<!-- html -->
+<!-- Copy code -->
+<script>
+    // Function to update M_Salary when M_Deducted or M_Advance input changes
+    function updateMSalary() {
+        // Get the values from the input fields
+        var salary = parseFloat(document.getElementById("edit_salary").value) || 0;
+        var mDeducted = parseFloat(document.getElementById("edit_M_Deducted").value) || 0;
+        var mAdvance = parseFloat(document.getElementById("edit_M_Advance").value) || 0;
+
+        // Calculate M_Salary
+        var totalPay = salary - mDeducted - mAdvance;
+
+        // Update the M_Salary input field
+        document.getElementById("edit_M_Salary").value = totalPay.toFixed(2); // Assuming you want two decimal places
+    }
+
+    // Attach the updateMSalary function to the change event of M_Deducted or M_Advance input
+    document.getElementById("edit_M_Deducted").addEventListener("keyup", updateMSalary);
+    document.getElementById("edit_M_Advance").addEventListener("keyup", updateMSalary);
 </script>
 
 

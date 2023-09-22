@@ -1,5 +1,6 @@
-<!-- jQuery 3 -->
+<!-- <script src="./JS/jquery1.js"></script> -->
 <script src="../bower_components/jquery/dist/jquery.min.js"></script>
+<!-- jQuery 3 -->
 <!-- jQuery UI 1.11.4 -->
 <script src="../bower_components/jquery-ui/jquery-ui.min.js"></script>
 <!-- DataTables -->
@@ -13,7 +14,7 @@
 <script src="../bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
 <!-- Morris.js charts -->
 <script src="../bower_components/raphael/raphael.min.js"></script>
-<script src="../bower_components/morris.js/morris.min.js"></script>
+<!-- <script src="../bower_components/morris.js/morris.min.js"></script> -->
 <!-- ChartJS -->
 <script src="../bower_components/chart.js/Chart.js"></script>
 <!-- Sparkline -->
@@ -39,7 +40,7 @@
 <!-- AdminLTE App -->
 <script src="../dist/js/adminlte.min.js"></script>
 <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
-<script src="../dist/js/pages/dashboard.js"></script>
+<!-- <script src="../dist/js/pages/dashboard.js"></script> -->
 <!-- AdminLTE for demo purposes -->
 <script src="../dist/js/demo.js"></script>
 <script>

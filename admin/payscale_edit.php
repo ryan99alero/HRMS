@@ -7,7 +7,7 @@
 		// $rate = $_POST['rate'];
 
 		// $sql = "UPDATE designation SET designation_name = '$title' WHERE RecId = '$id'";
-		$sql = "Call `StrProc_ChangePayScaleInfo`('$id','$title',1)";
+		$sql = "Call `StrProc_ChangePayScaleInfo`('$id','$title')";
 		if($conn->query($sql)){
 			$_SESSION['success'] = 'Payscale updated successfully';
 		}

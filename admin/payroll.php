@@ -1,9 +1,19 @@
 <?php include 'includes/session.php'; ?>
+<!-- <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css"> -->
+<link rel="stylesheet" href="style/datatable1.13.6.css">
+<!-- <link rel="stylesheet" href="https://cdn.datatables.net/buttons/2.4.1/css/buttons.dataTables.min.css"> -->
+<link rel="stylesheet" href="style/datatable2.4.1.css">
 <?php
   include '../timezone.php';
   $range_to = date('m/d/Y');
   $range_from = date('m/d/Y', strtotime('-30 day', strtotime($range_to)));
 ?>
+<!-- <style>
+  .table-responsive {
+  overflow-x: auto;
+}
+</style> -->
+
 <?php include 'includes/header.php'; ?>
 <body class="hold-transition skin-blue sidebar-mini">
 <div class="wrapper">
@@ -51,10 +61,11 @@
         <div class="col-xs-12">
           <div class="box">
           <div class="box-header with-border">
-          <a href="payroll_genereate.php" class="myButton" name="paygn">PayRoll Generate Now</a>
+          <button class="btn btn-sm btn-flat" style="border-radius:8px;background-color:#4680ff;"><a href="payroll_genereate.php" name="paygn" style="color:white;">Generate PayRoll</a></button>
+          <!-- <a href="payroll_genereate.php" class="myButton" name="paygn">Generate PayRoll</a> -->
             <!-- <a href="payroll_genereate.php" class="btn btn-primary btn-sm btn-flat" style='border-radius:8px;background-color:#4680ff;'><i class="fa fa-plus"></i>PayRoll Generate</a> -->
              </div>
-            <div class="box-header with-border">
+            <!-- <div class="box-header with-border">
               <div class="pull-right">
                 <form method="POST" class="form-inline" id="payForm">
                   <div class="input-group">
@@ -63,12 +74,12 @@
                     </div>
                    <input type="text" class="form-control pull-right col-sm-8" id="reservation" name="date_range" value="<?php echo (isset($_GET['range'])) ? $_GET['range'] : $range_from.' - '.$range_to; ?>">
                    </div>
-                  <!-- <button type="button" class="btn btn-success btn-sm btn-flat" id="payroll" style='border-radius:8px;'><span class="glyphicon glyphicon-print"></span> Payroll</button>
-                  <button type="button" class="btn btn-primary btn-sm btn-flat" id="payslip" style='border-radius:8px;'><span class="glyphicon glyphicon-print"></span> Payslip</button> -->
+                  <button type="button" class="btn btn-success btn-sm btn-flat" id="payroll" style='border-radius:8px;'><span class="glyphicon glyphicon-print"></span> Payroll</button>
+                  <button type="button" class="btn btn-primary btn-sm btn-flat" id="payslip" style='border-radius:8px;'><span class="glyphicon glyphicon-print"></span> Payslip</button>
                 </form>
               </div>
-            </div>
-            <div class="box-body">
+            </div> -->
+            <div class="box-body table-responsive">
               <table id="example1" class="table table-bordered">
                 <thead>
                   <th>ID</th>
@@ -78,24 +89,27 @@
                   <th>Pay Name</th>
                   <th>Time In</th>
                   <th>Time Out</th>
+                  <th>Payroll Type</th>
                   <th>Salary</th>
                   <th>Deducted Days</th>
                   <th>Late</th>
                   <th>Absent</th>
                   <th>Deduction</th>
-                  <th>M_Deducted</th>
-                  <th>M_Salary</th>
-                  <th>Total_Pay</th>
+                  <th>Modify Deducted</th>
+                  <th>Advance</th>
+                  <th>Modify Advance</th>
+                  <th>Modify Salary</th>
+                  <th>Total Pay</th>
                 </thead>
                 <tbody>
                    <?php
                    
                   //  $sql = "SELECT * FROM payroll";
-                   $sql = "call `sp_PayrollGenerator`(1)";
+                   $sql = "call `sp_Cursor_PayrollGenerator`";
                    $query = $conn->query($sql);
                    while($row = $query->fetch_assoc()){
                      echo "
-                       <tr>
+                        <tr>
                          <td>".$row['RecId']."</td>
                          <td>".$row['Employee_Name']."</td>
                          <td>".$row['designation_name']."</td>
@@ -103,15 +117,18 @@
                          <td>".$row['pay_name']."</td>
                          <td>".$row['time_in']."</td>
                          <td>".$row['time_out']."</td>
+                         <td>".$row['payroll_type']."</td>
                          <td>".$row['salary']."</td>
                          <td>".$row['deducted_days']."</td>
                          <td>".$row['late']."</td>
                          <td>".$row['absent']."</td>
                          <td>".$row['Deduction']."</td>
                          <td>".$row['M_Deducted']."</td>
+                         <td>".$row['Advance']."</td>
+                         <td>".$row['M_Advance']."</td>
                          <td>".$row['M_Salary']."</td>
                          <td>".$row['Total_Pay']."</td>
-                         </tr>
+                        </tr>
                      ";
                    }
                    
@@ -172,18 +189,47 @@
     </section>   
   </div>
   
-    
+  <?php include 'includes/specpayroll_modal.php'; ?>
   <?php include 'includes/footer.php'; ?>
 </div>
 <?php include 'includes/scripts.php'; ?> 
+<!-- <script src="https://code.jquery.com/jquery-3.7.0.js"></script> -->
+<script scr="JS/jquery3.7.0.js"></script>
+<!-- <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script> -->
+<script src="JS/datatable1.13.6.js"></script>
+<!-- <script src="https://cdn.datatables.net/buttons/2.4.1/js/dataTables.buttons.min.js"></script> -->
+<script src="JS/button2.4.1.js"></script>
+<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script> -->
+<script src="JS/ajax3.10.1.js"></script>
+<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script> -->
+<script src="JS/ajax0.1.53pdf.js"></script>
+<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script> -->
+<script src="JS/ajax0.1.53font.js"></script>
+<!-- <script src="https://cdn.datatables.net/buttons/2.4.1/js/buttons.html5.min.js"></script> -->
+<script src="JS/button2.4.15.js"></script>
+
 <script>
 $(function(){
   $('#example1').DataTable().destroy();
   $('#example1').DataTable( {
-        dom: 'Bfrtip',
+    dom: "'<'row'l>Bfrtip'",
         // "pageLength": 90,
+        "scrollX": true,
+        "scrollY": '450px',
+
         buttons: [
-            'copy', 'csv', 'excel', 'pdf', 'print'
+                    {
+                  extend: 'pdf',
+                  title: 'Payroll',
+                  orientation: 'landscape', // Set the orientation to landscape
+                  customize: function(doc) {
+                    // Customize the PDF document if needed
+                    // For example, you can set the page size, margins, etc.
+                    doc.pageSize = 'a4';
+                    doc.pageMargins = [40, 60, 40, 60];
+                  }
+                },
+            'copy', 'csv', 'excel', 'print'
         ]
     } );
   $('.edit').click(function(e){
@@ -234,6 +280,25 @@ $(function(){
 //     }
 //   });
 // }
+
+
+// function getRow(id){
+//   $.ajax({
+//     type: 'POST',
+//     url: 'specpayroll_modal.php',
+//     data: {id:id},
+//     dataType: 'json',
+//     success: function(response){
+//       $('#posid').val(response.id);
+//       $('#edit_RecId').val(response.RecId);
+//       $('#edit_Employee_Name').val(response.Employee_Name);
+//       $('#edit_designation_name').val(response.designation_name);
+//       $('#edit_shift_name').html(response.shift_name);
+//     }
+//   });
+// }
+
+
 </script>
 <style>
 
@@ -263,7 +328,7 @@ $(function(){
 <script>
 window.addEventListener('load', function() {
     var payrollButton = document.getElementById('payrollButton');
-    payrollButton.disabled = true; // Button ko disable kardo
+    // payrollButton.disabled = true; // Button ko disable kardo
 });
 </script>
 </body>

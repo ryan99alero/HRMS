@@ -1,4 +1,6 @@
 <?php include 'includes/session.php'; ?>
+<link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css">
+<link rel="stylesheet" href="https://cdn.datatables.net/buttons/2.4.1/css/buttons.dataTables.min.css">
 <?php
   include '../timezone.php';
   $range_to = date('m/d/Y');
@@ -50,12 +52,12 @@
       <div class="row">
         <div class="col-xs-12">
           <div class="box">
-            <div class="box-header with-border">
+            <!-- <div class="box-header with-border">
               <div class="pull-right">
                 <form method="POST" class="form-inline" id="payForm">
-                <!-- <button type="button" class="btn btn-success btn-sm btn-flat" id="save" name="save" style='border-radius:8px;'>
+                <button type="button" class="btn btn-success btn-sm btn-flat" id="save" name="save" style='border-radius:8px;'>
                     <span class="fa fa-check"></span> Save
-                </button> -->
+                </button>
                   <div class="input-group">
                     <div class="input-group-addon">
                       <i class="fa fa-calendar"></i>
@@ -66,32 +68,36 @@
                   <button type="button" class="btn btn-primary btn-sm btn-flat" id="payslip" style='border-radius:8px;'><span class="glyphicon glyphicon-print"></span> Payslip</button>
                 </form>
               </div>
-            </div>
-            <div class="box-body">
+            </div> -->
+            <div class="box-body table-responsive">
               <table id="example1" class="table table-bordered">
                 <thead>
                   <th>ID</th>
-                  <th>Employee_Name</th>
+                  <th>Employee Name</th>
                   <th>Designation</th>
-                  <th>shift_name</th>
-                  <th>pay_name</th>
-                  <th>time_in</th>
-                  <th>time_out</th>
-                  <th>salary</th>
-                  <th>deducted_days</th>
-                  <th>late</th>
-                  <th>absent</th>
+                  <th>Shift name</th>
+                  <th>Pay name</th>
+                  <th>Time in</th>
+                  <th>Time out</th>
+                  <th>Payroll Type</th>
+                  <th>Salary</th>
+                  <th>Deducted days</th>
+                  <th>Late</th>
+                  <th>Absent</th>
                   <th>Deduction</th>
-                  <th>M_Deducted</th>
-                  <th>M_Salary</th>
-                  <th>Total_Pay</th>
+                  <th>Modify Deducted</th>
+                  <th>Advance</th>
+                  <th>Modify Advance</th>
+                  <th>Modify Salary</th>
+                  <th>Total Pay</th>
+                  <th>Action</th>
                   
                 </thead>
                 <tbody>
                    <?php
                    
                   //  $sql = "SELECT * FROM payroll";
-                   $sql = "call `sp_PayrollGenerator`(0)";
+                   $sql = "call `sp_Cursor_PayrollGenerator`";
                   //  $sql = "call `sp_PayrollGenerator` (0)";
                    $query = $conn->query($sql);
                    while($row = $query->fetch_assoc()){
@@ -104,21 +110,30 @@
                          <td>".$row['pay_name']."</td>
                          <td>".$row['time_in']."</td>
                          <td>".$row['time_out']."</td>
+                         <td>".$row['payroll_type']."</td>
                          <td>".$row['salary']."</td>
                          <td>".$row['deducted_days']."</td>
                          <td>".$row['late']."</td>
                          <td>".$row['absent']."</td>
                          <td>".$row['Deduction']."</td>
                          <td>".$row['M_Deducted']."</td>
+                         <td>".$row['Advance']."</td>
+                         <td>".$row['M_Advance']."</td>
                          <td>".$row['M_Salary']."</td>
                          <td>".$row['Total_Pay']."</td>
-                         <td>". ($row['updated_on'] != null ? ""  : "<button class='btn btn-success btn-sm edit btn-flat edit-button' style='border-radius:8px;' data-id='".$row['RecId']."'><i class='fa fa-edit'></i> Payroll</button>") . "
-                           
-                           
+                         <td>". "<button class='btn btn-success btn-sm edit btn-flat edit-button' style='border-radius:8px;' data-id='".$row['RecId']."'><i class='fa fa-edit'></i> Edit</button>" . "
                          </td>
+                        </tr>
                      ";
                      
                    }
+
+
+                  //  _||_
+                  //  \  /
+                  //   \/
+                  //  <td>". ($row['updated_on'] != null ? ""  : "<button class='btn btn-success btn-sm edit btn-flat edit-button' style='border-radius:8px;' data-id='".$row['RecId']."'><i class='fa fa-edit'></i> Edit</button>") . "
+                  //  </td>
 
                    
               
@@ -191,11 +206,52 @@
   <?php include 'includes/footer.php'; ?>
 </div>
 <?php include 'includes/scripts.php'; ?> 
+
+<!-- <script src="https://code.jquery.com/jquery-3.7.0.js"></script> -->
+<script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/buttons/2.4.1/js/dataTables.buttons.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
+<script src="https://cdn.datatables.net/buttons/2.4.1/js/buttons.html5.min.js"></script>
+
 <script>
 $(function(){
+  $('#example1').DataTable().destroy(); 
+  $('#example1').DataTable( {
+    dom: "'<'row'l>Bfrtip'",
+        // "pageLength": 90,
+        "scrollX": true,
+        "scrollY": '500px',
+
+        buttons: [
+                      {
+                        extend: 'pdf',
+                        title: 'Payroll Generate',
+                        orientation: 'landscape', // Set the orientation to landscape
+                        customize: function(doc) {
+                          // Customize the PDF document if needed
+                          // For example, you can set the page size, margins, etc.
+                          doc.pageSize = 'a4';
+                          doc.pageMargins = [40, 60, 40, 60];
+
+                              // Specify the column index you want to skip
+                              var columnIndexToSkip = 15; // Change to the index of the column you want to skip
+
+                              // Loop through all table rows
+                              for (var i = 0; i < doc.content[1].table.body.length; i++) {
+                                // Remove the content of the specified column
+                                doc.content[1].table.body[i].splice(columnIndexToSkip, 16);
+                              }
+
+                        }
+                      },
+            'copy', 'csv', 'excel', 'print'
+        ]
+    } );
   $('.edit').click(function(e){
     e.preventDefault();
-    $('#edit').modal('show');
+    $('#payrolledit').modal('show');
     var id = $(this).data('id');
     getRow(id);
   });

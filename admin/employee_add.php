@@ -2,22 +2,30 @@
 	include 'includes/session.php';
 
 	if(isset($_POST['add'])){
-		$EmpID = $_POST['EmpID'];
-		$Fname = $_POST['Fname'];
-		$Lname = $_POST['Lname'];
-		$DesID = $_POST['DesID'];
-		$PayId = $_POST['PayId'];
-		$ShiftID = $_POST['ShiftID'];
-		$Sex = $_POST['Sex'];
-		$Home = $_POST['Home'];
-		$Phone = $_POST['Phone'];
-		$Salary = $_POST['Salary'];
-		$RecId = $_POST['RecId']; // Initialize $RecId from POST data
-		$RId = $_POST['RId'];     // Initialize $RId from POST data
-		$Uname = $_POST['Uname']; // Initialize $Uname from POST data
-		$Pass = $_POST['Pass'];   // Initialize $Pass from POST data
-
-		$sql = "call `StrProc_InsertUserProfileInfo`('$RecId','$EmpID','$DesID','$PayId','$ShiftID','$Fname','$Lname','$Sex','$Home','$Phone','$Salary','$RId','$Uname','$Pass',1,NOW())";
+		$Employee_Id = $_POST['EmpID'];
+		$PersonName = $_POST['Fname'].$_POST['Lname'];
+		$CNIC = $_POST['CNIC'];
+		$Gmail = $_POST['gmail'];
+		$designation_name = $_POST['DesID'];
+		$pay_name = $_POST['PayId'];
+		$shift_name = $_POST['ShiftID'];
+		$Gender = $_POST['Sex'];
+		$address = $_POST['Home'];
+		$contact = $_POST['Phone'];
+		$salary = $_POST['Salary'];
+		// $workingDays = $_POST['workingDays'];
+		
+		$sql = "call `StrProc_InsertUserProfileInfo`('$Employee_Id',
+		'$PersonName',
+		'$CNIC',
+		'$Gmail',
+		'$designation_name',
+		'$pay_name',
+		'$shift_name',
+		'$Gender',
+		'$address',
+		'$contact',
+		'$salary')";
 
 		if($conn->query($sql)){
 			$_SESSION['success'] = "Data entered successfully";

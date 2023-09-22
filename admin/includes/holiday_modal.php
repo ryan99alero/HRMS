@@ -5,24 +5,24 @@
           	<div class="modal-header">
             	<button type="button" class="close" data-dismiss="modal" aria-label="Close">
               		<span aria-hidden="true">&times;</span></button>
-            	<h4 class="modal-title"><b>Add Pay Scale</b></h4>
+            	<h4 class="modal-title"><b>Add Holiday</b></h4>
           	</div>
           	<div class="modal-body">
             	<form class="form-horizontal" method="POST" action="holiday_add.php">
           		  	<div class="form-group">
-                  		<label for="title" class="col-sm-3 control-label">Payscale Title</label>
+                  		<label for="Title" class="col-sm-3 control-label">Title</label>
 
                   		<div class="col-sm-9">
-                    		<input type="text" class="form-control" id="title" name="title" required>
+                    		<input type="text" class="form-control" id="add_Title" name="Title" required>
                   		</div>
                     </div>
-                <!-- <div class="form-group">
-                    <label for="rate" class="col-sm-3 control-label">Rate per Hr</label>
+                <div class="form-group">
+                    <label for="Holiday_Date" class="col-sm-3 control-label">Holiday Date</label>
 
                     <div class="col-sm-9">
-                      <input type="text" class="form-control" id="rate" name="rate" required>
+                      <input type="date" class="form-control" id="add_Holiday_Date" name="Holiday_Date" required>
                     </div>
-                </div> -->
+                </div>
           	</div>
           	<div class="modal-footer">
             	<button type="button" class="btn btn-default btn-flat pull-left" data-dismiss="modal"><i class="fa fa-close"></i> Close</button>
@@ -45,6 +45,13 @@
           	<div class="modal-body">
             	<form class="form-horizontal" method="POST" action="holiday_edit.php">
             		<input type="hidden" id="posid" name="id">
+                    <div class="form-group">
+                    <label for="RecId" class="col-sm-3 control-label">ID</label>
+
+                    <div class="col-sm-9">
+                      <input type="text" class="form-control" id="RecId" name="RecId">
+                    </div>
+                </div>
                 <div class="form-group">
                     <label for="Title" class="col-sm-3 control-label">Title</label>
 
@@ -86,11 +93,11 @@
             	<h4 class="modal-title"><b>Deleting...</b></h4>
           	</div>
           	<div class="modal-body">
-            	<form class="form-horizontal" method="POST" action="payscale_delete.php">
+            	<form class="form-horizontal" method="POST" action="holiday_delete.php">
             		<input type="hidden" id="del_posid" name="id">
             		<div class="text-center">
-	                	<p>DELETE PAY SCALE</p>
-	                	<h2 id="del_payscale" class="bold"></h2>
+	                	<p>DELETE HoliDay</p>
+	                	<h2 id="del_Title" name="RecId" class="bold"></h2>
 	            	</div>
           	</div>
           	<div class="modal-footer">
@@ -104,28 +111,38 @@
 <script src="https://code.jquery.com/jquery-3.7.0.js" integrity="sha256-JlqSTELeR4TLqP0OG9dxM7yDPqX1ox/HfgiSLBj8+kM=" crossorigin="anonymous"></script>
 <script>
     $(document).ready(function() {
+          // Add button click event
+        $('.addnew').click(function() {
+            // var id = $(this).data('id');
+            // var Title = $(this).closest('tr').find('td:eq(0)').text(); // Extract title from table
+            // var Holiday_Date = $(this).closest('tr').find('td:eq(1)').text(); // Extract Holiday_Date from table
+            $('#posid').val(id);
+            $('#add_Title').val(Title);
+            $('#add_Holiday_Date').val(Holiday_Date);
+            $('#add').modal('show');
+        });
+
         // Edit button click event
         $('.edit').click(function() {
             var id = $(this).data('id');
-            var title = $(this).closest('tr').find('td:eq(0)').text(); // Extract title from table
+            var RecId = $(this).closest('tr').find('td:eq(0)').text(); // Extract title from table
+            var Title = $(this).closest('tr').find('td:eq(1)').text(); // Extract title from table
+            var Holiday_Date = $(this).closest('tr').find('td:eq(2)').text(); // Extract title from table
             $('#posid').val(id);
-            $('#edit_Title').val(Title);
-            $('#edit_Holiday_Date').val(Holiday_Date);
+            $('#RecId').val(RecId);
+            $('#Title').val(Title);
+            $('#Holiday_Date').val(Holiday_Date);
             $('#edit').modal('show');
         });
 
         // Delete button click event
 		$('.delete').click(function() {
             var id = $(this).data('id');
-            var payscaleTitle = $(this).closest('tr').find('td:eq(0)').text(); // Extract payscale title from table
+            var Title = $(this).closest('tr').find('td:eq(1)').text(); // Extract payscale title from table
             $('#del_posid').val(id);
-            $('#del_payscale').text(payscaleTitle);
+            $('#del_Title').text(Title);
             $('#delete').modal('show');
         });
 
     });
 </script>
-
-
-
-     

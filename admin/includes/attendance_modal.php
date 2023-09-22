@@ -70,29 +70,38 @@ include 'includes/session';
             	<form class="form-horizontal" method="POST" action="attendance_edit.php">
             		<input type="hidden" id="attid" name="id">
                 <div class="form-group">
-                    <label for="datepicker_edit" class="col-sm-3 control-label">Date</label>
+                    <label for="edit_EmpId" class="col-sm-3 control-label">ID</label>
 
                     <div class="col-sm-9"> 
-                      <div class="date">
-                        <input type="text" class="form-control" id="datepicker_edit" name="edit_date">
+                      <div class="bootstrap-timepicker">
+                        <input type="text" class="form-control" id="edit_EmpId" name="EmpId" readonly>
+                      </div>
+                    </div>
+                </div>
+				<div class="form-group">
+                    <label for="edit_check_in" class="col-sm-3 control-label">Check In</label>
+
+                    <div class="col-sm-9"> 
+                      <div class="bootstrap-timepicker">
+                        <input type="text" class="form-control" id="edit_check_in" name="check_in">
                       </div>
                     </div>
                 </div>
                 <div class="form-group">
-                  	<label for="edit_time_in" class="col-sm-3 control-label">Time In</label>
+                  	<label for="edit_check_out" class="col-sm-3 control-label">Check Out</label>
 
                   	<div class="col-sm-9">
                   		<div class="bootstrap-timepicker">
-                    		<input type="text" class="form-control timepicker" id="edit_time_in" name="edit_time_in">
+                    		<input type="text" class="form-control timepicker" id="edit_check_out" name="check_out">
                     	</div>
                   	</div>
                 </div>
                 <div class="form-group">
-                  	<label for="edit_time_out" class="col-sm-3 control-label">Time Out</label>
+                  	<label for="check_in_date" class="col-sm-3 control-label">Date</label>
 
                   	<div class="col-sm-9">
-                  		<div class="bootstrap-timepicker">
-                    		<input type="text" class="form-control timepicker" id="edit_time_out" name="edit_time_out">
+                  		<div class="#">
+                    		<input type="date" class="form-control timepicker" id="check_in_date" name="check_in_date" readonly>
                     	</div>
                   	</div>
                 </div>
@@ -131,6 +140,22 @@ include 'includes/session';
         </div>
     </div>
 </div>
-
-
-     
+<script src="https://code.jquery.com/jquery-3.7.0.js" integrity="sha256-JlqSTELeR4TLqP0OG9dxM7yDPqX1ox/HfgiSLBj8+kM=" crossorigin="anonymous"></script>
+<script>
+    $(document).ready(function() {
+        // Edit button click event
+        $('.edit').click(function() {
+            var id = $(this).data('id');
+            var EmpId = $(this).closest('tr').find('td:eq(0)').text(); // Extract title from table
+            var check_in = $(this).closest('tr').find('td:eq(3)').text(); // Extract title from table
+            var check_out = $(this).closest('tr').find('td:eq(5)').text(); // Extract title from table
+            var check_in_date = $(this).closest('tr').find('td:eq(4)').text(); // Extract title from table
+            $('#attid').val(id);
+            $('#edit_EmpId').val(EmpId);
+            $('#edit_check_in').val(check_in);
+            $('#edit_check_out').val(check_out);
+            $('#check_in_date').val(check_in_date);
+            $('#edit').modal('show');
+        });
+    });
+</script>

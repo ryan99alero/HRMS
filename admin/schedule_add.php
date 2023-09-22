@@ -10,7 +10,7 @@
 		$grace_time = $_POST['grace_time'];
 
 		// $sql = "INSERT INTO schedules (time_in, time_out) VALUES ('$time_in', '$time_out')";
-		$sql = "CALL `StrProc_InsertShiftInfo`('$shift_name','$time_in','$time_out','$grace_time',1)";
+		$sql = "CALL `StrProc_InsertShiftInfo`('$shift_name','$time_in','$time_out','$grace_time')";
 		if($conn->query($sql)){
 			$_SESSION['success'] = 'Schedule added successfully';
 		}

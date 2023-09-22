@@ -52,10 +52,12 @@
             <div class="box-body">
               <table id="example1" class="table table-bordered">
                 <thead>
-                  <th>shift_name</th>
-                  <th>time_in</th>
-                  <th>time_out</th>
-                  <th>grace_time</th>
+                  <th>ID</th>
+                  <th>Shift Name</th>
+                  <th>Time In</th>
+                  <th>Time Out</th>
+                  <th>Grace Time</th>
+                  <th>Action</th>
                 </thead>
                 <tbody>
                   <?php
@@ -66,6 +68,7 @@
                     {
                       echo "
                         <tr>
+                          <td>".$row['RecId']."</td>
                           <td>".$row['shift_name']."</td>
                           <td>".$row['time_in']."</td>
                           <td>".$row['time_out']."</td>

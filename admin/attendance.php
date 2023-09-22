@@ -2,8 +2,10 @@
 <?php include 'includes/session.php'; ?>
 <?php include 'includes/header.php'; ?>
 <!-- <link href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css" rel="stylesheet"/> -->
-<link href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css" rel="stylesheet"/>
-<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/buttons/2.4.1/css/buttons.dataTables.min.css">
+<!-- <link href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css" rel="stylesheet"/>
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/buttons/2.4.1/css/buttons.dataTables.min.css"> -->
+<link rel="stylesheet" href="style/datatable1.13.6.css">
+<link rel="stylesheet" href="style/datatable2.4.1.css">
 <body class="hold-transition skin-blue sidebar-mini">
 <div class="wrapper">
 
@@ -53,7 +55,7 @@
               <!-- <a href="#edit" data-toggle="modal" class="btn btn-primary btn-sm btn-flat" style="border-radius:8px;background-color:#4680ff;"><i class="fa fa-plus"></i> New</a> -->
               <!-- <button class="btn btn-primary btn-sm btn-flat btn-success glyphicon glyphicon-print" style="border-radius:8px;"> Print</button> -->
             </div>
-            <div class="box-body">
+            <div class="box-body table-responsive">
               <table id="attendanceTable" class="table table-bordered">
                 <thead>
                   <th>Employee ID</th>
@@ -62,12 +64,11 @@
                   <th>Check In</th>
                   <th>Date</th>
                   <th>Check Out</th>
-                  <th>Earlier Departure</th>
+                  <!-- <th>Earlier Departure</th> -->
                   <th>Late Coming</th>
                   <th>Over Time</th>
                   <th>Status</th>
-                  <!-- <th>Action</th> -->
-                  <th></th>
+                  <th>Action</th>
                 </thead>
                 <tbody>
                   <?php
@@ -111,17 +112,51 @@
 <?php include 'includes/scripts.php'; ?>
 <!-- <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
 <script src="https://cdn.datatables.net/buttons/2.4.1/js/dataTables.buttons.min.js"></script> -->
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
-<script src="https://cdn.datatables.net/buttons/2.4.1/js/dataTables.buttons.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
-<script src="https://cdn.datatables.net/buttons/2.4.1/js/buttons.html5.min.js"></script>
+<script scr="JS/jquery3.7.0.js"></script>
+
+<script src="JS/datatable1.13.6.js"></script>
+
+<script src="JS/button2.4.1.js"></script>
+
+<script src="JS/ajax3.10.1.js"></script>
+
+<script src="JS/ajax0.1.53pdf.js"></script>
+
+<script src="JS/ajax0.1.53font.js"></script>
+
+<script src="JS/button2.4.15.js"></script>
+
 <script>
 $(function(){
   $("#attendanceTable").DataTable( {
-        dom: 'Bfrtip',
+    dom: "'<'row'l>Bfrtip'",
+        "scrollX": true,
+        "scrollY": '500px',
+
+        // "lengthMenu": [[10, 25, 50, -1], [10, 25, 50, "All"]],
+
         buttons: [
-          'excel', 'pdf', 'print'
+                    {
+                  extend: 'pdf',
+                  title: 'Attendance',
+                  orientation: 'landscape', // Set the orientation to landscape
+                  customize: function(doc) {
+                    // Customize the PDF document if needed
+                    // For example, you can set the page size, margins, etc.
+                    doc.pageSize = 'a4';
+                    doc.pageMargins = [40, 60, 40, 60];
+
+                             // Specify the column index you want to skip
+                              var columnIndexToSkip = 9; // Change to the index of the column you want to skip
+
+                            // Loop through all table rows
+                            for (var i = 0; i < doc.content[1].table.body.length; i++) {
+                              // Remove the content of the specified column
+                              doc.content[1].table.body[i].splice(columnIndexToSkip, 10);
+                            }
+                  }
+                },
+            'copy', 'csv', 'excel', 'print'
         ]
     } );
   $('.edit').click(function(e){
