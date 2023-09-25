@@ -363,7 +363,7 @@ if (isset($_POST['import'])) {
         $rows = $excel->parser->getField(); 
 
         echo '<table class="dt" border="1">';
-        echo '<thead method = "post"><tr><th>Designation</th><th>Employee</th><th>firstname</th><th>lastname</th><th>CNIC</th><th>Email</th><th>address</th><th>contact</th><th>gender</th><th>shift</th><th>payscale</th><th>salary</th><th>Advance</th><th>workingDays</th></tr></thead';
+        echo '<thead method = "post"><tr><th>Employee_Id</th><th>firstname</th><th>lastname</th><th>gender</th><th>CNIC</th><th>Email</th><th>contact</th><th>address</th><th>Designation</th><th>payscale</th><th>shift</th><th>workingDays</th><th>salary</th></tr></thead';
         foreach ($rows as $row) {
             echo '<tr>';
             foreach ($row as $cell) {
@@ -385,25 +385,20 @@ if (isset($_POST['insert'])) {
         $count = 0;
 
         while (count($foo) > $count) {
-            $Designation_Id = $foo[$count][0];
-            $Employee_Id = $foo[$count][1];
-            $firstname = $foo[$count][2];
-            $lastname = $foo[$count][3];
+            $Employee_Id = $foo[$count][0];
+            $firstname = $foo[$count][1];
+            $lastname = $foo[$count][2];
+            $gender = $foo[$count][3];
             $CNIC = $foo[$count][4];
             $Gmail = $foo[$count][5];
-            $address = $foo[$count][6];
-            $contact = $foo[$count][7];
-            $gender = $foo[$count][8];
-            $shift_id = $foo[$count][9];
-            $payscale_id = $foo[$count][10];
-            $salary = $foo[$count][10];
-            $Advance = $foo[$count][10];
-            $workingDays = $foo[$count][10];
-            $Cheak_value = $foo[$count][10];
-            $RId = $foo[$count][10];
-            $Uname = $foo[$count][10];
-            $Pass = $foo[$count][10];
-            $sql = "call `StrProc_InsertUserProfileInfo`('$Designation_Id','$Employee_Id','$firstname','$lastname','$CNIC','$Gmail','$address','$contact','$gender','$shift_id','$payscale_id','$salary','$Advance','$workingDays','$Cheak_value','$RId','$Uname','$Pass')";  
+            $contact = $foo[$count][6];
+            $address = $foo[$count][7];
+            $Designation_Id = $foo[$count][8];
+            $payscale_id = $foo[$count][9];
+            $shift_id = $foo[$count][10];
+            $workingDays = $foo[$count][11];
+            $salary = $foo[$count][12];
+            $sql = "call `SP_InsertUserProfileInfo`('$Employee_Id','$firstname','$lastname','$gender','$CNIC','$Gmail','$contact','$address','$Designation_Id','$payscale_id','$shift_id','$workingDays','$salary')";  
 
             if (mysqli_query($db, $sql)) {
                 // var_dump($sql);

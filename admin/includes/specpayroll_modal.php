@@ -1,3 +1,4 @@
+
 <?php
 // Connect to your database (replace with your database details)
 $servername = "localhost";
@@ -16,8 +17,7 @@ if(isset($_POST['id'])){
 $id = $_POST['id']; // Assuming you have a hidden input field with name 'id' in your form
 
 // $sql = "SELECT * FROM your_table_name WHERE id = $id"; // Replace 'your_table_name' with the actual table name
-// $sql = "call `sp_Special_PayrollGenerator`(1,'$id')";
-$sql = "call `Sp_GetSpecialPayrollValues`('$id')";
+$sql = "call `sp_Special_PayrollGenerator`(1,'$id')";
 $result = $conn->query($sql);
 var_dump($sql);
 if ($result->num_rows > 0) {
@@ -176,6 +176,24 @@ $conn->close();
                                 </div>
                             </div>
                             <div class="form-group">
+                                <label for="edit_Deduction" class="col-sm-3 control-label">Deduction</label>
+                                
+                                <div class="col-sm-9">
+                                    <!-- <input type="text" class="form-control" id="edit_Deduction" name="Deduction" disabled> -->
+                                    <input type="text" class="form-control" id="edit_Deduction" name="Deduction" value="<?php echo $Deduction; ?>" disabled>
+                                    
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="edit_M_Deducted" class="col-sm-3 control-label">Modify Deduction</label>
+                                
+                                <div class="col-sm-9">
+                                    <!-- <input type="text" class="form-control" id="edit_M_Deducted" name="M_Deducted"> -->
+                                    <input type="text" class="form-control" id="edit_M_Deducted" name="M_Deducted" value="<?php echo $M_Deducted; ?>">
+                                    
+                                </div>
+                            </div>
+                            <div class="form-group">
                                 <label for="edit_Advance" class="col-sm-3 control-label">Advance</label>
 
                                 <div class="col-sm-9">
@@ -185,29 +203,11 @@ $conn->close();
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label for="edit_M_Advance" class="col-sm-3 control-label">M_Advance</label>
+                                <label for="edit_M_Advance" class="col-sm-3 control-label">Modify Advance</label>
 
                                 <div class="col-sm-9">
                                 <!-- <input type="text" class="form-control" id="edit_Advance" name="Advance"> -->
                                 <input type="text" class="form-control" id="edit_M_Advance" name="M_Advance" value="<?php echo $M_Advance; ?>">
-
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label for="edit_Deduction" class="col-sm-3 control-label">Deduction</label>
-
-                                <div class="col-sm-9">
-                                <!-- <input type="text" class="form-control" id="edit_Deduction" name="Deduction" disabled> -->
-                                <input type="text" class="form-control" id="edit_Deduction" name="Deduction" value="<?php echo $Deduction; ?>" disabled>
-
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label for="edit_M_Deducted" class="col-sm-3 control-label">Modify Deduction</label>
-
-                                <div class="col-sm-9">
-                                <!-- <input type="text" class="form-control" id="edit_M_Deducted" name="M_Deducted"> -->
-                                <input type="text" class="form-control" id="edit_M_Deducted" name="M_Deducted" value="<?php echo $M_Deducted; ?>">
 
                                 </div>
                             </div>

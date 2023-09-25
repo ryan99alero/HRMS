@@ -145,10 +145,10 @@
         // Edit button click event
         $('.edit').click(function() {
             var id = $(this).data('id');
-            var shiftName = $(this).closest('tr').find('td:eq(0)').text();
-            var timeIn = $(this).closest('tr').find('td:eq(1)').text();
-            var timeOut = $(this).closest('tr').find('td:eq(2)').text();
-            var graceTime = $(this).closest('tr').find('td:eq(3)').text();
+            var shiftName = $(this).closest('tr').find('td:eq(1)').text();
+            var timeIn = $(this).closest('tr').find('td:eq(2)').text();
+            var timeOut = $(this).closest('tr').find('td:eq(3)').text();
+            var graceTime = $(this).closest('tr').find('td:eq(4)').text();
             $('#timeid').val(id);
             $('#edit_shift_name').val(shiftName);
             $('#edit_time_in').val(timeIn);
@@ -160,7 +160,7 @@
         // Delete button click event
         $('.delete').click(function() {
             var id = $(this).data('id');
-            var scheduleTitle = $(this).closest('tr').find('td:eq(0)').text();
+            var scheduleTitle = $(this).closest('tr').find('td:eq(1)').text();
             $('#del_timeid').val(id);
             $('#del_schedule').text(scheduleTitle);
             $('#delete').modal('show');

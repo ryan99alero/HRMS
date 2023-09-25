@@ -3,32 +3,37 @@
 
 	if(isset($_POST['add'])){
 		$Employee_Id = $_POST['EmpID'];
-		$PersonName = $_POST['Fname'].$_POST['Lname'];
+		$firstname = $_POST['Fname'];
+		$lastname = $_POST['Lname'];
+		$gender = $_POST['Sex'];
 		$CNIC = $_POST['CNIC'];
-		$Gmail = $_POST['gmail'];
-		$designation_name = $_POST['DesID'];
-		$pay_name = $_POST['PayId'];
-		$shift_name = $_POST['ShiftID'];
-		$Gender = $_POST['Sex'];
-		$address = $_POST['Home'];
+		$Gmail = $_POST['Gmail'];
 		$contact = $_POST['Phone'];
+		$address = $_POST['Home'];
+		$Designation_Id = $_POST['DesID'];
+		$payscale_id = $_POST['PayId'];
+		$shift_id = $_POST['ShiftID'];
+		$workingDays = $_POST['WorkingDays'];
 		$salary = $_POST['Salary'];
+		// $Advance = $_POST['Advance'];
 		// $workingDays = $_POST['workingDays'];
 		
-		$sql = "call `StrProc_InsertUserProfileInfo`('$Employee_Id',
-		'$PersonName',
+		$sql = "call `SP_InsertUserProfileInfo`('$Employee_Id',
+		'$firstname',
+		'$lastname',
+		'$gender',
 		'$CNIC',
 		'$Gmail',
-		'$designation_name',
-		'$pay_name',
-		'$shift_name',
-		'$Gender',
-		'$address',
 		'$contact',
+		'$address',
+		'$Designation_Id',
+		'$payscale_id',
+		'$shift_id',
+		'$workingDays',
 		'$salary')";
 
 		if($conn->query($sql)){
-			$_SESSION['success'] = "Data entered successfully";
+			$_SESSION['success'] = "Employee Add Successfully";
 		}
 		else{
 			$_SESSION['error'] = $conn->error;

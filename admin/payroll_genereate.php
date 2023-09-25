@@ -54,11 +54,11 @@
           <div class="box">
             <!-- <div class="box-header with-border">
               <div class="pull-right">
-                <form method="POST" class="form-inline" id="payForm">
-                <button type="button" class="btn btn-success btn-sm btn-flat" id="save" name="save" style='border-radius:8px;'>
+                <form method="POST" class="form-inline" id="payForm"> -->
+                <!-- <button type="button" class="btn btn-success btn-sm btn-flat" id="save" name="save" style='border-radius:8px;'>
                     <span class="fa fa-check"></span> Save
-                </button>
-                  <div class="input-group">
+                </button> -->
+                  <!-- <div class="input-group">
                     <div class="input-group-addon">
                       <i class="fa fa-calendar"></i>
                     </div>
@@ -85,10 +85,10 @@
                   <th>Late</th>
                   <th>Absent</th>
                   <th>Deduction</th>
-                  <th>Modify Deducted</th>
+                  <th>M Deducted</th>
                   <th>Advance</th>
-                  <th>Modify Advance</th>
-                  <th>Modify Salary</th>
+                  <th>M Advance</th>
+                  <th>M Salary</th>
                   <th>Total Pay</th>
                   <th>Action</th>
                   
@@ -243,10 +243,27 @@ $(function(){
                                 // Remove the content of the specified column
                                 doc.content[1].table.body[i].splice(columnIndexToSkip, 16);
                               }
-
-                        }
+                        },
                       },
-            'copy', 'csv', 'excel', 'print'
+                      {
+                          extend: 'excel',
+                          title: 'Payroll Generate',
+                          customize: function(xlsx) {
+                            // Specify the column index you want to hide (0-based index)
+                            var columnIndexToHide = 18; // Change to the index of the column you want to hide
+                            var sheet = xlsx.xl.worksheets['sheet1.xml'];
+
+                            // Loop through all rows in the sheet
+                            $('row c', sheet).each(function () {
+                              // Remove the content of the specified column
+                              if ($(this).index() == columnIndexToHide) {
+                                $(this).text('');
+                              }
+                            });
+                          }
+                        },
+                                        
+            'copy', 'csv', 'print'
         ]
     } );
   $('.edit').click(function(e){

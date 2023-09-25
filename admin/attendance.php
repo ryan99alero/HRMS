@@ -20,7 +20,7 @@
         Attendance
       </h1>
       <ol class="breadcrumb">
-        <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+        <li><a href="home.php"><i class="fa fa-dashboard"></i> Home</a></li>
         <li class="active">Attendance</li>
       </ol>
     </section>
@@ -56,7 +56,7 @@
               <!-- <button class="btn btn-primary btn-sm btn-flat btn-success glyphicon glyphicon-print" style="border-radius:8px;"> Print</button> -->
             </div>
             <div class="box-body table-responsive">
-              <table id="attendanceTable" class="table table-bordered">
+              <table id="attendanceTable" class="table table-bordered table-responsive">
                 <thead>
                   <th>Employee ID</th>
                   <th>Person Name</th>
@@ -156,7 +156,24 @@ $(function(){
                             }
                   }
                 },
-            'copy', 'csv', 'excel', 'print'
+                {
+                          extend: 'excel',
+                          title: 'Attendance',
+                          customize: function(xlsx) {
+                            // Specify the column index you want to hide (0-based index)
+                            var columnIndexToHide = 9; // Change to the index of the column you want to hide
+                            var sheet = xlsx.xl.worksheets['sheet1.xml'];
+
+                            // Loop through all rows in the sheet
+                            $('row c', sheet).each(function () {
+                              // Remove the content of the specified column
+                              if ($(this).index() == columnIndexToHide) {
+                                $(this).text('');
+                              }
+                            });
+                          }
+                        },
+            'copy', 'csv', 'print'
         ]
     } );
   $('.edit').click(function(e){

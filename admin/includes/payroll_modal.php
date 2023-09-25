@@ -131,6 +131,20 @@
                             </div>
                         </div>
                         <div class="form-group">
+                            <label for="edit_Deduction" class="col-sm-3 control-label">Deduction</label>
+                            
+                            <div class="col-sm-9">
+                                <input type="text" class="form-control" id="edit_Deduction" name="Deduction" disabled>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="edit_M_Deducted" class="col-sm-3 control-label">Modify Deduction</label>
+                            
+                            <div class="col-sm-9">
+                                <input type="text" class="form-control" id="edit_M_Deducted" name="M_Deducted">
+                            </div>
+                        </div>
+                        <div class="form-group">
                             <label for="edit_advance" class="col-sm-3 control-label">Advance</label>
 
                             <div class="col-sm-9">
@@ -144,20 +158,6 @@
                             <input type="text" class="form-control" id="edit_M_Advance" name="M_Advance">
                             </div>
                         </div>
-                        <div class="form-group">
-                            <label for="edit_Deduction" class="col-sm-3 control-label">Deduction</label>
-                            
-                            <div class="col-sm-9">
-                                <input type="text" class="form-control" id="edit_Deduction" name="Deduction" disabled>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label for="edit_M_Deducted" class="col-sm-3 control-label">Modify Deduction</label>
-
-                                <div class="col-sm-9">
-                                <input type="text" class="form-control" id="edit_M_Deducted" name="M_Deducted">
-                                </div>
-                            </div>
                             <div class="form-group">
                                 <label for="edit_M_Salary" class="col-sm-3 control-label">Modify Salary</label>
 
@@ -284,9 +284,9 @@
             var deducted_days = $(this).closest('tr').find('td:eq(9)').text(); // Extract M_Deduction from table
             var late = $(this).closest('tr').find('td:eq(10)').text(); // Extract late from table
             var absent = $(this).closest('tr').find('td:eq(11)').text(); // Extract absent from table
-            var advance = $(this).closest('tr').find('td:eq(12)').text(); // Extract advance from table
+            var advance = $(this).closest('tr').find('td:eq(14)').text(); // Extract advance from table
             var M_Advance = $(this).closest('tr').find('td:eq(13)').text(); // Extract M_Advance from table
-            var Deduction = $(this).closest('tr').find('td:eq(14)').text(); // Extract Deduction from table
+            var Deduction = $(this).closest('tr').find('td:eq(12)').text(); // Extract Deduction from table
             var M_Deducted = $(this).closest('tr').find('td:eq(15)').text(); // Extract M_Deducted from table
             var M_Salary = $(this).closest('tr').find('td:eq(16)').text(); // Extract M_Salary from table
             var Total_Pay = $(this).closest('tr').find('td:eq(17)').text(); // Extract Total_Pay from table

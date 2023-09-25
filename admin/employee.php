@@ -19,8 +19,7 @@
         Employee List
       </h1>
       <ol class="breadcrumb">
-        <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-        <li>Employees</li>
+        <li><a href="home.php"><i class="fa fa-dashboard"></i> Home</a></li>
         <li class="active">Employee List</li>
       </ol>
     </section>
@@ -58,12 +57,12 @@
               <table class="dt table table-bordered ">
                 <thead class="">
                   <tr>
-                    <!-- <th>ID</th> -->
+                    <!-- <th>ID</th>                  -->
                     <th>User ID</th>
                     <th>Employee ID</th>
                     <th>Name</th>
                     <th>CNIC No.</th>
-                    <th>Email</th>
+                    <th>Gmail</th>
                     <th>Designation</th>
                     <th>Pay</th>
                     <th>Shift</th>
@@ -102,7 +101,7 @@
                           <td><?php echo $row['workingDays']; ?></td>
                           <td><?php if(isset($row['isactive'])){ echo "<span class='badge badge-success' style='background-color:green'>Active</span>";
                            }else {echo "<span class='badge badge-danger' style='background-color:Red'>Deactive</span>";}; ?></td>
-                         <td>
+                          <td>
                           <a class=" edit "  style='border-radius:8px;color:white;cursor: pointer;' data-id="<?php echo $row['RecId']; ?>"><button style="border-radius:8px;border:none;background-color:#4680ff;"><i class="fa fa-edit"></i></button></a>
                          
                           <a class=" advance "  style='border-radius:8px;color:white;cursor: pointer;' data-id="<?php echo $row['RecId']; ?>"><button style="border-radius:8px;border:none;background-color:orange;"><i class="fa fa-money"></i></button></a> 
@@ -127,7 +126,7 @@
   <?php
    include 'includes/employee_modal.php';
   
-   include 'includes/Advance_modal.php';
+   include 'includes/advance_modal.php';
    ?>
    <?php  include 'includes/specpayroll_modal.php';?>
    
@@ -195,7 +194,7 @@ $(function(){
                     doc.pageMargins = [40, 60, 40, 60];
 
                           // Specify the column index you want to skip
-                           var columnIndexToSkip = 13; // Change to the index of the column you want to skip
+                           var columnIndexToSkip = 16; // Change to the index of the column you want to skip
 
                           // Loop through all table rows
                           for (var i = 0; i < doc.content[1].table.body.length; i++) {
@@ -205,7 +204,24 @@ $(function(){
 
                   }
                 },
-            'copy', 'csv', 'excel', 'print'
+                {
+                          extend: 'excel',
+                          title: 'Employee List',
+                          customize: function(xlsx) {
+                            // Specify the column index you want to hide (0-based index)
+                            var columnIndexToHide = 15; // Change to the index of the column you want to hide
+                            var sheet = xlsx.xl.worksheets['sheet1.xml'];
+
+                            // Loop through all rows in the sheet
+                            $('row c', sheet).each(function () {
+                              // Remove the content of the specified column
+                              if ($(this).index() == columnIndexToHide) {
+                                $(this).text('');
+                              }
+                            });
+                          }
+                        },
+            'copy', 'csv', 'print'
         ]
     });
 
@@ -217,18 +233,34 @@ $(function(){
     var id = $(this).data('id');
     getRow(id);
   });
-  $('.advance').click(function(e){
-    e.preventDefault();
-    $('#advance').modal('show');
-    var id = $(this).data('id');
-    getRow(id);
-  });
+  // $('.advance').click(function(e){
+  //   e.preventDefault();
+  //   $('#advance').modal('show');
+  //   var id = $(this).data('id');
+  //   getRow(id);
+  // });
   // $('.payroll').click(function(e){
   //   e.preventDefault();
   //   $('#payroll').modal('show');
   //   var id = $(this).data('id');
   //   getRow(id);
   // });
+  $(document).on('click','.advance', function(e){
+    e.preventDefault();
+    let empID = $(this).data('id');
+    $.ajax({
+      type: 'POST',
+      url: 'getPayableAmount.php',
+      data: {id:empID},
+      dataType: 'json',
+      success: function(response){
+        $('.UpId').val(empID);
+        $('#UpId').val(response.UpId);
+        $('#PayableAmount').val(response);
+        $('#advance').modal('show');
+      }
+    });
+  })
   
   $(document).on('click','.payroll', function(e){
     e.preventDefault();
@@ -262,6 +294,7 @@ $(function(){
     }
   });
   })
+
 
   $('.addnew').click(function(e){
     e.preventDefault();

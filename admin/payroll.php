@@ -29,7 +29,7 @@
         Payroll
       </h1>
       <ol class="breadcrumb">
-        <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+        <li><a href="home.php"><i class="fa fa-dashboard"></i> Home</a></li>
         <li class="active">Payroll</li>
       </ol>
     </section>
@@ -62,7 +62,6 @@
           <div class="box">
           <div class="box-header with-border">
           <button class="btn btn-sm btn-flat" style="border-radius:8px;background-color:#4680ff;"><a href="payroll_genereate.php" name="paygn" style="color:white;">Generate PayRoll</a></button>
-          <!-- <a href="payroll_genereate.php" class="myButton" name="paygn">Generate PayRoll</a> -->
             <!-- <a href="payroll_genereate.php" class="btn btn-primary btn-sm btn-flat" style='border-radius:8px;background-color:#4680ff;'><i class="fa fa-plus"></i>PayRoll Generate</a> -->
              </div>
             <!-- <div class="box-header with-border">
@@ -73,10 +72,10 @@
                       <i class="fa fa-calendar"></i>
                     </div>
                    <input type="text" class="form-control pull-right col-sm-8" id="reservation" name="date_range" value="<?php echo (isset($_GET['range'])) ? $_GET['range'] : $range_from.' - '.$range_to; ?>">
-                   </div>
-                  <button type="button" class="btn btn-success btn-sm btn-flat" id="payroll" style='border-radius:8px;'><span class="glyphicon glyphicon-print"></span> Payroll</button>
-                  <button type="button" class="btn btn-primary btn-sm btn-flat" id="payslip" style='border-radius:8px;'><span class="glyphicon glyphicon-print"></span> Payslip</button>
-                </form>
+                   </div> -->
+                  <!-- <button type="button" class="btn btn-success btn-sm btn-flat" id="payroll" style='border-radius:8px;'><span class="glyphicon glyphicon-print"></span> Payroll</button>
+                  <button type="button" class="btn btn-primary btn-sm btn-flat" id="payslip" style='border-radius:8px;'><span class="glyphicon glyphicon-print"></span> Payslip</button> -->
+                <!-- </form>
               </div>
             </div> -->
             <div class="box-body table-responsive">
@@ -95,11 +94,11 @@
                   <th>Late</th>
                   <th>Absent</th>
                   <th>Deduction</th>
-                  <th>Modify Deducted</th>
+                  <th>M Deducted</th>
                   <th>Advance</th>
-                  <th>Modify Advance</th>
-                  <th>Modify Salary</th>
-                  <th>Total Pay</th>
+                  <th>M Advance</th>
+                  <th>M Salary</th>
+                  <th>Total_Pay</th>
                 </thead>
                 <tbody>
                    <?php

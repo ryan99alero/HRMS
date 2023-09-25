@@ -33,7 +33,7 @@
 		'$workingDays')";
 		
 		if($conn->query($sql)){
-			$_SESSION['success'] = "Data Udate Successfully";
+			$_SESSION['success'] = "Data Update Successfully";
 		}
 		else{
 			$_SESSION['error'] = $conn->error;

@@ -14,7 +14,7 @@
         Pay Scale
       </h1>
       <ol class="breadcrumb">
-        <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+        <li><a href="home.php"><i class="fa fa-dashboard"></i> Home</a></li>
         <li class="active">Pay Scale</li>
       </ol>
     </section>
@@ -63,7 +63,7 @@
                     while($row = $query->fetch_assoc()){
                       echo "
                         <tr>
-                        <td>".$row['RecId']."</td>
+                          <td>".$row['RecId']."</td>
                           <td>".$row['pay_name']."</td>
                           
                           

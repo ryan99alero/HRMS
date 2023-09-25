@@ -100,7 +100,7 @@
         // Edit button click event
         $('.edit').click(function() {
             var id = $(this).data('id');
-            var title = $(this).closest('tr').find('td:eq(0)').text(); // Extract title from table
+            var title = $(this).closest('tr').find('td:eq(1)').text(); // Extract title from table
             $('#posid').val(id);
             $('#edit_title').val(title);
             $('#edit').modal('show');
@@ -109,7 +109,7 @@
         // Delete button click event
 		$('.delete').click(function() {
             var id = $(this).data('id');
-            var payscaleTitle = $(this).closest('tr').find('td:eq(0)').text(); // Extract payscale title from table
+            var payscaleTitle = $(this).closest('tr').find('td:eq(1)').text(); // Extract payscale title from table
             $('#del_posid').val(id);
             $('#del_payscale').text(payscaleTitle);
             $('#delete').modal('show');

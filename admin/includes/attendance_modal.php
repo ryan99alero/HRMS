@@ -101,7 +101,7 @@ include 'includes/session';
 
                   	<div class="col-sm-9">
                   		<div class="#">
-                    		<input type="date" class="form-control timepicker" id="check_in_date" name="check_in_date" readonly>
+                    		<input type="text" class="form-control" id="check_in_date" name="check_in_date" readonly>
                     	</div>
                   	</div>
                 </div>

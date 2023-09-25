@@ -71,9 +71,9 @@ include 'includes/session.php';
                   </div>
               </div>
               <div class="form-group">
-                  <label for="gmail" class="col-sm-3 control-label">Gmail*</label>
+                  <label for="Gmail" class="col-sm-3 control-label">Gmail*</label>
                   <div class="col-sm-9">
-                      <input type="text" class="form-control" id="gmail" name="gmail" required>
+                      <input type="text" class="form-control" id="Gmail" name="Gmail" required>
                   </div>
               </div>
               <div class="form-group">
@@ -98,18 +98,19 @@ include 'includes/session.php';
                   </div>
               </div>
               <div class="form-group">
+                  <label for="WorkingDays" class="col-sm-3 control-label">WorkingDays*</label>
+
+                  <div class="col-sm-9">
+                    <input type="number" class="form-control" id="WorkingDays" name="WorkingDays">
+                  </div>
+              </div>
+              <div class="form-group">
                   <label for="Gender" class="col-sm-3 control-label">Gender*</label>
 
                   <div class="col-sm-9"> 
                     <select class="form-control" name="Sex" id="Sex" required>
                       <option value="" selected>- Select -</option>
-                      <!-- <option value="Male">Male</option>
-                      <option value="Female">Female</option> -->
-                      
                       <?php
-                      //     $sql = "SELECT * FROM `tbl_gender`";
-                      // //  $sql = "call `StrProc_getGenderInfo`()";
-                      //   $query = $conn->query($sql);
                         while($Grow = $query->fetch_assoc()){
                           echo "
                             <option value='".$Grow['RecId']."'>".$Grow['Gender']."</option>
@@ -129,9 +130,6 @@ include 'includes/session.php';
                     <select class="form-control" name="DesID" id="DesID" required>
                       <option value="" selected>- Select -</option>
                       <?php
-                        // $sql = "SELECT * FROM `designation`";
-                        // $sql = "call `StrProc_getDesignationInfo`()";
-                        // $query = $conn->query($sql);
                         while($drow2 = $query2->fetch_assoc()){
                           echo "
                             <option value='".$drow2['RecId']."'>".$drow2['designation_name']."</option>
@@ -150,9 +148,6 @@ include 'includes/session.php';
                     <select class="form-control" name="PayId" id="PayId" required>
                       <option value="" selected>- Select -</option>
                       <?php
-                        // $sql = "SELECT * FROM `pay_scale`";
-                        // $sql = "call `StrProc_SelectDesignationInfo`(0)";
-                        // $query4 = $conn->query($sql);
                         while($prow4 = $query4->fetch_assoc()){
                           echo "
                             <option value='".$prow4['RecId']."'>".$prow4['pay_name']."</option>
@@ -171,11 +166,6 @@ include 'includes/session.php';
                     <select class="form-control" id="ShiftID" name="ShiftID" required>
                       <option value="" selected>- Select -</option>
                       <?php
-                        // $sql = "SELECT * FROM `shift`";
-                        //  $ssql="Call `StrProc_SelectShiftInfo`(0)";  
-                        //  var_dump($query);
-                        //  $shiftArray = $conn->query($ssql);
-                        // $query = $conn->query($sql);
                         while($srow6 = $query6->fetch_assoc()){
                           echo "
                             <option value='".$srow6['RecId']."'>".$srow6['shift_name']."</option>
@@ -188,55 +178,6 @@ include 'includes/session.php';
                     </select>
                   </div>
               </div>
-              <!-- <div class="form-group">
-                  <label for="RecId" class="col-sm-3 control-label">User Id</label>
-
-                  <div class="col-sm-9">
-                    <input type="text" class="form-control" id="RecId" name="RecId">
-                  </div>
-              </div>
-              <div class="form-group">
-                  <label for="RId" class="col-sm-3 control-label">Role</label>
-
-                  <div class="col-sm-9">
-                    <select class="form-control" name="RId" id="RId" required>
-                      <option value="" selected>- Select -</option>
-                      <?php
-                        // $sql = "SELECT * FROM `role`";
-                        // $sql = "CALL `StrProc_getRoleInfo`()";
-                        // $query = $conn->query($sql);
-                        // while($Rrow = $query->fetch_assoc()){
-                        //   echo "
-                        //     <option value='".$Rrow['RecId']."'>".$Rrow['role_name']."</option>
-                        //   ";
-                        // } 
-                        //  $query->free();
-                      ?>
-                    </select>
-                  </div>
-                  
-              </div>
-              <div class="form-group">
-                  <label for="Uname" class="col-sm-3 control-label">User Name</label>
-
-                  <div class="col-sm-9">
-                    <input type="text" class="form-control" id="Uname" name="Uname">
-                  </div>
-              </div>
-              <div class="form-group">
-                  <label for="Pass" class="col-sm-3 control-label">Password</label>
-
-                  <div class="col-sm-9">
-                    <input type="text" class="form-control" id="Pass" name="Pass">
-                  </div>
-              </div> -->
-              <!-- <div class="form-group">
-                  <label for="photo" class="col-sm-3 control-label">Photo</label>
-
-                  <div class="col-sm-9">
-                    <input type="file" name="photo" id="photo">
-                  </div>
-              </div> -->
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-default btn-flat pull-left" data-dismiss="modal"><i class="fa fa-close"></i> Close</button>
@@ -316,42 +257,27 @@ include 'includes/session.php';
             <input type="text" class="form-control" id="Salary" name="Salary">
         </div>
     </div>
-    
     <div class="form-group">
-        <label for="Gender" class="col-sm-3 control-label">Gender</label>
+        <label for="Sex" class="col-sm-3 control-label">Gender</label>
+        <!-- <input type="text" class="form-control" id="Sex" name="Sex"> -->
         <div class="col-sm-9">
-            <select class="form-control" name="Sex" id="Sex"  required>
-
-                <option value=""  selected></option>
-                <!-- PHP code to populate gender options -->
-                <?php
-                
-                // echo"<option value='".$Grow['RecId']."'>".$Grow['Gender']."</option>";
-                // $sql = "SELECT * FROM `tbl_gender`";
-                //         //  $sql = "call `StrProc_getGenderInfo`()";
-                //           $query = $conn->query($sql);
+                    <Select class="form-control" name="Sex">
+                          <?php   
                           while($Grow1 = $query1->fetch_assoc()){
                             echo "
                               <option value='".$Grow1['RecId']."'>".$Grow1['Gender']."</option>
-
                             ";
                           }
                           // $query->free();  
-                        ?>
-            </select>
+                        ?>              
+            </Select>
         </div>
     </div>
-    
     <div class="form-group">
         <label for="designation_name" class="col-sm-3 control-label">Designation</label>
         <div class="col-sm-9">
-            <select class="form-control" name="DesID" id="DesID" required>
-                <option value="" selected>- Select -</option>
-                <!-- PHP code to populate designation options -->
+            <select class="form-control" name="DesID" required>
                 <?php
-                          // $sql = "SELECT * FROM `designation`";
-                          // $sql = "call `StrProc_getDesignationInfo`()";
-                          // $query1 = $conn->query($sql);
                           while($drow3 = $query3->fetch_assoc()){
                             echo "
                               <option value='".$drow3['RecId']."'>".$drow3['designation_name']."</option>
@@ -366,13 +292,8 @@ include 'includes/session.php';
     <div class="form-group">
         <label for="pay_name" class="col-sm-3 control-label">Salary Type</label>
         <div class="col-sm-9">
-            <select class="form-control" name="PayId" id="PayId" required>
-                <option value="" selected>- Select -</option>
-                <!-- PHP code to populate pay scale options -->
+            <select class="form-control" name="PayId" required>
                 <?php
-                          // $sql = "SELECT * FROM `pay_scale`";
-                          // $sql = "call `StrProc_SelectDesignationInfo`(0)";
-                          // $query = $conn->query($sql);
                           while($prow5 = $query5->fetch_assoc()){
                             echo "
                               <option value='".$prow5['RecId']."'>".$prow5['pay_name']."</option>
@@ -387,15 +308,8 @@ include 'includes/session.php';
     <div class="form-group">
         <label for="shift_name" class="col-sm-3 control-label">Shift</label>
         <div class="col-sm-9">
-            <select class="form-control" id="ShiftID" name="ShiftID" required>
-                <option value="" selected>- Select -</option>
-                <!-- PHP code to populate shift options -->
+          <select class="form-control" value=".$srow7['shift_name']." name="ShiftID" required>
                 <?php
-                          // $sql = "SELECT * FROM `shift`";
-                          //  $ssql="Call `StrProc_SelectShiftInfo`(0)";  
-                          //  var_dump($query);
-                          //  $shiftArray = $conn->query($ssql);
-                          // $query = $conn->query($sql);
                           while($srow7 = $query7->fetch_assoc()){
                             echo "
                               <option value='".$srow7['RecId']."'>".$srow7['shift_name']."</option>
@@ -411,28 +325,13 @@ include 'includes/session.php';
     <div class="form-group">
         <label for="workingDays" class="col-sm-3 control-label">Working Days</label>
         <div class="col-sm-9">
-            <input type="text" class="form-control" id="workingDays" name="workingDays">
+          <select  class="form-control" name="workingDays" id="workingDays">
+            <option value="5">5</option>
+            <option value="6">6</option>
+          </select>
+            <!-- <input type="text" class="form-control" id="workingDays" name="workingDays">  -->
         </div>
     </div>
-    <!-- <div class="form-group">
-        <label for="RId" class="col-sm-3 control-label">Role</label>
-        <div class="col-sm-9">
-            <select class="form-control" name="RId" id="RId" required>
-                <option value="" selected>- Select -</option> -->
-                <?php
-                          // $sql = "SELECT * FROM `role`";
-                          // $sql = "CALL `StrProc_getRoleInfo`()";
-                          // $query = $conn->query($sql);
-                          // while($Rrow = $query->fetch_assoc()){
-                          //   echo "
-                          //     <option value='".$Rrow['RecId']."'>".$Rrow['role_name']."</option>
-                          //   ";
-                          // } 
-                          // $query->free();
-                        ?>
-            <!-- </select>
-        </div>
-    </div> -->
           	</div>
           	      <div class="modal-footer">
             	      <button type="button" class="btn btn-default btn-flat pull-left" data-dismiss="modal"><i class="fa fa-close"></i> Close</button>
@@ -468,42 +367,6 @@ include 'includes/session.php';
         </div>
     </div>
 </div>
-
-
-
-
-
-
-
-<!-- Update Photo -->
-<!-- <div class="modal fade" id="edit_photo">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                  <span aria-hidden="true">&times;</span></button>
-              <h4 class="modal-title"><b><span class="del_employee_name"></span></b></h4>
-            </div>
-            <div class="modal-body">
-              <form class="form-horizontal" method="POST" action="employee_edit_photo.php" enctype="multipart/form-data">
-                <input type="hidden" class="empid" name="id">
-                <div class="form-group">
-                    <label for="photo" class="col-sm-3 control-label">Photo</label>
-
-                    <div class="col-sm-9">
-                      <input type="file" id="photo" name="photo" required>
-                    </div>
-                </div>
-            </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-default btn-flat pull-left" data-dismiss="modal"><i class="fa fa-close"></i> Close</button>
-              <button type="submit" class="btn btn-success btn-flat" name="upload"><i class="fa fa-check-square-o"></i> Update</button>
-              </form>
-            </div>
-        </div>
-    </div>
-</div>     -->
-
 
 <script src="https://code.jquery.com/jquery-3.7.0.js" integrity="sha256-JlqSTELeR4TLqP0OG9dxM7yDPqX1ox/HfgiSLBj8+kM=" crossorigin="anonymous"></script>
 
