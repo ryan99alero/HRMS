@@ -94,6 +94,7 @@ include "includes/conn.php";
           <!-- small box -->
           <div class="small-box bg-green">
             <div class="inner">
+              <h3>0</h3>
               <?php
                 // $sql = "SELECT * FROM attendance";
                 // $sql = "call `StrProc_SelectAttendanceInfo`";
@@ -123,6 +124,7 @@ include "includes/conn.php";
           <!-- small box -->
           <div class="small-box bg-yellow">
             <div class="inner">
+              <h3>0</h3>
               <?php
                 // $sql = "SELECT * FROM attendance WHERE date = '$today' AND status = 1";
               //  $sql = "call `StrProc_SelectAttendanceInfo`(0)";
@@ -144,6 +146,7 @@ include "includes/conn.php";
           <!-- small box -->
           <div class="small-box bg-red">
             <div class="inner">
+              <h3>0</h3>
               <?php
                 // $sql = "SELECT * FROM attendance WHERE date = '$today' AND status = 0";
                 // $sql = "call`StrProc_SelectAttendanceInfo`(0)";

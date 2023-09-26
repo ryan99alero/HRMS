@@ -20,12 +20,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Get data from the form
     $UpId = $_POST["UpId"];
     $Amount = $_POST["Amount"];
-    $AmoutDate = $_POST["AmoutDate"];
+    $AmountDate = $_POST["AmountDate"];
 
     // Create an SQL insert query
     // $sql = "INSERT INTO your_table_name (UpId, Amount, AmoutDate) VALUES ('$UpId', '$Amount', '$AmoutDate')";
      
-	$sql = "call`StrProc_InsertAdvanceInfo`('$UpId','$Amount','$AmoutDate')";
+	$sql = "call`StrProc_InsertAdvanceInfo`('$UpId','$Amount','$AmountDate')";
 
     if ($conn->query($sql) === TRUE) {
         echo "Record inserted successfully";

@@ -111,7 +111,8 @@
   <?php include 'includes/attendance_modal.php'; ?>
 </div>
 <?php include 'includes/scripts.php'; ?>
-<!-- <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
+
+<!-- <script src="https://cdn.datatables.net/plug-ins/1.13.6/filtering/row-based/range_dates.js"></script>
 <script src="https://cdn.datatables.net/buttons/2.4.1/js/dataTables.buttons.min.js"></script> -->
 <script scr="JS/jquery3.7.0.js"></script>
 
@@ -210,6 +211,41 @@ function getRow(id){
     }
   });
 }
+</script>
+<script>
+$(function(){
+
+    // Add a custom date range filter input
+    $('<div class="date-range-filter">From: <input type="date" id="start_date" /><br>To: <input type="date" id="end_date" /></div>')
+    .appendTo($("#attendanceTable_filter"));
+
+
+ // Add a change event listener to the start_date and end_date inputs
+ $("#start_date, #end_date").on("change", function () {
+    var start_date = $("#start_date").val();
+    var end_date = $("#end_date").val();
+
+    // Use DataTable's API to apply the filter
+    table.draw();
+  });
+
+  // Extend DataTable's search functionality to filter based on date range
+  $.fn.dataTable.ext.search.push(
+    function (settings, data, dataIndex) {
+      var start_date = $("#start_date").val();
+      var end_date = $("#end_date").val();
+      var currentDate = data[5]; // Assuming the date column is the 6th column (index 5)
+
+      if ((start_date === "" && end_date === "") ||
+          (start_date === "" && currentDate <= end_date) ||
+          (start_date <= currentDate && end_date === "") ||
+          (start_date <= currentDate && currentDate <= end_date)) {
+        return true;
+      }
+      return false;
+    }
+  );
+});
 </script>
 </body>
 </html>

@@ -20,16 +20,16 @@ $result = $conn->query($sql);
 
 if ($result->num_rows > 0) {
     // Fetch the result
- $row = $result->fetch_assoc();
-    // {
+ while($row = $result->fetch_assoc())
+     {
     $firstname = $row["firstname"];
     $Amounts = $row["Amount"];
-    $AmoutDate = $row["AmoutDate"];
-    // }
+    $AmountDate = $row["AmountDate"];
+     }
 } else {
     $firstname = "No data found"; // If no data is found in the database
     $Amounts = "No data found"; // If no data is found in the database
-    $AmoutDate = "No data found"; // If no data is found in the database
+    $AmountDate = "No data found"; // If no data is found in the database
 }
 ?>
 <div class="modal fade" id="advance">
@@ -63,7 +63,7 @@ if ($result->num_rows > 0) {
                         <div class="col-sm-4">
                             
                             <label for="AmoutDate" class="col-sm-9 control-label">Amount Date</label>
-                            <input type="date" class="form-control" id="AmoutDate" name="AmoutDate" required>
+                            <input type="date" class="form-control" id="AmountDate" name="AmountDate" required>
                            
                         </div>
                         <div class="col-sm-2 pull-right">
@@ -86,7 +86,7 @@ if ($result->num_rows > 0) {
                     <tbody >
                       <td><?php echo $firstname; ?></td>
                       <td><?php echo $Amounts; ?></td>
-                      <td><?php echo $AmoutDate; ?></td>
+                      <td><?php echo $AmountDate; ?></td>
                     </tbody>
                 </table>
             </div>
@@ -103,3 +103,4 @@ if ($result->num_rows > 0) {
 });
 
 </script>
+

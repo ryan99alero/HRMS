@@ -66,7 +66,7 @@ $conn->close();
               <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
           	<div class="modal-body">
             	<form class="form-horizontal payrollFormSubmit" method="POST" action="payroll_edit.php">
-                                <input type="hidden" class="posid" name="RecId">
+                                <input type="hidden" class="posid" name="id">
                             <div class="form-group">
                                 <label for="edit_RecId" class="col-sm-3 control-label">User Id</label>
 
@@ -245,4 +245,56 @@ $conn->close();
 <script>
     $(document).ready(function(){
     })
+</script>
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+    var deductionInput = document.getElementById('edit_Deduction');
+    var mDeductionInput = document.getElementById('edit_M_Deducted');
+    var totalpayinput = document.getElementById('edit_Total_Pay');
+    var mtotalpayinput = document.getElementById('edit_M_Salary');
+    var label = document.querySelector('label[name="label"]');
+    var remarksTextarea = document.querySelector('textarea[name="remarks"]');
+    
+    function checkShowTextarea() {
+        if (deductionInput.value === mDeductionInput.value && totalpayinput.value === mtotalpayinput.value) {
+            label.style.display = 'none';
+            remarksTextarea.style.display = 'none';
+        } else {
+            label.style.display = 'block';
+            remarksTextarea.style.display = 'block';
+        }
+    }
+    
+    deductionInput.addEventListener('keyup', checkShowTextarea);
+    mDeductionInput.addEventListener('keyup', checkShowTextarea);
+    totalpayinput.addEventListener('keyup', checkShowTextarea);
+    mtotalpayinput.addEventListener('keyup', checkShowTextarea);
+    
+    // Call the function initially to set the initial display state
+    checkShowTextarea();
+});
+</script>
+
+<!-- To calculate Total_Pay by subtracting M_Deducted from salary and updating the corresponding input field when the user enters a value for M_Deducted, you can use JavaScript. Here's a script to achieve this: -->
+
+<!-- html -->
+<!-- Copy code -->
+<script>
+    // Function to update M_Salary when M_Deducted or M_Advance input changes
+    function updateMSalary() {
+        // Get the values from the input fields
+        var salary = parseFloat(document.getElementById("edit_salary").value) || 0;
+        var mDeducted = parseFloat(document.getElementById("edit_M_Deducted").value) || 0;
+        var mAdvance = parseFloat(document.getElementById("edit_M_Advance").value) || 0;
+
+        // Calculate M_Salary
+        var totalPay = salary - mDeducted - mAdvance;
+
+        // Update the M_Salary input field
+        document.getElementById("edit_M_Salary").value = totalPay.toFixed(2); // Assuming you want two decimal places
+    }
+
+    // Attach the updateMSalary function to the change event of M_Deducted or M_Advance input
+    document.getElementById("edit_M_Deducted").addEventListener("keyup", updateMSalary);
+    document.getElementById("edit_M_Advance").addEventListener("keyup", updateMSalary);
 </script>
