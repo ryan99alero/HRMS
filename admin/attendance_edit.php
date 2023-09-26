@@ -76,7 +76,7 @@
 		$sql = "Call `StrProc_ChangeAttendanceInfo`('$EmpId','$check_in','$check_out')";
 		// var_dump($sql);
         if($conn->query($sql)){
-			$_SESSION['success'] = $sql; 
+			$_SESSION['success']; 
 		}
 		else{
 			$_SESSION['error'] = $conn->error;

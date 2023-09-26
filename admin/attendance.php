@@ -58,7 +58,7 @@
             <div class="box-body table-responsive">
               <table id="attendanceTable" class="table table-bordered table-responsive">
                 <thead>
-                  <th>Record ID</th>
+                  <th class="hidden">Record ID</th>
                   <th>Employee ID</th>
                   <th>Person Name</th>
                   <th>Shift Name</th>
@@ -80,7 +80,7 @@
                        //$status = ($row['status'])?'<span class="label label-warning pull-right">ontime</span>':'<span class="label label-danger pull-right">late</span>';
                       echo "
                         <tr>
-                          <td>".$row['RecId']."</td>
+                          <td class='hidden'>".$row['RecId']."</td>
                           <td>".$row['Employee_Id']."</td>
                           <td>".$row['PersonName']."</td>
                           <td>".$row['Shift_Name']."</td>
