@@ -97,7 +97,8 @@
           	<div class="modal-body">
             	<form class="form-horizontal" method="POST" action="holiday_delete.php">
             		<input type="hidden" id="del_posid" name="id">
-            		<div class="text-center">
+            		
+                    <div class="text-center">
 	                	<p>DELETE HoliDay</p>
 	                	<h2 id="del_Title" name="RecId" class="bold"></h2>
 	            	</div>
@@ -116,9 +117,7 @@
     $(document).ready(function() {
           // Add button click event
         $('.addnew').click(function() {
-            // var id = $(this).data('id');
-            // var Title = $(this).closest('tr').find('td:eq(0)').text(); // Extract title from table
-            // var Holiday_Date = $(this).closest('tr').find('td:eq(1)').text(); // Extract Holiday_Date from table
+           
             $('#posid').val(id);
             $('#add_Title').val(Title);
             $('#add_Holiday_Date').val(Holiday_Date);

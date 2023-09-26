@@ -58,7 +58,7 @@
         <li><a href="position.php"><i class="fa fa-suitcase fa-beat"></i> <span>Designation</span></a></li>
         <li class="header" style="background-color:rgba(0, 0, 0, 0.733);">PRINTABLES</li>
         <li><a href="payroll.php"><i class="fa fa-files-o fa-beat"></i> <span>Payroll</span></a></li>
-        <li><a href="payscale.php"><i class="fa fa-files-o fa-beat"></i> <span>Pay Scale</span></a></li>
+        <!-- <li><a href="payscale.php"><i class="fa fa-files-o fa-beat"></i> <span>Pay Scale</span></a></li> -->
         <li><a href="schedule.php"><i class="fa fa-clock-o"></i><span>Schedules</span></a></li>
         <li><a href="holiday.php"><i class="fa fa-clock-o"></i><span>Holiday</span></a></li>
         <li><a href="holiday_import.php"><i class="fa fa-clock-o"></i><span>Holiday Import</span></a></li>

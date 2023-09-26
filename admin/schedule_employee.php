@@ -78,20 +78,6 @@
                          </tr>
                        ";
                      }
-                    // $sql = "SELECT *, employees.id AS empid FROM employees LEFT JOIN schedules ON schedules.id=employees.schedule_id";
-                    // $query = $conn->query($sql);
-                    // while($row = $query->fetch_assoc()){
-                    //   echo "
-                    //     <tr>
-                    //       <td>".$row['employee_id']."</td>
-                    //       <td>".$row['firstname'].' '.$row['lastname']."</td>
-                    //       <td>".date('h:i A', strtotime($row['time_in'])).' - '.date('h:i A', strtotime($row['time_out']))."</td>
-                    //       <td>
-                    //         <button class='btn btn-success btn-sm edit btn-flat' style='border-radius:8px;' data-id='".$row['empid']."'><i class='fa fa-edit'></i> Edit</button>
-                    //       </td>
-                    //     </tr>
-                    //   ";
-                    // }
                   ?>
                 </tbody>
               </table>

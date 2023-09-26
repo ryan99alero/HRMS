@@ -93,38 +93,6 @@
   <?php include 'includes/schedule_modal.php'; ?>
 </div>
 <?php include 'includes/scripts.php'; ?>
-<!-- <script>
-$(function(){
-  $('.edit').click(function(e){
-    e.preventDefault();
-    $('#edit').modal('show');
-    var id = $(this).data('id');
-    getRow(id);
-  });
 
-  $('.delete').click(function(e){
-    e.preventDefault();
-    $('#delete').modal('show');
-    var id = $(this).data('id');
-    getRow(id);
-  });
-});
-
-function getRow(id){
-  $.ajax({
-    type: 'POST',
-    url: 'schedule_row.php',
-    data: {id:id},
-    dataType: 'json',
-    success: function(response){
-      $('#timeid').val(response.id);
-      $('#edit_time_in').val(response.time_in);
-      $('#edit_time_out').val(response.time_out);
-      $('#del_timeid').val(response.id);
-      $('#del_schedule').html(response.time_in+' - '+response.time_out);
-    }
-  });
-}
-</script> -->
 </body>
 </html>

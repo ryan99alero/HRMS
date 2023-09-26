@@ -16,13 +16,6 @@
                     		<input type="text" class="form-control" id="title" name="title" required>
                   		</div>
                     </div>
-                <!-- <div class="form-group">
-                    <label for="rate" class="col-sm-3 control-label">Rate per Hr</label>
-
-                    <div class="col-sm-9">
-                      <input type="text" class="form-control" id="rate" name="rate" required>
-                    </div>
-                </div> -->
           	</div>
           	<div class="modal-footer">
             	<button type="button" class="btn btn-default btn-flat pull-left" data-dismiss="modal"><i class="fa fa-close"></i> Close</button>
@@ -241,28 +234,7 @@
     </div>
 </div>
 <script src="https://code.jquery.com/jquery-3.7.0.js" integrity="sha256-JlqSTELeR4TLqP0OG9dxM7yDPqX1ox/HfgiSLBj8+kM=" crossorigin="anonymous"></script>
-<script>
-    // $(document).ready(function() {
-    //     // Edit button click event
-    //     $('.edit').click(function() {
-    //         var id = $(this).data('id');
-    //         var title = $(this).closest('tr').find('td:eq(0)').text(); // Extract title from table
-    //         $('#posid').val(id);
-    //         $('#edit_title').val(title);
-    //         $('#edit').modal('show');
-    //     });
 
-    //     // Delete button click event
-	// 	$('.delete').click(function() {
-    //         var id = $(this).data('id');
-    //         var payscaleTitle = $(this).closest('tr').find('td:eq(0)').text(); // Extract payscale title from table
-    //         $('#del_posid').val(id);
-    //         $('#del_payscale').text(payscaleTitle);
-    //         $('#delete').modal('show');
-    //     });
-
-    // });
-</script>
 <script>
     $(document).ready(function() {
         // Edit button click event
@@ -285,9 +257,9 @@
             var late = $(this).closest('tr').find('td:eq(10)').text(); // Extract late from table
             var absent = $(this).closest('tr').find('td:eq(11)').text(); // Extract absent from table
             var advance = $(this).closest('tr').find('td:eq(14)').text(); // Extract advance from table
-            var M_Advance = $(this).closest('tr').find('td:eq(13)').text(); // Extract M_Advance from table
+            var M_Advance = $(this).closest('tr').find('td:eq(15)').text(); // Extract M_Advance from table
             var Deduction = $(this).closest('tr').find('td:eq(12)').text(); // Extract Deduction from table
-            var M_Deducted = $(this).closest('tr').find('td:eq(15)').text(); // Extract M_Deducted from table
+            var M_Deducted = $(this).closest('tr').find('td:eq(13)').text(); // Extract M_Deducted from table
             var M_Salary = $(this).closest('tr').find('td:eq(16)').text(); // Extract M_Salary from table
             var Total_Pay = $(this).closest('tr').find('td:eq(17)').text(); // Extract Total_Pay from table
             $('#posid').val(id);
@@ -314,48 +286,6 @@
             $('#edit').modal('show');
         });
     });
-</script>
-
-<script>
-//     var editButtons = document.querySelectorAll('.edit');
-
-// editButtons.forEach(function(button) {
-//     button.addEventListener('click', function() {
-//         var recId = button.getAttribute('data-id');
-//         var deduction = button.getAttribute('data-deduction');
-//         var salary = button.getAttribute('data-salary');
-//         var remarksForm = button.parentElement.querySelector('.remarks-form');
-
-//         // Set values in modal input fields
-//         document.getElementById('posid').value = recId;
-//         document.getElementById('edit_deduction').value = deduction;
-//         document.getElementById('edit_salary').value = salary;
-
-//         // Toggle the remarks form
-//         if (deduction !== salary) {
-//             remarksForm.style.display = 'block';
-//         } else {
-//             remarksForm.style.display = 'none';
-//         }
-
-//         // Open the modal
-//         $('#edit').modal('show');
-//     });
-// });
-
-
-
-
-// var editForm = document.querySelector('.remarks-form');
-
-// editForm.addEventListener('submit', function(event) {
-//     var remarksTextarea = editForm.querySelector('textarea[name="remarks"]');
-//     if (remarksTextarea.value.trim() === '') {
-//         event.preventDefault(); // Prevent form submission
-//         alert('Please enter remarks before submitting.');
-//     }
-// });
-
 </script>
 
 <script>
