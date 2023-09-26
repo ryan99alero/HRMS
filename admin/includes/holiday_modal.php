@@ -49,9 +49,10 @@
                     <label for="RecId" class="col-sm-3 control-label">ID</label>
 
                     <div class="col-sm-9">
-                      <input type="text" class="form-control" id="RecId" name="RecId">
+                      <input type="text" class="form-control" id="RecId" name="RecId" readonly>
                     </div>
                 </div>
+
                 <div class="form-group">
                     <label for="Title" class="col-sm-3 control-label">Title</label>
 
@@ -59,6 +60,7 @@
                       <input type="text" class="form-control" id="Title" name="Title">
                     </div>
                 </div>
+                
                 <div class="form-group">
                     <label for="Holiday_Date" class="col-sm-3 control-label">Holiday Date</label>
 

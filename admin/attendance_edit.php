@@ -66,19 +66,17 @@
 	include 'includes/session.php';
 
 	if(isset($_POST['edit'])){
-	    $id = $_POST['id'];
 	    $EmpId = $_POST['EmpId'];
 		$check_in = $_POST['check_in'];
 		$check_out = $_POST['check_out'];
-		$check_in_date = $_POST['check_in_date'];
 		// $Remarks = $_POST['remarks'];
 		// $rate = $_POST['rate'];
 
 		// $sql = "UPDATE designation SET designation_name = '$title' WHERE RecId = '$id'";
-		$sql = "Call `StrProc_ChangeAttendanceInfo`('$EmpId','$check_in','$check_out','$check_in_date')";
+		$sql = "Call `StrProc_ChangeAttendanceInfo`('$EmpId','$check_in','$check_out')";
 		// var_dump($sql);
         if($conn->query($sql)){
-			$_SESSION['success'] = $sql;
+			$_SESSION['success'] = $sql; 
 		}
 		else{
 			$_SESSION['error'] = $conn->error;
