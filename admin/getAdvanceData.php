@@ -16,31 +16,30 @@ if ($conn->connect_error) {
 $EmpID = isset($_POST['id']) ? $_POST['id'] : 0;
 
 // Call the stored procedure
-$sql = "CALL StrProc_SelectAdvanceInfo($EmpID)";
+$sql = "CALL `StrProc_SelectAdvanceInfo`($EmpID)";
 $result = $conn->query($sql);
 
 if ($result->num_rows > 0) {
-    // Display the data in an HTML table
-    echo "<table>";
-    echo "<tr><th>RecId</th><th>FirstName</th><th>Amount</th><th>AmountDate</th></tr>";
-
-    while ($row = $result->fetch_assoc()) {
-        $recId = json_decode($row['RecId'], true);
-        $firstName = json_decode($row['firstname'], true);
-        $amount = json_decode($row['Amount'], true);
-        $amountDate = json_decode($row['AmountDate'], true);
-
-        echo "<tr><td>$recId</td><td>$firstName</td><td>$amount</td><td>$amountDate</td></tr>";
+  
+    while ($row = $result->fetch_assoc()) 
+    {
+        $firstName = json_decode($row['firstname']);
+        $amount = json_decode($row['Amount']);
+        $amountDate = json_decode($row['AmountDate']);
     }
 
-    echo "</table>";
 } else {
-    echo "No data found for employee ID: $EmpID";
+    $firstName = json_encode("No data found");
+    $amount = json_encode("No data found");
+    $amountDate = json_encode("No data found");
 }
 
 // Close the database connection
 $conn->close();
 
+echo $firstName;
+echo $amount;
+echo $amountDate;
 // Send the data as a response to the JavaScript code
 ?>
 <?php

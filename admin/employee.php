@@ -1,5 +1,8 @@
 <?php include 'includes/session.php'; ?>
 <?php include 'includes/header.php'; ?>
+<!-- <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css">
+<link rel="stylesheet" href="https://cdn.datatables.net/buttons/2.4.1/css/buttons.dataTables.min.css"> -->
+<link rel="stylesheet" href="style/datatable1.13.6.css">
 <link rel="stylesheet" href="style/datatable2.4.1.css">
 
 <body class="hold-transition skin-blue sidebar-mini">
@@ -130,6 +133,13 @@
 </div>
 <?php include 'includes/scripts.php'; ?>
 
+
+<!-- <link rel="stylesheet" href="https://cdn.datatables.net/1.10.24/css/jquery.dataTables.min.css"> -->
+<!-- <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> -->
+<!-- <script src="https://code.jquery.com/jquery-migrate-3.4.1.js" integrity="sha256-CfQXwuZDtzbBnpa5nhZmga8QAumxkrhOToWweU52T38=" crossorigin="anonymous"></script> -->
+<!-- <script src="https://code.jquery.com/jquery-migrate-3.4.1.min.js" integrity="sha256-UnTxHm+zKuDPLfufgEMnKGXDl6fEIjtM+n1Q6lL73ok=" crossorigin="anonymous"></script>
+<script src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.min.js"></script> -->
+
 <script scr="JS/jquery3.7.0.js"></script>
 
 <script src="JS/datatable1.13.6.js"></script>
@@ -146,7 +156,24 @@
 
 <script>
 
-
+  // $(document).ready(function() {
+  //   $('.dt').DataTable({
+  //     "scrollX": true,
+  //     buttons: [
+  //                   {
+  //                 extend: 'pdf',
+  //                 orientation: 'landscape', // Set the orientation to landscape
+  //                 customize: function(doc) {
+  //                   // Customize the PDF document if needed
+  //                   // For example, you can set the page size, margins, etc.
+  //                   doc.pageSize = 'LEGAL';
+  //                   doc.pageMargins = [40, 60, 40, 60];
+  //                 }
+  //               },
+  //           'copy', 'csv', 'excel', 'print'
+  //       ]
+  //   });
+  // });
 $(function(){
 
   $('.dt').DataTable({
@@ -206,7 +233,18 @@ $(function(){
     var id = $(this).data('id');
     getRow(id);
   });
- 
+  // $('.advance').click(function(e){
+  //   e.preventDefault();
+  //   $('#advance').modal('show');
+  //   var id = $(this).data('id');
+  //   getRow(id);
+  // });
+  // $('.payroll').click(function(e){
+  //   e.preventDefault();
+  //   $('#payroll').modal('show');
+  //   var id = $(this).data('id');
+  //   getRow(id);
+  // });
   $(document).on('click','.advance', function(e){
     e.preventDefault();
     let empID = $(this).data('id');
@@ -281,6 +319,57 @@ function getRow(id){
     }
   });
 }
+
+
+
+// $(function(){
+//   $('.edit').click(function(e){
+//     e.preventDefault();
+//     $('#edit').modal('show');
+//     var id = $(this).data('id');
+//     getRow(id);
+//   });
+
+//   $('.delete').click(function(e){
+//     e.preventDefault();
+//     $('#delete').modal('show');
+//     var id = $(this).data('id');
+//     getRow(id);
+//   });
+
+//   $('.photo').click(function(e){
+//     e.preventDefault();
+//     var id = $(this).data('id');
+//     getRow(id);
+//   });
+
+// });
+
+// function getRow(id){
+//   $.ajax({
+//     type: 'POST',
+//     url: 'employee_row.php',
+//     data: {id:id},
+//     dataType: 'json',
+//     success: function(response){
+//       $('.empid').val(response.RecId);
+//    // $('.employee_id').html(response.RecId);
+//    // $('.del_employee_name').html(response.firstname+' '+response.lastname);
+//       $('#name').html(response.firstname+' '+response.lastname);
+//    // $('#edit_firstname').val(response.firstname);
+//    // $('#edit_lastname').val(response.lastname);
+//       $('#Home').val(response.address);
+//       $('#Phone').val(response.contact_info);
+//       $('#Salary').val(response.salary).html(response.salary);
+//       $('#Sex').val(response.gender).html(response.gender);
+//       $('#DesID').val(response.position_id).html(response.position_id);
+//       $('#PayId').val(response.PayId).html(response.PayId);
+//       $('#ShiftID').val(response.ShiftID).html(response.ShiftID);
+//       $('#workingDays').val(response.workingDays).html(response.workingDays);
+      
+//     }
+//   });
+// }
 </script>
 
 
@@ -291,3 +380,12 @@ function getRow(id){
 
 </body>
 </html>
+
+<!-- 
+<link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.css" />
+    <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.js"></script> -->
+<!-- <script>
+    $(document).ready(function(){
+        $('.dt').DataTable();
+    })
+  </script> -->
