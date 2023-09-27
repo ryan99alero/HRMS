@@ -1,6 +1,6 @@
 <?php
 include "includes/conn.php";
-include 'includes/session.php';
+// include 'includes/session.php';
 // include "./employee.php";
 ?>
 
@@ -203,69 +203,69 @@ include 'includes/session.php';
                 <div class="form-group">
         <label for="UpId" class="col-sm-3 control-label">User ID</label>
         <div class="col-sm-9">
-            <input type="text" class="form-control" id="UpId" name="UpId" required readonly>
+            <input type="text" class="form-control UpId" id="UpId" name="UpId" required readonly>
         </div>
     </div>
     <div class="form-group">
         <label for="EmpID" class="col-sm-3 control-label">Employee ID</label>
         <div class="col-sm-9">
-            <input type="text" class="form-control" id="EmpID" name="EmpID" required readonly>
+            <input type="text" class="form-control EmpID" id="EmpID" name="EmpID" required readonly>
         </div>
     </div>
                 <div class="form-group">
         <label for="Fname" class="col-sm-3 control-label">First Name</label>
         <div class="col-sm-9">
-            <input type="text" class="form-control" id="Fname" name="Fname" required>
+            <input type="text" class="form-control Fname" id="Fname" name="Fname" required>
         </div>
     </div>
     <div class="form-group">
         <label for="Lname" class="col-sm-3 control-label">Last Name</label>
         <div class="col-sm-9">
-            <input type="text" class="form-control" id="Lname" name="Lname" required>
+            <input type="text" class="form-control Lname" id="Lname" name="Lname" required>
         </div>
     </div>
     <div class="form-group">
         <label for="CNIC" class="col-sm-3 control-label">CNIC</label>
         <div class="col-sm-9">
-            <input type="text" class="form-control" id="CNIC" name="CNIC" required>
+            <input type="text" class="form-control CNIC" id="CNIC" name="CNIC" required>
         </div>
     </div>
     <div class="form-group">
         <label for="gmail" class="col-sm-3 control-label">Gmail</label>
         <div class="col-sm-9">
-            <input type="text" class="form-control" id="gmail" name="gmail" required>
+            <input type="text" class="form-control gmail" id="gmail" name="gmail" required>
         </div>
     </div>
     
     <div class="form-group">
         <label for="Home" class="col-sm-3 control-label">Address</label>
         <div class="col-sm-9">
-            <textarea class="form-control" name="Home" id="Home"></textarea>
+            <textarea class="form-control Home" name="Home" id="Home"></textarea>
         </div>
     </div>
     
     <div class="form-group">
         <label for="Phone" class="col-sm-3 control-label">Contact</label>
         <div class="col-sm-9">
-            <input type="text" class="form-control" id="Phone" name="Phone">
+            <input type="text" class="form-control Phone" id="Phone" name="Phone">
         </div>
     </div>
     
     <div class="form-group">
         <label for="Salary" class="col-sm-3 control-label">Salary</label>
         <div class="col-sm-9">
-            <input type="text" class="form-control" id="Salary" name="Salary">
+            <input type="text" class="form-control Salary" id="Salary" name="Salary">
         </div>
     </div>
     <div class="form-group">
         <label for="Sex" class="col-sm-3 control-label">Gender</label>
         <!-- <input type="text" class="form-control" id="Sex" name="Sex"> -->
         <div class="col-sm-9">
-                    <Select class="form-control" name="Sex">
+                    <Select class="form-control Sex" name="Sex">
                           <?php   
                           while($Grow1 = $query1->fetch_assoc()){
                             echo "
-                              <option value='".$Grow1['RecId']."'>".$Grow1['Gender']."</option>
+                              <option value='".$Grow1['RecId']."' data-value='".$Grow1['RecId']."' data-current='".$Grow1['Gender']."'>".$Grow1['Gender']."</option>
                             ";
                           }
                           // $query->free();  
@@ -276,11 +276,11 @@ include 'includes/session.php';
     <div class="form-group">
         <label for="designation_name" class="col-sm-3 control-label">Designation</label>
         <div class="col-sm-9">
-            <select class="form-control" name="DesID" required>
+            <select class="form-control DesID" name="DesID" required>
                 <?php
                           while($drow3 = $query3->fetch_assoc()){
                             echo "
-                              <option value='".$drow3['RecId']."'>".$drow3['designation_name']."</option>
+                              <option value='".$drow3['RecId']."' data-value='".$drow3['RecId']."' data-current='".$drow3['designation_name']."'>".$drow3['designation_name']."</option>
                             ";
                           } 
                           // $query->free();
@@ -292,11 +292,11 @@ include 'includes/session.php';
     <div class="form-group">
         <label for="pay_name" class="col-sm-3 control-label">Salary Type</label>
         <div class="col-sm-9">
-            <select class="form-control" name="PayId" required>
+            <select class="form-control PayId" name="PayId" required>
                 <?php
                           while($prow5 = $query5->fetch_assoc()){
                             echo "
-                              <option value='".$prow5['RecId']."'>".$prow5['pay_name']."</option>
+                              <option value='".$prow5['RecId']."' data-value='".$prow5['RecId']."' data-current='".$prow5['pay_name']."'>".$prow5['pay_name']."</option>
                             ";
                           } 
                           // $query->free();
@@ -308,14 +308,14 @@ include 'includes/session.php';
     <div class="form-group">
         <label for="shift_name" class="col-sm-3 control-label">Shift</label>
         <div class="col-sm-9">
-          <select class="form-control" value=".$srow7['shift_name']." name="ShiftID" required>
+          <select class="form-control ShiftID"  name="ShiftID" required>
                 <?php
                           while($srow7 = $query7->fetch_assoc()){
                             echo "
-                              <option value='".$srow7['RecId']."'>".$srow7['shift_name']."</option>
+                              <option value='".$srow7['RecId']."' data-value='".$srow7['RecId']."' data-current='".$srow7['shift_name']."'>".$srow7['shift_name']."</option>
                             ";
                              echo "
-                              <option value='".$srow7['RecId']."'>".$srow7['shift_name']."'>".$srow7['time_in'].' - '.$srow7['time_out'].'-'.$srow7['grace_time']."</option>
+                              <option value='".$srow7['RecId']."' data-value='".$srow7['RecId']."' data-current='".$srow7['shift_name']."'>".$srow7['shift_name']."</option>
                             ";
                           }
                         ?>
@@ -325,7 +325,7 @@ include 'includes/session.php';
     <div class="form-group">
         <label for="workingDays" class="col-sm-3 control-label">Working Days</label>
         <div class="col-sm-9">
-          <select  class="form-control" name="workingDays" id="workingDays">
+          <select  class="form-control workingDays" name="workingDays" id="workingDays">
             <option value="5">5</option>
             <option value="6">6</option>
           </select>
@@ -381,7 +381,7 @@ include 'includes/session.php';
         }));
         $(document).ready(function() {
     // Function to open the edit modal and populate form fields
-    $('.edit').click(function() {
+    $(document).on('click','.edit', function() {
         // Get data from the row or wherever it's stored
         var UpId = $(this).closest('tr').find('td:eq(0)').text();
         var EmpID = $(this).closest('tr').find('td:eq(1)').text();
@@ -399,21 +399,21 @@ include 'includes/session.php';
         var workingDays = $(this).closest('tr').find('td:eq(13)').text();
         // var roleId = $(this).closest('tr').find('td:eq(9)').text();
 
-        // Set the values in the edit modal
-        $('#edit #UpId').val(UpId);
-        $('#edit #EmpID').val(EmpID);
-        $('#edit #Fname').val(Fname);
-        $('#edit #Lname').val(Lname);
-        $('#edit #CNIC').val(CNIC);
-        $('#edit #gmail').val(Gmail);
-        $('#edit #DesID').val(DesID);
-        $('#edit #PayId').val(PayId);
-        $('#edit #ShiftID').val(ShiftID);
-        $('#edit #Sex').val(Sex);
-        $('#edit #Home').val(Home);
-        $('#edit #Phone').val(Phone);
-        $('#edit #Salary').val(Salary);
-        $('#edit #workingDays').val(workingDays);
+        // Set th. values in the edit modal
+        $('#edit .UpId').val(UpId);
+        $('#edit .EmpID').val(EmpID);
+        $('#edit .Fname').val(Fname);
+        $('#edit .Lname').val(Lname);
+        $('#edit .CNIC').val(CNIC);
+        $('#edit .gmail').val(Gmail);
+        $('#edit .DesID').val(DesID);
+        $('#edit .PayId').val(PayId);
+        $('#edit .ShiftID').val(ShiftID);
+        $('#edit .Sex').val(Sex);
+        $('#edit .Home').val(Home);
+        $('#edit .Phone').val(Phone);
+        $('#edit .Salary').val(Salary);
+        $('#edit .workingDays').val(workingDays);
         // $('#edit #RId').val(roleId);
 
         // Open the edit modal

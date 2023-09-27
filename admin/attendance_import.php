@@ -149,91 +149,13 @@
                             <input type="submit" name="insert" value="Insert Data into Database">
                             </form>
 
-     <!-- -------------------------------------------------------------------------------------------------------- -->
-                            <!-- <table id="attendanceTable" class="table table-bordered">
-                                <thead>
-                                <th>Employee ID</th>
-                                <th>Check In</th>
-                                <th>Check Out</th>
-                                <th>Over Time</th>
-                              
-                                <th></th>
-                                </thead>
-                                <tbody>
                                 <?php
                          
-                                // $sql = "call `StrProc_SelectAttendanceInfo`"; 
-                                // $query = $conn->query($sql);
-                                //     while($row = $query->fetch_assoc()){
-                                //     echo "
-                                //         <tr>
-                                //         <td>".$row['Employee_Id']."</td>
-                                //         <td>".$row['Check_In']."</td>
-                                //         <td>".$row['Check_Out']."</td>
-                                //         <td>".$row['Over_Time']."</td>
-                                //         <td>
-                                //             <button class='btn btn-success btn-sm btn-flat edit' style='border-radius:8px;' data-id=''><i class='fa fa-edit'></i> Edit</button>
-                                            
-                                //         </td>
-                                //         </tr>
-                                //     ";
-                                //     }
                                 ?>
-                                </tbody>
-                            </table> -->
-
-<!-- ---------------------------------------------------------------------------------------------------- -->
-
-
-                            <!-- <form action="#" method="post" enctype="multipart/form-data">
-                                
-                                <input type="submit" name="import" value="Display Data">
-                            </form> -->
+                          
 
                             <?php
-                            //     use SimpleExcel\SimpleExcel;
-                            //     if(isset($_POST['import'])){
-
-                            //    if(move_uploaded_file($_FILES['excel_File']['tmp_name'],$_FILES['excel_File']['name'])){
-                                
-                            //     require_once('../SimpleExcel/SimpleExcel.php');
-                                
-                            //     $excel = new SimpleExcel('csv');
-                                
-                            //     $excel->parser->loadFile($_FILES['excel_File']['name']);
-                                
-                            //     $row = $excel->parser->getField(); 
-                            //     $count = 1;
-                            //     while(count($row)>$count){
-                            //     //    $User_Id = $foo[$count][0];
-                            //        $Employee_Id = $row[$count][0];
-                            //        $check_in = $row[$count][1];
-                            //        $check_out = $row[$count][2];
-                            //        $over_time = $row[$count][3];
-                                   
-                            //        $created_by = $foo[$count][4];
-                            //        $User_Id = $foo[$count][0];
-                            //     $sql = "call `StrProc_InsertAttendanceInfo`('$Employee_Id','$check_in','$check_out','$over_time',1)";  
-                            //     $sql = "INSERT INTO `attendance`(`Employee_Id`,`check_in`,`check_out`,`over_time`,`updated_by`) VALUES ('$Employee_Id','$check_in','$check_out','$over_time',NOW())";
-                            //         $query = $conn->query($sql);
-		                    //          if($conn->query($sql)){
-		                    //          	$_SESSION['success'] = 'Attendance added successfully';
-		                    //          }
-		                    //          else{
-		                    //          	$_SESSION['error'] = $conn->error;
-		                    //          }   
-                            //         $count++;
-                            //     }
-                            //     echo '<pre>';
-                            //     print_r($row);
-                            //     echo '</pre>';
-
-                            //    }
-
-                                
-
-                            //     }
-// ----------------------------------------------------------------------------------------------------------------------
+                          
 
 
 
@@ -261,43 +183,6 @@ if(isset($_POST['import'])){
 
     }
 }
-
-// if(isset($_POST['insert'])){
-//     $Employee_Id = $_POST['Employee_Id'];
-//     $CheakIn = $_POST['check_in'];
-//     $CheakOut = $_POST['check_out'];
-//     // $over_time = $_POST['Check-out'];
-
-//  $sql = "call `StrProc_InsertAttendanceInfo`('$Employee_Id','$CheakIn','$CheakOut','$over_time',1)";  
-
-
-
-
-// }
-
-// if(isset($_POST['insert'])){
-//             if(move_uploaded_file($_FILES['excel_File']['tmp_name'], $_FILES['excel_File']['name'])){
-//                 require_once('../SimpleExcel/SimpleExcel.php');
-//                 $excel = new SimpleExcel('csv');
-//                 $excel->parser->loadFile($_FILES['excel_File']['name']);
-            
-//          $rows = $excel->parser->getField($row['Employee_Id'], $row['check_in'], $row['check_in_date'], $row['check_out']); 
-//     // if(isset($_POST['Employee_Id'], $_POST['check_in'], $_POST['check_out'])){
-//         $Employee_Id = $row ['Employee_Id'];
-//         $CheakIn = $row ['check_in'];
-//         $check_in_date = $row ['check_in_date'];
-//         $CheakOut = $row ['check_out'];
-    
-//         $sql = "call `StrProc_InsertAttendanceInfo`('$Employee_Id','$CheakIn','$check_in_date','$CheakOut')"; 
-//     //    $sql = " INSERT INTO `excelinsert`(`Employee_Id`, `check_in`, `check_out`, `over_time`) VALUES ('$Employee_Id','$check_in','$check_out','$over_time')";
-//         echo '<script>alert("data inserted successfully!");</script>';
-//             }
-//     // } else {
-//     //     // Handle case when required POST data is missing.
-//     //     echo '<script>alert("data is not insert in database!");</script>';
-//     // }
-// }
-
 
 
 if(isset($_POST['insert'])){

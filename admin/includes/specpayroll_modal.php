@@ -23,7 +23,7 @@
 
                                 <div class="col-sm-9">
                                 <!-- <input type="text" class="form-control" id="edit_Employee_Name" name="Employee_Name" disabled> -->
-                                <input type="text" class="form-control" id="edit_Employee_Name" name="Employee_Name" value="<?php echo $Employee_Name; ?>" disabled>
+                                <input type="text" class="form-control" id="edit_Employee_Name" name="Employee_Name" value="<?php echo isset($Employee_Name) ? $Employee_Name : 'Data Not Found'; ?>" disabled>
 
                                 </div>
                             </div>
@@ -32,7 +32,7 @@
 
                                 <div class="col-sm-9">
                                 <!-- <input type="text" class="form-control" id="edit_designation_name" name="designation_name" disabled> -->
-                                <input type="text" class="form-control" id="edit_designation_name" name="designation_name" value="<?php echo $designation_name; ?>" disabled>
+                                <input type="text" class="form-control" id="edit_designation_name" name="designation_name" value="<?php echo isset( $designation_name) ? $designation_name : 'Data Not Found' ; ?>" disabled>
 
                                 </div>
                             </div>
@@ -41,7 +41,7 @@
 
                                 <div class="col-sm-9">
                                 <!-- <input type="text" class="form-control" id="edit_shift_name" name="shift_name" disabled> -->
-                                <input type="text" class="form-control" id="edit_shift_name" name="shift_name" value="<?php echo $shift_name; ?>" disabled>
+                                <input type="text" class="form-control" id="edit_shift_name" name="shift_name" value="<?php echo isset($shift_name) ? $shift_name : 'Data Not Found'; ?>" disabled>
 
                                 </div>
                             </div>
@@ -50,7 +50,7 @@
 
                                 <div class="col-sm-9">
                                 <!-- <input type="text" class="form-control" id="edit_pay_name" name="pay_name" disabled> -->
-                                <input type="text" class="form-control" id="edit_pay_name" name="pay_name" value="<?php echo $pay_name; ?>" disabled>
+                                <input type="text" class="form-control" id="edit_pay_name" name="pay_name" value="<?php echo isset($pay_name) ? $pay_name : 'Data Not Found'; ?>" disabled>
                                 
                                 </div>
                             </div>
@@ -60,7 +60,7 @@
 
                                 <div class="col-sm-9">
                                 <!-- <input type="text" class="form-control" id="edit_time_in" name="time_in" disabled> -->
-                                <input type="text" class="form-control" id="edit_time_in" name="time_in" value="<?php echo $time_in; ?>" disabled>
+                                <input type="text" class="form-control" id="edit_time_in" name="time_in" value="<?php echo isset($time_in) ? $time_in : 'Data Not Found'; ?>" disabled>
 
                                 </div>
                             </div>
@@ -69,7 +69,7 @@
 
                                 <div class="col-sm-9">
                                 <!-- <input type="text" class="form-control" id="edit_time_out" name="time_out" disabled> -->
-                                <input type="text" class="form-control" id="edit_time_out" name="time_out" value="<?php echo $time_out; ?>" disabled>
+                                <input type="text" class="form-control" id="edit_time_out" name="time_out" value="<?php echo isset($time_out) ? $time_out : 'Data Not Found'; ?>" disabled>
 
                                 </div>
                             </div>
@@ -78,7 +78,7 @@
 
                                 <div class="col-sm-9">
                                 <!-- <input type="text" class="form-control" id="edit_time_out" name="time_out" disabled> -->
-                                <input type="text" class="form-control" id="edit_payroll_type" name="payroll_type" value="<?php echo $payroll_type; ?>" disabled>
+                                <input type="text" class="form-control" id="edit_payroll_type" name="payroll_type" value="<?php echo isset($payroll_type) ? $payroll_type : 'Data Not Found'; ?>" disabled>
 
                                 </div>
                             </div>
@@ -87,7 +87,7 @@
 
                                 <div class="col-sm-9">
                                 <!-- <input type="text" class="form-control" id="edit_salary" name="salary" disabled> -->
-                                <input type="text" class="form-control" id="edit_salary" name="salary" value="<?php echo $salary; ?>" disabled>
+                                <input type="text" class="form-control" id="edit_salary" name="salary" value="<?php echo isset($salary) ? $salary : 'Data Not Found'; ?>" disabled>
 
                                 </div>
                             </div>
@@ -96,7 +96,7 @@
 
                                 <div class="col-sm-9">
                                 <!-- <input type="text" class="form-control" id="edit_deducted_days" name="deducted_days" disabled> -->
-                                <input type="text" class="form-control" id="edit_deducted_days" name="deducted_days" value="<?php echo $deducted_days; ?>" disabled>
+                                <input type="text" class="form-control" id="edit_deducted_days" name="deducted_days" value="<?php echo isset($deducted_days) ? $deducted_days : 'Data Not Found'; ?>" disabled>
 
                                 </div>
                             </div>
@@ -105,7 +105,7 @@
 
                                 <div class="col-sm-9">
                                 <!-- <input type="text" class="form-control" id="edit_late" name="late" disabled> -->
-                                <input type="text" class="form-control" id="edit_late" name="late" value="<?php echo $late; ?>" disabled>
+                                <input type="text" class="form-control" id="edit_late" name="late" value="<?php echo isset($late) ? $late : 'Data Not Found'; ?>" disabled>
 
                                 </div>
                             </div>
@@ -114,7 +114,7 @@
 
                                 <div class="col-sm-9">
                                 <!-- <input type="text" class="form-control" id="edit_absent" name="absent" disabled> -->
-                                <input type="text" class="form-control" id="edit_absent" name="absent" value="<?php echo $absent; ?>" disabled>
+                                <input type="text" class="form-control" id="edit_absent" name="absent" value="<?php echo isset($absent) ? $absent : 'Data Not Found'; ?>" disabled>
 
                                 </div>
                             </div>
@@ -123,7 +123,7 @@
                                 
                                 <div class="col-sm-9">
                                     <!-- <input type="text" class="form-control" id="edit_Deduction" name="Deduction" disabled> -->
-                                    <input type="text" class="form-control" id="edit_Deduction" name="Deduction" value="<?php echo $Deduction; ?>" disabled>
+                                    <input type="text" class="form-control" id="edit_Deduction" name="Deduction" value="<?php echo isset($Deduction) ? $Deduction : 'Data Not Found'; ?>" disabled>
                                     
                                 </div>
                             </div>
@@ -132,7 +132,7 @@
                                 
                                 <div class="col-sm-9">
                                     <!-- <input type="text" class="form-control" id="edit_M_Deducted" name="M_Deducted"> -->
-                                    <input type="text" class="form-control" id="edit_M_Deducted" name="M_Deducted" value="<?php echo $M_Deducted; ?>">
+                                    <input type="text" class="form-control" id="edit_M_Deducted" name="M_Deducted" value="<?php echo isset($M_Deducted) ? $M_Deducted : 'Data Not Found'; ?>">
                                     
                                 </div>
                             </div>
@@ -141,7 +141,7 @@
 
                                 <div class="col-sm-9">
                                 <!-- <input type="text" class="form-control" id="edit_Advance" name="Advance"> -->
-                                <input type="text" class="form-control" id="edit_Advance" name="Advance" value="<?php echo $Advance; ?>" disabled>
+                                <input type="text" class="form-control" id="edit_Advance" name="Advance" value="<?php echo isset($Advance) ? $Advance : 'Data Not Found'; ?>" disabled>
 
                                 </div>
                             </div>
@@ -150,7 +150,7 @@
 
                                 <div class="col-sm-9">
                                 <!-- <input type="text" class="form-control" id="edit_Advance" name="Advance"> -->
-                                <input type="text" class="form-control" id="edit_M_Advance" name="M_Advance" value="<?php echo $M_Advance; ?>">
+                                <input type="text" class="form-control" id="edit_M_Advance" name="M_Advance" value="<?php echo isset($M_Advance) ? $M_Advance : 'Data Not Found'; ?>">
 
                                 </div>
                             </div>
@@ -159,7 +159,7 @@
 
                                 <div class="col-sm-9">
                                 <!-- <input type="text" class="form-control" id="edit_M_Salary" name="M_Salary" readonly> -->
-                                <input type="text" class="form-control" id="edit_M_Salary" name="M_Salary" value="<?php echo $M_Salary; ?>" readonly>
+                                <input type="text" class="form-control" id="edit_M_Salary" name="M_Salary" value="<?php echo isset($M_Salary) ? $M_Salary : 'Data Not Found'; ?>" readonly>
 
                                 </div>
                             </div>
@@ -168,7 +168,7 @@
 
                                 <div class="col-sm-9">
                                 <!-- <input type="text" class="form-control" id="edit_Total_Pay" name="Total_Pay" disabled> -->
-                                <input type="text" class="form-control" id="edit_Total_Pay" name="Total_Pay" value="<?php echo $Total_Pay; ?>" disabled>
+                                <input type="text" class="form-control" id="edit_Total_Pay" name="Total_Pay" value="<?php echo isset($Total_Pay) ? $Total_Pay : 'Data Not Found'; ?>" disabled>
 
                                 </div>
                             </div>

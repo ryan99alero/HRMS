@@ -3,7 +3,7 @@
 
 	if(isset($_POST['delete'])){
 		$id = $_POST['id'];
-		// $sql = "DELETE FROM schedules WHERE id = '$id'";
+		// $sql = "DELETE FROM holidays WHERE id = '$id'";
 		$sql = "Call `StrProc_UpdateHolidayInfo`('$id')";
 		if($conn->query($sql)){
 			$_SESSION['success'] = 'Holiday deleted successfully';

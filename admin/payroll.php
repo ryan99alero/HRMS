@@ -59,7 +59,7 @@
           <button class="btn btn-sm btn-flat" style="border-radius:8px;background-color:#4680ff;"><a href="payroll_genereate.php" name="paygn" style="color:white;">Generate PayRoll</a></button>
              </div>
             <div class="box-body table-responsive">
-              <table id="example1" class="table table-bordered">
+              <table style="width: 100%; table-layout: fixed;" id="example1" class="table table-bordered">
                 <thead>
                   <th>ID</th>
                   <th>Employee Name</th>

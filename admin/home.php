@@ -96,22 +96,13 @@ include "includes/conn.php";
             <div class="inner">
               <h3>0</h3>
               <?php
-                // $sql = "SELECT * FROM attendance";
-                // $sql = "call `StrProc_SelectAttendanceInfo`";
-                // $query = $conn->query($sql);
-                // $total = $query->num_rows;
-
-                //$sql = "SELECT * FROM attendance WHERE status = 1";
-                // $sql = "call StrProc_SelectAttendanceInfo";
-                // $query = $conn->query($sql);
-                // $early = $query->num_rows;
-
-                // $percentage = ($early/$total)*100;
-
-                // echo "<h3>".number_format($percentage, 2)."<sup style='font-size: 20px'>%</sup></h3>";
+                // $sql1 = "call `SP_Count_OnTime`()";
+                // $query1 = $conn->query($sql1);
+                // $row1 = $query1->fetch_assoc();
+                // echo "<h3>".$row1['OnTimeCount']."</h3>";
               ?>
 
-              <p>On Time Percentage</p>
+              <p>On Time Employees</p>
             </div>
             <div class="icon">
               <i class="ion ion-pie-graph"></i>
@@ -126,14 +117,13 @@ include "includes/conn.php";
             <div class="inner">
               <h3>0</h3>
               <?php
-                // $sql = "SELECT * FROM attendance WHERE date = '$today' AND status = 1";
-              //  $sql = "call `StrProc_SelectAttendanceInfo`(0)";
-                // $query = $conn->query();
-
-                // echo "<h3>".$query->num_rows."</h3>"
+                // $asql = "call `SP_Count_OnTime`()";
+                // $aquery = $conn->query($asql);
+                // $arow = $aquery->fetch_assoc();
+                // echo "<h3>".$arow['OnTimeCount']."</h3>"
               ?>
 
-              <p>On Time Today</p>
+              <p>Late Coming Employees</p>
             </div>
             <div class="icon">
               <i class="ion ion-clock"></i>
@@ -155,7 +145,7 @@ include "includes/conn.php";
                 // echo "<h3>".$querya->num_rows."</h3>"
               ?>
 
-              <p>Late Today</p>
+              <p>Absent Employees</p>
             </div>
             <div class="icon">
               <i class="ion ion-alert-circled"></i>
@@ -200,46 +190,6 @@ include "includes/conn.php";
           </div>
         </div>
 
-
-<!-- -----------------------line charts------------------------------- -->
-
-        <!-- <div class="col-md-6">
-                <div class="card">
-                    <div class="card-header">
-                        <h5>Realtime Line Chart</h5>
-                    </div>
-                    <div class="card-body">
-                        <canvas id="lineChart"></canvas>
-                    </div>
-                </div>
-            </div> -->
-            <!-- <div class="col-md-6">
-                <div class="card">
-                    <div class="card-header">
-                        <h5>Bar chart</h5>
-                    </div>
-                    <div class="card-body">
-                        <div id="bar-chart-1"></div>
-                    </div>
-                </div>
-            </div> -->
-
-<!-- ------------------------------pie charts---------------------------- -->
-
-           <!-- <div class="col-md-6">
-                <div class="card">
-                    <div class="card-header">
-                        <h5>Realtime Pie Chart</h5>
-                    </div>
-                    <div class="card-body">
-                        <canvas id="pieChart"></canvas>
-                    </div>
-                </div>
-            </div>
-       </div> -->
-
-       <!-- ------------------------------------------testing-------------------------- -->
-
        <div class="col-md-6">
                 <div class="card">
                     <div class="card-header">
@@ -250,38 +200,7 @@ include "includes/conn.php";
                     </div>
                 </div>
             </div>
-<!-- ----------------------------------------testing---------------------------------- -->
-
-<!-- ------------------------------bar charts---------------------------- -->
-
-       <!-- <div class="card">
-                    <div class="card-header">
-                        <h5>Realtime Bar Chart</h5>
-                    </div>
-                    <div class="card-body">
-                        <canvas id="barChart"></canvas>
-                    </div>
-                </div>
-            </div> -->
-
-
-            <!-- <div class="col-md-6">
-                <div class="card">
-                    <div class="card-header">
-                        <h5>Bar chart</h5>
-                    </div>
-                    <div class="card-body">
-                        <div id="bar-chart-1"></div>
-                    </div>
-                </div>
-            </div> -->
-
-
-
-
-
-
-   </div>
+       </div>
 
 
       </section>
@@ -299,17 +218,7 @@ include "includes/conn.php";
   $ontime = array();
   $late = array();
   for( $m = 1; $m <= 12; $m++ ) {
-    // $sql = "SELECT * FROM attendance WHERE MONTH(date) = '$m' AND status = 1 $and";
-    // $oquery = $conn->query($sql);
-    // array_push($ontime, $oquery->num_rows);
-
-    // $sql = "SELECT * FROM attendance WHERE MONTH(date) = '$m' AND status = 0 $and";
-    // $lquery = $conn->query($sql);
-    // array_push($late, $lquery->num_rows);
-
-    // $num = str_pad( $m, 2, 0, STR_PAD_LEFT );
-    // $month =  date('M', mktime(0, 0, 0, $m, 1));
-    // array_push($months, $month);
+   
   }
 
   $months = json_encode($months);

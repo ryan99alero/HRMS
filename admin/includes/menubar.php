@@ -11,15 +11,19 @@
       /* background-color:rgb(20, 194, 247); */
       background-color:#4680ff;
     }
+    /* .sidebar{
+    position: fixed;
+    } */
   </style>
 </head>
 <aside class="main-sidebar" style="background-color:rgba(0, 0, 0, 0.733);">
     <!-- sidebar: style can be found in sidebar.less -->
     <section class="sidebar">
       <!-- Sidebar user panel -->
-      <div class="user-panel">
+      <div class="">
         <!-- <div class="pull-left image">
-          <img src="<?php echo (!empty($user['photo'])) ? '../images/'.$user['photo'] : '../images/profile.jpg'; ?>" class="img-circle" alt="User Image">
+          <img src="<?php 
+          echo (!empty($user['photo'])) ? '../images/'.$user['photo'] : '../images/profile.jpg'; ?>" class="img-circle" alt="User Image">
         </div> -->
         <div class="pull-left info">
           <p><?php
@@ -36,8 +40,6 @@
         <li class=""><a href="home.php"><i class="fa fa-dashboard fa-beat"></i> <span>Dashboard</span></a></li>
         <li class="header" style="background-color:rgba(0, 0, 0, 0.733);">MANAGE</li>
         
-        <li><a href="attendance.php"><i class="fa fa-calendar fa-beat"></i> <span>Attendance</span></a></li>
-        <li><a href="attendance_import.php"><i class="fa fa-calendar fa-beat"></i> <span>Import Attendance List</span></a></li>
         <!-- <li class="treeview">
           <a href="#">
             <i class="fa fa-users fa-beat"></i>
@@ -55,15 +57,18 @@
         </li> -->
         <li><a href="employee.php"><i class="fa fa-users"></i> <span>Employee List</span></a></li>
         <li><a href="employee_import.php"><i class="fa fa-users"></i><span>Import Employee List</span></a></li>
+        <li><a href="attendance.php"><i class="fa fa-calendar fa-beat"></i> <span>Attendance</span></a></li>
+        <li><a href="attendance_import.php"><i class="fa fa-calendar fa-beat"></i> <span>Import Attendance List</span></a></li>
         <li><a href="position.php"><i class="fa fa-suitcase fa-beat"></i> <span>Designation</span></a></li>
-        <li class="header" style="background-color:rgba(0, 0, 0, 0.733);">PRINTABLES</li>
-        <li><a href="payroll.php"><i class="fa fa-files-o fa-beat"></i> <span>Payroll</span></a></li>
-        <!-- <li><a href="payscale.php"><i class="fa fa-files-o fa-beat"></i> <span>Pay Scale</span></a></li> -->
+        <li class="header" style="background-color:rgba(0, 0, 0, 0.733);">PRINTABLES</li> 
         <li><a href="schedule.php"><i class="fa fa-clock-o"></i><span>Schedules</span></a></li>
         <li><a href="holiday.php"><i class="fa fa-clock-o"></i><span>Holiday</span></a></li>
         <li><a href="holiday_import.php"><i class="fa fa-clock-o"></i><span>Holiday Import</span></a></li>
+        <li><a href="payroll.php"><i class="fa fa-files-o fa-beat"></i> <span>Payroll</span></a></li>
+        <!-- <li><a href="payscale.php"><i class="fa fa-files-o fa-beat"></i> <span>Pay Scale</span></a></li> -->
+       
         <!-- <li><a href="schedule_employee.php"><i class="fa fa-clock-o fa-beat"></i> <span>Schedule</span></a></li> -->
-        <li><a href="Biometric Devices.php"><i class="fa-brands fa-nfc-directional fa-beat"></i> <span>&nbsp;&nbsp;Biometric Devices</span></a></li>
+        <!-- <li><a href="Biometric Devices.php"><i class="fa-brands fa-nfc-directional fa-beat"></i> <span>&nbsp;&nbsp;Biometric Devices</span></a></li> -->
       </ul>
     </section>
     <!-- /.sidebar -->

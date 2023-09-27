@@ -9,7 +9,7 @@
 </head>
 <header class="main-header">
     <!-- Logo -->
-    <a href="home.php" class="logo" style="background-color:rgba(0, 0, 0, 0.733);">
+    <a href="home.php" class="logo" style="background-color:rgba(0, 0, 0, 0.733);" >
       <!-- mini logo for sidebar mini 50x50 pixels -->
       <!-- <span class="logo-mini"><b>I</b> S</span> -->
       <span class="logo-mini"><img src="../images/image1.png" alt="" style="height:50px; width:50px;"></span>

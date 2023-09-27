@@ -56,7 +56,7 @@
               <!-- <button class="btn btn-primary btn-sm btn-flat btn-success glyphicon glyphicon-print" style="border-radius:8px;"> Print</button> -->
             </div>
             <div class="box-body table-responsive">
-              <table id="attendanceTable" class="table table-bordered table-responsive">
+              <table style="width: 100%; table-layout: fixed;" id="attendanceTable" class="table table-bordered table-responsive">
                 <thead>
                   <th class="hidden">Record ID</th>
                   <th>Employee ID</th>
@@ -130,7 +130,7 @@
 
 <script>
 $(function(){
-  $("#attendanceTable").DataTable( {
+   table = $("#attendanceTable").DataTable( {
     dom: "'<'row'l>Bfrtip'",
         "scrollX": true,
         "scrollY": '500px',
@@ -177,7 +177,13 @@ $(function(){
                         },
             'copy', 'csv', 'print'
         ]
-    } );
+      } );
+      table.reload();
+    //Data Table Reload On Date Range Filter
+    // $(function(){
+    //   table.reload();
+    // });
+
   $('.edit').click(function(e){
     e.preventDefault();
     $('#edit').modal('show');

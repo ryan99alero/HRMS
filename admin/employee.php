@@ -1,7 +1,5 @@
 <?php include 'includes/session.php'; ?>
 <?php include 'includes/header.php'; ?>
-<!-- <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css">
-<link rel="stylesheet" href="https://cdn.datatables.net/buttons/2.4.1/css/buttons.dataTables.min.css"> -->
 <link rel="stylesheet" href="style/datatable1.13.6.css">
 <link rel="stylesheet" href="style/datatable2.4.1.css">
 
@@ -54,7 +52,7 @@
                <a href="#addnew" data-toggle="modal" class="btn btn-primary btn-sm btn-flat" style='border-radius:8px;background-color:#4680ff;'><i class="fa fa-plus"></i> New</a>
             </div>
             <div class="box-body table-responsive">
-              <table class="dt table table-bordered ">
+              <table style="width: 100%; table-layout: fixed;" class="dt table table-bordered ">
                 <thead class="">
                   <tr>
                     <!-- <th>ID</th>                  -->
@@ -99,8 +97,12 @@
                           <td><?php echo $row['salary']; ?></td>
                           <td><?php echo $row['Advance']; ?></td>
                           <td><?php echo $row['workingDays']; ?></td>
-                          <td><?php if(isset($row['isactive'])){ echo "<span class='badge badge-success' style='background-color:green'>Active</span>";
-                           }else {echo "<span class='badge badge-danger' style='background-color:Red'>Deactive</span>";}; ?></td>
+                          <td>
+                            <?php 
+                            if($row['isactive'] != 0){ echo "<span class='badge badge-success' style='background-color:green'>Active</span>";
+                           }else {echo "<span class='badge badge-danger' style='background-color:Red'>Deactive</span>";}; 
+                           ?>
+                           </td>
                           <td>
                           <a class=" edit "  style='border-radius:8px;color:white;cursor: pointer;' data-id="<?php echo $row['RecId']; ?>"><button style="border-radius:8px;border:none;background-color:#4680ff;"><i class="fa fa-edit"></i></button></a>
                          
@@ -123,22 +125,12 @@
   </div>
     
   <?php include 'includes/footer.php'; ?>
-  <?php
-   include 'includes/employee_modal.php';
-  
-   include 'includes/advance_modal.php';
-   ?>
+  <?php include 'includes/employee_modal.php'; ?>
+   <?php  include 'includes/advance_modal.php'; ?>
    <?php  include 'includes/specpayroll_modal.php';?>
    
 </div>
 <?php include 'includes/scripts.php'; ?>
-
-
-<!-- <link rel="stylesheet" href="https://cdn.datatables.net/1.10.24/css/jquery.dataTables.min.css"> -->
-<!-- <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> -->
-<!-- <script src="https://code.jquery.com/jquery-migrate-3.4.1.js" integrity="sha256-CfQXwuZDtzbBnpa5nhZmga8QAumxkrhOToWweU52T38=" crossorigin="anonymous"></script> -->
-<!-- <script src="https://code.jquery.com/jquery-migrate-3.4.1.min.js" integrity="sha256-UnTxHm+zKuDPLfufgEMnKGXDl6fEIjtM+n1Q6lL73ok=" crossorigin="anonymous"></script>
-<script src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.min.js"></script> -->
 
 <script scr="JS/jquery3.7.0.js"></script>
 
@@ -156,24 +148,7 @@
 
 <script>
 
-  // $(document).ready(function() {
-  //   $('.dt').DataTable({
-  //     "scrollX": true,
-  //     buttons: [
-  //                   {
-  //                 extend: 'pdf',
-  //                 orientation: 'landscape', // Set the orientation to landscape
-  //                 customize: function(doc) {
-  //                   // Customize the PDF document if needed
-  //                   // For example, you can set the page size, margins, etc.
-  //                   doc.pageSize = 'LEGAL';
-  //                   doc.pageMargins = [40, 60, 40, 60];
-  //                 }
-  //               },
-  //           'copy', 'csv', 'excel', 'print'
-  //       ]
-  //   });
-  // });
+
 $(function(){
 
   $('.dt').DataTable({
@@ -226,25 +201,35 @@ $(function(){
     });
 
   
-
-  $('.edit').click(function(e){
-    e.preventDefault();
-    $('#edit').modal('show');
-    var id = $(this).data('id');
-    getRow(id);
-  });
-  // $('.advance').click(function(e){
+    $(document).on('click','.edit', function(e){
+      //e.preventDefault();
+      $('#edit').modal('show');
+      var id = $(this).data('id');
+      getRow(id);
+      //$(".Sex option[data-current|='Female']").attr('selected', 'selected');
+      let tempGender = ($(this).closest('tr').find('td:eq(8)').text());
+      let tempDes = ($(this).closest('tr').find('td:eq(5)').text());
+      let tempSalaryType = ($(this).closest('tr').find('td:eq(6)').text());
+      let tempShift = ($(this).closest('tr').find('td:eq(7)').text());
+      let workingDays = ($(this).closest('tr').find('td:eq(13)').text());
+      $(".Sex option:selected").removeAttr("selected");
+      $(".DesID option:selected").removeAttr("selected");
+      $(".PayId option:selected").removeAttr("selected");
+      $(".ShiftID option:selected").removeAttr("selected");
+      $(".workingDays option:selected").removeAttr("selected");
+      setTimeout(function() { 
+        $(`.Sex option[data-current|='${tempGender}']`).attr('selected', 'selected');
+        $(`.DesID option[data-current|='${tempDes}']`).attr('selected', 'selected');
+        $(`.PayId option[data-current|='${tempSalaryType}']`).attr('selected', 'selected');
+        $(`.ShiftID option[data-current|='${tempShift}']`).attr('selected', 'selected');
+        $(`.workingDays option[data-current|='${workingDays}']`).attr('selected', 'selected');
+      }, 100); 
+    })
+  // $('.edit').click(function(e){
   //   e.preventDefault();
-  //   $('#advance').modal('show');
-  //   var id = $(this).data('id');
-  //   getRow(id);
+    
   // });
-  // $('.payroll').click(function(e){
-  //   e.preventDefault();
-  //   $('#payroll').modal('show');
-  //   var id = $(this).data('id');
-  //   getRow(id);
-  // });
+ 
   $(document).on('click','.advance', function(e){
     e.preventDefault();
     let empID = $(this).data('id');
@@ -260,6 +245,36 @@ $(function(){
         $('#advance').modal('show');
       }
     });
+    $.ajax({
+  type: 'POST',
+  url: 'getAdvanceData.php',
+  data: { id: empID }, // Pass the employee ID
+  dataType: 'json',
+  success: function (data) 
+  {
+    var tbody = $('#employeeTable tbody');
+    tbody.empty(); // Clear existing data
+        
+    if (data.length > 0) {
+      $.each(data, function (index, row) {
+        var newRow = '<tr>';
+        newRow += '<td>' + row.firstname + '</td>';
+        newRow += '<td>' + row.Amount + '</td>';
+        newRow += '<td>' + row.AmountDate + '</td>';
+        newRow += '</tr>';
+        tbody.append(newRow);
+      });
+    } else {
+      tbody.append('<tr><td colspan="4">No data found</td></tr>');
+    }
+
+    // Show the modal after populating the table
+    $('#advance').modal('show');
+  },
+  error: function () {
+    console.error('Error fetching data');
+  }
+});
   })
   
   $(document).on('click','.payroll', function(e){
@@ -272,7 +287,7 @@ $(function(){
     data: {id:empID},
     dataType: 'json',
     success: function(response){
-      // debugger
+      //debugger
       $('.posid').val(empID);
       $('#edit_Employee_Name').val(response.Employee_Name);
       $('#edit_designation_name').val(response.designation_name);
@@ -319,57 +334,6 @@ function getRow(id){
     }
   });
 }
-
-
-
-// $(function(){
-//   $('.edit').click(function(e){
-//     e.preventDefault();
-//     $('#edit').modal('show');
-//     var id = $(this).data('id');
-//     getRow(id);
-//   });
-
-//   $('.delete').click(function(e){
-//     e.preventDefault();
-//     $('#delete').modal('show');
-//     var id = $(this).data('id');
-//     getRow(id);
-//   });
-
-//   $('.photo').click(function(e){
-//     e.preventDefault();
-//     var id = $(this).data('id');
-//     getRow(id);
-//   });
-
-// });
-
-// function getRow(id){
-//   $.ajax({
-//     type: 'POST',
-//     url: 'employee_row.php',
-//     data: {id:id},
-//     dataType: 'json',
-//     success: function(response){
-//       $('.empid').val(response.RecId);
-//    // $('.employee_id').html(response.RecId);
-//    // $('.del_employee_name').html(response.firstname+' '+response.lastname);
-//       $('#name').html(response.firstname+' '+response.lastname);
-//    // $('#edit_firstname').val(response.firstname);
-//    // $('#edit_lastname').val(response.lastname);
-//       $('#Home').val(response.address);
-//       $('#Phone').val(response.contact_info);
-//       $('#Salary').val(response.salary).html(response.salary);
-//       $('#Sex').val(response.gender).html(response.gender);
-//       $('#DesID').val(response.position_id).html(response.position_id);
-//       $('#PayId').val(response.PayId).html(response.PayId);
-//       $('#ShiftID').val(response.ShiftID).html(response.ShiftID);
-//       $('#workingDays').val(response.workingDays).html(response.workingDays);
-      
-//     }
-//   });
-// }
 </script>
 
 
@@ -380,12 +344,3 @@ function getRow(id){
 
 </body>
 </html>
-
-<!-- 
-<link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.css" />
-    <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.js"></script> -->
-<!-- <script>
-    $(document).ready(function(){
-        $('.dt').DataTable();
-    })
-  </script> -->

@@ -1,37 +1,3 @@
-<?php
-// Database connection
-$servername = "localhost"; // Database server name
-$username = "root"; // Database username
-$password = ""; // Database password
-$dbname = "hrms"; // Database name
-
-// Create connection
-$conn = new mysqli($servername, $username, $password, $dbname);
-
-// Check connection
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-}
-
-$adv_ID = isset($_POST['id']) ? $_POST['id'] : 0;
-
-$sql = "call`StrProc_SelectAdvanceInfo`($adv_ID)";
-$result = $conn->query($sql);
-
-if ($result->num_rows > 0) {
-    // Fetch the result
- while($row = $result->fetch_assoc())
-     {
-    $firstname = $row["firstname"];
-    $Amounts = $row["Amount"];
-    $AmountDate = $row["AmountDate"];
-     }
-} else {
-    $firstname = "No data found"; // If no data is found in the database
-    $Amounts = "No data found"; // If no data is found in the database
-    $AmountDate = "No data found"; // If no data is found in the database
-}
-?>
 <div class="modal fade" id="advance">
   <div class="modal-dialog">
       <div class="modal-content">
@@ -73,9 +39,7 @@ if ($result->num_rows > 0) {
                  
                 </form>
               
-                
-         
-                <table class="table" id="employeeTable">
+                <table class="table AdvanceData" id="employeeTable">
                     <thead>
                         <tr>
                             <th>Employee Name</th>
@@ -83,10 +47,7 @@ if ($result->num_rows > 0) {
                             <th>Advance Amount Date</th>
                         </tr>
                     </thead>
-                    <tbody >
-                      <td><?php echo $firstname; ?></td>
-                      <td><?php echo $Amounts; ?></td>
-                      <td><?php echo $AmountDate; ?></td>
+                    <tbody id="employeeTable tbody">
                     </tbody>
                 </table>
             </div>

@@ -96,7 +96,7 @@
           	</div>
           	<div class="modal-body">
             	<form class="form-horizontal" method="POST" action="holiday_delete.php">
-            		<input type="hidden" id="del_posid" name="id">
+            		<input type="hidden" id="del_postid" name="id">
             		
                     <div class="text-center">
 	                	<p>DELETE HoliDay</p>
@@ -117,7 +117,7 @@
     $(document).ready(function() {
           // Add button click event
         $('.addnew').click(function() {
-           
+
             $('#posid').val(id);
             $('#add_Title').val(Title);
             $('#add_Holiday_Date').val(Holiday_Date);
@@ -138,10 +138,11 @@
         });
 
         // Delete button click event
-		$('.delete').click(function() {
+		$('.delete').click(function() 
+        {
             var id = $(this).data('id');
             var Title = $(this).closest('tr').find('td:eq(1)').text(); // Extract payscale title from table
-            $('#del_posid').val(id);
+            $('#del_postid').val(id);
             $('#del_Title').text(Title);
             $('#delete').modal('show');
         });

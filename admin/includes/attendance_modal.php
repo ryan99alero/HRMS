@@ -1,6 +1,6 @@
 <?php
 include 'includes/conn.php';
-include 'includes/session';
+// include 'includes/session.php';
 ?>
 <!-- Edit -->
 <div class="modal fade" id="edit">
