@@ -23,7 +23,7 @@
 
                         <div class="col-sm-4">
                         <label for="Amount" class="col-sm-10 control-label">Advance Amount</label>
-                        <input type="text" class="form-control" id="Amount" name="Amount">
+                        <input type="number" class="form-control" id="Amount" name="Amount" placeholder="Enter Amount Here" required>
                         </div>
                         
                         <div class="col-sm-4">

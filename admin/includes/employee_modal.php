@@ -44,64 +44,69 @@ include "includes/conn.php";
             <form class="form-horizontal" method="POST" action="employee_add.php" enctype="multipart/form-data">
            
             <div class="form-group">
-                  <label for="EmpID" class="col-sm-3 control-label">Employee ID*</label>
+                  <label for="EmpID" class="col-sm-3 control-label">Employee ID</label>
 
                   <div class="col-sm-9">
-                    <input type="text" class="form-control" id="EmpID" name="EmpID" required>
+                    <input type="text" class="form-control" id="EmpID" name="EmpID" placeholder="Enter Employee ID" required>
                   </div>
               </div>
               <div class="form-group">
-                  <label for="Fname" class="col-sm-3 control-label">First Name*</label>
+                  <label for="Fname" class="col-sm-3 control-label">First Name</label>
 
                   <div class="col-sm-9">
-                    <input type="text" class="form-control" id="Fname" name="Fname" required>
+                    <input type="text" class="form-control" id="Fname" name="Fname" placeholder="Enter First Name" required>
                   </div>
               </div>
               <div class="form-group">
                   <label for="Lname" class="col-sm-3 control-label">Last Name</label>
 
                   <div class="col-sm-9">
-                    <input type="text" class="form-control" id="Lname" name="Lname" >
+                    <input type="text" class="form-control" id="Lname" name="Lname" placeholder="Enter Last Name">
                   </div>
               </div>
               <div class="form-group">
-                  <label for="CNIC" class="col-sm-3 control-label">CNIC*</label>
+                  <label for="CNIC" class="col-sm-3 control-label">CNIC</label>
                   <div class="col-sm-9">
-                      <input type="text" class="form-control" id="CNIC" name="CNIC" required>
+                      <input type="text" class="form-control" id="CNIC" name="CNIC" placeholder="00000-0000000-0" required maxlength="13">
                   </div>
               </div>
               <div class="form-group">
-                  <label for="Gmail" class="col-sm-3 control-label">Gmail*</label>
+                  <label for="Gmail" class="col-sm-3 control-label">Gmail</label>
                   <div class="col-sm-9">
-                      <input type="text" class="form-control" id="Gmail" name="Gmail" required>
+                      <input type="text" class="form-control" id="Gmail" name="Gmail" placeholder="Enter Gmail Acount" required>
                   </div>
               </div>
               <div class="form-group">
-                  <label for="Home" class="col-sm-3 control-label">Address*</label>
+                  <label for="Home" class="col-sm-3 control-label">Address</label>
 
                   <div class="col-sm-9">
-                    <textarea class="form-control" name="Home" id="Home"></textarea>
+                    <textarea class="form-control" name="Home" id="Home" placeholder="Enter Employee Address" required></textarea>
                   </div>
               </div>
               <div class="form-group">
-                  <label for="Phone" class="col-sm-3 control-label">Contact*</label>
+                  <label for="Phone" class="col-sm-3 control-label">Contact</label>
 
                   <div class="col-sm-9">
-                    <input type="number" class="form-control" id="Phone" name="Phone">
+                    <input type="number" class="form-control" id="Phone" name="Phone" placeholder="0000-000000-0" required>
                   </div>
               </div>
               <div class="form-group">
-                  <label for="Salary" class="col-sm-3 control-label">Salary*</label>
+                  <label for="Salary" class="col-sm-3 control-label">Salary</label>
 
                   <div class="col-sm-9">
-                    <input type="number" class="form-control" id="Salary" name="Salary">
+                    <input type="number" class="form-control" id="Salary" name="Salary" placeholder="Enter Salary Here" required>
                   </div>
               </div>
               <div class="form-group">
-                  <label for="WorkingDays" class="col-sm-3 control-label">WorkingDays*</label>
+                  <label for="WorkingDays" class="col-sm-3 control-label">WorkingDays</label>
 
                   <div class="col-sm-9">
-                    <input type="number" class="form-control" id="WorkingDays" name="WorkingDays">
+                  <select  class="form-control workingDays" name="workingDays" id="workingDays" required>
+                    <option value="" selected>Select Working Days</option>
+                    <option value="5">5</option>
+                    <option value="6">6</option>
+                  </select>
+                    <!-- <input type="number" class="form-control" id="WorkingDays" name="WorkingDays" placeholder="" required> -->
                   </div>
               </div>
               <div class="form-group">
@@ -109,7 +114,7 @@ include "includes/conn.php";
 
                   <div class="col-sm-9"> 
                     <select class="form-control" name="Sex" id="Sex" required>
-                      <option value="" selected>- Select -</option>
+                      <option value="" selected>Select Gender</option>
                       <?php
                         while($Grow = $query->fetch_assoc()){
                           echo "
@@ -124,11 +129,11 @@ include "includes/conn.php";
                   </div>
               </div>
               <div class="form-group">
-                  <label for="designation_name" class="col-sm-3 control-label">Designation*</label>
+                  <label for="designation_name" class="col-sm-3 control-label">Designation</label>
 
                   <div class="col-sm-9">
                     <select class="form-control" name="DesID" id="DesID" required>
-                      <option value="" selected>- Select -</option>
+                      <option value="" selected>Select Designation</option>
                       <?php
                         while($drow2 = $query2->fetch_assoc()){
                           echo "
@@ -142,11 +147,11 @@ include "includes/conn.php";
                   
               </div>
               <div class="form-group">
-                  <label for="pay_name" class="col-sm-3 control-label">Salary Type*</label>
+                  <label for="pay_name" class="col-sm-3 control-label">Salary Type</label>
 
                   <div class="col-sm-9">
                     <select class="form-control" name="PayId" id="PayId" required>
-                      <option value="" selected>- Select -</option>
+                      <option value="" selected>Select Salary Type</option>
                       <?php
                         while($prow4 = $query4->fetch_assoc()){
                           echo "
@@ -160,11 +165,11 @@ include "includes/conn.php";
                   
               </div>
               <div class="form-group">
-                  <label for="shift_name" class="col-sm-3 control-label">Shift*</label>
+                  <label for="shift_name" class="col-sm-3 control-label">Shift</label>
 
                   <div class="col-sm-9">
                     <select class="form-control" id="ShiftID" name="ShiftID" required>
-                      <option value="" selected>- Select -</option>
+                      <option value="" selected>Select Shift</option>
                       <?php
                         while($srow6 = $query6->fetch_assoc()){
                           echo "
