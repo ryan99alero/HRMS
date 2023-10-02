@@ -5,26 +5,26 @@ include "includes/conn.php";
 ?>
 
 <?php 
-     $sql = "SELECT * FROM `tbl_gender`"; 
+     $sql = "SELECT * FROM `tbl_gender` WHERE isactive = 1"; 
     //  $sql = "call `StrProc_getGenderInfo`()";
      $query = $conn->query($sql);
      $query1 = $conn->query($sql);
 ?>
 
 <?php
-    $sql = "SELECT * FROM `designation`";
+    $sql = "SELECT * FROM `designation` WHERE isactive = 1";
     // $sql = "call `StrProc_getDesignationInfo`()";
     $query2 = $conn->query($sql);
     $query3 = $conn->query($sql);
 ?>
 <?php
-     $sql = "SELECT * FROM `pay_scale`";
+     $sql = "SELECT * FROM `pay_scale` WHERE isactive = 1";
      // $sql = "call `StrProc_SelectDesignationInfo`(0)";
      $query4 = $conn->query($sql);
      $query5 = $conn->query($sql);
 ?>
 <?php
-    $sql = "SELECT * FROM `shift`";
+    $sql = "SELECT * FROM `shift` WHERE isactive = 1";
     //  $ssql="Call `StrProc_SelectShiftInfo`(0)";  
     $query6 = $conn->query($sql);
     $query7 = $conn->query($sql);
