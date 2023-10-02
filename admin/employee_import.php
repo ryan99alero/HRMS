@@ -107,6 +107,7 @@
                 background-color: #219955;
             }
     </style>
+<?php include 'includes/conn.php'; ?>
 <?php include 'includes/session.php'; ?>
 <?php include 'includes/header.php'; ?>
 
@@ -162,9 +163,9 @@
 
 use SimpleExcel\SimpleExcel;
 
-$db = mysqli_connect('localhost','root','','hrms');
+// $db = mysqli_connect('localhost','root','','hrms');
 
-if (!$db) {
+if (!$conn) {
     die('Could not connect:'.mysqli_connect_error());
 }
 
@@ -214,12 +215,12 @@ if (isset($_POST['insert'])) {
             $salary = $foo[$count][12];
             $sql = "call `SP_InsertUserProfileInfo`('$Employee_Id','$firstname','$lastname','$gender','$CNIC','$Gmail','$contact','$address','$Designation_Id','$payscale_id','$shift_id','$workingDays','$salary')";  
 
-            if (mysqli_query($db, $sql)) {
+            if (mysqli_query($conn, $sql)) {
                 // var_dump($sql);
                 echo '<script>alert("Data inserted successfully!");</script>';
                 // header("location:'holiday.php'");
             } else {
-                echo "Error: " . $sql . "<br>" . mysqli_error($db);
+                echo "Error: " . $sql . "<br>" . mysqli_error($conn);
             }
             
             $count++;

@@ -24,13 +24,14 @@
                         <div class="col-sm-4">
                         <label for="Amount" class="col-sm-10 control-label">Advance Amount</label>
                         <input type="number" class="form-control" id="Amount" name="Amount" placeholder="Enter Amount Here" required>
+                        <span id="Amounterror" style="color: red;"></span>
                         </div>
                         
                         <div class="col-sm-4">
                             
                             <label for="AmoutDate" class="col-sm-9 control-label">Amount Date</label>
                             <input type="date" class="form-control" id="AmountDate" name="AmountDate" required>
-                           
+                            <span id="AmountDateerror" style="color: red;"></span>                           
                         </div>
                         <div class="col-sm-2 pull-right">
                             <button class="btn btn-success btn-sm advance btn-flat" value="submit" name="addadvance" id="addadvance" type="submit"  style='border-radius:8px;margin-top:27px;'><i class="fa fa-edit"></i> Add</button>
@@ -55,7 +56,7 @@
     </div>
 </div>
 
-<script>
+<!-- <script>
     $(document).ready(function () {
     $('#addadvance').click(function (event) {
         event.preventDefault(); // Prevent the default form submission behavior
@@ -63,5 +64,35 @@
     });
 });
 
-</script>
+</script> -->
+<script>
+    $(document).ready(function () {
+    $('#addadvance').click(function (event) {
+        event.preventDefault(); // Prevent the default form submission behavior
 
+        // Perform required field validation
+        if ($('#Amount').val() === '' ) {
+            // Show an error message or handle validation failure
+            // alert('Please fill in all required fields.');
+            // return; // Stop form submission if validation fails
+
+            document.getElementById("Amounterror").innerHTML = " Please Fill This Field " ;
+                return false;
+        }
+        else{
+            document.getElementById("Amounterror").innerHTML = "" ;
+        }
+        if ( $('#AmountDate').val() === '') {
+            // Show an error message or handle validation failure
+            // alert('Please fill in all required fields.');
+            // return; // Stop form submission if validation fails
+
+            document.getElementById("AmountDateerror").innerHTML = " Please Fill This Field " ;
+                return false;
+        }
+
+        $('#advanceForm').submit(); // Assuming the form has an id of "advanceForm"
+    });
+});
+
+</script>

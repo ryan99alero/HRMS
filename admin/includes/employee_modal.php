@@ -5,26 +5,26 @@ include "includes/conn.php";
 ?>
 
 <?php 
-     $sql = "SELECT * FROM `tbl_gender` WHERE isactive = 1"; 
+     $sql = "SELECT * FROM `tbl_gender` WHERE isactive=1"; 
     //  $sql = "call `StrProc_getGenderInfo`()";
      $query = $conn->query($sql);
      $query1 = $conn->query($sql);
 ?>
 
 <?php
-    $sql = "SELECT * FROM `designation` WHERE isactive = 1";
+    $sql = "SELECT * FROM `designation` WHERE isactive=1";
     // $sql = "call `StrProc_getDesignationInfo`()";
     $query2 = $conn->query($sql);
     $query3 = $conn->query($sql);
 ?>
 <?php
-     $sql = "SELECT * FROM `pay_scale` WHERE isactive = 1";
+     $sql = "SELECT * FROM `pay_scale` WHERE isactive=1";
      // $sql = "call `StrProc_SelectDesignationInfo`(0)";
      $query4 = $conn->query($sql);
      $query5 = $conn->query($sql);
 ?>
 <?php
-    $sql = "SELECT * FROM `shift` WHERE isactive = 1";
+    $sql = "SELECT * FROM `shift` WHERE isactive=1";
     //  $ssql="Call `StrProc_SelectShiftInfo`(0)";  
     $query6 = $conn->query($sql);
     $query7 = $conn->query($sql);
@@ -40,164 +40,165 @@ include "includes/conn.php";
                 <span aria-hidden="true">&times;</span></button>
             <h4 class="modal-title"><b>Add Employee</b></h4>
           </div>
-        <div class="modal-body">
-              <form class="form-horizontal" method="POST" action="employee_add.php" enctype="multipart/form-data"   onsubmit="return validation()">
-                
-                          <div class="form-group">
-                                <label for="EmpID" class="col-sm-3 control-label">Employee ID*</label>
+          <div class="modal-body">
+            <form class="form-horizontal" method="POST" action="employee_add.php" enctype="multipart/form-data" onsubmit="return validation()">
+           
+            <div class="form-group">
+                  <label for="EmpID" class="col-sm-3 control-label">Employee ID</label>
 
-                                <div class="col-sm-9">
-                                  <input type="text" class="form-control" id="EmpID" name="EmpID" placeholder="Enter Employee Id" required>
-                                  <span id="EmpIDerror" style="color: red;"></span>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label for="Fname" class="col-sm-3 control-label">First Name*</label>
+                  <div class="col-sm-9">
+                    <input type="text" class="form-control" id="EmpID" name="EmpID" placeholder="Enter Employee ID" required>
+                    <span id="EmpIDerror" style="color: red;"></span>
+                  </div>
+              </div>
+              <div class="form-group">
+                  <label for="Fname" class="col-sm-3 control-label">First Name</label>
 
-                                <div class="col-sm-9">
-                                  <input type="text" class="form-control" id="Fname" name="Fname" placeholder="Enter First Name" required>
-                                  <span id="Fnameerror" style="color: red;"></span>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label for="Lname" class="col-sm-3 control-label">Last Name</label>
+                  <div class="col-sm-9">
+                    <input type="text" class="form-control" id="Fname" name="Fname" placeholder="Enter First Name" required>
+                    <span id="Fnameerror" style="color: red;"></span>
+                  </div>
+              </div>
+              <div class="form-group">
+                  <label for="Lname" class="col-sm-3 control-label">Last Name</label>
 
-                                <div class="col-sm-9">
-                                  <input type="text" class="form-control" id="Lname" name="Lname" placeholder="Enter Last Name" >
-                                  <span id="Lnameerror" style="color: red;"></span>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label for="CNIC" class="col-sm-3 control-label">CNIC*</label>
-                                <div class="col-sm-9">
-                                    <input type="text" class="form-control" id="CNIC" name="CNIC" placeholder="40000-0000000-0" required>
-                                    <span id="CNICerror" style="color: red;"></span>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label for="Gmail" class="col-sm-3 control-label">Gmail*</label>
-                                <div class="col-sm-9">
-                                    <input type="text" class="form-control" id="Gmail" name="Gmail" placeholder="Email Address" required>
-                                  <span id="Gmailerror" style="color: red;"></span>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label for="Home" class="col-sm-3 control-label">Address*</label>
+                  <div class="col-sm-9">
+                    <input type="text" class="form-control" id="Lname" name="Lname" placeholder="Enter Last Name">
+                    <span id="Lnameerror" style="color: red;"></span>
+                  </div>
+              </div>
+              <div class="form-group">
+                  <label for="CNIC" class="col-sm-3 control-label">CNIC</label>
+                  <div class="col-sm-9">
+                      <input type="text" class="form-control CNIC" id="CNIC" name="CNIC" placeholder="00000-0000000-0">
+                      <span id="CNICerror" style="color: red;"></span>
+                  </div>
+              </div>
+              <div class="form-group">
+                  <label for="Gmail" class="col-sm-3 control-label">Gmail</label>
+                  <div class="col-sm-9">
+                      <input type="text" class="form-control" id="Gmail" name="Gmail" placeholder="Enter Gmail Acount" required>
+                      <span id="Gmailerror" style="color: red;"></span>
+                  </div>
+              </div>
+              <div class="form-group">
+                  <label for="Home" class="col-sm-3 control-label">Address</label>
 
-                                <div class="col-sm-9">
-                                  <textarea class="form-control" name="Home" id="Home" rows="2" cols="50" style="resize: none;" placeholder="Address" required></textarea>
-                                <span id="Homeerror" style="color: red;"></span> 
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label for="Phone" class="col-sm-3 control-label">Contact*</label>
+                  <div class="col-sm-9">
+                    <textarea class="form-control" name="Home" id="Home" style="resize:none;" placeholder="Enter Employee Address" required></textarea>
+                    <span id="Homeerror" style="color: red;"></span> 
+                  </div>
+              </div>
+              <div class="form-group">
+                  <label for="Phone" class="col-sm-3 control-label">Contact</label>
 
-                                <div class="col-sm-9">
-                                  <input type="number" class="form-control" id="Phone" name="Phone" placeholder="03000000000" required>
-                                  <span id="Phoneerror" style="color: red;"></span>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label for="Salary" class="col-sm-3 control-label">Salary*</label>
+                  <div class="col-sm-9">
+                    <input type="number" class="form-control" id="Phone" name="Phone" placeholder="0000-000000-0" required>
+                    <span id="Phoneerror" style="color: red;"></span>
+                  </div>
+              </div>
+              <div class="form-group">
+                  <label for="Salary" class="col-sm-3 control-label">Salary</label>
 
-                                <div class="col-sm-9">
-                                  <input type="number" class="form-control" id="Salary" name="Salary" placeholder="Enter Salary" required>
-                                  <span id="Salaryerror" style="color: red;"></span> 
-                                </div>
-                              </div>
-                            <div class="form-group">
-                                <label for="WorkingDays" class="col-sm-3 control-label">WorkingDays*</label>
+                  <div class="col-sm-9">
+                    <input type="number" class="form-control" id="Salary" name="Salary" placeholder="Enter Salary Here" required>
+                    <span id="Salaryerror" style="color: red;"></span> 
+                  </div>
+              </div>
+              <div class="form-group">
+                  <label for="workingDays" class="col-sm-3 control-label">WorkingDays</label>
 
-                                <div class="col-sm-9">
-                                  <select  class="form-control " name="WorkingDays" id="WorkingDays" required>
-                                  <option value="" selected>Select Working Days</option>  
-                                  <option value="5">5</option>
-                                    <option value="6">6</option>
-                                  </select>
-                                    <!-- <input type="text" class="form-control" id="WorkingDays" name="WorkingDays">  -->
-                                </div>
-                              </div>
-                            <div class="form-group">
-                                <label for="Gender" class="col-sm-3 control-label">Gender*</label>
+                  <div class="col-sm-9">
+                  <select  class="form-control workingDays" name="workingDays" id="workingDays" required>
+                    <option value="" selected>Select Working Days</option>
+                    <option value="5">5</option>
+                    <option value="6">6</option>
+                  </select>
+                    <!-- <input type="number" class="form-control" id="WorkingDays" name="WorkingDays" placeholder="" required> -->
+                  </div>
+              </div>
+              <div class="form-group">
+                  <label for="Gender" class="col-sm-3 control-label">Gender*</label>
 
-                                <div class="col-sm-9"> 
-                                  <select class="form-control" name="Sex" id="Sex" required>
-                                    <option value="" selected>Select Gender</option>
-                                    <?php
-                                      while($Grow = $query->fetch_assoc()){
-                                        echo "
-                                          <option value='".$Grow['RecId']."'>".$Grow['Gender']."</option>
+                  <div class="col-sm-9"> 
+                    <select class="form-control" name="Sex" id="Sex" required>
+                      <option value="" selected>Select Gender</option>
+                      <?php
+                        while($Grow = $query->fetch_assoc()){
+                          echo "
+                            <option value='".$Grow['RecId']."'>".$Grow['Gender']."</option>
 
-                                        ";
-                                      }
-                                      // $query->free();
-                                    ?>
+                          ";
+                        }
+                        // $query->free();
+                      ?>
 
-                                  </select>
-                                </div>
-                              </div>
-                          <div class="form-group">
-                              <label for="designation_name" class="col-sm-3 control-label">Designation*</label>
+                    </select>
+                  </div>
+              </div>
+              <div class="form-group">
+                  <label for="designation_name" class="col-sm-3 control-label">Designation</label>
 
-                              <div class="col-sm-9">
-                                <select class="form-control" name="DesID" id="DesID" required>
-                                  <option value="" selected>Select Designation</option>
-                                  <?php
-                                    while($drow2 = $query2->fetch_assoc()){
-                                      echo "
-                                        <option value='".$drow2['RecId']."'>".$drow2['designation_name']."</option>
-                                      ";
-                                    } 
-                                    // $query->free();
-                                  ?>
-                                </select>
-                              </div>                 
-                            </div>
-                          <div class="form-group">
-                              <label for="pay_name" class="col-sm-3 control-label">Salary Type*</label>
+                  <div class="col-sm-9">
+                    <select class="form-control" name="DesID" id="DesID" required>
+                      <option value="" selected>Select Designation</option>
+                      <?php
+                        while($drow2 = $query2->fetch_assoc()){
+                          echo "
+                            <option value='".$drow2['RecId']."'>".$drow2['designation_name']."</option>
+                          ";
+                        } 
+                        // $query->free();
+                      ?>
+                    </select>
+                  </div>
+                  
+              </div>
+              <div class="form-group">
+                  <label for="pay_name" class="col-sm-3 control-label">Salary Type</label>
 
-                              <div class="col-sm-9">
-                                <select class="form-control" name="PayId" id="PayId" required>
-                                  <option value="" selected>Select Pay Type</option>
-                                  <?php
-                                    while($prow4 = $query4->fetch_assoc()){
-                                      echo "
-                                        <option value='".$prow4['RecId']."'>".$prow4['pay_name']."</option>
-                                      ";
-                                    } 
-                                    // $query->free();
-                                  ?>
-                                </select>
-                              </div>
-                            </div>
-                          <div class="form-group">
-                              <label for="shift_name" class="col-sm-3 control-label">Shift*</label>
+                  <div class="col-sm-9">
+                    <select class="form-control" name="PayId" id="PayId" required>
+                      <option value="" selected>Select Salary Type</option>
+                      <?php
+                        while($prow4 = $query4->fetch_assoc()){
+                          echo "
+                            <option value='".$prow4['RecId']."'>".$prow4['pay_name']."</option>
+                          ";
+                        } 
+                        // $query->free();
+                      ?>
+                    </select>
+                  </div>
+                  
+              </div>
+              <div class="form-group">
+                  <label for="shift_name" class="col-sm-3 control-label">Shift</label>
 
-                              <div class="col-sm-9">
-                                <select class="form-control" id="ShiftID" name="ShiftID" required>
-                                  <option value="" selected>Select Shift</option>
-                                  <?php
-                                    while($srow6 = $query6->fetch_assoc()){
-                                      echo "
-                                        <option value='".$srow6['RecId']."'>".$srow6['shift_name']."</option>
-                                      ";
-                                      echo "
-                                        <option value='".$srow6['RecId']."'>".$srow6['shift_name']."'>".$srow6['time_in'].' - '.$srow6['time_out'].'-'.$srow6['grace_time']."</option>
-                                      ";
-                                    }
-                                  ?>
-                                </select>
-                              </div>
-                            </div>
-                
-                          <div class="modal-footer">
-                            <button type="button" class="btn btn-default btn-flat pull-left" data-dismiss="modal"><i class="fa fa-close"></i> Close</button>
-                            <button type="submit" class="btn btn-primary btn-flat" name="add"><i class="fa fa-save"></i> Save</button>
-                            </div>
-                  </form>
-        </div> 
+                  <div class="col-sm-9">
+                    <select class="form-control" id="ShiftID" name="ShiftID" required>
+                      <option value="" selected>Select Shift</option>
+                      <?php
+                        while($srow6 = $query6->fetch_assoc()){
+                          echo "
+                            <option value='".$srow6['RecId']."'>".$srow6['shift_name']."</option>
+                          ";
+                           echo "
+                            <option value='".$srow6['RecId']."'>".$srow6['shift_name']."'>".$srow6['time_in'].' - '.$srow6['time_out'].'-'.$srow6['grace_time']."</option>
+                          ";
+                        }
+                      ?>
+                    </select>
+                  </div>
+              </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default btn-flat pull-left" data-dismiss="modal"><i class="fa fa-close"></i> Close</button>
+            <button type="submit" class="btn btn-primary btn-flat" name="add"><i class="fa fa-save"></i> Save</button>
+            </form>
+          </div>
       </div>
-    </div>
+  </div>
 </div>
 
 <!-- Edit -->
@@ -210,7 +211,7 @@ include "includes/conn.php";
             	<h4 class="modal-title"><b><span class="employee_id"></span></b></h4>
           	</div>
           	<div class="modal-body">
-            	<form class="form-horizontal" method="POST" action="employee_edit.php" onsubmit="return evalidation()">
+            	<form class="form-horizontal" method="POST" action="employee_edit.php" onsubmit="return editEmployeeValidation()">
             		<input type="hidden" class="empid" name="id">
                 <div class="form-group">
         <label for="UpId" class="col-sm-3 control-label">User ID</label>
@@ -234,7 +235,7 @@ include "includes/conn.php";
     <div class="form-group">
         <label for="Lname" class="col-sm-3 control-label">Last Name</label>
         <div class="col-sm-9">
-            <input type="text" class="form-control Lname" id="editLname" name="Lname" >
+            <input type="text" class="form-control Lname" id="editLname" name="Lname" required>
             <span id="upLnameerror" style="color: red;"></span>
         </div>
     </div>
@@ -248,7 +249,7 @@ include "includes/conn.php";
     <div class="form-group">
         <label for="gmail" class="col-sm-3 control-label">Gmail</label>
         <div class="col-sm-9">
-            <input type="text" class="form-control gmail" id="editgmail" name="gmail" required>
+            <input type="text" class="form-control gmail" id="editGmail" name="gmail" required>
             <span id="upgmailerror" style="color: red;"></span>
         </div>
     </div>
@@ -256,7 +257,7 @@ include "includes/conn.php";
     <div class="form-group">
         <label for="Home" class="col-sm-3 control-label">Address</label>
         <div class="col-sm-9">
-            <textarea class="form-control Home" name="Home" id="editHome" style="resize: none;"></textarea>
+            <textarea class="form-control Home" name="Home" id="editHome" style="resize:none;"></textarea>
             <span id="upHomeerror" style="color: red;"></span>
         </div>
     </div>
@@ -390,54 +391,62 @@ include "includes/conn.php";
 <script src="https://code.jquery.com/jquery-3.7.0.js" integrity="sha256-JlqSTELeR4TLqP0OG9dxM7yDPqX1ox/HfgiSLBj8+kM=" crossorigin="anonymous"></script>
 
 
-
 <script>
 
     $(document).ready(function() {
         // Edit button click event
-        // $(".empid").click((function(){
-        //     $(".empid #DesID").submit()
-        // }));
+        $(".empid").click((function(){
+            $(".empid #DesID").submit()
+        }));
+
+        //$(".CNIC").mask("00000-0000000-0");
+
         $(document).ready(function() {
-    // Function to open the edit modal and populate form fields
-    $(document).on('click','.edit', function() {
-        // Get data from the row or wherever it's stored
-        var UpId = $(this).closest('tr').find('td:eq(0)').text();
-        var EmpID = $(this).closest('tr').find('td:eq(1)').text();
-        var Fname = $(this).closest('tr').find('td:eq(2)').text();
-        var Lname = $(this).closest('tr').find('td:eq(2)').text();
-        var CNIC = $(this).closest('tr').find('td:eq(3)').text();
-        var Gmail = $(this).closest('tr').find('td:eq(4)').text();
-        var DesID = $(this).closest('tr').find('td:eq(5)').text();
-        var PayId = $(this).closest('tr').find('td:eq(6)').text();   
-        var ShiftID = $(this).closest('tr').find('td:eq(7)').text();
-        var Sex = $(this).closest('tr').find('td:eq(8)').text();
-        var Home = $(this).closest('tr').find('td:eq(9)').text();
-        var Phone = $(this).closest('tr').find('td:eq(10)').text();
-        var Salary = $(this).closest('tr').find('td:eq(11)').text();
-        var workingDays = $(this).closest('tr').find('td:eq(13)').text();
-        // var roleId = $(this).closest('tr').find('td:eq(9)').text();
+          // Function to open the edit modal and populate form fields
+          $(document).on('click','.edit', async function() {
 
-        // Set th. values in the edit modal
-        $('#edit .UpId').val(UpId);
-        $('#edit .EmpID').val(EmpID);
-        $('#edit .Fname').val(Fname);
-        $('#edit .Lname').val(Lname);
-        $('#edit .CNIC').val(CNIC);
-        $('#edit .gmail').val(Gmail);
-        $('#edit .DesID').val(DesID);
-        $('#edit .PayId').val(PayId);
-        $('#edit .ShiftID').val(ShiftID);
-        $('#edit .Sex').val(Sex);
-        $('#edit .Home').val(Home);
-        $('#edit .Phone').val(Phone);
-        $('#edit .Salary').val(Salary);
-        $('#edit .workingDays').val(workingDays);
-        // $('#edit #RId').val(roleId);
+            let empID = $(this).closest('tr').find('td:eq(1)').text();
 
-        // Open the edit modal
-        $('#edit').modal('show');
-    });
+            const response = await fetchEmployeeInfo(empID);
+            
+            if (response.length >= 1) {
+              // Get data from the row or wherever it's stored
+              var UpId = response[0].RecId;
+              var EmpID = response[0].Employee_Id;
+              var Fname = response[0].firstname;
+              var Lname = response[0].lastname;
+              var CNIC = response[0].CNIC;
+              var Gmail = response[0].Gmail;
+              var DesID = response[0].firstname;
+              var PayId = response[0].pay_name;   
+              var ShiftID = response[0].shift_name;
+              var Sex = response[0].Gender;
+              var Home = response[0].address;
+              var Phone = response[0].contact;
+              var Salary = response[0].salary;
+              var workingDays = response[0].workingDays;
+              
+              $('#edit .UpId').val(UpId);
+              $('#edit .EmpID').val(EmpID);
+              $('#edit .Fname').val(Fname);
+              $('#edit .Lname').val(Lname);
+              $('#edit .CNIC').val(CNIC);
+              $('#edit .gmail').val(Gmail);
+              $('#edit .DesID').val(DesID);
+              $('#edit .PayId').val(PayId);
+              $('#edit .ShiftID').val(ShiftID);
+              $('#edit .Sex').val(Sex);
+              $('#edit .Home').val(Home);
+              $('#edit .Phone').val(Phone);
+              $('#edit .Salary').val(Salary);
+              $('#edit .workingDays').val(workingDays);
+              // $('#edit #RId').val(roleId);
+  
+              // Open the edit modal
+              $('#edit').modal('show');
+            }
+
+          });
 
     // Handle form submission (you may need additional validation)
     $('edit').submit(function(e) {
@@ -453,6 +462,24 @@ include "includes/conn.php";
     });
 });
   });
+
+  function fetchEmployeeInfo(empID) {
+    return new Promise(function(resolve, reject) {
+      $.ajax({
+        type: 'POST',
+        url: 'includes/getEmpInfoByUserID.php',
+        data: { id: empID },
+        dataType: 'json',
+        success: function (response) {
+          resolve(response); // Resolve the Promise with the response data
+        },
+        error: function (xhr, status, error) {
+          reject(error); // Reject the Promise with an error if AJAX fails
+        }
+      });
+    });
+  }
+
 </script>
 
 
@@ -602,14 +629,14 @@ phoneInput.addEventListener("input", function (event) {
             }
             else
             {
-                document.getElementById("Salaryerror").innerHTML = " It Contain Only Number " ;
+                document.getElementById("Salaryerror").innerHTML = " Please Write Correct Value " ;
                 return false;
             }
            
       
 
         }
-    </script>
+</script>
 
 
 
@@ -619,7 +646,7 @@ phoneInput.addEventListener("input", function (event) {
 <!-- ----------------------------------------------Validation for edit employee----------------------------------------------------------------- -->
 
 <script>
-        function evalidation()
+        function editEmployeeValidation()
         {
             //getting values from textboxes
             

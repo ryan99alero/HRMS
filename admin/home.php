@@ -72,8 +72,8 @@ include "includes/conn.php";
           <div class="small-box bg-aqua">
             <div class="inner">
               <?php
-                //  $sql = "SELECT * FROM user_profile";
-                $sql = "call `StrProc_SelectUserProfileInfo`(0)";
+                 $sql = "SELECT * FROM user_profile";
+                // $sql = "call `StrProc_SelectUserProfileInfo`(0)";
                // $sql = "call 'StrProc_getUserProfileInfo'(UpId)";
                 $query = $conn->query($sql);
                 
@@ -94,14 +94,28 @@ include "includes/conn.php";
           <!-- small box -->
           <div class="small-box bg-green">
             <div class="inner">
-              <h3>0</h3>
               <?php
-                // $sql1 = "call `SP_Count_OnTime`()";
-                // $query1 = $conn->query($sql1);
-                // $row1 = $query1->fetch_assoc();
-                // echo "<h3>".$row1['OnTimeCount']."</h3>";
+              $sqla = "SELECT COUNT(*) AS OnTimeCount
+              FROM (
+                  SELECT
+                      CASE
+                          WHEN TIME(a.check_in) >= ADDTIME(TIME(s.time_in), '04:00:00') THEN 1
+                          ELSE 0
+                      END AS OnTimeFlag
+                  FROM
+                      attendance AS a
+                  JOIN
+                      user_profile AS up ON up.Employee_Id = a.Employee_Id
+                  JOIN
+                      shift AS s ON up.shift_id = s.RecId
+                  WHERE
+                      a.isactive = 1 AND s.isactive = 1 AND up.isactive = 1
+                      AND DATE(a.check_in_date) = CURDATE() -- Filter for the current day's date
+              ) AS OnTimeEntries;";
+              $query = $conn->query($sqla);
+              $row = $query->fetch_assoc();
+                echo "<h3>".$row['OnTimeCount']."</h3>";
               ?>
-
               <p>On Time Employees</p>
             </div>
             <div class="icon">
@@ -115,14 +129,30 @@ include "includes/conn.php";
           <!-- small box -->
           <div class="small-box bg-yellow">
             <div class="inner">
-              <h3>0</h3>
-              <?php
-                // $asql = "call `SP_Count_OnTime`()";
-                // $aquery = $conn->query($asql);
-                // $arow = $aquery->fetch_assoc();
-                // echo "<h3>".$arow['OnTimeCount']."</h3>"
+            <?php
+              $sqlb = "SELECT COUNT(*) AS LateCount
+              FROM (
+                  SELECT
+                      CASE
+                          WHEN TIME(a.check_in) > ADDTIME(TIME(s.time_in), TIME(s.grace_time)) AND TIME(a.check_in) < ADDTIME(TIME(s.time_in), '04:00:00') THEN 1
+                          ELSE 0
+                      END AS LateFlag
+                  FROM
+                      attendance AS a
+                  JOIN
+                      user_profile AS up ON up.Employee_Id = a.Employee_Id
+                  JOIN
+                      shift AS s ON up.shift_id = s.RecId
+                  WHERE
+                      a.isactive = 1 AND s.isactive = 1 AND up.isactive = 1
+                      AND DATE(a.check_in_date) = CURDATE() -- Filter for the current day's date
+                      AND TIME(a.check_in) > ADDTIME(TIME(s.time_in), TIME(s.grace_time)) -- Filter for 'Late' entries
+                      AND TIME(a.check_in) < ADDTIME(TIME(s.time_in), '04:00:00') -- Filter for entries before 4:00 AM
+              ) AS LateEntries;";
+              $query = $conn->query($sqlb);
+              $row = $query->fetch_assoc();
+                echo "<h3>".$row['LateCount']."</h3>";
               ?>
-
               <p>Late Coming Employees</p>
             </div>
             <div class="icon">
@@ -136,15 +166,29 @@ include "includes/conn.php";
           <!-- small box -->
           <div class="small-box bg-red">
             <div class="inner">
-              <h3>0</h3>
-              <?php
-                // $sql = "SELECT * FROM attendance WHERE date = '$today' AND status = 0";
-                // $sql = "call`StrProc_SelectAttendanceInfo`(0)";
-                // $querya = $conn->query($sql);
-
-                // echo "<h3>".$querya->num_rows."</h3>"
+            <?php
+              $sqlc = "SELECT COUNT(*) AS AbsentCount
+              FROM (
+                  SELECT
+                      CASE
+                          WHEN TIME(a.check_in) >= ADDTIME(TIME(s.time_in), '04:00:00') THEN 1
+                          ELSE 0
+                      END AS AbsentFlag
+                  FROM
+                      attendance AS a
+                  JOIN
+                      user_profile AS up ON up.Employee_Id = a.Employee_Id
+                  JOIN
+                      shift AS s ON up.shift_id = s.RecId
+                  WHERE
+                      a.isactive = 1 AND s.isactive = 1 AND up.isactive = 1
+                      AND DATE(a.check_in_date) = CURDATE() -- Filter for the current day's date
+                      AND TIME(a.check_in) >= ADDTIME(TIME(s.time_in), '04:00:00') -- Filter for 'Absent' entries
+              ) AS AbsentEntries;";
+              $query = $conn->query($sqlc);
+              $row = $query->fetch_assoc();
+                echo "<h3>".$row['AbsentCount']."</h3>";
               ?>
-
               <p>Absent Employees</p>
             </div>
             <div class="icon">
@@ -193,7 +237,7 @@ include "includes/conn.php";
        <div class="col-md-6">
                 <div class="card">
                     <div class="card-header">
-                        <h5>Pie Charts</h5>
+                        <h5>Pie Chart</h5>
                     </div>
                     <div class="card-body">
                         <div id="pie-chart-1" style="width:100%"></div>

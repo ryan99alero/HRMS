@@ -31,7 +31,7 @@
 		'$payscale_id',
 		'$salary',
 		'$workingDays')";
-		
+		//$_SESSION['success'] = $sql;
 		if($conn->query($sql)){
 			$_SESSION['success'] = "Data Update Successfully";
 		}

@@ -107,6 +107,7 @@
             }
     </style>
 <?php include 'includes/session.php'; ?>
+<?php include 'includes/conn.php'; ?>
 <?php include 'includes/header.php'; ?>
 
 <body class="hold-transition skin-blue sidebar-mini">
@@ -197,7 +198,7 @@ $excel->parser->loadFile($_FILES['excel_File']['name']);
 
 $foo = $excel->parser->getField(); 
 $count = 1;
-$db = mysqli_connect('localhost','root','','hrms');
+// $db = mysqli_connect('localhost','root','','hrms');
 
 while(count($foo)>$count){
 //    $User_Id = $foo[$count][0];
@@ -207,7 +208,7 @@ $CheakOut = $foo[$count][2];
 $over_time = $foo[$count][3];
 $sql = "call `StrProc_InsertAttendanceInfo`('$Employee_Id','$CheakIn','$CheakOut','$over_time')";  
 // var_dump($sql);
-mysqli_query($db,$sql);
+mysqli_query($conn,$sql);
 // echo '<script>alert("data inserted successfully!");</script>';
 $count++;
 // $sql = "INSERT INTO `attendance`(`Employee_Id`,`CheakIn`,`CheakOut`,`over_time`) VALUES ('$Employee_Id','$CheakIn','$CheakOut','$over_time',NOW())";

@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.0
+-- version 5.1.1
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 27, 2023 at 11:56 PM
--- Server version: 10.4.25-MariaDB
--- PHP Version: 8.1.10
+-- Generation Time: Oct 02, 2023 at 08:16 PM
+-- Server version: 10.4.20-MariaDB
+-- PHP Version: 7.4.22
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -18,14 +18,14 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `hrms`
+-- Database: `hrms-10-02-2023`
 --
 
 DELIMITER $$
 --
 -- Procedures
 --
-CREATE DEFINER=`root`@`localhost` PROCEDURE `NotWorkng_StrProc_ChangeAttendanceInfo` (IN `EmpId` INT, IN `check_in` VARCHAR(50), IN `check_in_date` DATE, IN `check_out` VARCHAR(50))   BEGIN 
+CREATE DEFINER=`root`@`localhost` PROCEDURE `NotWorkng_StrProc_ChangeAttendanceInfo` (IN `EmpId` INT, IN `check_in` VARCHAR(50), IN `check_in_date` DATE, IN `check_out` VARCHAR(50))  BEGIN 
 DECLARE CONTINUE HANDLER FOR SQLEXCEPTION
         BEGIN
             ROLLBACK;
@@ -35,7 +35,7 @@ UPDATE attendance as a SET a.check_in = check_in, a.check_in_date =  check_in_da
 COMMIT;
 END$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `SP_Advance_PayableAmount` (IN `EmpId` INT)   BEGIN
+CREATE DEFINER=`root`@`localhost` PROCEDURE `SP_Advance_PayableAmount` (IN `EmpId` INT)  BEGIN
 DECLARE CONTINUE HANDLER FOR SQLEXCEPTION
         BEGIN
             ROLLBACK;
@@ -129,7 +129,7 @@ SET @DaysInCurrentMonth = DAY(LAST_DAY(CURRENT_DATE));
      ) as A;
 END$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `SP_Count_Absent` ()   BEGIN
+CREATE DEFINER=`root`@`localhost` PROCEDURE `SP_Count_Absent` ()  BEGIN
 -- Subquery to count 'Absent' entries for the current day
 SELECT COUNT(*) AS AbsentCount
 FROM (
@@ -152,7 +152,7 @@ FROM (
 
 END$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `SP_Count_Late` ()   BEGIN
+CREATE DEFINER=`root`@`localhost` PROCEDURE `SP_Count_Late` ()  BEGIN
 -- Subquery to count 'Late' entries for the current day
 SELECT COUNT(*) AS LateCount
 FROM (
@@ -176,7 +176,7 @@ FROM (
 
 END$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `SP_Count_OnTime` ()   BEGIN
+CREATE DEFINER=`root`@`localhost` PROCEDURE `SP_Count_OnTime` ()  BEGIN
 -- Subquery to count 'On Time' entries for the current day
 SELECT COUNT(*) AS OnTimeCount
 FROM (
@@ -199,7 +199,7 @@ FROM (
 
 END$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_Cursor_PayrollGenerator` ()   BEGIN
+CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_Cursor_PayrollGenerator` ()  BEGIN
 
 DECLARE done INT DEFAULT 0;
 
@@ -450,7 +450,16 @@ AND pt.isactive = 1;
 COMMIT;
 END$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `Sp_GetSpecialPayrollValues` (IN `SP_EmpID` INT)   BEGIN
+CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_getEmpInfoByUserID` (IN `EmpId` INT)  BEGIN 
+SELECT 		 ps.pay_name,up.RecId,up.Employee_Id,up.firstname,up.lastname,up.contact,up.address,up.Gmail,up.CNIC,up.salary,g.Gender,s.shift_name,up.workingDays 		FROM `user_profile` up
+	JOIN shift s on s.RecId = up.shift_id
+	JOIN designation d on d.RecId = up.Designation_Id
+	JOIN tbl_gender g on g.RecId = up.gender
+	join pay_scale ps on ps.RecId = up.payscale_id
+	WHERE up.Employee_Id = EmpId;
+END$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `Sp_GetSpecialPayrollValues` (IN `SP_EmpID` INT)  BEGIN
 	-- Days in Current Month
 SET @DaysInCurrentMonth = DAY(LAST_DAY(CURRENT_DATE));
 
@@ -552,7 +561,7 @@ SELECT
     JOIN pay_scale pp ON pp.RecId = up.payscale_id;
 END$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `SP_InsertUserProfileInfo` (IN `EmpID` VARCHAR(50), IN `Fname` VARCHAR(50), IN `Lname` VARCHAR(50), IN `Sex` INT(10), IN `CNIC` INT, IN `Gmail` VARCHAR(50), IN `Phone` INT, IN `Home` TEXT, IN `DesID` INT, IN `PayId` INT, IN `ShiftID` INT, IN `WorkingDays` INT, IN `Salary` DOUBLE)   BEGIN
+CREATE DEFINER=`root`@`localhost` PROCEDURE `SP_InsertUserProfileInfo` (IN `EmpID` VARCHAR(50), IN `Fname` VARCHAR(50), IN `Lname` VARCHAR(50), IN `Sex` INT(10), IN `CNIC` VARCHAR(50), IN `Gmail` VARCHAR(50), IN `Phone` VARCHAR(50), IN `Home` TEXT, IN `DesID` INT, IN `PayId` INT, IN `ShiftID` INT, IN `WorkingDays` INT, IN `Salary` DOUBLE)  BEGIN
 DECLARE CONTINUE HANDLER FOR SQLEXCEPTION
         BEGIN
             ROLLBACK;
@@ -567,7 +576,7 @@ START TRANSACTION;
 COMMIT;
 END$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_Special_PayrollGenerator` (IN `UserRecID` INT, IN `EmpId` INT)   BEGIN
+CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_Special_PayrollGenerator` (IN `UserRecID` INT, IN `EmpId` INT)  BEGIN
 DECLARE CONTINUE HANDLER FOR SQLEXCEPTION
         BEGIN
             ROLLBACK;
@@ -733,7 +742,7 @@ AND pt.isactive = 1;
 COMMIT;
 END$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `SP_StrProc_ChangeAttendanceInfo` (IN `EmpId` INT, IN `check_in` VARCHAR(50), IN `check_out` VARCHAR(50))   BEGIN 
+CREATE DEFINER=`root`@`localhost` PROCEDURE `SP_StrProc_ChangeAttendanceInfo` (IN `EmpId` INT, IN `check_in` VARCHAR(50), IN `check_out` VARCHAR(50))  BEGIN 
     DECLARE CONTINUE HANDLER FOR SQLEXCEPTION
     BEGIN
         ROLLBACK;
@@ -759,7 +768,7 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `SP_StrProc_ChangeAttendanceInfo` (I
     COMMIT;
 END$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `StrProc_ChangeAdvanceInfo` (IN `adv_Id` INT, IN `UpId` INT, IN `Amount` DOUBLE, IN `AmountDate` DATETIME)   BEGIN 
+CREATE DEFINER=`root`@`localhost` PROCEDURE `StrProc_ChangeAdvanceInfo` (IN `adv_Id` INT, IN `UpId` INT, IN `Amount` DOUBLE, IN `AmountDate` DATETIME)  BEGIN 
 DECLARE CONTINUE HANDLER FOR SQLEXCEPTION
         BEGIN
             ROLLBACK;
@@ -769,7 +778,7 @@ UPDATE advance as ad SET  ad.Up_Id = UpId, ad.Amount = Amount, ad.AmoutDate = Am
 COMMIT;
 END$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `StrProc_ChangeAttendanceInfo` (IN `EmpId` INT, IN `check_in` VARCHAR(50), IN `check_out` VARCHAR(50))   BEGIN 
+CREATE DEFINER=`root`@`localhost` PROCEDURE `StrProc_ChangeAttendanceInfo` (IN `EmpId` INT, IN `check_in` VARCHAR(50), IN `check_out` VARCHAR(50))  BEGIN 
     DECLARE CONTINUE HANDLER FOR SQLEXCEPTION
     BEGIN
         ROLLBACK;
@@ -815,7 +824,7 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `StrProc_ChangeAttendanceInfo` (IN `
     COMMIT;
 END$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `StrProc_ChangeDesignationInfo` (IN `Desig_Id` INT, IN `designation_name` VARCHAR(50))   BEGIN 
+CREATE DEFINER=`root`@`localhost` PROCEDURE `StrProc_ChangeDesignationInfo` (IN `Desig_Id` INT, IN `designation_name` VARCHAR(50))  BEGIN 
 DECLARE CONTINUE HANDLER FOR SQLEXCEPTION
         BEGIN
             ROLLBACK;
@@ -825,7 +834,7 @@ UPDATE designation as d SET d.designation_name = designation_name, d.updated_by 
 COMMIT;
 END$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `StrProc_ChangeHolidayInfo` (IN `HoliId` INT, IN `Title` VARCHAR(50), IN `HolidayDate` DATE)   BEGIN
+CREATE DEFINER=`root`@`localhost` PROCEDURE `StrProc_ChangeHolidayInfo` (IN `HoliId` INT, IN `Title` VARCHAR(50), IN `HolidayDate` DATE)  BEGIN
 DECLARE CONTINUE HANDLER FOR SQLEXCEPTION
         BEGIN
             ROLLBACK;
@@ -835,7 +844,7 @@ UPDATE holidays as h SET h.Title = Title ,h.Holiday_Date = HolidayDate, h.update
 COMMIT;
 END$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `StrProc_ChangePayRollInfo` (IN `PayRoll_Id` INT, IN `M_Deduction` INT, IN `M_Salary` INT, IN `M_Advance` DOUBLE, IN `Remarks` VARCHAR(255))   BEGIN 
+CREATE DEFINER=`root`@`localhost` PROCEDURE `StrProc_ChangePayRollInfo` (IN `PayRoll_Id` INT, IN `M_Deduction` INT, IN `M_Salary` INT, IN `M_Advance` DOUBLE, IN `Remarks` VARCHAR(255))  BEGIN 
 DECLARE CONTINUE HANDLER FOR SQLEXCEPTION
         BEGIN
             ROLLBACK;
@@ -845,7 +854,7 @@ UPDATE payroll as pr SET pr.M_Deducted = M_Deduction, pr.M_Salary = M_Salary, pr
 COMMIT;
 END$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `StrProc_ChangePayScaleInfo` (IN `PaySca_Id` INT, IN `pay_name` VARCHAR(50))   BEGIN 
+CREATE DEFINER=`root`@`localhost` PROCEDURE `StrProc_ChangePayScaleInfo` (IN `PaySca_Id` INT, IN `pay_name` VARCHAR(50))  BEGIN 
 DECLARE CONTINUE HANDLER FOR SQLEXCEPTION
         BEGIN
             ROLLBACK;
@@ -855,7 +864,7 @@ UPDATE pay_scale as ps SET ps.pay_name = pay_name, ps.updated_by = 1, ps.updated
 COMMIT;
 END$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `StrProc_ChangePermissionAssignInfo` (IN `PermAssi_Id` INT, IN `Role_Id` INT, IN `Permission_Id` INT)   BEGIN 
+CREATE DEFINER=`root`@`localhost` PROCEDURE `StrProc_ChangePermissionAssignInfo` (IN `PermAssi_Id` INT, IN `Role_Id` INT, IN `Permission_Id` INT)  BEGIN 
 DECLARE CONTINUE HANDLER FOR SQLEXCEPTION
         BEGIN
             ROLLBACK;
@@ -865,7 +874,7 @@ UPDATE permission_assign as pa SET pa.Role_Id = Role_Id, pa.Permission_Id = Perm
 COMMIT;
 END$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `StrProc_ChangePermissionInfo` (IN `Perm_Id` INT, IN `permisssion_name` VARCHAR(50), IN `controller` VARCHAR(50), IN `action` VARCHAR(50), IN `method` VARCHAR(50))   BEGIN 
+CREATE DEFINER=`root`@`localhost` PROCEDURE `StrProc_ChangePermissionInfo` (IN `Perm_Id` INT, IN `permisssion_name` VARCHAR(50), IN `controller` VARCHAR(50), IN `action` VARCHAR(50), IN `method` VARCHAR(50))  BEGIN 
 DECLARE CONTINUE HANDLER FOR SQLEXCEPTION
         BEGIN
             ROLLBACK;
@@ -875,7 +884,7 @@ UPDATE permission as p SET p.permisssion_name = permisssion_name, p.controller =
 COMMIT;
 END$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `StrProc_ChangeRoleAssignInfo` (IN `RoleAssi_Id` INT, IN `Role_Id` INT, IN `User_Id` INT)   BEGIN
+CREATE DEFINER=`root`@`localhost` PROCEDURE `StrProc_ChangeRoleAssignInfo` (IN `RoleAssi_Id` INT, IN `Role_Id` INT, IN `User_Id` INT)  BEGIN
 DECLARE CONTINUE HANDLER FOR SQLEXCEPTION
         BEGIN
             ROLLBACK;
@@ -885,7 +894,7 @@ UPDATE role_assign as ra SET ra.Role_Id = Role_Id, ra.User_Id = User_Id, ra.upda
 COMMIT;
 END$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `StrProc_ChangeRoleInfo` (IN `Roles_Id` INT(10), IN `role_name` VARCHAR(50))   BEGIN
+CREATE DEFINER=`root`@`localhost` PROCEDURE `StrProc_ChangeRoleInfo` (IN `Roles_Id` INT(10), IN `role_name` VARCHAR(50))  BEGIN
 DECLARE CONTINUE HANDLER FOR SQLEXCEPTION
         BEGIN
             ROLLBACK;
@@ -895,7 +904,7 @@ UPDATE role as r SET r.role_name = role_name, r.updated_by = 1, r.updated_on = C
 COMMIT;
 END$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `StrProc_ChangeShiftInfo` (IN `Shift_Id` INT, IN `shift_name` VARCHAR(50), IN `time_in` TIME, IN `time_out` TIME, IN `grace_time` TIME)   BEGIN 
+CREATE DEFINER=`root`@`localhost` PROCEDURE `StrProc_ChangeShiftInfo` (IN `Shift_Id` INT, IN `shift_name` VARCHAR(50), IN `time_in` TIME, IN `time_out` TIME, IN `grace_time` TIME)  BEGIN 
 DECLARE CONTINUE HANDLER FOR SQLEXCEPTION
         BEGIN
             ROLLBACK;
@@ -905,7 +914,7 @@ UPDATE shift as s SET s.shift_name = shift_name, s.time_in = time_in, s.time_out
 COMMIT;
 END$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `StrProc_ChangeUserInfo` (IN `UId` INT, IN `Role_Id` INT, IN `UserP_Id` INT, IN `username` VARCHAR(50), IN `password` VARCHAR(50))   BEGIN 
+CREATE DEFINER=`root`@`localhost` PROCEDURE `StrProc_ChangeUserInfo` (IN `UId` INT, IN `Role_Id` INT, IN `UserP_Id` INT, IN `username` VARCHAR(50), IN `password` VARCHAR(50))  BEGIN 
 DECLARE CONTINUE HANDLER FOR SQLEXCEPTION
         BEGIN
             ROLLBACK;
@@ -915,7 +924,7 @@ UPDATE user as u SET u.Role_Id = Role_Id, u.UserP_Id = UserP_Id, u.username = us
 COMMIT;
 END$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `StrProc_ChangeUserProfileInfo` (IN `UpId` INT, IN `Designation_Id` INT, IN `Employee_Id` VARCHAR(50), IN `firstname` VARCHAR(50), IN `lastname` VARCHAR(50), IN `CNIC` INT, IN `Gmail` VARCHAR(50), IN `address` TEXT, IN `contact` INT, IN `gender` VARCHAR(10), IN `shift_id` INT, IN `payscale_id` INT, IN `salary` DOUBLE, IN `workingDays` INT)   BEGIN 
+CREATE DEFINER=`root`@`localhost` PROCEDURE `StrProc_ChangeUserProfileInfo` (IN `UpId` INT, IN `Designation_Id` INT, IN `Employee_Id` VARCHAR(50), IN `firstname` VARCHAR(50), IN `lastname` VARCHAR(50), IN `CNIC` VARCHAR(255), IN `Gmail` VARCHAR(50), IN `address` TEXT, IN `contact` VARCHAR(255), IN `gender` VARCHAR(10), IN `shift_id` INT, IN `payscale_id` INT, IN `salary` DOUBLE, IN `workingDays` INT)  BEGIN 
 DECLARE CONTINUE HANDLER FOR SQLEXCEPTION
         BEGIN
             ROLLBACK;
@@ -925,7 +934,7 @@ UPDATE user_profile as up SET up.Designation_Id = Designation_Id, up.Employee_Id
 COMMIT;
 END$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `StrProc_getAdvanceInfo` ()   BEGIN 
+CREATE DEFINER=`root`@`localhost` PROCEDURE `StrProc_getAdvanceInfo` ()  BEGIN 
 DECLARE CONTINUE HANDLER FOR SQLEXCEPTION
         BEGIN
             ROLLBACK;
@@ -935,7 +944,7 @@ SELECT ad.RecId, ad.Up_Id, ad.Amount, ad.AmoutDate FROM advance as ad WHERE ad.i
 COMMIT;
 END$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `StrProc_getAttendanceInfo` (IN `AtenId` INT)   BEGIN
+CREATE DEFINER=`root`@`localhost` PROCEDURE `StrProc_getAttendanceInfo` (IN `AtenId` INT)  BEGIN
 DECLARE CONTINUE HANDLER FOR SQLEXCEPTION
         BEGIN
             ROLLBACK;
@@ -945,7 +954,7 @@ SELECT a.RecId,a.User_Id,a.check_in,a.check_out,a.over_time,a.isactive,a.created
 COMMIT;
 END$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `StrProc_getDesignationInfo` ()   BEGIN 
+CREATE DEFINER=`root`@`localhost` PROCEDURE `StrProc_getDesignationInfo` ()  BEGIN 
 DECLARE CONTINUE HANDLER FOR SQLEXCEPTION
         BEGIN
             ROLLBACK;
@@ -955,7 +964,7 @@ SELECT d.RecId,d.designation_name FROM designation as d WHERE d.isactive = 1;
 COMMIT;
 END$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `StrProc_getGenderInfo` ()   BEGIN 
+CREATE DEFINER=`root`@`localhost` PROCEDURE `StrProc_getGenderInfo` ()  BEGIN 
 DECLARE CONTINUE HANDLER FOR SQLEXCEPTION
         BEGIN
             ROLLBACK;
@@ -965,7 +974,7 @@ SELECT g.RecId,g.Gender FROM tbl_gender as g WHERE g.isactive;
 COMMIT;
 END$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `StrProc_getHolidayInfo` ()   BEGIN 
+CREATE DEFINER=`root`@`localhost` PROCEDURE `StrProc_getHolidayInfo` ()  BEGIN 
 DECLARE CONTINUE HANDLER FOR SQLEXCEPTION
         BEGIN
             ROLLBACK;
@@ -975,7 +984,7 @@ SELECT h.RecId,h.Title,h.Holiday_Date FROM holidays as h WHERE h.isactive = 1;
 COMMIT;
 END$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `StrProc_getPayRollInfo` (IN `PayRoll_Id` INT)   BEGIN
+CREATE DEFINER=`root`@`localhost` PROCEDURE `StrProc_getPayRollInfo` (IN `PayRoll_Id` INT)  BEGIN
 DECLARE CONTINUE HANDLER FOR SQLEXCEPTION
         BEGIN
             ROLLBACK;
@@ -985,7 +994,7 @@ SELECT pr.RecId,pr.UserP_Id,pr.Designation_Id,pr.Shift_Id,pr.Pay_Id,pr.Deduction
 COMMIT;
 END$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `StrProc_getPayScaleInfo` ()   BEGIN
+CREATE DEFINER=`root`@`localhost` PROCEDURE `StrProc_getPayScaleInfo` ()  BEGIN
 DECLARE CONTINUE HANDLER FOR SQLEXCEPTION
         BEGIN
             ROLLBACK;
@@ -996,7 +1005,7 @@ SELECT ps.RecId,ps.pay_name FROM pay_scale as ps WHERE  ps.isactive = 1;
 COMMIT;
 END$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `StrProc_getPermissionAssignInfo` (IN `PermAssi_Id` INT)   BEGIN
+CREATE DEFINER=`root`@`localhost` PROCEDURE `StrProc_getPermissionAssignInfo` (IN `PermAssi_Id` INT)  BEGIN
 DECLARE CONTINUE HANDLER FOR SQLEXCEPTION
         BEGIN
             ROLLBACK;
@@ -1006,7 +1015,7 @@ SELECT pa.RecId,pa.Role_Id,pa.Permission_Id,pa.isactive,pa.created_by,pa.updated
 COMMIT;
 END$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `StrProc_getPermissionInfo` (IN `Perm_Id` INT)   BEGIN
+CREATE DEFINER=`root`@`localhost` PROCEDURE `StrProc_getPermissionInfo` (IN `Perm_Id` INT)  BEGIN
 DECLARE CONTINUE HANDLER FOR SQLEXCEPTION
         BEGIN
             ROLLBACK;
@@ -1016,7 +1025,7 @@ SELECT p.RecId,p.permisssion_name,p.controller,p.action,p.parameters,p.method,p.
 COMMIT;
 END$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `StrProc_getRoleInfo` ()   BEGIN
+CREATE DEFINER=`root`@`localhost` PROCEDURE `StrProc_getRoleInfo` ()  BEGIN
 DECLARE CONTINUE HANDLER FOR SQLEXCEPTION
         BEGIN
             ROLLBACK;
@@ -1027,7 +1036,7 @@ SELECT r.RecId,r.role_name FROM role as r WHERE isactive = 1;
 COMMIT;
 END$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `StrProc_getShiftInfo` ()   BEGIN
+CREATE DEFINER=`root`@`localhost` PROCEDURE `StrProc_getShiftInfo` ()  BEGIN
 DECLARE CONTINUE HANDLER FOR SQLEXCEPTION
         BEGIN
             ROLLBACK;
@@ -1037,7 +1046,7 @@ SELECT RecId ,shift_name FROM shift WHERE isactive = 1;
 COMMIT;
 END$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `StrProc_getUserInfo` (IN `UId` INT)   BEGIN
+CREATE DEFINER=`root`@`localhost` PROCEDURE `StrProc_getUserInfo` (IN `UId` INT)  BEGIN
 DECLARE CONTINUE HANDLER FOR SQLEXCEPTION
         BEGIN
             ROLLBACK;
@@ -1047,11 +1056,11 @@ START TRANSACTION;
    COMMIT;
 END$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `StrProc_getUserLoginInfo` (IN `username` VARCHAR(4), IN `password` VARCHAR(8))   BEGIN
+CREATE DEFINER=`root`@`localhost` PROCEDURE `StrProc_getUserLoginInfo` (IN `username` VARCHAR(4), IN `password` VARCHAR(8))  BEGIN
 SELECT * FROM user as u JOIN user_profile as up ON u.UserP_Id = up.RecId WHERE u.isactive = 1 AND up.isactive = 1 AND u.username = username AND u.password = password;
 END$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `StrProc_getUserProfileInfo` (IN `UpId` INT)   BEGIN
+CREATE DEFINER=`root`@`localhost` PROCEDURE `StrProc_getUserProfileInfo` (IN `UpId` INT)  BEGIN
 DECLARE CONTINUE HANDLER FOR SQLEXCEPTION
         BEGIN
             ROLLBACK;
@@ -1061,7 +1070,7 @@ SELECT up.RecId,up.Designation_Id,up.Employee_Id,up.firstname,up.lastname,up.CNI
 COMMIT;
 END$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `StrProc_InsertAdvanceInfo` (IN `UpId` INT, IN `Amount` DOUBLE, IN `AmoutDate` DATE)   BEGIN
+CREATE DEFINER=`root`@`localhost` PROCEDURE `StrProc_InsertAdvanceInfo` (IN `UpId` INT, IN `Amount` DOUBLE, IN `AmoutDate` DATE)  BEGIN
 DECLARE CONTINUE HANDLER FOR SQLEXCEPTION
         BEGIN
             ROLLBACK;
@@ -1077,7 +1086,7 @@ START TRANSACTION;
 COMMIT;
 END$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `StrProc_InsertAttendanceInfo` (IN `Employee_Id` INT, IN `CheckIn` DATETIME, IN `CheckInDate` DATE, IN `CheckOut` DATETIME)   BEGIN
+CREATE DEFINER=`root`@`localhost` PROCEDURE `StrProc_InsertAttendanceInfo` (IN `Employee_Id` INT, IN `CheckIn` DATETIME, IN `CheckInDate` DATE, IN `CheckOut` DATETIME)  BEGIN
 DECLARE CONTINUE HANDLER FOR SQLEXCEPTION
         BEGIN
             ROLLBACK;
@@ -1092,7 +1101,7 @@ END IF;
 COMMIT;
 END$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `StrProc_InsertDesignationInfo` (IN `Designame` VARCHAR(50))   BEGIN
+CREATE DEFINER=`root`@`localhost` PROCEDURE `StrProc_InsertDesignationInfo` (IN `Designame` VARCHAR(50))  BEGIN
 DECLARE CONTINUE HANDLER FOR SQLEXCEPTION
         BEGIN
             ROLLBACK;
@@ -1102,7 +1111,7 @@ INSERT INTO designation(designation_name,created_by,created_on)VALUES(Designame,
 COMMIT;
 END$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `StrProc_InsertHolidayInfo` (IN `Title` VARCHAR(50), IN `Holiday_Date` DATE)   BEGIN
+CREATE DEFINER=`root`@`localhost` PROCEDURE `StrProc_InsertHolidayInfo` (IN `Title` VARCHAR(50), IN `Holiday_Date` DATE)  BEGIN
 DECLARE CONTINUE HANDLER FOR SQLEXCEPTION
         BEGIN
             ROLLBACK;
@@ -1117,7 +1126,7 @@ END IF;
 COMMIT;
 END$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `StrProc_InsertPayRollInfo` (IN `UPId` INT, IN `DesigId` INT, IN `SId` INT, IN `PayId` INT, IN `Deduc` DOUBLE, IN `Salary` DOUBLE, IN `TotalPay` INT)   BEGIN
+CREATE DEFINER=`root`@`localhost` PROCEDURE `StrProc_InsertPayRollInfo` (IN `UPId` INT, IN `DesigId` INT, IN `SId` INT, IN `PayId` INT, IN `Deduc` DOUBLE, IN `Salary` DOUBLE, IN `TotalPay` INT)  BEGIN
 DECLARE CONTINUE HANDLER FOR SQLEXCEPTION
         BEGIN
             ROLLBACK;
@@ -1127,7 +1136,7 @@ INSERT INTO payroll(UserP_Id,Designation_Id,Shift_Id,Pay_Id,Deduction,salary,Tot
 COMMIT;
 END$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `StrProc_InsertPayScaleInfo` (IN `Payname` VARCHAR(50))   BEGIN
+CREATE DEFINER=`root`@`localhost` PROCEDURE `StrProc_InsertPayScaleInfo` (IN `Payname` VARCHAR(50))  BEGIN
 DECLARE CONTINUE HANDLER FOR SQLEXCEPTION
         BEGIN
             ROLLBACK;
@@ -1137,7 +1146,7 @@ INSERT INTO pay_scale(pay_name,created_by,created_on)VALUES(Payname,1,CURRENT_TI
 COMMIT;
 END$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `StrProc_InsertPermissionAssignInfo` (IN `RId` INT, IN `PermId` INT)   BEGIN
+CREATE DEFINER=`root`@`localhost` PROCEDURE `StrProc_InsertPermissionAssignInfo` (IN `RId` INT, IN `PermId` INT)  BEGIN
 DECLARE CONTINUE HANDLER FOR SQLEXCEPTION
         BEGIN
             ROLLBACK;
@@ -1147,7 +1156,7 @@ INSERT INTO permission_assign(Role_Id,Permission_Id,created_by,created_on)VALUES
 COMMIT;
 END$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `StrProc_InsertPermissionInfo` (IN `Pname` VARCHAR(50), IN `control` VARCHAR(50), IN `Actin` VARCHAR(50), IN `Pmeter` VARCHAR(50), IN `Meth` VARCHAR(50), IN `Icon` VARCHAR(50), IN `Sort` INT, IN `PrnId` INT)   BEGIN
+CREATE DEFINER=`root`@`localhost` PROCEDURE `StrProc_InsertPermissionInfo` (IN `Pname` VARCHAR(50), IN `control` VARCHAR(50), IN `Actin` VARCHAR(50), IN `Pmeter` VARCHAR(50), IN `Meth` VARCHAR(50), IN `Icon` VARCHAR(50), IN `Sort` INT, IN `PrnId` INT)  BEGIN
 DECLARE CONTINUE HANDLER FOR SQLEXCEPTION
         BEGIN
             ROLLBACK;
@@ -1157,7 +1166,7 @@ INSERT INTO permission(permisssion_name,controller,action,parameters,method,icon
 COMMIT;
 END$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `StrProc_InsertRoleAssignInfo` (IN `RId` INT, IN `UId` INT)   BEGIN
+CREATE DEFINER=`root`@`localhost` PROCEDURE `StrProc_InsertRoleAssignInfo` (IN `RId` INT, IN `UId` INT)  BEGIN
 DECLARE CONTINUE HANDLER FOR SQLEXCEPTION
         BEGIN
             ROLLBACK;
@@ -1167,7 +1176,7 @@ INSERT INTO role_assign(Role_Id,User_Id,created_by,created_on)VALUES(RId,UId,1,C
 COMMIT;
 END$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `StrProc_InsertRoleInfo` (IN `roll_name` VARCHAR(50))   BEGIN
+CREATE DEFINER=`root`@`localhost` PROCEDURE `StrProc_InsertRoleInfo` (IN `roll_name` VARCHAR(50))  BEGIN
 DECLARE CONTINUE HANDLER FOR SQLEXCEPTION
         BEGIN
             ROLLBACK;
@@ -1177,7 +1186,7 @@ INSERT INTO role (role_name, created_by,created_on) VALUES (roll_name,1,CURRENT_
 COMMIT;
 END$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `StrProc_InsertShiftInfo` (IN `Sname` VARCHAR(50), IN `timeIn` TIME, IN `TimeOut` TIME, IN `GraceTime` TIME)   BEGIN
+CREATE DEFINER=`root`@`localhost` PROCEDURE `StrProc_InsertShiftInfo` (IN `Sname` VARCHAR(50), IN `timeIn` TIME, IN `TimeOut` TIME, IN `GraceTime` TIME)  BEGIN
 DECLARE CONTINUE HANDLER FOR SQLEXCEPTION
         BEGIN
             ROLLBACK;
@@ -1187,7 +1196,7 @@ INSERT INTO shift(shift_name,time_in,time_out,grace_time,created_by,created_on)V
 COMMIT;
 END$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `StrProc_InsertUserInfo` (IN `RId` INT(10), IN `UPId` INT, IN `Uname` VARCHAR(50), IN `Pass` VARCHAR(50))   BEGIN
+CREATE DEFINER=`root`@`localhost` PROCEDURE `StrProc_InsertUserInfo` (IN `RId` INT(10), IN `UPId` INT, IN `Uname` VARCHAR(50), IN `Pass` VARCHAR(50))  BEGIN
 DECLARE CONTINUE HANDLER FOR SQLEXCEPTION
         BEGIN
             ROLLBACK;
@@ -1197,7 +1206,7 @@ INSERT INTO user(Role_Id,UserP_Id,username,password,created_by,created_on)VALUES
 COMMIT;
 END$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `StrProc_InsertUserProfileInfo` (IN `EmpID` VARCHAR(50), IN `Fname` VARCHAR(50), IN `Lname` VARCHAR(50), IN `Sex` INT(10), IN `CNIC` INT, IN `Gmail` VARCHAR(50), IN `Phone` INT, IN `Home` TEXT, IN `DesID` INT, IN `PayId` INT, IN `ShiftID` INT, IN `WorkingDays` INT, IN `Salary` DOUBLE, IN `Cheak_value` BOOLEAN, IN `RId` INT, IN `Uname` VARCHAR(50), IN `Pass` VARCHAR(50))   BEGIN
+CREATE DEFINER=`root`@`localhost` PROCEDURE `StrProc_InsertUserProfileInfo` (IN `EmpID` VARCHAR(50), IN `Fname` VARCHAR(50), IN `Lname` VARCHAR(50), IN `Sex` INT(10), IN `CNIC` INT, IN `Gmail` VARCHAR(50), IN `Phone` INT, IN `Home` TEXT, IN `DesID` INT, IN `PayId` INT, IN `ShiftID` INT, IN `WorkingDays` INT, IN `Salary` DOUBLE, IN `Cheak_value` BOOLEAN, IN `RId` INT, IN `Uname` VARCHAR(50), IN `Pass` VARCHAR(50))  BEGIN
 DECLARE CONTINUE HANDLER FOR SQLEXCEPTION
         BEGIN
             ROLLBACK;
@@ -1216,7 +1225,7 @@ INSERT INTO user_profile(Designation_Id,Employee_Id,firstname,lastname,CNIC,Gmai
 COMMIT;
 END$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `StrProc_SelectAdvanceInfo` (IN `adv_Id` INT)   BEGIN
+CREATE DEFINER=`root`@`localhost` PROCEDURE `StrProc_SelectAdvanceInfo` (IN `adv_Id` INT)  BEGIN
 DECLARE CONTINUE HANDLER FOR SQLEXCEPTION
         BEGIN
             ROLLBACK;
@@ -1227,6 +1236,8 @@ START TRANSACTION;
         FROM advance as ad
         JOIN user_profile up ON up.RecId = ad.Up_Id 
         WHERE ad.isactive = 1
+        AND MONTH(ad.AmountDate) = month(CURRENT_DATE)
+        AND YEAR(ad.AmountDate) = YEAR(CURRENT_DATE)
         AND up.isactive = 1
         AND ad.Up_Id = adv_Id;
    -- ELSE
@@ -1239,7 +1250,7 @@ START TRANSACTION;
     COMMIT;
 END$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `StrProc_SelectAttendanceInfo` ()   BEGIN
+CREATE DEFINER=`root`@`localhost` PROCEDURE `StrProc_SelectAttendanceInfo` ()  BEGIN
 DECLARE CONTINUE HANDLER FOR SQLEXCEPTION
         BEGIN
             ROLLBACK;
@@ -1294,7 +1305,7 @@ WHERE
 COMMIT;
 END$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `StrProc_SelectDesignationInfo` (IN `Desig_Id` INT)   BEGIN
+CREATE DEFINER=`root`@`localhost` PROCEDURE `StrProc_SelectDesignationInfo` (IN `Desig_Id` INT)  BEGIN
 DECLARE CONTINUE HANDLER FOR SQLEXCEPTION
         BEGIN
             ROLLBACK;
@@ -1308,7 +1319,7 @@ SELECT d.RecId,d.designation_name FROM designation as d WHERE d.RecId = Desig_Id
 COMMIT;
 END$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `StrProc_SelectHolidayInfo` (IN `HoliId` INT)   BEGIN
+CREATE DEFINER=`root`@`localhost` PROCEDURE `StrProc_SelectHolidayInfo` (IN `HoliId` INT)  BEGIN
 DECLARE CONTINUE HANDLER FOR SQLEXCEPTION
         BEGIN
             ROLLBACK;
@@ -1322,7 +1333,7 @@ END IF;
 COMMIT;
 END$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `StrProc_SelectPayRollInfo` ()   BEGIN
+CREATE DEFINER=`root`@`localhost` PROCEDURE `StrProc_SelectPayRollInfo` ()  BEGIN
 DECLARE CONTINUE HANDLER FOR SQLEXCEPTION
         BEGIN
             ROLLBACK;
@@ -1380,7 +1391,7 @@ JOIN designation d ON d.RecId = up.Designation_Id;
 COMMIT;
 END$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `StrProc_SelectPayScaleInfo` (IN `PaySca_Id` INT)   BEGIN
+CREATE DEFINER=`root`@`localhost` PROCEDURE `StrProc_SelectPayScaleInfo` (IN `PaySca_Id` INT)  BEGIN
 DECLARE CONTINUE HANDLER FOR SQLEXCEPTION
         BEGIN
             ROLLBACK;
@@ -1394,7 +1405,7 @@ END IF;
 COMMIT;
 END$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `StrProc_SelectPermissionAssignInfo` (IN `PermAssi_Id` INT)   BEGIN
+CREATE DEFINER=`root`@`localhost` PROCEDURE `StrProc_SelectPermissionAssignInfo` (IN `PermAssi_Id` INT)  BEGIN
 DECLARE CONTINUE HANDLER FOR SQLEXCEPTION
         BEGIN
             ROLLBACK;
@@ -1408,7 +1419,7 @@ END IF;
 COMMIT;
 END$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `StrProc_SelectPermissionInfo` (IN `Perm_Id` INT)   BEGIN
+CREATE DEFINER=`root`@`localhost` PROCEDURE `StrProc_SelectPermissionInfo` (IN `Perm_Id` INT)  BEGIN
 DECLARE CONTINUE HANDLER FOR SQLEXCEPTION
         BEGIN
             ROLLBACK;
@@ -1422,7 +1433,7 @@ END IF;
 COMMIT;
 END$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `StrProc_SelectRoleAssignInfo` (IN `RoleAssi_Id` INT)   BEGIN
+CREATE DEFINER=`root`@`localhost` PROCEDURE `StrProc_SelectRoleAssignInfo` (IN `RoleAssi_Id` INT)  BEGIN
 DECLARE CONTINUE HANDLER FOR SQLEXCEPTION
         BEGIN
             ROLLBACK;
@@ -1436,7 +1447,7 @@ END IF;
 COMMIT;
 END$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `StrProc_SelectRoleInfo` (IN `Roles_Id` INT)   BEGIN
+CREATE DEFINER=`root`@`localhost` PROCEDURE `StrProc_SelectRoleInfo` (IN `Roles_Id` INT)  BEGIN
 DECLARE CONTINUE HANDLER FOR SQLEXCEPTION
         BEGIN
             ROLLBACK;
@@ -1455,7 +1466,7 @@ START TRANSACTION;
     COMMIT;
 END$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `StrProc_SelectShiftInfo` (IN `Shift_Id` INT)   BEGIN
+CREATE DEFINER=`root`@`localhost` PROCEDURE `StrProc_SelectShiftInfo` (IN `Shift_Id` INT)  BEGIN
 DECLARE CONTINUE HANDLER FOR SQLEXCEPTION
         BEGIN
             ROLLBACK;
@@ -1469,7 +1480,7 @@ END IF;
 COMMIT;
 END$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `StrProc_SelectUserInfo` (IN `UId` INT)   BEGIN
+CREATE DEFINER=`root`@`localhost` PROCEDURE `StrProc_SelectUserInfo` (IN `UId` INT)  BEGIN
 DECLARE CONTINUE HANDLER FOR SQLEXCEPTION
         BEGIN
             ROLLBACK;
@@ -1483,7 +1494,7 @@ END IF;
 COMMIT;
 END$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `StrProc_SelectUserProfileInfo` (IN `UpId` INT)   BEGIN
+CREATE DEFINER=`root`@`localhost` PROCEDURE `StrProc_SelectUserProfileInfo` (IN `UpId` INT)  BEGIN
 DECLARE CONTINUE HANDLER FOR SQLEXCEPTION
         BEGIN
             ROLLBACK;
@@ -1501,7 +1512,7 @@ END IF;
 COMMIT;
 END$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `StrProc_UpdateAdvanceInfo` (IN `adv_Id` INT)   BEGIN 
+CREATE DEFINER=`root`@`localhost` PROCEDURE `StrProc_UpdateAdvanceInfo` (IN `adv_Id` INT)  BEGIN 
 DECLARE CONTINUE HANDLER FOR SQLEXCEPTION
         BEGIN
             ROLLBACK;
@@ -1511,7 +1522,7 @@ START TRANSACTION;
 COMMIT;
 END$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `StrProc_UpdateAttendanceInfo` (IN `AtenId` INT)   BEGIN
+CREATE DEFINER=`root`@`localhost` PROCEDURE `StrProc_UpdateAttendanceInfo` (IN `AtenId` INT)  BEGIN
 DECLARE CONTINUE HANDLER FOR SQLEXCEPTION
         BEGIN
             ROLLBACK;
@@ -1521,7 +1532,7 @@ UPDATE attendance as a SET a.isactive = 0,a.updated_on=CURRENT_TIMESTAMP WHERE a
 COMMIT;
 END$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `StrProc_UpdateDesignationInfo` (IN `Desig_Id` INT)   BEGIN 
+CREATE DEFINER=`root`@`localhost` PROCEDURE `StrProc_UpdateDesignationInfo` (IN `Desig_Id` INT)  BEGIN 
 DECLARE CONTINUE HANDLER FOR SQLEXCEPTION
         BEGIN
             ROLLBACK;
@@ -1531,7 +1542,7 @@ UPDATE designation as d SET d.isactive = 0 ,d.updated_on = CURRENT_TIMESTAMP WHE
 COMMIT;
 END$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `StrProc_UpdateHolidayInfo` (IN `HoliId` INT)   BEGIN 
+CREATE DEFINER=`root`@`localhost` PROCEDURE `StrProc_UpdateHolidayInfo` (IN `HoliId` INT)  BEGIN 
 DECLARE CONTINUE HANDLER FOR SQLEXCEPTION
         BEGIN
             ROLLBACK;
@@ -1541,7 +1552,7 @@ UPDATE holidays SET isactive = 0 WHERE RecId = HoliId;
 COMMIT;
 END$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `StrProc_UpdatePayRollInfo` (IN `PayRoll_Id` INT)   BEGIN 
+CREATE DEFINER=`root`@`localhost` PROCEDURE `StrProc_UpdatePayRollInfo` (IN `PayRoll_Id` INT)  BEGIN 
 DECLARE CONTINUE HANDLER FOR SQLEXCEPTION
         BEGIN
             ROLLBACK;
@@ -1551,7 +1562,7 @@ UPDATE payroll as pr SET pr.isactive = 0, pr.updated_on = CURRENT_TIMESTAMP WHER
 COMMIT;
 END$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `StrProc_UpdatePayScaleInfo` (IN `PaySca_Id` INT)   BEGIN 
+CREATE DEFINER=`root`@`localhost` PROCEDURE `StrProc_UpdatePayScaleInfo` (IN `PaySca_Id` INT)  BEGIN 
 DECLARE CONTINUE HANDLER FOR SQLEXCEPTION
         BEGIN
             ROLLBACK;
@@ -1561,7 +1572,7 @@ START TRANSACTION;
 COMMIT;
 END$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `StrProc_UpdatePermissionAssignInfo` (IN `PermAssi_Id` INT)   BEGIN
+CREATE DEFINER=`root`@`localhost` PROCEDURE `StrProc_UpdatePermissionAssignInfo` (IN `PermAssi_Id` INT)  BEGIN
 DECLARE CONTINUE HANDLER FOR SQLEXCEPTION
         BEGIN
             ROLLBACK;
@@ -1571,7 +1582,7 @@ UPDATE permission_assign as pa SET pa.isactive = 0,pa.updated_on = CURRENT_TIMES
 COMMIT;
 END$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `StrProc_UpdatePermissionInfo` (IN `Perm_Id` INT)   BEGIN 
+CREATE DEFINER=`root`@`localhost` PROCEDURE `StrProc_UpdatePermissionInfo` (IN `Perm_Id` INT)  BEGIN 
 DECLARE CONTINUE HANDLER FOR SQLEXCEPTION
         BEGIN
             ROLLBACK;
@@ -1581,7 +1592,7 @@ UPDATE permission as p SET p.isactive = 0,p.updated_on = CURRENT_TIMESTAMP WHERE
 COMMIT;
 END$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `StrProc_UpdateRoleInfo` (IN `Roles_Id` INT)   BEGIN
+CREATE DEFINER=`root`@`localhost` PROCEDURE `StrProc_UpdateRoleInfo` (IN `Roles_Id` INT)  BEGIN
 DECLARE CONTINUE HANDLER FOR SQLEXCEPTION
         BEGIN
             ROLLBACK;
@@ -1591,7 +1602,7 @@ UPDATE role as r SET r.isactive = 0,r.updated_on = CURRENT_TIMESTAMP WHERE r.Rec
 COMMIT;
 END$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `StrProc_UpdateShiftInfo` (IN `Shift_Id` INT)   BEGIN
+CREATE DEFINER=`root`@`localhost` PROCEDURE `StrProc_UpdateShiftInfo` (IN `Shift_Id` INT)  BEGIN
 DECLARE CONTINUE HANDLER FOR SQLEXCEPTION
         BEGIN
             ROLLBACK;
@@ -1601,7 +1612,7 @@ UPDATE shift as s SET s.isactive = 0, s.updated_on = CURRENT_TIMESTAMP WHERE s.R
 COMMIT;
 END$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `StrProc_UpdateUserInfo` (IN `UId` INT)   BEGIN 
+CREATE DEFINER=`root`@`localhost` PROCEDURE `StrProc_UpdateUserInfo` (IN `UId` INT)  BEGIN 
 DECLARE CONTINUE HANDLER FOR SQLEXCEPTION
         BEGIN
             ROLLBACK;
@@ -1611,7 +1622,7 @@ UPDATE user as u SET u.isactive = 0, u.updated_on = CURRENT_TIMESTAMP WHERE u.Re
 COMMIT;
 END$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `StrProc_UpdateUser_ProfileInfo` (IN `UPId` INT)   BEGIN
+CREATE DEFINER=`root`@`localhost` PROCEDURE `StrProc_UpdateUser_ProfileInfo` (IN `UPId` INT)  BEGIN
 DECLARE CONTINUE HANDLER FOR SQLEXCEPTION
         BEGIN
             ROLLBACK;
@@ -1621,7 +1632,7 @@ START TRANSACTION;
 COMMIT; 
 END$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `StrPro_GaveAdvance` (IN `EMPID` VARCHAR(50))   BEGIN
+CREATE DEFINER=`root`@`localhost` PROCEDURE `StrPro_GaveAdvance` (IN `EMPID` VARCHAR(50))  BEGIN
 SET @DaysInAugust = DAY(LAST_DAY(DATE_SUB(CURRENT_DATE, INTERVAL 1 MONTH)));
 
     -- 6 days emp==========================
@@ -1708,7 +1719,7 @@ SET @DaysInAugust = DAY(LAST_DAY(DATE_SUB(CURRENT_DATE, INTERVAL 1 MONTH)));
      ) as A;
 END$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `Temp1_For_Advance` (IN `EmpId` INT)   BEGIN
+CREATE DEFINER=`root`@`localhost` PROCEDURE `Temp1_For_Advance` (IN `EmpId` INT)  BEGIN
 SET @DaysInAugust = DAY(LAST_DAY(DATE_SUB(CURRENT_DATE, INTERVAL 1 MONTH)));
 
     -- 6 days emp==========================
@@ -1795,7 +1806,7 @@ SET @DaysInAugust = DAY(LAST_DAY(DATE_SUB(CURRENT_DATE, INTERVAL 1 MONTH)));
      ) as A;
 END$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `temp2` ()   BEGIN
+CREATE DEFINER=`root`@`localhost` PROCEDURE `temp2` ()  BEGIN
 
 UPDATE attendance AS a
 JOIN user_profile AS up ON up.Employee_Id = a.Employee_Id
@@ -1849,7 +1860,7 @@ WHERE
 
 END$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `TempTestAttendance` ()   BEGIN
+CREATE DEFINER=`root`@`localhost` PROCEDURE `TempTestAttendance` ()  BEGIN
 
 UPDATE attendance AS a
 JOIN user_profile AS up ON up.Employee_Id = a.Employee_Id
@@ -1903,7 +1914,7 @@ WHERE
 
 END$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `temp_InsertAttendanceInfo` (IN `Employee_Id` INT, IN `CheckIn` DATETIME, IN `CheckOut` DATETIME, IN `over_time` TIME)   BEGIN
+CREATE DEFINER=`root`@`localhost` PROCEDURE `temp_InsertAttendanceInfo` (IN `Employee_Id` INT, IN `CheckIn` DATETIME, IN `CheckOut` DATETIME, IN `over_time` TIME)  BEGIN
     DECLARE EXIT HANDLER FOR SQLEXCEPTION
     BEGIN
         -- If an error occurs, rollback the transaction
@@ -1922,7 +1933,7 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `temp_InsertAttendanceInfo` (IN `Emp
     COMMIT;
 END$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `Temp_InsertPayrollData` ()   BEGIN
+CREATE DEFINER=`root`@`localhost` PROCEDURE `Temp_InsertPayrollData` ()  BEGIN
     DECLARE done INT DEFAULT 0;
     DECLARE emp_id INT;
     DECLARE desig_id INT;
@@ -2011,7 +2022,7 @@ JOIN designation d ON d.RecId = up.Designation_Id;
 
 END$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `TEMP_StrProc_SelectPayRollInfo` (IN `PayRoll_Id` INT)   BEGIN
+CREATE DEFINER=`root`@`localhost` PROCEDURE `TEMP_StrProc_SelectPayRollInfo` (IN `PayRoll_Id` INT)  BEGIN
 IF PayRoll_Id != 0 THEN
 SELECT pr.RecId,up.firstname,d.designation_name,s.shift_name,ps.pay_name,pr.Deduction,up.salary,pr.Total_Pay FROM payroll as pr JOIN user_profile as up ON pr.UserP_Id = up.RecId JOIN designation as d ON pr.Designation_Id = d.RecId JOIN shift as s ON pr.Shift_Id = s.RecId JOIN pay_scale as ps ON pr.Pay_Id = ps.RecId JOIN user as u ON ps.created_by = u.RecId JOIN user as u1 ON ps.updated_by = u1.RecId WHERE pr.RecId =  PayRoll_Id AND ps.isactive = 1 AND up.isactive = 1 AND d.isactive = 1 AND s.isactive = 1 AND ps.isactive = 1 AND u.isactive = 1 AND u1.isactive = 1;
 ELSE
@@ -2019,7 +2030,7 @@ SELECT pr.RecId,up.firstname,d.designation_name,s.shift_name,ps.pay_name,pr.Dedu
 END IF;
 END$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `Temp_s_PayrollGenerator` (IN `UserRecID` INT)   BEGIN
+CREATE DEFINER=`root`@`localhost` PROCEDURE `Temp_s_PayrollGenerator` (IN `UserRecID` INT)  BEGIN
 DECLARE CONTINUE HANDLER FOR SQLEXCEPTION
         BEGIN
             ROLLBACK;
@@ -2158,7 +2169,7 @@ AND s.isactive = 1;
 COMMIT;
 END$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `Test1_StrProc_SelectAttendanceInfo` ()   SELECT
+CREATE DEFINER=`root`@`localhost` PROCEDURE `Test1_StrProc_SelectAttendanceInfo` ()  SELECT
     a.Employee_Id,
     CONCAT(up.firstname,' ',up.lastname) AS Person_Name,
     a.check_in AS Check_In,
@@ -2191,7 +2202,7 @@ JOIN
 WHERE
     a.isactive = 1 AND s.isactive = 1 AND up.isactive = 1$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `Test2_STR_GeneratePayRollInfo` (IN `UserRecID` INT)   BEGIN
+CREATE DEFINER=`root`@`localhost` PROCEDURE `Test2_STR_GeneratePayRollInfo` (IN `UserRecID` INT)  BEGIN
 -- Calculate the number of days in the previous month (August)
 SET @DaysInAugust = DAY(LAST_DAY(DATE_SUB(CURRENT_DATE, INTERVAL 1 MONTH)));
 
@@ -2322,7 +2333,7 @@ AND d.isactive = 1
 AND s.isactive = 1;
 END$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `Test_For_Roles` (IN `Roles_Id` INT)   BEGIN
+CREATE DEFINER=`root`@`localhost` PROCEDURE `Test_For_Roles` (IN `Roles_Id` INT)  BEGIN
     IF Roles_Id != 0 THEN
         SELECT r.RecId, r.role_name, r.isactive, r.created_by, r.updated_by, r.created_on, r.updated_on
         FROM role as r
@@ -2384,7 +2395,12 @@ INSERT INTO `advance` (`RecId`, `Up_Id`, `Amount`, `AmountDate`, `isactive`, `cr
 (14, 1, 500, '2023-09-26', 1, 1, NULL, '2023-09-27 02:54:33', NULL),
 (15, 14, 0, '0000-00-00', 1, 1, NULL, '2023-09-27 19:07:58', NULL),
 (16, 13, 0, '0000-00-00', 1, 1, NULL, '2023-09-27 19:12:48', NULL),
-(17, 1, 3500, '2023-09-27', 1, 1, NULL, '2023-09-27 21:39:55', NULL);
+(17, 1, 3500, '2023-09-27', 1, 1, NULL, '2023-09-27 21:39:55', NULL),
+(18, 14, 27097, '2023-10-02', 1, 1, NULL, '2023-10-02 21:15:17', NULL),
+(19, 14, 0, '0000-00-00', 1, 1, NULL, '2023-10-02 21:15:37', NULL),
+(20, 14, 0, '0000-00-00', 1, 1, NULL, '2023-10-02 21:16:12', NULL),
+(21, 14, 0, '0000-00-00', 1, 1, NULL, '2023-10-02 21:22:20', NULL),
+(22, 1, 1, '2023-10-02', 1, 1, NULL, '2023-10-02 21:28:49', NULL);
 
 --
 -- Triggers `advance`
@@ -2437,7 +2453,7 @@ CREATE TABLE `attendance` (
 --
 
 INSERT INTO `attendance` (`RecId`, `Employee_Id`, `DeviceNo`, `check_in`, `check_in_date`, `check_out`, `over_time`, `isactive`, `created_by`, `updated_by`, `created_on`, `updated_on`) VALUES
-(1, 14, NULL, '2023-08-01 11:30:30', '2023-08-01', '2023-08-01 10:30:30', '00:00:00', 1, 1, 1, '2023-09-26 19:52:24', '2023-09-28 02:40:49'),
+(1, 14, NULL, '2023-08-01 11:30:31', '2023-08-01', '2023-08-01 10:30:35', '00:00:00', 1, 1, 1, '2023-09-26 19:52:24', '2023-10-02 20:49:40'),
 (2, 14, NULL, '2023-08-02 11:30:00', '2023-08-02', '2023-08-02 21:53:47', '01:23:47', 1, 1, 1, '2023-09-26 19:52:24', '2023-09-28 00:31:04'),
 (3, 14, NULL, '2023-08-03 12:12:47', '2023-08-03', '2023-08-03 21:06:56', '00:36:56', 1, 1, 1, '2023-09-26 19:52:24', '2023-09-28 00:31:04'),
 (4, 14, NULL, '2023-08-04 12:14:33', '2023-08-04', '2023-08-04 21:08:31', '00:38:31', 1, 1, 1, '2023-09-26 19:52:24', '2023-09-28 00:31:04'),
@@ -3409,7 +3425,7 @@ CREATE TABLE `designation` (
 --
 
 INSERT INTO `designation` (`RecId`, `designation_name`, `isactive`, `created_by`, `updated_by`, `created_on`, `updated_on`) VALUES
-(1, 'Inovi Technology', 1, 1, NULL, '2023-08-31 10:51:56', '2023-09-26 19:27:19'),
+(1, 'Inovi Technology', 1, 1, 1, '2023-08-31 10:51:56', '2023-10-02 20:44:21'),
 (2, 'Inovi Solution', 1, 1, 1, '2023-09-06 22:03:39', '2023-09-26 19:27:21'),
 (4, 'Telecom', 0, 1, 1, '2023-09-28 00:10:55', '2023-09-28 00:11:15'),
 (5, 'Inovi Telecoms', 0, 1, 1, '2023-09-28 02:41:12', '2023-09-28 02:41:20');
@@ -3465,7 +3481,7 @@ CREATE TABLE `holidays` (
 --
 
 INSERT INTO `holidays` (`RecId`, `Title`, `Holiday_Date`, `isactive`, `created_by`, `updated_by`, `created_on`, `updated_on`) VALUES
-(1, 'saterday', '2023-09-15', 1, 1, 1, '2023-09-26 21:14:19', '2023-09-28 00:25:38'),
+(1, 'Saturday', '2023-09-15', 1, 1, 1, '2023-09-26 21:14:19', '2023-10-02 20:42:04'),
 (2, 'Sunday', '2023-09-20', 1, 1, 1, '2023-09-26 21:14:20', '2023-09-28 00:25:38'),
 (3, 'Monday', '2023-01-10', 1, 1, 1, '2023-09-26 21:14:20', '2023-09-28 00:25:38'),
 (4, 'a', '2023-09-01', 1, 1, NULL, '2023-09-26 21:27:35', NULL),
@@ -3475,8 +3491,9 @@ INSERT INTO `holidays` (`RecId`, `Title`, `Holiday_Date`, `isactive`, `created_b
 (8, 'e', '2023-09-05', 1, 1, NULL, '2023-09-26 21:28:04', NULL),
 (9, 'f', '2023-09-06', 1, 1, NULL, '2023-09-26 21:28:13', NULL),
 (10, 'g', '2023-09-07', 1, 1, 1, '2023-09-26 21:28:25', '2023-09-26 21:28:46'),
-(11, 'h', '2023-09-08', 1, 1, NULL, '2023-09-26 21:28:57', NULL),
-(12, 'i', '2023-09-28', 1, 1, NULL, '2023-09-28 01:06:56', NULL);
+(11, 'hh', '2023-09-08', 1, 1, 1, '2023-09-26 21:28:57', '2023-10-02 20:42:24'),
+(12, 'i', '2023-09-28', 1, 1, NULL, '2023-09-28 01:06:56', NULL),
+(13, 'test 02', '2023-10-18', 1, 1, 1, '2023-10-02 20:43:42', '2023-10-02 20:44:00');
 
 -- --------------------------------------------------------
 
@@ -3594,7 +3611,70 @@ INSERT INTO `logs` (`RecID`, `Log_Description`, `TBL_Name`, `isactive`, `created
 (95, 'Admin (1) And changed Last Name record Name from AHMED To  AHMED And changed Address record Name from Karachi Sindh Pakistan To Karachi Sindh And changed Working Days record Name from 5 To 6', 'UserProfile', 1, 1, '2023-09-28 02:39:08'),
 (96, NULL, 'Attendance', 1, 1, '2023-09-28 02:39:54'),
 (97, NULL, 'Attendance', 1, 1, '2023-09-28 02:40:22'),
-(98, 'Admin (1) has changed attendance record 2023-08-01 11:30:00 of check_in to 2023-08-01 11:30:30 And has changed attendance record 2023-08-01 11:30:00 of check_out to 2023-08-01 10:30:30', 'Attendance', 1, 1, '2023-09-28 02:40:49');
+(98, 'Admin (1) has changed attendance record 2023-08-01 11:30:00 of check_in to 2023-08-01 11:30:30 And has changed attendance record 2023-08-01 11:30:00 of check_out to 2023-08-01 10:30:30', 'Attendance', 1, 1, '2023-09-28 02:40:49'),
+(99, 'Admin (1) And changed Last Name record Name from  To TAHA TABANI  And changed CNIC record from 0 To 2147483647 And changed Gmail record from  To syedtalha641@gmail.com And changed PayScale record from Monthly (1) To Hourly (2)', 'UserProfile', 1, 25, '2023-10-02 20:39:06'),
+(100, 'Admin (1) Has changed First Name record from TAHA TABANI  To TAHA TABANI  TAHA TABANI  And changed Last Name record Name from TAHA TABANI  To TAHA TABANI  TAHA TABANI  And changed PayScale record from Hourly (2) To Monthly (1)', 'UserProfile', 1, 25, '2023-10-02 20:39:33'),
+(101, 'Admin (1) Has changed First Name record from TAHA TABANI  TAHA TABANI  To TAHA TABANI  TAHA TABANI  TAHA TABANI  TAHA TABANI And changed Last Name record Name from TAHA TABANI  TAHA TABANI  To TAHA TABANI  TAHA TABANI  TAHA TABANI  TAHA TABANI And changed CNIC record from 2147483647 To 0', 'UserProfile', 1, 25, '2023-10-02 20:39:50'),
+(102, 'Admin (1) Has changed First Name record from TAHA TABANI  TAHA TABANI  TAHA TABANI  TAHA TABANI To TAHA TABANI  And changed Last Name record Name from TAHA TABANI  TAHA TABANI  TAHA TABANI  TAHA TABANI To TAHA TABANI', 'UserProfile', 1, 25, '2023-10-02 20:40:07'),
+(103, 'Admin (1)', 'UserProfile', 1, 14, '2023-10-02 20:44:05'),
+(104, 'Admin (1)', 'UserProfile', 1, 16, '2023-10-02 20:44:05'),
+(105, 'Admin (1)', 'UserProfile', 1, 17, '2023-10-02 20:44:05'),
+(106, 'Admin (1)', 'UserProfile', 1, 18, '2023-10-02 20:44:05'),
+(107, 'Admin (1)', 'UserProfile', 1, 19, '2023-10-02 20:44:05'),
+(108, 'Admin (1)', 'UserProfile', 1, 20, '2023-10-02 20:44:05'),
+(109, 'Admin (1)', 'UserProfile', 1, 21, '2023-10-02 20:44:05'),
+(110, 'Admin (1)', 'UserProfile', 1, 22, '2023-10-02 20:44:05'),
+(111, 'Admin (1)', 'UserProfile', 1, 23, '2023-10-02 20:44:05'),
+(112, 'Admin (1)', 'UserProfile', 1, 24, '2023-10-02 20:44:05'),
+(113, 'Admin (1)', 'UserProfile', 1, 25, '2023-10-02 20:44:05'),
+(114, 'Admin (1)', 'UserProfile', 1, 26, '2023-10-02 20:44:05'),
+(115, 'Admin (1)', 'UserProfile', 1, 27, '2023-10-02 20:44:05'),
+(116, 'Admin (1)', 'UserProfile', 1, 28, '2023-10-02 20:44:05'),
+(117, 'Admin (1)', 'UserProfile', 1, 29, '2023-10-02 20:44:05'),
+(118, 'Admin (1)', 'UserProfile', 1, 30, '2023-10-02 20:44:05'),
+(119, 'Admin (1)', 'UserProfile', 1, 31, '2023-10-02 20:44:05'),
+(120, 'Admin (1)', 'UserProfile', 1, 32, '2023-10-02 20:44:05'),
+(121, 'Admin (1)', 'UserProfile', 1, 33, '2023-10-02 20:44:05'),
+(122, 'Admin (1)', 'UserProfile', 1, 34, '2023-10-02 20:44:05'),
+(123, 'Admin (1)', 'UserProfile', 1, 35, '2023-10-02 20:44:05'),
+(124, 'Admin (1)', 'UserProfile', 1, 36, '2023-10-02 20:44:05'),
+(125, 'Admin (1)', 'UserProfile', 1, 37, '2023-10-02 20:44:05'),
+(126, 'Admin (1)', 'UserProfile', 1, 38, '2023-10-02 20:44:05'),
+(127, 'Admin (1)', 'UserProfile', 1, 39, '2023-10-02 20:44:05'),
+(128, 'Admin (1)', 'UserProfile', 1, 40, '2023-10-02 20:44:05'),
+(129, 'Admin (1)', 'UserProfile', 1, 41, '2023-10-02 20:44:05'),
+(130, 'Admin (1)', 'UserProfile', 1, 42, '2023-10-02 20:44:05'),
+(131, 'Admin (1)', 'UserProfile', 1, 43, '2023-10-02 20:44:05'),
+(132, 'Admin (1)', 'UserProfile', 1, 44, '2023-10-02 20:44:05'),
+(133, 'Admin (1)', 'UserProfile', 1, 45, '2023-10-02 20:44:05'),
+(134, 'Admin (1)', 'UserProfile', 1, 46, '2023-10-02 20:44:05'),
+(135, 'Admin (1)', 'UserProfile', 1, 47, '2023-10-02 20:44:05'),
+(136, 'Admin (1)', 'UserProfile', 1, 51, '2023-10-02 20:44:05'),
+(137, 'Admin (1)', 'UserProfile', 1, 61, '2023-10-02 20:44:05'),
+(138, 'Admin (1)', 'UserProfile', 1, 63, '2023-10-02 20:44:05'),
+(139, 'Admin (1)', 'UserProfile', 1, 70, '2023-10-02 20:44:05'),
+(140, 'Admin (1)', 'UserProfile', 1, 71, '2023-10-02 20:44:05'),
+(141, 'Admin (1)', 'UserProfile', 1, 75, '2023-10-02 20:44:05'),
+(142, 'Admin (1)', 'UserProfile', 1, 76, '2023-10-02 20:44:05'),
+(143, 'Admin (1)', 'UserProfile', 1, 78, '2023-10-02 20:44:05'),
+(144, 'Admin (1) Has changed First Name record from f test To f test l test  And changed Last Name record Name from l test  To f test l test  And changed Working Days record Name from 0 To 6', 'UserProfile', 1, 90, '2023-10-02 20:49:13'),
+(145, 'Admin (1) has changed attendance record 2023-08-01 11:30:30 of check_in to 2023-08-01 11:30:31 And has changed attendance record 2023-08-01 11:30:30 of check_out to 2023-08-01 10:30:35', 'Attendance', 1, 1, '2023-10-02 20:49:40'),
+(146, 'Admin (1)', 'UserProfile', 1, 14, '2023-10-02 21:15:17'),
+(147, 'Admin (1)', 'UserProfile', 1, 14, '2023-10-02 21:15:37'),
+(148, 'Admin (1)', 'UserProfile', 1, 14, '2023-10-02 21:16:12'),
+(149, 'Admin (1)', 'UserProfile', 1, 14, '2023-10-02 21:22:20'),
+(150, 'Admin (1)', 'UserProfile', 1, 1, '2023-10-02 21:28:49'),
+(151, 'Admin (1) And changed CNIC record from 0 To 42401', 'UserProfile', 1, 91, '2023-10-02 21:47:52'),
+(152, 'Admin (1)', 'UserProfile', 1, 91, '2023-10-02 21:48:22'),
+(153, 'Admin (1)', 'UserProfile', 1, 91, '2023-10-02 21:48:41'),
+(154, 'Admin (1)', 'UserProfile', 1, 91, '2023-10-02 21:50:00'),
+(155, 'Admin (1) Has changed First Name record from ABRAR To ABRAR 1 And changed Last Name record Name from  To ABRAR 2 And changed Gmail record from  To syedtalha641@gmail.com', 'UserProfile', 1, 3, '2023-10-02 22:15:03'),
+(156, 'Admin (1) Has changed First Name record from ARSALAN To Syed Arsalan And changed Last Name record Name from  AHMED To  AHMED 1 And changed CNIC record from 214748362 To 2147483647 And changed Contact record from 214748322 To 2147483647', 'UserProfile', 1, 1, '2023-10-02 22:56:13'),
+(157, 'Admin (1)', 'UserProfile', 1, 1, '2023-10-02 22:56:57'),
+(158, 'Admin (1)', 'UserProfile', 1, 1, '2023-10-02 22:57:37'),
+(159, 'Admin (1)', 'UserProfile', 1, 1, '2023-10-02 22:57:54'),
+(160, 'Admin (1) And changed CNIC record from 2147483647 To 4240164872311', 'UserProfile', 1, 1, '2023-10-02 22:58:25'),
+(161, 'Admin (1) And changed Contact record from 2147483647 To 03152155245', 'UserProfile', 1, 1, '2023-10-02 22:58:54');
 
 -- --------------------------------------------------------
 
@@ -3629,53 +3709,6 @@ CREATE TABLE `payroll` (
   `created_on` datetime DEFAULT current_timestamp(),
   `updated_on` datetime DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `payroll`
---
-
-INSERT INTO `payroll` (`RecId`, `UserP_Id`, `Designation_Id`, `Shift_Id`, `Pay_Id`, `time_in`, `time_out`, `PayRoll_Type`, `salary`, `deducted_days`, `late`, `absent`, `Deduction`, `M_Deducted`, `Advance`, `M_Advance`, `Total_Pay`, `M_Salary`, `Remarks`, `Status`, `isactive`, `created_by`, `updated_by`, `created_on`, `updated_on`) VALUES
-(1, 14, 1, 1, 1, '2023-09-27 11:30:00', '2023-09-27 20:30:00', 2, 35000, 7, 23, 1, 9332, 933, 0, 0, 25668, 34067, '', 0, 1, 1, 1, '2023-09-27 00:02:29', '2023-09-28 00:11:32'),
-(2, 16, 1, 1, 1, '2023-09-27 11:30:00', '2023-09-27 20:30:00', 1, 40000, 0, 1, 1, 1333, 1333, 0, 0, 38667, 38667, NULL, 0, 1, 1, 1, '2023-09-27 00:32:38', NULL),
-(3, 17, 1, 1, 1, '2023-09-27 11:30:00', '2023-09-27 20:30:00', 1, 45000, 8, 25, 1, 13500, 13500, 0, 0, 31500, 31500, NULL, 0, 1, 1, 1, '2023-09-27 00:32:38', NULL),
-(4, 18, 1, 1, 1, '2023-09-27 11:30:00', '2023-09-27 20:30:00', 1, 150000, 0, 0, 1, 5000, 5000, 0, 0, 145000, 145000, NULL, 0, 1, 1, 1, '2023-09-27 00:32:38', NULL),
-(5, 19, 1, 1, 1, '2023-09-27 11:30:00', '2023-09-27 20:30:00', 1, 24000, 1, 5, 2, 2400, 2400, 0, 0, 21600, 21600, NULL, 0, 1, 1, 1, '2023-09-27 00:32:38', NULL),
-(6, 20, 1, 1, 1, '2023-09-27 11:30:00', '2023-09-27 20:30:00', 1, 8000, 8, 24, 1, 2399, 2399, 0, 0, 5601, 5601, NULL, 0, 1, 1, 1, '2023-09-27 00:32:38', NULL),
-(7, 21, 1, 1, 1, '2023-09-27 11:30:00', '2023-09-27 20:30:00', 1, 10000, 0, 0, 1, 333, 333, 0, 0, 9667, 9667, NULL, 0, 1, 1, 1, '2023-09-27 00:32:38', NULL),
-(8, 22, 1, 1, 1, '2023-09-27 11:30:00', '2023-09-27 20:30:00', 1, 200, 0, 0, 1, 6, 6, 0, 0, 194, 194, NULL, 0, 1, 1, 1, '2023-09-27 00:32:38', NULL),
-(9, 23, 1, 1, 1, '2023-09-27 11:30:00', '2023-09-27 20:30:00', 1, 100, 0, 1, 1, 3, 3, 0, 0, 97, 97, NULL, 0, 1, 1, 1, '2023-09-27 00:32:38', NULL),
-(10, 24, 1, 1, 1, '2023-09-27 11:30:00', '2023-09-27 20:30:00', 1, 700, 2, 8, 1, 69, 69, 0, 0, 631, 631, NULL, 0, 1, 1, 1, '2023-09-27 00:32:38', NULL),
-(11, 25, 1, 1, 1, '2023-09-27 11:30:00', '2023-09-27 20:30:00', 1, 60000, 8, 25, 1, 18000, 18000, 0, 0, 42000, 42000, NULL, 0, 1, 1, 1, '2023-09-27 00:32:38', NULL),
-(12, 26, 1, 1, 1, '2023-09-27 11:30:00', '2023-09-27 20:30:00', 1, 75000, 6, 20, 2, 20000, 20000, 0, 0, 55000, 55000, NULL, 0, 1, 1, 1, '2023-09-27 00:32:38', NULL),
-(13, 27, 1, 1, 1, '2023-09-27 11:30:00', '2023-09-27 20:30:00', 1, 900, 0, 0, 1, 30, 30, 0, 0, 870, 870, NULL, 0, 1, 1, 1, '2023-09-27 00:32:38', NULL),
-(14, 28, 1, 1, 1, '2023-09-27 11:30:00', '2023-09-27 20:30:00', 1, 90000, 6, 19, 2, 24000, 24000, 0, 0, 66000, 66000, NULL, 0, 1, 1, 1, '2023-09-27 00:32:38', NULL),
-(15, 29, 1, 1, 1, '2023-09-27 11:30:00', '2023-09-27 20:30:00', 1, 13000, 1, 3, 1, 866, 866, 0, 0, 12134, 12134, NULL, 0, 1, 1, 1, '2023-09-27 00:32:38', NULL),
-(16, 30, 1, 1, 1, '2023-09-27 11:30:00', '2023-09-27 20:30:00', 1, 15000, 6, 18, 3, 4500, 4500, 0, 0, 10500, 10500, NULL, 0, 1, 1, 1, '2023-09-27 00:32:38', NULL),
-(17, 31, 1, 1, 1, '2023-09-27 11:30:00', '2023-09-27 20:30:00', 1, 19000, 5, 16, 5, 6332, 6332, 0, 0, 12668, 12668, NULL, 0, 1, 1, 1, '2023-09-27 00:32:38', NULL),
-(18, 32, 1, 1, 1, '2023-09-27 11:30:00', '2023-09-27 20:30:00', 1, 800000, 0, 2, 1, 26666, 26666, 0, 0, 773334, 773334, NULL, 0, 1, 1, 1, '2023-09-27 00:32:38', NULL),
-(19, 33, 1, 1, 1, '2023-09-27 11:30:00', '2023-09-27 20:30:00', 1, 120000, 1, 3, 6, 28000, 28000, 0, 0, 92000, 92000, NULL, 0, 1, 1, 1, '2023-09-27 00:32:38', NULL),
-(20, 34, 1, 1, 1, '2023-09-27 11:30:00', '2023-09-27 20:30:00', 1, 134000, 0, 1, 10, 44666, 44666, 0, 0, 89334, 89334, NULL, 0, 1, 1, 1, '2023-09-27 00:32:38', NULL),
-(21, 35, 1, 1, 1, '2023-09-27 11:30:00', '2023-09-27 20:30:00', 1, 1500, 0, 0, 5, 250, 250, 0, 0, 1250, 1250, NULL, 0, 1, 1, 1, '2023-09-27 00:32:38', NULL),
-(22, 36, 1, 1, 1, '2023-09-27 11:30:00', '2023-09-27 20:30:00', 1, 35000, 1, 5, 12, 15166, 15166, 0, 0, 19834, 19834, NULL, 0, 1, 1, 1, '2023-09-27 00:32:38', NULL),
-(23, 37, 1, 1, 1, '2023-09-27 11:30:00', '2023-09-27 20:30:00', 1, 60000, 7, 22, 5, 24000, 24000, 0, 0, 36000, 36000, NULL, 0, 1, 1, 1, '2023-09-27 00:32:38', NULL),
-(24, 38, 1, 1, 1, '2023-09-27 11:30:00', '2023-09-27 20:30:00', 1, 78000, 4, 14, 1, 13000, 13000, 0, 0, 65000, 65000, NULL, 0, 1, 1, 1, '2023-09-27 00:32:38', NULL),
-(25, 39, 1, 1, 1, '2023-09-27 11:30:00', '2023-09-27 20:30:00', 1, 88000, 0, 1, 1, 2933, 2933, 0, 0, 85067, 85067, NULL, 0, 1, 1, 1, '2023-09-27 00:32:38', NULL),
-(26, 40, 1, 1, 1, '2023-09-27 11:30:00', '2023-09-27 20:30:00', 1, 40500, 1, 4, 1, 2700, 2700, 0, 0, 37800, 37800, NULL, 0, 1, 1, 1, '2023-09-27 00:32:38', NULL),
-(27, 41, 1, 1, 1, '2023-09-27 11:30:00', '2023-09-27 20:30:00', 1, 47000, 3, 11, 3, 9400, 9400, 0, 0, 37600, 37600, NULL, 0, 1, 1, 1, '2023-09-27 00:32:38', NULL),
-(28, 42, 1, 1, 1, '2023-09-27 11:30:00', '2023-09-27 20:30:00', 1, 50000, 3, 9, 17, 33333, 33333, 0, 0, 16667, 16667, NULL, 0, 1, 1, 1, '2023-09-27 00:32:38', NULL),
-(29, 43, 1, 1, 1, '2023-09-27 11:30:00', '2023-09-27 20:30:00', 1, 30000, 5, 16, 5, 10000, 10000, 0, 0, 20000, 20000, NULL, 0, 1, 1, 1, '2023-09-27 00:32:38', NULL),
-(30, 44, 1, 1, 1, '2023-09-27 11:30:00', '2023-09-27 20:30:00', 1, 0, 0, 0, 24, 0, 0, 0, 0, 0, 0, NULL, 0, 1, 1, 1, '2023-09-27 00:32:38', NULL),
-(31, 45, 1, 1, 1, '2023-09-27 11:30:00', '2023-09-27 20:30:00', 1, 0, 6, 18, 4, 0, 0, 0, 0, 0, 0, NULL, 0, 1, 1, 1, '2023-09-27 00:32:38', NULL),
-(32, 46, 1, 1, 1, '2023-09-27 11:30:00', '2023-09-27 20:30:00', 1, 0, 4, 12, 1, 0, 0, 0, 0, 0, 0, NULL, 0, 1, 1, 1, '2023-09-27 00:32:38', NULL),
-(33, 47, 1, 1, 1, '2023-09-27 11:30:00', '2023-09-27 20:30:00', 1, 0, 4, 13, 1, 0, 0, 0, 0, 0, 0, NULL, 0, 1, 1, 1, '2023-09-27 00:32:38', NULL),
-(34, 51, 1, 1, 1, '2023-09-27 11:30:00', '2023-09-27 20:30:00', 1, 0, 2, 6, 1, 0, 0, 0, 0, 0, 0, NULL, 0, 1, 1, 1, '2023-09-27 00:32:38', NULL),
-(35, 61, 1, 1, 1, '2023-09-27 11:30:00', '2023-09-27 20:30:00', 1, 0, 0, 1, 3, 0, 0, 0, 0, 0, 0, NULL, 0, 1, 1, 1, '2023-09-27 00:32:38', NULL),
-(36, 63, 1, 1, 1, '2023-09-27 11:30:00', '2023-09-27 20:30:00', 1, 0, 1, 3, 1, 0, 0, 0, 0, 0, 0, NULL, 0, 1, 1, 1, '2023-09-27 00:32:38', NULL),
-(37, 70, 1, 1, 1, '2023-09-27 11:30:00', '2023-09-27 20:30:00', 1, 0, 4, 14, 1, 0, 0, 0, 0, 0, 0, NULL, 0, 1, 1, 1, '2023-09-27 00:32:38', NULL),
-(38, 71, 1, 1, 1, '2023-09-27 11:30:00', '2023-09-27 20:30:00', 1, 0, 0, 2, 2, 0, 0, 0, 0, 0, 0, NULL, 0, 1, 1, 1, '2023-09-27 00:32:38', NULL),
-(39, 75, 1, 1, 1, '2023-09-27 11:30:00', '2023-09-27 20:30:00', 1, 0, 6, 20, 4, 0, 0, 0, 0, 0, 0, NULL, 0, 1, 1, 1, '2023-09-27 00:32:38', NULL),
-(40, 76, 1, 1, 1, '2023-09-27 11:30:00', '2023-09-27 20:30:00', 1, 0, 6, 19, 8, 0, 0, 0, 0, 0, 0, NULL, 0, 1, 1, 1, '2023-09-27 00:32:38', NULL),
-(41, 78, 1, 1, 1, '2023-09-27 11:30:00', '2023-09-27 20:30:00', 1, 0, 3, 9, 16, 0, 0, 0, 0, 0, 0, NULL, 0, 1, 1, 1, '2023-09-27 00:32:38', NULL);
 
 --
 -- Triggers `payroll`
@@ -3987,9 +4020,9 @@ CREATE TABLE `user_profile` (
   `firstname` varchar(50) NOT NULL,
   `lastname` varchar(50) NOT NULL,
   `gender` int(10) NOT NULL,
-  `CNIC` int(11) NOT NULL,
+  `CNIC` varchar(255) NOT NULL,
   `Gmail` varchar(50) NOT NULL,
-  `contact` int(10) NOT NULL,
+  `contact` varchar(255) NOT NULL,
   `address` text NOT NULL,
   `Designation_Id` int(10) DEFAULT NULL,
   `payscale_id` int(10) DEFAULT NULL,
@@ -4010,88 +4043,94 @@ CREATE TABLE `user_profile` (
 --
 
 INSERT INTO `user_profile` (`RecId`, `Employee_Id`, `firstname`, `lastname`, `gender`, `CNIC`, `Gmail`, `contact`, `address`, `Designation_Id`, `payscale_id`, `shift_id`, `workingDays`, `salary`, `Advance`, `Cheak_value`, `isactive`, `created_by`, `updated_by`, `created_on`, `updated_on`) VALUES
-(1, '1', 'ARSALAN', ' AHMED', 1, 214748362, 'ghi@gmail.com', 214748322, 'Karachi Sindh', 1, 1, 6, 6, 200000, 5500, 0, 1, 0, 1, '0000-00-00 00:00:00', '2023-09-28 02:39:08'),
-(2, '2', 'FARHAN RAZZAQ', '', 1, 0, '', 2147483647, 'Karachi, Sindh', 1, 1, 5, 5, 25000, 0, 0, 1, 0, 1, '0000-00-00 00:00:00', NULL),
-(3, '3', 'ABRAR', '', 1, 0, '', 2147483647, 'Karachi, Sindh', 1, 1, 5, 5, 3000, 0, 0, 1, 0, 1, '0000-00-00 00:00:00', NULL),
-(4, '4', 'FARRUKH', '', 1, 0, '', 2147483647, 'Karachi, Sindh', 1, 1, 3, 5, 200, 0, 0, 1, 0, 1, '0000-00-00 00:00:00', NULL),
-(5, '5', 'MUHAMMAD JIBRAN', '', 1, 0, '', 87654321, 'Karachi, Sindh', 1, 1, 5, 5, 1000, 0, 0, 1, 0, 1, '0000-00-00 00:00:00', NULL),
-(6, '6', 'SAAD SAEED', '', 1, 0, '', 87654321, 'Karachi, Sindh', 1, 1, 5, 5, 100000, 0, 0, 1, 0, 1, '0000-00-00 00:00:00', NULL),
-(7, '7', 'ABDUL SUBHAN', '', 1, 0, '', 2147483647, 'Karachi, Sindh', 1, 1, 5, 5, 50000, 0, 0, 1, 0, 1, '0000-00-00 00:00:00', NULL),
-(8, '8', 'SYED TALHA SALMAN', '', 1, 0, '', 2147483647, 'Karachi, Sindh', 1, 1, 6, 5, 0, 0, 0, 1, 0, 1, '0000-00-00 00:00:00', NULL),
-(9, '9', 'ALIYAAN AHMED', '', 1, 0, '', 87654321, 'Karachi, Sindh', 1, 1, 5, 5, 0, 0, 0, 1, 0, 1, '0000-00-00 00:00:00', NULL),
-(10, '10', 'VARUN KUMAR', '', 1, 0, '', 87654321, 'Karachi, Sindh', 1, 1, 4, 5, 0, 0, 0, 1, 0, 1, '0000-00-00 00:00:00', NULL),
-(11, '11', 'MUHAMMAD ANIQ', '', 1, 0, '', 87654321, 'Karachi, Sindh', 1, 1, 2, 5, 0, 0, 0, 1, 0, 1, '0000-00-00 00:00:00', NULL),
-(12, '12', 'MUHAMMAD FURQAN', '', 1, 0, '', 2147483647, 'Karachi, Sindh', 1, 1, 5, 5, 0, 0, 0, 1, 0, 1, '0000-00-00 00:00:00', NULL),
-(13, '13', 'ZOHRAN AHMED', '', 1, 0, '', 87654321, 'Karachi, Sindh', 1, 1, 5, 5, 0, 0, 0, 1, 0, 1, '0000-00-00 00:00:00', NULL),
-(14, '14', 'MUHAMMAD SHAHRYAR', '', 1, 0, '', 2147483647, 'Karachi, Sindh', 1, 1, 1, 6, 35000, 0, 0, 1, 0, 1, '0000-00-00 00:00:00', NULL),
-(15, '15', 'MUJTABA KHAN', '', 1, 0, '', 2147483647, 'Karachi, Sindh', 1, 1, 5, 5, 0, 0, 0, 1, 0, 1, '0000-00-00 00:00:00', NULL),
-(16, '16', 'NADEEM ZUBARI', '', 1, 0, '', 2147483647, 'Karachi, Sindh', 1, 1, 1, 6, 40000, 0, 0, 1, 0, 1, '0000-00-00 00:00:00', NULL),
-(17, '17', 'IRFAN HUSSSIN', '', 1, 0, '', 2147483647, 'Karachi, Sindh', 1, 1, 1, 6, 45000, 0, 0, 1, 0, 1, '0000-00-00 00:00:00', NULL),
-(18, '18', 'ABDUL REHMAN', '', 1, 0, '', 2147483647, 'Karachi, Sindh', 1, 1, 1, 6, 150000, 0, 0, 1, 0, 1, '0000-00-00 00:00:00', NULL),
-(19, '19', 'SYED ALY RAZA', '', 1, 0, '', 2147483647, 'Karachi, Sindh', 1, 1, 1, 6, 24000, 0, 0, 1, 0, 1, '0000-00-00 00:00:00', NULL),
-(20, '20', 'ANAS KHATRI', '', 1, 0, '', 2147483647, 'Karachi, Sindh', 1, 1, 1, 6, 8000, 0, 0, 1, 0, 1, '0000-00-00 00:00:00', NULL),
-(21, '21', 'WAQAR NARSI', '', 1, 0, '', 87654321, 'Karachi, Sindh', 1, 1, 1, 6, 10000, 0, 0, 1, 0, 1, '0000-00-00 00:00:00', NULL),
-(22, '22', 'IRFAN KHAN', '', 1, 0, '', 87654321, 'Karachi, Sindh', 1, 1, 1, 6, 200, 0, 0, 1, 0, 1, '0000-00-00 00:00:00', NULL),
-(23, '23', 'NOMAN KODWAWI', '', 1, 0, '', 2147483647, 'Karachi, Sindh', 1, 1, 1, 6, 100, 0, 0, 1, 0, 1, '0000-00-00 00:00:00', NULL),
-(24, '24', 'TAHIR WADIWALA', '', 1, 0, '', 2147483647, 'Karachi, Sindh', 1, 1, 1, 6, 700, 0, 0, 1, 0, 1, '0000-00-00 00:00:00', NULL),
-(25, '25', 'TAHA TABANI', '', 1, 0, '', 2147483647, 'Karachi, Sindh', 1, 1, 1, 6, 60000, 0, 0, 1, 0, 1, '0000-00-00 00:00:00', NULL),
-(26, '26', 'SAMEER SALEEM', '', 1, 0, '', 87654321, 'Karachi, Sindh', 1, 1, 1, 6, 75000, 0, 0, 1, 0, 1, '0000-00-00 00:00:00', NULL),
-(27, '27', 'RIZWAN HUSSAIN', '', 1, 0, '', 2147483647, 'Karachi, Sindh', 1, 1, 1, 6, 900, 0, 0, 1, 0, 1, '0000-00-00 00:00:00', NULL),
-(28, '28', 'ABDUL AZEEM', '', 1, 0, '', 2147483647, 'Karachi, Sindh', 1, 1, 1, 6, 90000, 0, 0, 1, 0, 1, '0000-00-00 00:00:00', NULL),
-(29, '29', 'MOHSIN ASLAM', '', 1, 0, '', 2147483647, 'Karachi, Sindh', 1, 1, 1, 6, 13000, 0, 0, 1, 0, 1, '0000-00-00 00:00:00', NULL),
-(30, '30', 'SHAFIQ AHMED', '', 1, 0, '', 2147483647, 'Karachi, Sindh', 1, 1, 1, 6, 15000, 0, 0, 1, 0, 1, '0000-00-00 00:00:00', NULL),
-(31, '31', 'RAYYAN MIANOOR', '', 1, 0, '', 2147483647, 'Karachi, Sindh', 1, 1, 1, 6, 19000, 0, 0, 1, 0, 1, '0000-00-00 00:00:00', NULL),
-(32, '32', 'FAHAD FAISAL', '', 1, 0, '', 2147483647, 'Karachi, Sindh', 1, 1, 1, 6, 800000, 0, 0, 1, 0, 1, '0000-00-00 00:00:00', NULL),
-(33, '33', 'MUHAMMAD ALI', '', 1, 0, '', 87654321, 'Karachi, Sindh', 1, 1, 1, 6, 120000, 0, 0, 1, 0, 1, '0000-00-00 00:00:00', NULL),
-(34, '34', 'IMRAN CHOUHAN', '', 1, 0, '', 2147483647, 'Karachi, Sindh', 1, 1, 1, 6, 134000, 0, 0, 1, 0, 1, '0000-00-00 00:00:00', NULL),
-(35, '35', 'SALMAN QAZI', '', 1, 0, '', 2147483647, 'Karachi, Sindh', 1, 1, 1, 6, 1500, 0, 0, 1, 0, 1, '0000-00-00 00:00:00', NULL),
-(36, '36', 'SYED AMMAR', '', 1, 0, '', 2147483647, 'Karachi, Sindh', 1, 1, 1, 6, 35000, 0, 0, 1, 0, 1, '0000-00-00 00:00:00', NULL),
-(37, '37', 'HUSSAIN AHMED', '', 1, 0, '', 87654321, 'Karachi, Sindh', 1, 1, 1, 6, 60000, 0, 0, 1, 0, 1, '0000-00-00 00:00:00', NULL),
-(38, '38', 'ABDUL SAMAD', '', 1, 0, '', 2147483647, 'Karachi, Sindh', 1, 1, 1, 6, 78000, 0, 0, 1, 0, 1, '0000-00-00 00:00:00', NULL),
-(39, '39', 'NADEEM AHMED', '', 1, 0, '', 2147483647, 'Karachi, Sindh', 1, 1, 1, 6, 88000, 0, 0, 1, 0, 1, '0000-00-00 00:00:00', NULL),
-(40, '40', 'HAFIZ BILAL HASSAN', '', 1, 0, '', 87654321, 'Karachi, Sindh', 1, 1, 1, 6, 40500, 0, 0, 1, 0, 1, '0000-00-00 00:00:00', NULL),
-(41, '41', 'AZHAR KHAN', '', 1, 0, '', 87654321, 'Karachi, Sindh', 1, 1, 1, 6, 47000, 0, 0, 1, 0, 1, '0000-00-00 00:00:00', NULL),
-(42, '42', 'USAMA JAVED', '', 1, 0, '', 87654321, 'Karachi, Sindh', 1, 1, 1, 6, 50000, 0, 0, 1, 0, 1, '0000-00-00 00:00:00', NULL),
-(43, '43', 'TOOBA ALI', '', 2, 0, '', 2147483647, 'Karachi, Sindh', 1, 1, 1, 6, 30000, 0, 1, 1, 0, 1, '0000-00-00 00:00:00', NULL),
-(44, '44', 'TALHA MIANOOR', '', 1, 0, '', 2147483647, 'Karachi, Sindh', 1, 1, 1, 6, 0, 0, 0, 1, 0, 1, '0000-00-00 00:00:00', NULL),
-(45, '45', 'NOOR MUHAMMAD', '', 1, 0, '', 2147483647, 'Karachi, Sindh', 1, 1, 1, 6, 0, 0, 0, 1, 0, 1, '0000-00-00 00:00:00', NULL),
-(46, '46', 'ASIF SHAIKH', '', 1, 0, '', 2147483647, 'Karachi, Sindh', 1, 1, 1, 6, 0, 0, 0, 1, 0, 1, '0000-00-00 00:00:00', NULL),
-(47, '47', 'MUHAMMAD QASIM', '', 1, 0, '', 87654321, 'Karachi, Sindh', 1, 1, 1, 6, 0, 0, 0, 1, 0, 1, '0000-00-00 00:00:00', NULL),
-(48, '48', 'SYED HASNAIN', '', 1, 0, '', 87654321, 'Karachi, Sindh', 1, 1, 2, 5, 0, 0, 0, 1, 0, 1, '0000-00-00 00:00:00', NULL),
-(49, '49', 'SUNWEETH ROBIN', '', 1, 0, '', 87654321, 'Karachi, Sindh', 1, 1, 2, 5, 0, 0, 0, 1, 0, 1, '0000-00-00 00:00:00', NULL),
-(50, '50', 'SAAD SULEMAN', '', 1, 0, '', 87654321, 'Karachi, Sindh', 1, 1, 2, 5, 0, 0, 0, 1, 0, 1, '0000-00-00 00:00:00', NULL),
-(51, '51', 'HARIS TARIQ', '', 1, 0, '', 87654321, 'Karachi, Sindh', 1, 1, 1, 6, 0, 0, 0, 1, 0, 1, '0000-00-00 00:00:00', NULL),
-(52, '52', 'HUNAIN IMRAN', '', 1, 0, '', 87654321, 'Karachi, Sindh', 1, 1, 5, 5, 0, 0, 0, 1, 0, 1, '0000-00-00 00:00:00', NULL),
-(53, '53', 'ASHTAR ALI', '', 1, 0, '', 87654321, 'Karachi, Sindh', 1, 1, 4, 5, 0, 0, 0, 1, 0, 1, '0000-00-00 00:00:00', NULL),
-(54, '54', 'SYED SAQIB', '', 1, 0, '', 87654321, 'Karachi, Sindh', 1, 1, 2, 5, 0, 0, 0, 1, 0, 1, '0000-00-00 00:00:00', NULL),
-(55, '55', 'ABDULLAH REHMAN', '', 1, 0, '', 2147483647, 'Karachi, Sindh', 1, 1, 4, 5, 0, 0, 0, 1, 0, 1, '0000-00-00 00:00:00', NULL),
-(56, '56', 'MURTAZA KHAN', '', 1, 0, '', 87654321, 'Karachi, Sindh', 1, 1, 2, 5, 0, 0, 0, 1, 0, 1, '0000-00-00 00:00:00', NULL),
-(57, '57', 'ANAS FAROOQ', '', 1, 0, '', 87654321, 'Karachi, Sindh', 1, 1, 4, 5, 0, 0, 0, 1, 0, 1, '0000-00-00 00:00:00', NULL),
-(58, '58', 'MUHAMMAD USMAN', '', 1, 0, '', 87654321, 'Karachi, Sindh', 1, 1, 2, 5, 0, 0, 0, 1, 0, 1, '0000-00-00 00:00:00', NULL),
-(59, '59', 'SAHIL KHIMANI', '', 1, 0, '', 2147483647, 'Karachi, Sindh', 1, 1, 3, 5, 0, 0, 0, 1, 0, 1, '0000-00-00 00:00:00', NULL),
-(60, '60', 'M.UMAIR SHAFIQ', '', 1, 0, '', 2147483647, 'Karachi, Sindh', 1, 1, 2, 5, 0, 0, 0, 1, 0, 1, '0000-00-00 00:00:00', NULL),
-(61, '61', 'MUHAMMAD NAEEM', '', 1, 0, '', 2147483647, 'Karachi, Sindh', 1, 1, 1, 6, 0, 0, 0, 1, 0, 1, '0000-00-00 00:00:00', NULL),
-(62, '62', 'SYED AREEB', '', 1, 0, '', 87654321, 'Karachi, Sindh', 1, 1, 2, 5, 0, 0, 0, 1, 0, 1, '0000-00-00 00:00:00', NULL),
-(63, '63', 'SAIM MAJID', '', 1, 0, '', 87654321, 'Karachi, Sindh', 1, 1, 1, 6, 0, 0, 0, 1, 0, 1, '0000-00-00 00:00:00', NULL),
-(64, '64', 'M.FARIS SHEIKH', '', 1, 0, '', 87654321, 'Karachi, Sindh', 1, 1, 5, 5, 0, 0, 0, 1, 0, 1, '0000-00-00 00:00:00', NULL),
-(65, '65', 'UMER DURANI', '', 1, 0, '', 87654321, 'Karachi, Sindh', 1, 1, 5, 5, 0, 0, 0, 1, 0, 1, '0000-00-00 00:00:00', NULL),
-(66, '66', 'HAYA SHEIKH', '', 2, 0, '', 87654321, 'Karachi, Sindh', 1, 1, 6, 5, 0, 0, 0, 1, 0, 1, '0000-00-00 00:00:00', NULL),
-(67, '67', 'ABDUL REHMAN RAZA', '', 1, 0, '', 87654321, 'Karachi, Sindh', 1, 1, 4, 5, 0, 0, 0, 1, 0, 1, '0000-00-00 00:00:00', NULL),
-(68, '68', 'M.TARIQ', '', 1, 0, '', 87654321, 'Karachi, Sindh', 1, 1, 4, 5, 0, 0, 0, 1, 0, 1, '0000-00-00 00:00:00', NULL),
-(69, '69', 'SOMIL RUPELA', '', 1, 0, '', 87654321, 'Karachi, Sindh', 1, 1, 4, 5, 0, 0, 0, 1, 0, 1, '0000-00-00 00:00:00', NULL),
-(70, '70', 'ASLAM MEER', '', 1, 0, '', 2147483647, 'Karachi, Sindh', 1, 1, 1, 6, 0, 0, 0, 1, 0, 1, '0000-00-00 00:00:00', NULL),
-(71, '71', 'ZAFAR', '', 1, 0, '', 2147483647, 'Karachi, Sindh', 1, 1, 1, 6, 0, 0, 0, 1, 0, 1, '0000-00-00 00:00:00', NULL),
-(72, '72', 'HOOD BASIT', '', 1, 0, '', 2147483647, 'Karachi, Sindh', 1, 1, 5, 5, 0, 0, 0, 1, 0, 1, '0000-00-00 00:00:00', NULL),
-(73, '73', 'HUNAIN NADEEM', '', 1, 0, '', 2147483647, 'Karachi, Sindh', 1, 1, 1, 5, 0, 0, 0, 1, 0, 1, '0000-00-00 00:00:00', NULL),
-(74, '74', 'DANIYAL KHATRI', '', 1, 0, '', 2147483647, 'Karachi, Sindh', 1, 1, 2, 5, 0, 0, 0, 1, 0, 1, '0000-00-00 00:00:00', NULL),
-(75, '75', 'M.AFZAL', '', 1, 0, '', 87654321, 'Karachi, Sindh', 1, 1, 1, 6, 0, 0, 0, 1, 0, 1, '0000-00-00 00:00:00', NULL),
-(76, '76', 'FAROOQ KHAN', '', 1, 0, '', 87654321, 'Karachi, Sindh', 1, 1, 1, 6, 0, 0, 0, 1, 0, 1, '0000-00-00 00:00:00', NULL),
-(77, '77', 'MURTAZA MUGHAL', '', 1, 0, '', 87654321, 'Karachi, Sindh', 1, 1, 5, 5, 0, 0, 0, 1, 0, 1, '0000-00-00 00:00:00', NULL),
-(78, '78', 'HAMMAD AFTAB', '', 1, 0, '', 87654321, 'Karachi, Sindh', 1, 1, 1, 6, 0, 0, 0, 1, 0, 1, '0000-00-00 00:00:00', NULL),
-(79, '79', 'AQIB RAZA', '', 1, 0, '', 87654321, 'Karachi, Sindh', 1, 1, 2, 5, 0, 0, 0, 1, 0, 1, '0000-00-00 00:00:00', NULL),
-(80, '80', 'DANIYAL SHAKEEL', '', 1, 0, '', 87654321, 'Karachi, Sindh', 1, 1, 2, 5, 0, 0, 0, 1, 0, 1, '0000-00-00 00:00:00', NULL),
-(88, '81', 'Ali', 'Aslam', 1, 544334543, 'a@gmail.com', 34223, 'fgdg', 2, 2, 4, 5, 67890, 0, NULL, 1, 1, NULL, '2023-09-23 03:33:54', NULL),
-(89, '82', 'Aslam O', 'Aleikum', 1, 41101, 'asl@gmail.com', 0, '34726357', 1, 1, 1, 5, 4666, 0, 1, 1, 2147483647, NULL, '0000-00-00 00:00:00', NULL);
+(1, '1', 'Syed Arsalan', ' AHMED 1', 1, '4240164872311', 'ghi@gmail.com', '03152155245', 'Karachi Sindh', 1, 1, 6, 6, 200000, 5501, 0, 1, 0, 1, '0000-00-00 00:00:00', '2023-10-02 22:58:54'),
+(2, '2', 'FARHAN RAZZAQ', '', 1, '0', '', '2147483647', 'Karachi, Sindh', 1, 1, 5, 5, 25000, 0, 0, 1, 0, 1, '0000-00-00 00:00:00', NULL),
+(3, '3', 'ABRAR 1', 'ABRAR 2', 1, '0', 'syedtalha641@gmail.com', '2147483647', 'Karachi, Sindh', 1, 1, 5, 5, 3000, 0, 0, 1, 0, 1, '0000-00-00 00:00:00', '2023-10-02 22:15:03'),
+(4, '4', 'FARRUKH', '', 1, '0', '', '2147483647', 'Karachi, Sindh', 1, 1, 3, 5, 200, 0, 0, 1, 0, 1, '0000-00-00 00:00:00', NULL),
+(5, '5', 'MUHAMMAD JIBRAN', '', 1, '0', '', '87654321', 'Karachi, Sindh', 1, 1, 5, 5, 1000, 0, 0, 1, 0, 1, '0000-00-00 00:00:00', NULL),
+(6, '6', 'SAAD SAEED', '', 1, '0', '', '87654321', 'Karachi, Sindh', 1, 1, 5, 5, 100000, 0, 0, 1, 0, 1, '0000-00-00 00:00:00', NULL),
+(7, '7', 'ABDUL SUBHAN', '', 1, '0', '', '2147483647', 'Karachi, Sindh', 1, 1, 5, 5, 50000, 0, 0, 1, 0, 1, '0000-00-00 00:00:00', NULL),
+(8, '8', 'SYED TALHA SALMAN', '', 1, '0', '', '2147483647', 'Karachi, Sindh', 1, 1, 6, 5, 0, 0, 0, 1, 0, 1, '0000-00-00 00:00:00', NULL),
+(9, '9', 'ALIYAAN AHMED', '', 1, '0', '', '87654321', 'Karachi, Sindh', 1, 1, 5, 5, 0, 0, 0, 1, 0, 1, '0000-00-00 00:00:00', NULL),
+(10, '10', 'VARUN KUMAR', '', 1, '0', '', '87654321', 'Karachi, Sindh', 1, 1, 4, 5, 0, 0, 0, 1, 0, 1, '0000-00-00 00:00:00', NULL),
+(11, '11', 'MUHAMMAD ANIQ', '', 1, '0', '', '87654321', 'Karachi, Sindh', 1, 1, 2, 5, 0, 0, 0, 1, 0, 1, '0000-00-00 00:00:00', NULL),
+(12, '12', 'MUHAMMAD FURQAN', '', 1, '0', '', '2147483647', 'Karachi, Sindh', 1, 1, 5, 5, 0, 0, 0, 1, 0, 1, '0000-00-00 00:00:00', NULL),
+(13, '13', 'ZOHRAN AHMED', '', 1, '0', '', '87654321', 'Karachi, Sindh', 1, 1, 5, 5, 0, 0, 0, 1, 0, 1, '0000-00-00 00:00:00', NULL),
+(14, '14', 'MUHAMMAD SHAHRYAR', '', 1, '0', '', '2147483647', 'Karachi, Sindh', 1, 1, 1, 6, 35000, 27097, 0, 1, 0, 1, '0000-00-00 00:00:00', NULL),
+(15, '15', 'MUJTABA KHAN', '', 1, '0', '', '2147483647', 'Karachi, Sindh', 1, 1, 5, 5, 0, 0, 0, 1, 0, 1, '0000-00-00 00:00:00', NULL),
+(16, '16', 'NADEEM ZUBARI', '', 1, '0', '', '2147483647', 'Karachi, Sindh', 1, 1, 1, 6, 40000, 0, 0, 1, 0, 1, '0000-00-00 00:00:00', NULL),
+(17, '17', 'IRFAN HUSSSIN', '', 1, '0', '', '2147483647', 'Karachi, Sindh', 1, 1, 1, 6, 45000, 0, 0, 1, 0, 1, '0000-00-00 00:00:00', NULL),
+(18, '18', 'ABDUL REHMAN', '', 1, '0', '', '2147483647', 'Karachi, Sindh', 1, 1, 1, 6, 150000, 0, 0, 1, 0, 1, '0000-00-00 00:00:00', NULL),
+(19, '19', 'SYED ALY RAZA', '', 1, '0', '', '2147483647', 'Karachi, Sindh', 1, 1, 1, 6, 24000, 0, 0, 1, 0, 1, '0000-00-00 00:00:00', NULL),
+(20, '20', 'ANAS KHATRI', '', 1, '0', '', '2147483647', 'Karachi, Sindh', 1, 1, 1, 6, 8000, 0, 0, 1, 0, 1, '0000-00-00 00:00:00', NULL),
+(21, '21', 'WAQAR NARSI', '', 1, '0', '', '87654321', 'Karachi, Sindh', 1, 1, 1, 6, 10000, 0, 0, 1, 0, 1, '0000-00-00 00:00:00', NULL),
+(22, '22', 'IRFAN KHAN', '', 1, '0', '', '87654321', 'Karachi, Sindh', 1, 1, 1, 6, 200, 0, 0, 1, 0, 1, '0000-00-00 00:00:00', NULL),
+(23, '23', 'NOMAN KODWAWI', '', 1, '0', '', '2147483647', 'Karachi, Sindh', 1, 1, 1, 6, 100, 0, 0, 1, 0, 1, '0000-00-00 00:00:00', NULL),
+(24, '24', 'TAHIR WADIWALA', '', 1, '0', '', '2147483647', 'Karachi, Sindh', 1, 1, 1, 6, 700, 0, 0, 1, 0, 1, '0000-00-00 00:00:00', NULL),
+(25, '25', 'TAHA TABANI ', 'TAHA TABANI', 1, '0', 'syedtalha641@gmail.com', '2147483647', 'Karachi, Sindh', 1, 1, 1, 6, 60000, 0, 0, 1, 0, 1, '0000-00-00 00:00:00', '2023-10-02 20:40:07'),
+(26, '26', 'SAMEER SALEEM', '', 1, '0', '', '87654321', 'Karachi, Sindh', 1, 1, 1, 6, 75000, 0, 0, 1, 0, 1, '0000-00-00 00:00:00', NULL),
+(27, '27', 'RIZWAN HUSSAIN', '', 1, '0', '', '2147483647', 'Karachi, Sindh', 1, 1, 1, 6, 900, 0, 0, 1, 0, 1, '0000-00-00 00:00:00', NULL),
+(28, '28', 'ABDUL AZEEM', '', 1, '0', '', '2147483647', 'Karachi, Sindh', 1, 1, 1, 6, 90000, 0, 0, 1, 0, 1, '0000-00-00 00:00:00', NULL),
+(29, '29', 'MOHSIN ASLAM', '', 1, '0', '', '2147483647', 'Karachi, Sindh', 1, 1, 1, 6, 13000, 0, 0, 1, 0, 1, '0000-00-00 00:00:00', NULL),
+(30, '30', 'SHAFIQ AHMED', '', 1, '0', '', '2147483647', 'Karachi, Sindh', 1, 1, 1, 6, 15000, 0, 0, 1, 0, 1, '0000-00-00 00:00:00', NULL),
+(31, '31', 'RAYYAN MIANOOR', '', 1, '0', '', '2147483647', 'Karachi, Sindh', 1, 1, 1, 6, 19000, 0, 0, 1, 0, 1, '0000-00-00 00:00:00', NULL),
+(32, '32', 'FAHAD FAISAL', '', 1, '0', '', '2147483647', 'Karachi, Sindh', 1, 1, 1, 6, 800000, 0, 0, 1, 0, 1, '0000-00-00 00:00:00', NULL),
+(33, '33', 'MUHAMMAD ALI', '', 1, '0', '', '87654321', 'Karachi, Sindh', 1, 1, 1, 6, 120000, 0, 0, 1, 0, 1, '0000-00-00 00:00:00', NULL),
+(34, '34', 'IMRAN CHOUHAN', '', 1, '0', '', '2147483647', 'Karachi, Sindh', 1, 1, 1, 6, 134000, 0, 0, 1, 0, 1, '0000-00-00 00:00:00', NULL),
+(35, '35', 'SALMAN QAZI', '', 1, '0', '', '2147483647', 'Karachi, Sindh', 1, 1, 1, 6, 1500, 0, 0, 1, 0, 1, '0000-00-00 00:00:00', NULL),
+(36, '36', 'SYED AMMAR', '', 1, '0', '', '2147483647', 'Karachi, Sindh', 1, 1, 1, 6, 35000, 0, 0, 1, 0, 1, '0000-00-00 00:00:00', NULL),
+(37, '37', 'HUSSAIN AHMED', '', 1, '0', '', '87654321', 'Karachi, Sindh', 1, 1, 1, 6, 60000, 0, 0, 1, 0, 1, '0000-00-00 00:00:00', NULL),
+(38, '38', 'ABDUL SAMAD', '', 1, '0', '', '2147483647', 'Karachi, Sindh', 1, 1, 1, 6, 78000, 0, 0, 1, 0, 1, '0000-00-00 00:00:00', NULL),
+(39, '39', 'NADEEM AHMED', '', 1, '0', '', '2147483647', 'Karachi, Sindh', 1, 1, 1, 6, 88000, 0, 0, 1, 0, 1, '0000-00-00 00:00:00', NULL),
+(40, '40', 'HAFIZ BILAL HASSAN', '', 1, '0', '', '87654321', 'Karachi, Sindh', 1, 1, 1, 6, 40500, 0, 0, 1, 0, 1, '0000-00-00 00:00:00', NULL),
+(41, '41', 'AZHAR KHAN', '', 1, '0', '', '87654321', 'Karachi, Sindh', 1, 1, 1, 6, 47000, 0, 0, 1, 0, 1, '0000-00-00 00:00:00', NULL),
+(42, '42', 'USAMA JAVED', '', 1, '0', '', '87654321', 'Karachi, Sindh', 1, 1, 1, 6, 50000, 0, 0, 1, 0, 1, '0000-00-00 00:00:00', NULL),
+(43, '43', 'TOOBA ALI', '', 2, '0', '', '2147483647', 'Karachi, Sindh', 1, 1, 1, 6, 30000, 0, 1, 1, 0, 1, '0000-00-00 00:00:00', NULL),
+(44, '44', 'TALHA MIANOOR', '', 1, '0', '', '2147483647', 'Karachi, Sindh', 1, 1, 1, 6, 0, 0, 0, 1, 0, 1, '0000-00-00 00:00:00', NULL),
+(45, '45', 'NOOR MUHAMMAD', '', 1, '0', '', '2147483647', 'Karachi, Sindh', 1, 1, 1, 6, 0, 0, 0, 1, 0, 1, '0000-00-00 00:00:00', NULL),
+(46, '46', 'ASIF SHAIKH', '', 1, '0', '', '2147483647', 'Karachi, Sindh', 1, 1, 1, 6, 0, 0, 0, 1, 0, 1, '0000-00-00 00:00:00', NULL),
+(47, '47', 'MUHAMMAD QASIM', '', 1, '0', '', '87654321', 'Karachi, Sindh', 1, 1, 1, 6, 0, 0, 0, 1, 0, 1, '0000-00-00 00:00:00', NULL),
+(48, '48', 'SYED HASNAIN', '', 1, '0', '', '87654321', 'Karachi, Sindh', 1, 1, 2, 5, 0, 0, 0, 1, 0, 1, '0000-00-00 00:00:00', NULL),
+(49, '49', 'SUNWEETH ROBIN', '', 1, '0', '', '87654321', 'Karachi, Sindh', 1, 1, 2, 5, 0, 0, 0, 1, 0, 1, '0000-00-00 00:00:00', NULL),
+(50, '50', 'SAAD SULEMAN', '', 1, '0', '', '87654321', 'Karachi, Sindh', 1, 1, 2, 5, 0, 0, 0, 1, 0, 1, '0000-00-00 00:00:00', NULL),
+(51, '51', 'HARIS TARIQ', '', 1, '0', '', '87654321', 'Karachi, Sindh', 1, 1, 1, 6, 0, 0, 0, 1, 0, 1, '0000-00-00 00:00:00', NULL),
+(52, '52', 'HUNAIN IMRAN', '', 1, '0', '', '87654321', 'Karachi, Sindh', 1, 1, 5, 5, 0, 0, 0, 1, 0, 1, '0000-00-00 00:00:00', NULL),
+(53, '53', 'ASHTAR ALI', '', 1, '0', '', '87654321', 'Karachi, Sindh', 1, 1, 4, 5, 0, 0, 0, 1, 0, 1, '0000-00-00 00:00:00', NULL),
+(54, '54', 'SYED SAQIB', '', 1, '0', '', '87654321', 'Karachi, Sindh', 1, 1, 2, 5, 0, 0, 0, 1, 0, 1, '0000-00-00 00:00:00', NULL),
+(55, '55', 'ABDULLAH REHMAN', '', 1, '0', '', '2147483647', 'Karachi, Sindh', 1, 1, 4, 5, 0, 0, 0, 1, 0, 1, '0000-00-00 00:00:00', NULL),
+(56, '56', 'MURTAZA KHAN', '', 1, '0', '', '87654321', 'Karachi, Sindh', 1, 1, 2, 5, 0, 0, 0, 1, 0, 1, '0000-00-00 00:00:00', NULL),
+(57, '57', 'ANAS FAROOQ', '', 1, '0', '', '87654321', 'Karachi, Sindh', 1, 1, 4, 5, 0, 0, 0, 1, 0, 1, '0000-00-00 00:00:00', NULL),
+(58, '58', 'MUHAMMAD USMAN', '', 1, '0', '', '87654321', 'Karachi, Sindh', 1, 1, 2, 5, 0, 0, 0, 1, 0, 1, '0000-00-00 00:00:00', NULL),
+(59, '59', 'SAHIL KHIMANI', '', 1, '0', '', '2147483647', 'Karachi, Sindh', 1, 1, 3, 5, 0, 0, 0, 1, 0, 1, '0000-00-00 00:00:00', NULL),
+(60, '60', 'M.UMAIR SHAFIQ', '', 1, '0', '', '2147483647', 'Karachi, Sindh', 1, 1, 2, 5, 0, 0, 0, 1, 0, 1, '0000-00-00 00:00:00', NULL),
+(61, '61', 'MUHAMMAD NAEEM', '', 1, '0', '', '2147483647', 'Karachi, Sindh', 1, 1, 1, 6, 0, 0, 0, 1, 0, 1, '0000-00-00 00:00:00', NULL),
+(62, '62', 'SYED AREEB', '', 1, '0', '', '87654321', 'Karachi, Sindh', 1, 1, 2, 5, 0, 0, 0, 1, 0, 1, '0000-00-00 00:00:00', NULL),
+(63, '63', 'SAIM MAJID', '', 1, '0', '', '87654321', 'Karachi, Sindh', 1, 1, 1, 6, 0, 0, 0, 1, 0, 1, '0000-00-00 00:00:00', NULL),
+(64, '64', 'M.FARIS SHEIKH', '', 1, '0', '', '87654321', 'Karachi, Sindh', 1, 1, 5, 5, 0, 0, 0, 1, 0, 1, '0000-00-00 00:00:00', NULL),
+(65, '65', 'UMER DURANI', '', 1, '0', '', '87654321', 'Karachi, Sindh', 1, 1, 5, 5, 0, 0, 0, 1, 0, 1, '0000-00-00 00:00:00', NULL),
+(66, '66', 'HAYA SHEIKH', '', 2, '0', '', '87654321', 'Karachi, Sindh', 1, 1, 6, 5, 0, 0, 0, 1, 0, 1, '0000-00-00 00:00:00', NULL),
+(67, '67', 'ABDUL REHMAN RAZA', '', 1, '0', '', '87654321', 'Karachi, Sindh', 1, 1, 4, 5, 0, 0, 0, 1, 0, 1, '0000-00-00 00:00:00', NULL),
+(68, '68', 'M.TARIQ', '', 1, '0', '', '87654321', 'Karachi, Sindh', 1, 1, 4, 5, 0, 0, 0, 1, 0, 1, '0000-00-00 00:00:00', NULL),
+(69, '69', 'SOMIL RUPELA', '', 1, '0', '', '87654321', 'Karachi, Sindh', 1, 1, 4, 5, 0, 0, 0, 1, 0, 1, '0000-00-00 00:00:00', NULL),
+(70, '70', 'ASLAM MEER', '', 1, '0', '', '2147483647', 'Karachi, Sindh', 1, 1, 1, 6, 0, 0, 0, 1, 0, 1, '0000-00-00 00:00:00', NULL),
+(71, '71', 'ZAFAR', '', 1, '0', '', '2147483647', 'Karachi, Sindh', 1, 1, 1, 6, 0, 0, 0, 1, 0, 1, '0000-00-00 00:00:00', NULL),
+(72, '72', 'HOOD BASIT', '', 1, '0', '', '2147483647', 'Karachi, Sindh', 1, 1, 5, 5, 0, 0, 0, 1, 0, 1, '0000-00-00 00:00:00', NULL),
+(73, '73', 'HUNAIN NADEEM', '', 1, '0', '', '2147483647', 'Karachi, Sindh', 1, 1, 1, 5, 0, 0, 0, 1, 0, 1, '0000-00-00 00:00:00', NULL),
+(74, '74', 'DANIYAL KHATRI', '', 1, '0', '', '2147483647', 'Karachi, Sindh', 1, 1, 2, 5, 0, 0, 0, 1, 0, 1, '0000-00-00 00:00:00', NULL),
+(75, '75', 'M.AFZAL', '', 1, '0', '', '87654321', 'Karachi, Sindh', 1, 1, 1, 6, 0, 0, 0, 1, 0, 1, '0000-00-00 00:00:00', NULL),
+(76, '76', 'FAROOQ KHAN', '', 1, '0', '', '87654321', 'Karachi, Sindh', 1, 1, 1, 6, 0, 0, 0, 1, 0, 1, '0000-00-00 00:00:00', NULL),
+(77, '77', 'MURTAZA MUGHAL', '', 1, '0', '', '87654321', 'Karachi, Sindh', 1, 1, 5, 5, 0, 0, 0, 1, 0, 1, '0000-00-00 00:00:00', NULL),
+(78, '78', 'HAMMAD AFTAB', '', 1, '0', '', '87654321', 'Karachi, Sindh', 1, 1, 1, 6, 0, 0, 0, 1, 0, 1, '0000-00-00 00:00:00', NULL),
+(79, '79', 'AQIB RAZA', '', 1, '0', '', '87654321', 'Karachi, Sindh', 1, 1, 2, 5, 0, 0, 0, 1, 0, 1, '0000-00-00 00:00:00', NULL),
+(80, '80', 'DANIYAL SHAKEEL', '', 1, '0', '', '87654321', 'Karachi, Sindh', 1, 1, 2, 5, 0, 0, 0, 1, 0, 1, '0000-00-00 00:00:00', NULL),
+(88, '81', 'Ali', 'Aslam', 1, '544334543', 'a@gmail.com', '34223', 'fgdg', 2, 2, 4, 5, 67890, 0, NULL, 1, 1, NULL, '2023-09-23 03:33:54', NULL),
+(89, '82', 'Aslam O', 'Aleikum', 1, '41101', 'asl@gmail.com', '0', '34726357', 1, 1, 1, 5, 4666, 0, 1, 1, 2147483647, NULL, '0000-00-00 00:00:00', NULL),
+(90, '2003', 'f test l test ', 'f test l test ', 1, '2147483647', 'syedtalha641@gmail.com', '2147483647', 'address', 2, 1, 7, 6, 1000, 0, 0, 1, 1, 1, '2023-10-02 20:47:59', '2023-10-02 20:49:13'),
+(91, 'empid', 'f', 'l', 2, '42401', 'gmail', '2147483647', 'ad', 2, 2, 1, 0, 1000, 0, 0, 1, 1, 1, '2023-10-02 21:46:25', '2023-10-02 21:50:00'),
+(92, 'empid1', 'f', 'l', 2, '42401', 'gmail', '2147483647', 'ad', 2, 2, 1, 0, 1000, 0, 0, 1, 1, NULL, '2023-10-02 21:50:16', NULL),
+(93, 'empid2', 'f', 'l', 2, '42401', 'gmail', '2147483647', 'ad', 2, 2, 1, 0, 1000, 0, 0, 1, 1, NULL, '2023-10-02 21:52:20', NULL),
+(94, 'empid3', 'f', 'l', 2, '42401-6487231-1', 'gmail', '03152155245', 'ad', 2, 2, 1, 0, 1000, 0, 0, 1, 1, NULL, '2023-10-02 21:53:07', NULL),
+(95, 'empid4', 'ff', 'll', 1, '1111111111111', 'syedtalha641@gmail.com', '03152155245', 'l6 st32 sector L-1 Surjani karachi pak', 2, 2, 1, 0, 60000, 0, 0, 1, 1, NULL, '2023-10-02 21:54:49', NULL);
 
 --
 -- Triggers `user_profile`
@@ -4304,7 +4343,7 @@ ALTER TABLE `user_profile`
 -- AUTO_INCREMENT for table `advance`
 --
 ALTER TABLE `advance`
-  MODIFY `RecId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `RecId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 
 --
 -- AUTO_INCREMENT for table `attendance`
@@ -4328,19 +4367,19 @@ ALTER TABLE `devicetable`
 -- AUTO_INCREMENT for table `holidays`
 --
 ALTER TABLE `holidays`
-  MODIFY `RecId` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `RecId` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT for table `logs`
 --
 ALTER TABLE `logs`
-  MODIFY `RecID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=99;
+  MODIFY `RecID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=162;
 
 --
 -- AUTO_INCREMENT for table `payroll`
 --
 ALTER TABLE `payroll`
-  MODIFY `RecId` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=42;
+  MODIFY `RecId` int(10) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `payroll_type`
@@ -4394,7 +4433,7 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT for table `user_profile`
 --
 ALTER TABLE `user_profile`
-  MODIFY `RecId` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=90;
+  MODIFY `RecId` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=96;
 
 --
 -- Constraints for dumped tables

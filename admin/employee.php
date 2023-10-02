@@ -246,35 +246,35 @@ $(function(){
       }
     });
     $.ajax({
-  type: 'POST',
-  url: 'getAdvanceData.php',
-  data: { id: empID }, // Pass the employee ID
-  dataType: 'json',
-  success: function (data) 
-  {
-    var tbody = $('#employeeTable tbody');
-    tbody.empty(); // Clear existing data
-        
-    if (data.length > 0) {
-      $.each(data, function (index, row) {
-        var newRow = '<tr>';
-        newRow += '<td>' + row.firstname + '</td>';
-        newRow += '<td>' + row.Amount + '</td>';
-        newRow += '<td>' + row.AmountDate + '</td>';
-        newRow += '</tr>';
-        tbody.append(newRow);
-      });
-    } else {
-      tbody.append('<tr><td colspan="4">No data found</td></tr>');
-    }
+      type: 'POST',
+      url: 'getAdvanceData.php',
+      data: { id: empID }, // Pass the employee ID
+      dataType: 'json',
+      success: function (data) 
+      {
+        var tbody = $('#employeeTable tbody');
+        tbody.empty(); // Clear existing data
+            
+        if (data.length > 0) {
+          $.each(data, function (index, row) {
+            var newRow = '<tr>';
+            newRow += '<td>' + row.firstname + '</td>';
+            newRow += '<td>' + row.Amount + '</td>';
+            newRow += '<td>' + row.AmountDate + '</td>';
+            newRow += '</tr>';
+            tbody.append(newRow);
+          });
+        } else {
+          tbody.append('<tr><td colspan="4">No data found</td></tr>');
+        }
 
-    // Show the modal after populating the table
-    $('#advance').modal('show');
-  },
-  error: function () {
-    console.error('Error fetching data');
-  }
-});
+        // Show the modal after populating the table
+        $('#advance').modal('show');
+      },
+      error: function () {
+        console.error('Error fetching data');
+      }
+    });
   })
   
   $(document).on('click','.payroll', function(e){
@@ -336,11 +336,6 @@ function getRow(id){
 }
 </script>
 
-
-
-<script>
-
-</script>
 
 </body>
 </html>

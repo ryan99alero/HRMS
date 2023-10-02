@@ -106,6 +106,7 @@
                 background-color: #219955;
             }
     </style>
+<?php include 'includes/conn.php'; ?>
 <?php include 'includes/session.php'; ?>
 <?php include 'includes/header.php'; ?>
 
@@ -158,9 +159,9 @@
 
 use SimpleExcel\SimpleExcel;
 
-$db = mysqli_connect('localhost', 'root', '', 'hrms');
+// $db = mysqli_connect('localhost', 'root', '', 'hrms');
 
-if (!$db) {
+if (!$conn) {
     die('Could not connect: ' . mysqli_connect_error());
 }
 
@@ -195,15 +196,15 @@ if (isset($_POST['insert'])) {
         $count = 0;
 
         while (count($foo) > $count) {
-            $Title = mysqli_real_escape_string($db, $foo[$count][0]);
-            $Holiday_Date = mysqli_real_escape_string($db, $foo[$count][1]);
+            $Title = mysqli_real_escape_string($conn, $foo[$count][0]);
+            $Holiday_Date = mysqli_real_escape_string($conn, $foo[$count][1]);
             $sql = "call `StrProc_InsertHolidayInfo`('$Title','$Holiday_Date')";  
 
-            if (mysqli_query($db, $sql)) {
+            if (mysqli_query($conn, $sql)) {
                 // var_dump($sql);
                 // echo '<script>alert("Data inserted successfully!");</script>';
             } else {
-                echo "Error: " . $sql . "<br>" . mysqli_error($db);
+                echo "Error: " . $sql . "<br>" . mysqli_error($conn);
             }
             
             $count++;
