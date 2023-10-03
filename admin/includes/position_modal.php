@@ -13,7 +13,7 @@
                   	<label for="title" class="col-sm-3 control-label">Designation</label>
 
                   	<div class="col-sm-9">
-                    	<input type="text" class="form-control" id="title" name="title" required>
+                    	<input type="text" class="form-control" id="title" name="title" required placeholder="Enter Designation">
                   	</div>
                 </div>
                 <!-- <div class="form-group">

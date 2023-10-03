@@ -250,7 +250,7 @@ include "includes/conn.php";
         <label for="gmail" class="col-sm-3 control-label">Gmail</label>
         <div class="col-sm-9">
             <input type="text" class="form-control gmail" id="editGmail" name="gmail" required>
-            <span id="upgmailerror" style="color: red;"></span>
+            <span id="upGmailerror" style="color: red;"></span>
         </div>
     </div>
     
@@ -557,7 +557,7 @@ phoneInput.addEventListener("input", function (event) {
             var Gmailcheck = /^[a-zA-Z_]{3,}@[a-zA-Z]{3,}[.]{1}[a-zA-Z.]{2,6}$/ ;
             var Homecheck = /^[a-zA-Z., /0-9]{3,20}$/ ;
             var Phonecheck = /^[0-9]{11}$/;
-            var Salarycheck = /^[0-9]{3,20}$/ ;
+            var Salarycheck = /^[0-9]{1,20}$/ ;
             
             if(EmpIDcheck.test(e) )
             {
@@ -665,7 +665,7 @@ phoneInput.addEventListener("input", function (event) {
             var upGmailcheck = /^[a-zA-Z_]{3,}@[a-zA-Z]{3,}[.]{1}[a-zA-Z.]{2,6}$/ ;
             var upHomecheck = /^[a-zA-Z. /0-9]{3,20}$/ ;
             var upPhonecheck = /^[0-9]{11}$/;
-            var upSalarycheck = /^[0-9]{3,20}$/ ;
+            var upSalarycheck = /^[0-9]{1,20}$/ ;
             
            
             if(upFnamecheck.test(upfn) )

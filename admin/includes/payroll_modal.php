@@ -182,7 +182,8 @@
                                                             <label for="label" name="label" class="col-sm-3 control-label">Remarks</label>
 
                                                             <div class="col-sm-9">
-                                                            <textarea name="remarks" rows="4" cols="50" required></textarea>
+                                                            <textarea name="remarks" id="remarks" rows="4" cols="50" required></textarea>
+                                                            <span id="remarkserror" style="color: red;"></span>
                                                             <br>
                                                             </div>
                                                         </div>
@@ -239,7 +240,25 @@
     $(document).ready(function() {
         // Edit button click event
         $(".payrollFormSubmit-btn").click((function(){
+            var remarks = document.getElementById("remarks").value;
+            var dec = document.getElementById("edit_Deduction").value;
+            var mdec = document.getElementById("edit_M_Deducted").value;
+            var tp = document.getElementById("edit_Total_Pay").value;
+            var mtp = document.getElementById("edit_M_Salary").value;
+               
+
+            if (dec === mdec){
+                $(".payrollFormSubmit").submit();
+            }
+            else if (remarks == "") {
+                document.getElementById("remarkserror").innerHTML = " Please given Remarks..." ;
+                return false; // Form submit nahi hoga
+            }
+            else{
+                // return true; // Form submit hoga
             $(".payrollFormSubmit").submit()
+            }
+          
         }))
         $('.edit').click(function() {
             var id = $(this).data('id');
@@ -339,10 +358,4 @@ document.addEventListener("DOMContentLoaded", function() {
     // Attach the updateMSalary function to the change event of M_Deducted or M_Advance input
     document.getElementById("edit_M_Deducted").addEventListener("keyup", updateMSalary);
     document.getElementById("edit_M_Advance").addEventListener("keyup", updateMSalary);
-</script>
-
-
-
-
-
-     
+</script>   

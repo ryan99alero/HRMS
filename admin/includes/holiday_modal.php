@@ -20,7 +20,7 @@
                     <label for="Holiday_Date" class="col-sm-3 control-label">Holiday Date</label>
 
                     <div class="col-sm-9">
-                      <input type="date" class="form-control" id="add_Holiday_Date" name="Holiday_Date" required>
+                      <input type="date" class="form-control" id="add_Holiday_Date" name="Holiday_Date"  placeholder="Enter Holiday" required>
                     </div>
                 </div>
           	</div>

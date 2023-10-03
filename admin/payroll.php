@@ -156,7 +156,7 @@ $(function(){
                   customize: function(doc) {
                     // Customize the PDF document if needed
                     // For example, you can set the page size, margins, etc.
-                    doc.pageSize = 'a4';
+                    doc.pageSize = 'legal';
                     doc.pageMargins = [40, 60, 40, 60];
                   }
                 },

@@ -14,7 +14,7 @@
 
 						<div class="col-sm-9">
 						<div class="bootstrap-timepicker">
-							<input type="text" class="form-control " id="shift_name" name="shift_name" required>
+							<input type="text" class="form-control " id="shift_name" name="shift_name" required placeholder="Enter Shift Name">
 						</div>
 						</div>
 					</div>
@@ -23,7 +23,7 @@
 
 						<div class="col-sm-9">
 						<div class="bootstrap-timepicker">
-							<input type="text" class="form-control timepicker" id="time_in" name="time_in" required>
+							<input type="text" class="form-control timepicker" id="time_in" name="time_in" required value="null">
 						</div>
 						</div>
                		</div>
@@ -32,7 +32,7 @@
 
 						<div class="col-sm-9">
 						<div class="bootstrap-timepicker">
-							<input type="text" class="form-control timepicker" id="time_out" name="time_out" required>
+							<input type="text" class="form-control timepicker" id="time_out" name="time_out" required value="null">
 						</div>
 						</div>
 					</div>
@@ -41,7 +41,7 @@
 
 						<div class="col-sm-9">
 						<div class="bootstrap-timepicker">
-							<input type="text" class="form-control " id="grace_time" name="grace_time" required>
+							<input type="text" class="form-control " id="grace_time" name="grace_time" required placeholder="Enter Grace Time">
 						</div>
 						</div>
 					</div>

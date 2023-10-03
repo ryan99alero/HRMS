@@ -149,12 +149,12 @@ $(function(){
                     doc.pageMargins = [40, 60, 40, 60];
 
                              // Specify the column index you want to skip
-                              var columnIndexToSkip = 9; // Change to the index of the column you want to skip
+                              var columnIndexToSkip = 10; // Change to the index of the column you want to skip
 
                             // Loop through all table rows
                             for (var i = 0; i < doc.content[1].table.body.length; i++) {
                               // Remove the content of the specified column
-                              doc.content[1].table.body[i].splice(columnIndexToSkip, 10);
+                              doc.content[1].table.body[i].splice(columnIndexToSkip, 11);
                             }
                   }
                 },
@@ -163,7 +163,7 @@ $(function(){
                           title: 'Attendance',
                           customize: function(xlsx) {
                             // Specify the column index you want to hide (0-based index)
-                            var columnIndexToHide = 9; // Change to the index of the column you want to hide
+                            var columnIndexToHide = 10; // Change to the index of the column you want to hide
                             var sheet = xlsx.xl.worksheets['sheet1.xml'];
 
                             // Loop through all rows in the sheet

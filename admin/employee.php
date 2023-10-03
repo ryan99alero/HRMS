@@ -165,16 +165,16 @@ $(function(){
                   customize: function(doc) {
                     // Customize the PDF document if needed
                     // For example, you can set the page size, margins, etc.
-                    doc.pageSize = 'a4';
+                    doc.pageSize = 'legal';
                     doc.pageMargins = [40, 60, 40, 60];
 
                           // Specify the column index you want to skip
-                           var columnIndexToSkip = 16; // Change to the index of the column you want to skip
+                           var columnIndexToSkip = 15; // Change to the index of the column you want to skip
 
                           // Loop through all table rows
                           for (var i = 0; i < doc.content[1].table.body.length; i++) {
                             // Remove the content of the specified column
-                            doc.content[1].table.body[i].splice(columnIndexToSkip, 14);
+                            doc.content[1].table.body[i].splice(columnIndexToSkip, 16);
                           }
 
                   }
