@@ -1206,7 +1206,8 @@ INSERT INTO user(Role_Id,UserP_Id,username,password,created_by,created_on)VALUES
 COMMIT;
 END$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `StrProc_InsertUserProfileInfo` (IN `EmpID` VARCHAR(50), IN `Fname` VARCHAR(50), IN `Lname` VARCHAR(50), IN `Sex` INT(10), IN `CNIC` INT, IN `Gmail` VARCHAR(50), IN `Phone` INT, IN `Home` TEXT, IN `DesID` INT, IN `PayId` INT, IN `ShiftID` INT, IN `WorkingDays` INT, IN `Salary` DOUBLE, IN `Cheak_value` BOOLEAN, IN `RId` INT, IN `Uname` VARCHAR(50), IN `Pass` VARCHAR(50))  BEGIN
+CREATE DEFINER=`root`@`localhost` PROCEDURE `StrProc_InsertUserProfileInfo`(IN `EmpID` VARCHAR(50), IN `Fname` VARCHAR(50), IN `Lname` VARCHAR(50), IN `Sex` INT(10), IN `CNIC` INT, IN `Gmail` VARCHAR(50), IN `Phone` INT, IN `Home` TEXT, IN `DesID` INT, IN `PayId` INT, IN `ShiftID` INT, IN `WorkingDays` INT, IN `Salary` DOUBLE, IN `Cheak_value` BOOLEAN, IN `RId` INT, IN `Uname` VARCHAR(50), IN `Pass` VARCHAR(50))
+BEGIN
 DECLARE CONTINUE HANDLER FOR SQLEXCEPTION
         BEGIN
             ROLLBACK;
@@ -1217,13 +1218,12 @@ IF (@isExist <= 0) THEN
 INSERT INTO user_profile(Designation_Id,Employee_Id,firstname,lastname,CNIC,Gmail,address,contact,gender,shift_id,payscale_id ,salary,Advance,workingDays,created_by,created_on,Cheak_value)VALUES(EmpID,Fname,Lname,Sex,CNIC,Gmail,Phone,Home,DesID,PayId,ShiftID,WorkingDays,Salary,0,1,CURRENT_TIMESTAMP,Cheak_value);
  
 	IF Cheak_value THEN
-        INSERT INTO user (Role_Id, username, password, created_by, created_on,UserP_Id)
-        SELECT RId , Uname, Pass, 1, CURRENT_TIMESTAMP,LAST_INSERT_ID()
-        WHERE Cheak_value = 1;
-	END IF;
-    END IF;
+    INSERT INTO user (Role_Id, username, password, created_by, created_on, UserP_Id)
+    VALUES (RId, Uname, Pass, 1, CURRENT_TIMESTAMP, LAST_INSERT_ID());
+END IF;				
+END IF;				
 COMMIT;
-END$$
+END
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `StrProc_SelectAdvanceInfo` (IN `adv_Id` INT)  BEGIN
 DECLARE CONTINUE HANDLER FOR SQLEXCEPTION
