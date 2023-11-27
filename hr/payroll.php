@@ -67,12 +67,14 @@
             <div class="box-body">
               <table id="example1" class="table table-bordered">
                 <thead>
+                <tr>
                   <th>Employee Name</th>
                   <th>Employee ID</th>
                   <th>Gross</th>
                   <th>Deductions</th>
                   <th>Cash Advance</th>
                   <th>Net Pay</th>
+                </tr>
                 </thead>
                 <tbody>
                   <?php

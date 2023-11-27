@@ -1,5 +1,4 @@
-
-<?php
+/** @noinspection ALL *//** @noinspection ALL */<?php
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     include_once 'includes/conn.php';
     

@@ -106,7 +106,7 @@
                 background-color: #219955;
             }
     </style>
-<?php include 'includes/session.php'; ?>
+/** @noinspection PhpUndefinedVariableInspection */<?php include 'includes/session.php'; ?>
 <?php include 'includes/conn.php'; ?>
 <?php include 'includes/header.php'; ?>
 

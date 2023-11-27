@@ -61,6 +61,7 @@
             <div class="box-body table-responsive">
               <table style="width: 100%; table-layout: fixed;" id="example1" class="table table-bordered">
                 <thead>
+                <tr>
                   <th>ID</th>
                   <th>Employee Name</th>
                   <th>Designation</th>
@@ -79,6 +80,7 @@
                   <th>M Advance</th>
                   <th>M Salary</th>
                   <th>Total_Pay</th>
+                </tr>
                 </thead>
                 <tbody>
                    <?php

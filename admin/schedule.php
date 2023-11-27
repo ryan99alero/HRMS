@@ -51,12 +51,14 @@
             <div class="box-body">
               <table id="example1" class="table table-bordered">
                 <thead>
+                <tr>
                   <th>ID</th>
                   <th>Shift Name</th>
                   <th>Time In</th>
                   <th>Time Out</th>
                   <th>Grace Time</th>
                   <th>Action</th>
+                </tr>
                 </thead>
                 <tbody>
                   <?php

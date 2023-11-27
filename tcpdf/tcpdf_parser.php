@@ -173,7 +173,7 @@ class TCPDF_PARSER {
 				$this->Error('Unable to find startxref');
 			}
 			$matches = array_pop($matches);
-			$startxref = $matches[1];
+            $startxref = $matches[1];
 		} elseif (strpos($this->pdfdata, 'xref', $offset) == $offset) {
 			// Already pointing at the xref table
 			$startxref = $offset;

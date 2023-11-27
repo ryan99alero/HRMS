@@ -440,7 +440,7 @@ class Datamatrix {
 	 * Return the 253-state codeword
 	 * @param $cwpad (int) Pad codeword.
 	 * @param $cwpos (int) Number of data codewords from the beginning of encoded data.
-	 * @return pad codeword
+	 * @return $pad codeword
 	 * @protected
 	 */
 	protected function get253StateCodeword($cwpad, $cwpos) {
@@ -455,7 +455,7 @@ class Datamatrix {
 	 * Return the 255-state codeword
 	 * @param $cwpad (int) Pad codeword.
 	 * @param $cwpos (int) Number of data codewords from the beginning of encoded data.
-	 * @return pad codeword
+	 * @return $pad codeword
 	 * @protected
 	 */
 	protected function get255StateCodeword($cwpad, $cwpos) {

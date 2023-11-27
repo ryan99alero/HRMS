@@ -12,6 +12,6 @@
   "strict"   : true,
   "undef"    : true,
   "unused"   : true,
-  // External variabls and plugins
+
   "predef":  [ "AdminLTEOptions", "FastClick", "moment", "Morris", "Chart" ]
 }

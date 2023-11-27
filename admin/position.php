@@ -51,9 +51,11 @@
             <div class="box-body">
               <table id="example1" class="table table-bordered">
                 <thead>
+                <tr>
                 <th>ID</th>
                   <th>Designation Name</th>
                   <th>Action</th>
+                </tr>
                 </thead>
                 <tbody>
                   <?php

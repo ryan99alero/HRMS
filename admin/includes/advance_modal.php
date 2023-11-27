@@ -7,7 +7,7 @@
                  <h4 class="modal-title"><b>Advance</b></h4>
             </div>
             <div class="modal-body">
-                <form class="form-horizontal" method="POST" action="advance_add.php" id="advanceForm" enctype="multipart/form-data">
+                <form class="form-horizontal" method="POST" action="../advance_add.php" id="advanceForm" enctype="multipart/form-data">
                         
                     <div class="form-group">
 

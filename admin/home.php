@@ -386,7 +386,7 @@ function generatePieChart(percentage, onTimeToday, lateToday) {
 // Example usage:
 var onTimePercentage = <?php echo $percentage; ?>;
 var onTimeToday = <?php echo $query->num_rows; ?>;
-var lateToday = <?php echo $querya->num_rows; ?>;
+var lateToday = <?php echo $query->num_rows; ?>;
 
 // Call the function with the data to generate the pie chart
 generatePieChart(onTimePercentage, onTimeToday, lateToday);
