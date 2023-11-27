@@ -100,7 +100,7 @@
             		
                     <div class="text-center">
 	                	<p>DELETE HoliDay</p>
-	                	<h2 id="del_Title" name="RecId" class="bold"></h2>
+	                	<h2 id="del_Title" class="bold"></h2>
 	            	</div>
           	</div>
           	<div class="modal-footer">

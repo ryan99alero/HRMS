@@ -52,12 +52,14 @@
             <div class="box-body">
               <table id="example1" class="table table-bordered">
                 <thead>
+                <tr>
                   <th class="hidden"></th>
                   <th>Date</th>
                   <th>Employee ID</th>
                   <th>Name</th>
                   <th>Amount</th>
                   <th>Tools</th>
+                </tr>
                 </thead>
                 <tbody>
                   <?php

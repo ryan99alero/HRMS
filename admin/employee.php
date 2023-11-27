@@ -132,7 +132,7 @@
 </div>
 <?php include 'includes/scripts.php'; ?>
 
-<script scr="JS/jquery3.7.0.js"></script>
+<script src="JS/jquery3.7.0.js"></script>
 
 <script src="JS/datatable1.13.6.js"></script>
 

@@ -125,7 +125,7 @@
 </div>
 <?php include 'includes/scripts.php'; ?> 
 <!-- <script src="https://code.jquery.com/jquery-3.7.0.js"></script> -->
-<script scr="JS/jquery3.7.0.js"></script>
+<script></script>
 <!-- <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script> -->
 <script src="JS/datatable1.13.6.js"></script>
 <!-- <script src="https://cdn.datatables.net/buttons/2.4.1/js/dataTables.buttons.min.js"></script> -->

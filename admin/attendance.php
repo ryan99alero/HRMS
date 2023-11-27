@@ -58,6 +58,7 @@
             <div class="box-body table-responsive">
               <table style="width: 100%; table-layout: fixed;" id="attendanceTable" class="table table-bordered table-responsive">
                 <thead>
+                <tr>
                   <th class="hidden">Record ID</th>
                   <th>Employee ID</th>
                   <th>Person Name</th>
@@ -70,6 +71,7 @@
                   <th>Over Time</th>
                   <th>Status</th>
                   <th>Action</th>
+                </tr>
                 </thead>
                 <tbody>
                   <?php
@@ -114,7 +116,7 @@
 
 <!-- <script src="https://cdn.datatables.net/plug-ins/1.13.6/filtering/row-based/range_dates.js"></script>
 <script src="https://cdn.datatables.net/buttons/2.4.1/js/dataTables.buttons.min.js"></script> -->
-<script scr="JS/jquery3.7.0.js"></script>
+<script src="JS/jquery3.7.0.js"></script>
 
 <script src="JS/datatable1.13.6.js"></script>
 

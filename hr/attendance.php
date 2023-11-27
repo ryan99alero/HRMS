@@ -51,6 +51,7 @@
             <div class="box-body">
               <table id="example1" class="table table-bordered">
                 <thead>
+                <tr>
                   <th class="hidden"></th>
                   <th>Date</th>
                   <th>Employee ID</th>
@@ -58,6 +59,7 @@
                   <th>Time In</th>
                   <th>Time Out</th>
                   <th>Tools</th>
+                </tr>
                 </thead>
                 <tbody>
                   <?php
