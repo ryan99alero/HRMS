@@ -8,7 +8,7 @@
             	<h4 class="modal-title"><b>Add Position</b></h4>
           	</div>
           	<div class="modal-body">
-            	<form class="form-horizontal" method="POST" action="position_add.php">
+            	<form class="form-horizontal" method="POST" action="../position_add.php">
           		  <div class="form-group">
                   	<label for="title" class="col-sm-3 control-label">Position Title</label>
 
@@ -43,7 +43,7 @@
             	<h4 class="modal-title"><b>Update Position</b></h4>
           	</div>
           	<div class="modal-body">
-            	<form class="form-horizontal" method="POST" action="position_edit.php">
+            	<form class="form-horizontal" method="POST" action="../position_edit.php">
             		<input type="hidden" id="posid" name="id">
                 <div class="form-group">
                     <label for="edit_title" class="col-sm-3 control-label">Position Title</label>
@@ -79,9 +79,9 @@
             	<h4 class="modal-title"><b>Deleting...</b></h4>
           	</div>
           	<div class="modal-body">
-            	<form class="form-horizontal" method="POST" action="position_delete.php">
+            	<form class="form-horizontal" method="POST" action="../position_delete.php">
             		<input type="hidden" id="del_posid" name="id">
-            		<div class="text-center">
+                      		<div class="text-center">
 	                	<p>DELETE POSITION</p>
 	                	<h2 id="del_position" class="bold"></h2>
 	            	</div>

@@ -8,7 +8,7 @@
             	<h4 class="modal-title"><b>Add Cash Advance</b></h4>
           	</div>
           	<div class="modal-body">
-            	<form class="form-horizontal" method="POST" action="cashadvance_add.php">
+            	<form class="form-horizontal" method="POST" action="../cashadvance_add.php">
           		  <div class="form-group">
                   	<label for="employee" class="col-sm-3 control-label">Employee ID</label>
 
@@ -43,7 +43,7 @@
             	<h4 class="modal-title"><b><span class="date"></span> - <span class="employee_name"></span></b></h4>
           	</div>
           	<div class="modal-body">
-            	<form class="form-horizontal" method="POST" action="cashadvance_edit.php">
+            	<form class="form-horizontal" method="POST" action="../cashadvance_edit.php">
             		<input type="hidden" class="caid" name="id">
                 <div class="form-group">
                     <label for="edit_amount" class="col-sm-3 control-label">Amount</label>
@@ -72,7 +72,7 @@
             	<h4 class="modal-title"><b><span class="date"></span></b></h4>
           	</div>
           	<div class="modal-body">
-            	<form class="form-horizontal" method="POST" action="cashadvance_delete.php">
+            	<form class="form-horizontal" method="POST" action="../cashadvance_delete.php">
             		<input type="hidden" class="caid" name="id">
             		<div class="text-center">
 	                	<p>DELETE CASH ADVANCE</p>

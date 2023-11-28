@@ -8,7 +8,7 @@
             	<h4 class="modal-title"><b>Add Overtime</b></h4>
           	</div>
           	<div class="modal-body">
-            	<form class="form-horizontal" method="POST" action="overtime_add.php">
+            	<form class="form-horizontal" method="POST" action="../overtime_add.php">
           		  <div class="form-group">
                   	<label for="employee" class="col-sm-3 control-label">Employee ID</label>
 
@@ -66,7 +66,7 @@
             	<h4 class="modal-title"><b><span class="employee_name"></span></b></h4>
           	</div>
           	<div class="modal-body">
-            	<form class="form-horizontal" method="POST" action="overtime_edit.php">
+            	<form class="form-horizontal" method="POST" action="../overtime_edit.php">
             		<input type="hidden" class="otid" name="id">
                 <div class="form-group">
                     <label for="datepicker_edit" class="col-sm-3 control-label">Date</label>
@@ -118,7 +118,7 @@
             	<h4 class="modal-title"><b><span id="overtime_date"></span></b></h4>
           	</div>
           	<div class="modal-body">
-            	<form class="form-horizontal" method="POST" action="overtime_delete.php">
+            	<form class="form-horizontal" method="POST" action="../overtime_delete.php">
             		<input type="hidden" class="otid" name="id">
             		<div class="text-center">
 	                	<p>DELETE OVERTIME</p>

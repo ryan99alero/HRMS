@@ -8,7 +8,7 @@
             	<h4 class="modal-title"><b>Add Attendance</b></h4>
           	</div>
           	<div class="modal-body">
-            	<form class="form-horizontal" method="POST" action="attendance_add.php">
+            	<form class="form-horizontal" method="POST" action="../attendance_add.php">
           		  <div class="form-group">
                   	<label for="employee" class="col-sm-3 control-label">Employee ID</label>
 
@@ -63,7 +63,7 @@
             	<h4 class="modal-title"><b><span id="employee_name"></span></b></h4>
           	</div>
           	<div class="modal-body">
-            	<form class="form-horizontal" method="POST" action="attendance_edit.php">
+            	<form class="form-horizontal" method="POST" action="../attendance_edit.php">
             		<input type="hidden" id="attid" name="id">
                 <div class="form-group">
                     <label for="datepicker_edit" class="col-sm-3 control-label">Date</label>
@@ -112,7 +112,7 @@
             	<h4 class="modal-title"><b><span id="attendance_date"></span></b></h4>
           	</div>
           	<div class="modal-body">
-            	<form class="form-horizontal" method="POST" action="attendance_delete.php">
+            	<form class="form-horizontal" method="POST" action="../attendance_delete.php">
             		<input type="hidden" id="del_attid" name="id">
             		<div class="text-center">
 	                	<p>DELETE ATTENDANCE</p>

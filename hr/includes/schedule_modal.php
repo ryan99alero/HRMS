@@ -8,7 +8,7 @@
             	<h4 class="modal-title"><b>Add Schedule</b></h4>
           	</div>
           	<div class="modal-body">
-            	<form class="form-horizontal" method="POST" action="schedule_add.php">
+            	<form class="form-horizontal" method="POST" action="../schedule_add.php">
           		  <div class="form-group">
                   	<label for="time_in" class="col-sm-3 control-label">Time In</label>
 
@@ -47,7 +47,7 @@
             	<h4 class="modal-title"><b>Update Schedule</b></h4>
           	</div>
           	<div class="modal-body">
-            	<form class="form-horizontal" method="POST" action="schedule_edit.php">
+            	<form class="form-horizontal" method="POST" action="../schedule_edit.php">
             		<input type="hidden" id="timeid" name="id">
                 <div class="form-group">
                     <label for="edit_time_in" class="col-sm-3 control-label">Time In</label>
@@ -87,7 +87,7 @@
             	<h4 class="modal-title"><b>Deleting...</b></h4>
           	</div>
           	<div class="modal-body">
-            	<form class="form-horizontal" method="POST" action="schedule_delete.php">
+            	<form class="form-horizontal" method="POST" action="../schedule_delete.php">
             		<input type="hidden" id="del_timeid" name="id">
             		<div class="text-center">
 	                	<p>DELETE SCHEDULE</p>

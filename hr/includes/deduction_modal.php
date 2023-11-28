@@ -8,7 +8,7 @@
             	<h4 class="modal-title"><b>Add Deduction</b></h4>
           	</div>
           	<div class="modal-body">
-            	<form class="form-horizontal" method="POST" action="deduction_add.php">
+            	<form class="form-horizontal" method="POST" action="../deduction_add.php">
           		  <div class="form-group">
                   	<label for="description" class="col-sm-3 control-label">Description</label>
 
@@ -43,7 +43,7 @@
             	<h4 class="modal-title"><b>Update Deduction</b></h4>
           	</div>
           	<div class="modal-body">
-            	<form class="form-horizontal" method="POST" action="deduction_edit.php">
+            	<form class="form-horizontal" method="POST" action="../deduction_edit.php">
             		<input type="hidden" class="decid" name="id">
                 <div class="form-group">
                     <label for="edit_description" class="col-sm-3 control-label">Description</label>
@@ -79,7 +79,7 @@
             	<h4 class="modal-title"><b>Deleting...</b></h4>
           	</div>
           	<div class="modal-body">
-            	<form class="form-horizontal" method="POST" action="deduction_delete.php">
+            	<form class="form-horizontal" method="POST" action="../deduction_delete.php">
             		<input type="hidden" class="decid" name="id">
             		<div class="text-center">
 	                	<p>DELETE DEDUCTION</p>

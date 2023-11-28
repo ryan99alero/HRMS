@@ -16,7 +16,7 @@
 		$firstname = $_POST['firstname'];
 		$lastname = $_POST['lastname'];
 		$photo = $_FILES['photo']['name'];
-		if(password_verify($curr_password, $user['password'])){
+		if(password_verify($curr_password, s['password'])){
 			if(!empty($photo)){
 				move_uploaded_file($_FILES['photo']['tmp_name'], '../images/'.$photo);
 				$filename = $photo;	

@@ -8,7 +8,7 @@
             	<h4 class="modal-title"><b>Admin Profile</b></h4>
           	</div>
           	<div class="modal-body">
-            	<form class="form-horizontal" method="POST" action="profile_update.php?return=<?php echo basename($_SERVER['PHP_SELF']); ?>" enctype="multipart/form-data">
+            	<form class="form-horizontal" method="POST" action="../profile_update.php?return=<?php echo basename($_SERVER['PHP_SELF']); ?>" enctype="multipart/form-data">
           		  <div class="form-group">
                   	<label for="username" class="col-sm-3 control-label">Username</label>
 

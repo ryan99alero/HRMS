@@ -9,14 +9,14 @@
 </head>
 <header class="main-header">
     <!-- Logo -->
-    <a href="home.php" class="logo" style="background-color:rgba(0, 0, 0, 0.733);">
+    <a href="../home.php" class="logo" style="background-color:rgba(0, 0, 0, 0.733);">
       <!-- mini logo for sidebar mini 50x50 pixels -->
       <!-- <span class="logo-mini"><b>I</b> S</span> -->
-      <span class="logo-mini"><img src="../images/image1.png" alt="" style="height:50px; width:50px;"></span>
+      <span class="logo-mini"><img src="../../images/image1.png" alt="" style="height:50px; width:50px;"></span>
       <!-- logo for regular state and mobile devices -->
       <!-- <span class="logo-lg"><b>INOVI</b>  Solution</span> -->
       <!-- <span class="logo-lg"><img src="images/INOVI.png" alt=""></span> -->
-      <img src="../images/INOVI1.png" alt="" style="height:100px; width:120px;">
+      <img src="../../images/INOVI1.png" alt="" style="height:100px; width:120px;">
     </a>
     <!-- Header Navbar: style can be found in header.less -->
     <!-- <nav class="navbar navbar-static-top" style="background-color:rgba(0, 0, 0, 0.733);"> -->
@@ -50,7 +50,7 @@
                   <a href="#profile" data-toggle="modal" class="btn btn-default btn-flat" id="admin_profile">Update</a>
                 </div>
                 <div class="pull-right">
-                  <a href="logout.php" class="btn btn-default btn-flat">Sign out</a>
+                  <a href="../logout.php" class="btn btn-default btn-flat">Sign out</a>
                 </div>
               </li>
             </ul>

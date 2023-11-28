@@ -28,10 +28,10 @@
       <!-- sidebar menu: : style can be found in sidebar.less -->
       <ul class="sidebar-menu" data-widget="tree">
         <li class="header" style="background-color:rgba(0, 0, 0, 0.733);">REPORTS</li>
-        <li class=""><a href="home.php"><i class="fa fa-dashboard fa-beat"></i> <span>Dashboard</span></a></li>
+        <li class=""><a href="../home.php"><i class="fa fa-dashboard fa-beat"></i> <span>Dashboard</span></a></li>
         <li class="header" style="background-color:rgba(0, 0, 0, 0.733);">MANAGE</li>
         
-        <li><a href="attendance.php"><i class="fa fa-calendar fa-beat"></i> <span>Attendance</span></a></li>
+        <li><a href="../attendance.php"><i class="fa fa-calendar fa-beat"></i> <span>Attendance</span></a></li>
         <li class="treeview">
           <a href="#">
             <i class="fa fa-users fa-beat"></i>
@@ -41,18 +41,18 @@
             </span>
           </a>
           <ul class="treeview-menu">
-            <li><a href="employee.php"><i class="fa fa-circle-o"></i> Employee List</a></li>
-            <li><a href="overtime.php"><i class="fa fa-circle-o"></i> Overtime</a></li>
-            <li><a href="cashadvance.php"><i class="fa fa-circle-o"></i> Cash Advance</a></li>
-            <li><a href="schedule.php"><i class="fa fa-circle-o"></i> Schedules</a></li>
+            <li><a href="../employee.php"><i class="fa fa-circle-o"></i> Employee List</a></li>
+            <li><a href="../overtime.php"><i class="fa fa-circle-o"></i> Overtime</a></li>
+            <li><a href="../cashadvance.php"><i class="fa fa-circle-o"></i> Cash Advance</a></li>
+            <li><a href="../schedule.php"><i class="fa fa-circle-o"></i> Schedules</a></li>
           </ul>
         </li>
-        <li><a href="deduction.php"><i class="fa fa-file-text fa-beat"></i> <span>Deductions</span></a></li>
-        <li><a href="position.php"><i class="fa fa-suitcase fa-beat"></i> <span>Positions</span></a></li>
+        <li><a href="../deduction.php"><i class="fa fa-file-text fa-beat"></i> <span>Deductions</span></a></li>
+        <li><a href="../position.php"><i class="fa fa-suitcase fa-beat"></i> <span>Positions</span></a></li>
         <li class="header" style="background-color:rgba(0, 0, 0, 0.733);">PRINTABLES</li>
-        <li><a href="payroll.php"><i class="fa fa-files-o fa-beat"></i> <span>Payroll</span></a></li>
-        <li><a href="schedule_employee.php"><i class="fa fa-clock-o fa-beat"></i> <span>Schedule</span></a></li>
-        <li><a href="Biometric Devices.php"><i class="fa-brands fa-nfc-directional fa-beat"></i> <span>&nbsp;&nbsp;Biometric Devices</span></a></li>
+        <li><a href="../payroll.php"><i class="fa fa-files-o fa-beat"></i> <span>Payroll</span></a></li>
+        <li><a href="../schedule_employee.php"><i class="fa fa-clock-o fa-beat"></i> <span>Schedule</span></a></li>
+        <li><a href="../Biometric Devices.php"><i class="fa-brands fa-nfc-directional fa-beat"></i> <span>&nbsp;&nbsp;Biometric Devices</span></a></li>
       </ul>
     </section>
     <!-- /.sidebar -->

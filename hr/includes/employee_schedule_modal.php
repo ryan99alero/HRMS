@@ -8,7 +8,7 @@
             	<h4 class="modal-title"><b><span class="employee_name"></span></b></h4>
           	</div>
           	<div class="modal-body">
-            	<form class="form-horizontal" method="POST" action="schedule_employee_edit.php">
+            	<form class="form-horizontal" method="POST" action="../schedule_employee_edit.php">
             		<input type="hidden" id="empid" name="id">
                 <div class="form-group">
                     <label for="edit_schedule" class="col-sm-3 control-label">Schedule</label>

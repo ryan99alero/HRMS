@@ -8,7 +8,7 @@
             	<h4 class="modal-title"><b>Add Employee</b></h4>
           	</div>
           	<div class="modal-body">
-            	<form class="form-horizontal" method="POST" action="employee_add.php" enctype="multipart/form-data">
+            	<form class="form-horizontal" method="POST" action="../employee_add.php" enctype="multipart/form-data">
           		  <div class="form-group">
                   	<label for="firstname" class="col-sm-3 control-label">Firstname</label>
 
@@ -120,7 +120,7 @@
             	<h4 class="modal-title"><b><span class="employee_id"></span></b></h4>
           	</div>
           	<div class="modal-body">
-            	<form class="form-horizontal" method="POST" action="employee_edit.php">
+            	<form class="form-horizontal" method="POST" action="../employee_edit.php">
             		<input type="hidden" class="empid" name="id">
                 <div class="form-group">
                     <label for="edit_firstname" class="col-sm-3 control-label">Firstname</label>
@@ -226,7 +226,7 @@
             	<h4 class="modal-title"><b><span class="employee_id"></span></b></h4>
           	</div>
           	<div class="modal-body">
-            	<form class="form-horizontal" method="POST" action="employee_delete.php">
+            	<form class="form-horizontal" method="POST" action="../employee_delete.php">
             		<input type="hidden" class="empid" name="id">
             		<div class="text-center">
 	                	<p>DELETE EMPLOYEE</p>
@@ -252,7 +252,7 @@
               <h4 class="modal-title"><b><span class="del_employee_name"></span></b></h4>
             </div>
             <div class="modal-body">
-              <form class="form-horizontal" method="POST" action="employee_edit_photo.php" enctype="multipart/form-data">
+              <form class="form-horizontal" method="POST" action="../employee_edit_photo.php" enctype="multipart/form-data">
                 <input type="hidden" class="empid" name="id">
                 <div class="form-group">
                     <label for="photo" class="col-sm-3 control-label">Photo</label>

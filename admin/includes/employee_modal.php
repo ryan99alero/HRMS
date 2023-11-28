@@ -1,5 +1,5 @@
 <?php
-include "includes/conn.php";
+include "conn.php";
 // include 'includes/session.php';
 // include "./employee.php";
 ?>
@@ -41,7 +41,7 @@ include "includes/conn.php";
             <h4 class="modal-title"><b>Add Employee</b></h4>
           </div>
           <div class="modal-body">
-            <form class="form-horizontal" method="POST" action="employee_add.php" enctype="multipart/form-data" onsubmit="return validation()">
+            <form class="form-horizontal" method="POST" action="../employee_add.php" enctype="multipart/form-data" onsubmit="return validation()">
            
             <div class="form-group">
                   <label for="EmpID" class="col-sm-3 control-label">Employee ID</label>
@@ -211,7 +211,7 @@ include "includes/conn.php";
             	<h4 class="modal-title"><b><span class="employee_id"></span></b></h4>
           	</div>
           	<div class="modal-body">
-            	<form class="form-horizontal" method="POST" action="employee_edit.php" onsubmit="return editEmployeeValidation()">
+            	<form class="form-horizontal" method="POST" action="../employee_edit.php" onsubmit="return editEmployeeValidation()">
             		<input type="hidden" class="empid" name="id">
                 <div class="form-group">
         <label for="UpId" class="col-sm-3 control-label">User ID</label>
@@ -372,7 +372,7 @@ include "includes/conn.php";
             	<h4 class="modal-title"><b><span class="employee_id"></span></b></h4>
           	</div>
           	<div class="modal-body">
-            	<form class="form-horizontal" method="POST" action="employee_delete.php">
+            	<form class="form-horizontal" method="POST" action="../employee_delete.php">
             		<input type="hidden" class="empid" name="id">
             		<div class="text-center">
 	                	<p>DELETE EMPLOYEE</p>
