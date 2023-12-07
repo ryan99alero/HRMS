@@ -1,8 +1,8 @@
 <?php
 // Database credentials
 $host = 'localhost';
-$dbUsername = 'root';
-$dbPassword = 'deepspace9';
+$dbUsername = 'phpmyadmin';
+$dbPassword = 'KnzudGNfJoiQgKv3nUNY37';
 $dbName = 'attendance';
 
 // Create connection
