@@ -5,7 +5,7 @@ include "conn.php";
 ?>
 
 <?php 
-     $sql = "SELECT * FROM `tbl_gender` WHERE isactive=1"; 
+     $sql = "SELECT * FROM `tbl_gender` WHERE isactive=1";
     //  $sql = "call `StrProc_getGenderInfo`()";
      $query = $conn->query($sql);
      $query1 = $conn->query($sql);

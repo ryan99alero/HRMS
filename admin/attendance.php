@@ -1,9 +1,6 @@
 <?php include 'includes/conn.php'; ?>
 <?php include 'includes/session.php'; ?>
 <?php include 'includes/header.php'; ?>
-<!-- <link href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css" rel="stylesheet"/> -->
-<!-- <link href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css" rel="stylesheet"/>
-<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/buttons/2.4.1/css/buttons.dataTables.min.css"> -->
 <link rel="stylesheet" href="style/datatable1.13.6.css">
 <link rel="stylesheet" href="style/datatable2.4.1.css">
 <body class="hold-transition skin-blue sidebar-mini">

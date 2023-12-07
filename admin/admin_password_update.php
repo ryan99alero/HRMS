@@ -3,7 +3,7 @@
 $host = 'localhost';
 $dbUsername = 'root';
 $dbPassword = 'deepspace9';
-$dbName = 'HRMS';
+$dbName = 'attendance';
 
 // Create connection
 $conn = new mysqli($host, $dbUsername, $dbPassword, $dbName);
