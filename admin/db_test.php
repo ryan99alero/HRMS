@@ -8,7 +8,7 @@ $password = "KnzudGNfJoiQgKv3nUNY37";
 $dbname = "attendance";
 
 // Create connection
-$conn = new mysqli($servername, $username, $password, $dbname);$conn = new mysqli('localhost', 'phpmyadmin', 'KnzudGNfJoiQgKv3nUNY37', 'HRMS');
+$conn = new mysqli($servername, $username, $password, $dbname);
 
 // Check connection
 if ($conn->connect_error) {
