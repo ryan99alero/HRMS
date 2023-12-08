@@ -5,7 +5,7 @@ error_reporting(E_ALL);
 $servername = "localhost";
 $username = "phpmyadmin";
 $password = "KnzudGNfJoiQgKv3nUNY37";
-$dbname = "HRMS";
+$dbname = "attendance";
 
 // Create connection
 $conn = new mysqli($servername, $username, $password, $dbname);$conn = new mysqli('localhost', 'phpmyadmin', 'KnzudGNfJoiQgKv3nUNY37', 'HRMS');
