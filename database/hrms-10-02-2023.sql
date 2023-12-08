@@ -1223,15 +1223,15 @@ INSERT INTO user_profile(Designation_Id,Employee_Id,firstname,lastname,CNIC,Gmai
 END IF;				
 END IF;				
 COMMIT;
-END
+END$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `StrProc_SelectAdvanceInfo` (IN `adv_Id` INT)  BEGIN
-DECLARE CONTINUE HANDLER `FOR` SQLEXCEPTION
+DECLARE CONTINUE HANDLER FOR SQLEXCEPTION
         BEGIN
             ROLLBACK;
         END;
 START TRANSACTION;
- -- IF adv_Id != 0 THEN
+ IF adv_Id != 0 THEN
         SELECT up.firstname, ad.Amount, ad.AmountDate
         FROM advance as ad
         JOIN user_profile up ON up.RecId = ad.Up_Id 
@@ -1240,13 +1240,13 @@ START TRANSACTION;
         AND YEAR(ad.AmountDate) = YEAR(CURRENT_DATE)
         AND up.isactive = 1
         AND ad.Up_Id = adv_Id;
-   -- ELSE
-    --    SELECT ad.RecId, up.firstname, ad.Amount, ad.AmountDate
-   --     FROM advance as ad
-   --     JOIN user_profile up ON up.RecId = ad.Up_Id 
-   --     WHERE ad.isactive = 1
-   --     AND up.isactive = 1;
-  --   END IF;
+   ELSE
+       SELECT ad.RecId, up.firstname, ad.Amount, ad.AmountDate
+       FROM advance as ad
+       JOIN user_profile up ON up.RecId = ad.Up_Id
+       WHERE ad.isactive = 1
+       AND up.isactive = 1;
+    END IF;
     COMMIT;
 END$$
 
