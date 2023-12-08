@@ -14,7 +14,7 @@ if ($conn->connect_error) {
 }
 
 // New password to be set
-$newPassword = 'TacoFarm';
+$newPassword = 'deepspace9';
 // Hash the new password
 $hashedPassword = password_hash($newPassword, PASSWORD_DEFAULT);
 
