@@ -1,4 +1,6 @@
 <?php
+ini_set('display_errors', 1);
+error_reporting(E_ALL);
 $dbConfig = [
     'host' => getenv('DB_HOST'),
     'name' => getenv('DB_NAME'),
