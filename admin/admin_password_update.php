@@ -1,5 +1,7 @@
 <?php
 // Database credentials
+ini_set('display_errors', 1);
+error_reporting(E_ALL);
 $host = 'localhost';
 $dbUsername = 'phpmyadmin';
 $dbPassword = 'KnzudGNfJoiQgKv3nUNY37';
