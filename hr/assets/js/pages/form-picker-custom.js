@@ -1,7 +1,7 @@
 'use strict';
-$(document).ready(function() {
-   
-    $('.demo').each(function() {
+$(document).ready(function () {
+
+    $('.demo').each(function () {
         $(this).minicolors({
             control: $(this).attr('data-control') || 'hue',
             defaultValue: $(this).attr('data-defaultValue') || '',
@@ -12,10 +12,11 @@ $(document).ready(function() {
             opacity: $(this).attr('data-opacity'),
             position: $(this).attr('data-position') || 'bottom',
             swatches: $(this).attr('data-swatches') ? $(this).attr('data-swatches').split('|') : [],
-            change: function(value, opacity) {
+            change: function (value, opacity) {
                 if (!value) return;
                 if (opacity) value += ', ' + opacity;
-                if (typeof console === 'object') {}
+                if (typeof console === 'object') {
+                }
             },
             theme: 'bootstrap'
         });

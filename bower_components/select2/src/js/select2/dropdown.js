@@ -2,7 +2,7 @@ define([
   'jquery',
   './utils'
 ], function ($, Utils) {
-  function Dropdown ($element, options) {
+  function Dropdown($element, options) {
     this.$element = $element;
     this.options = options;
 
@@ -14,7 +14,7 @@ define([
   Dropdown.prototype.render = function () {
     var $dropdown = $(
       '<span class="select2-dropdown">' +
-        '<span class="select2-results"></span>' +
+      '<span class="select2-results"></span>' +
       '</span>'
     );
 

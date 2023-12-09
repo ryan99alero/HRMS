@@ -4,7 +4,7 @@ define([
   './defaults',
   './utils'
 ], function (require, $, Defaults, Utils) {
-  function Options (options, $element) {
+  function Options(options, $element) {
     this.options = options;
 
     if ($element != null) {

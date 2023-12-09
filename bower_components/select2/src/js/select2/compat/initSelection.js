@@ -1,7 +1,7 @@
 define([
   'jquery'
 ], function ($) {
-  function InitSelection (decorated, $element, options) {
+  function InitSelection(decorated, $element, options) {
     if (options.get('debug') && window.console && console.warn) {
       console.warn(
         'Select2: The `initSelection` option has been deprecated in favor' +

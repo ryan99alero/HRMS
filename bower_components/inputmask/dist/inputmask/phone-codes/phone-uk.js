@@ -6,14 +6,14 @@
 * Version: 3.3.8
 */
 
-!function(factory) {
-    "function" == typeof define && define.amd ? define([ "../inputmask" ], factory) : "object" == typeof exports ? module.exports = factory(require("../inputmask")) : factory(window.Inputmask);
-}(function(Inputmask) {
+!function (factory) {
+    "function" == typeof define && define.amd ? define(["../inputmask"], factory) : "object" == typeof exports ? module.exports = factory(require("../inputmask")) : factory(window.Inputmask);
+}(function (Inputmask) {
     return Inputmask.extendAliases({
         phoneuk: {
             alias: "abstractphone",
             countrycode: "44",
-            phoneCodes: [ {
+            phoneCodes: [{
                 mask: "+44(113)-###-####",
                 cc: "UK",
                 cd: "United Kingdom",
@@ -1003,7 +1003,7 @@
                 cc: "UK",
                 cd: "United Kingdom",
                 city: "Glenurquhart"
-            } ]
+            }]
         }
     }), Inputmask;
 });

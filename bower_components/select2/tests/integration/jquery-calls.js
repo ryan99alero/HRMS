@@ -6,8 +6,8 @@ test('multiple elements with arguments works', function (assert) {
 
   var $first = $(
     '<select>' +
-      '<option>1</option>' +
-      '<option>2</option>' +
+    '<option>1</option>' +
+    '<option>2</option>' +
     '</select>'
   );
   var $second = $first.clone();

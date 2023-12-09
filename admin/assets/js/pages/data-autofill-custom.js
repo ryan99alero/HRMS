@@ -1,5 +1,5 @@
-$(document).ready(function() {
-    setTimeout(function() {
+$(document).ready(function () {
+    setTimeout(function () {
         // [ Autofill ]
         $('#autofill').DataTable({
             autoFill: true

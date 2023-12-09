@@ -1,11 +1,11 @@
-$(document).ready(function() {
-    setTimeout(function() {
+$(document).ready(function () {
+    setTimeout(function () {
 
         // [ Add Rows ]
         var t = $('#add-row-table').DataTable();
         var counter = 1;
 
-        $('#addRow').on('click', function() {
+        $('#addRow').on('click', function () {
             t.row.add([
                 counter + '.1',
                 counter + '.2',
@@ -20,7 +20,7 @@ $(document).ready(function() {
         $('#addRow').click();
 
         // [ Individual Column Searching (Text Inputs) ]
-        $('#footer-search tfoot th').each(function() {
+        $('#footer-search tfoot th').each(function () {
             var title = $(this).text();
             $(this).html('<input type="text" class="form-control" placeholder="Search ' + title + '" />');
         });
@@ -28,10 +28,10 @@ $(document).ready(function() {
         var table = $('#footer-search').DataTable();
 
         // [ Apply the search ]
-        table.columns().every(function() {
+        table.columns().every(function () {
             var that = this;
 
-            $('input', this.footer()).on('keyup change', function() {
+            $('input', this.footer()).on('keyup change', function () {
                 if (that.search() !== this.value) {
                     that
                         .search(this.value)
@@ -42,12 +42,12 @@ $(document).ready(function() {
 
         // [ Individual Column Searching (Select Inputs) ]
         $('#footer-select').DataTable({
-            initComplete: function() {
-                this.api().columns().every(function() {
+            initComplete: function () {
+                this.api().columns().every(function () {
                     var column = this;
                     var select = $('<select class="form-control form-control-sm"><option value=""></option></select>')
                         .appendTo($(column.footer()).empty())
-                        .on('change', function() {
+                        .on('change', function () {
                             var val = $.fn.dataTable.util.escapeRegex(
                                 $(this).val()
                             );
@@ -57,7 +57,7 @@ $(document).ready(function() {
                                 .draw();
                         });
 
-                    column.data().unique().sort().each(function(d, j) {
+                    column.data().unique().sort().each(function (d, j) {
                         select.append('<option value="' + d + '">' + d + '</option>')
                     });
                 });
@@ -65,13 +65,13 @@ $(document).ready(function() {
         });
         var srow = $('#row-select').DataTable();
 
-        $('#row-select tbody').on('click', 'tr', function() {
+        $('#row-select tbody').on('click', 'tr', function () {
             $(this).toggleClass('selected');
         });
 
         var drow = $('#row-delete').DataTable();
 
-        $('#row-delete tbody').on('click', 'tr', function() {
+        $('#row-delete tbody').on('click', 'tr', function () {
             if ($(this).hasClass('selected')) {
                 $(this).removeClass('selected');
             } else {
@@ -80,7 +80,7 @@ $(document).ready(function() {
             }
         });
 
-        $('#row-delete-btn').on('click', function() {
+        $('#row-delete-btn').on('click', function () {
             drow.row('.selected').remove().draw(!1);
         });
 
@@ -104,7 +104,7 @@ $(document).ready(function() {
         // [ Form input ]
         var table = $('#form-input-table').DataTable();
 
-        $('#form-input-btn').on('click', function() {
+        $('#form-input-btn').on('click', function () {
             var data = table.$('input, select').serialize();
             alert(
                 "The following data would have been submitted to the server: \n\n" +
@@ -119,7 +119,7 @@ $(document).ready(function() {
             "paging": false
         });
 
-        $('a.toggle-vis').on('click', function(e) {
+        $('a.toggle-vis').on('click', function (e) {
             e.preventDefault();
 
             // Get the column API object
@@ -148,13 +148,13 @@ $(document).ready(function() {
 
         $('#search-api').DataTable();
 
-        $('input.global_filter').on('keyup click', function() {
+        $('input.global_filter').on('keyup click', function () {
             filterGlobal();
         });
 
-        $('input.column_filter').on('keyup click', function() {
+        $('input.column_filter').on('keyup click', function () {
             filterColumn($(this).parents('tr').attr('data-column'));
         });
-        
+
     }, 350);
 });

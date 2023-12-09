@@ -4,6 +4,7 @@ anchor: bar-chart
 ---
 
 ### Introduction
+
 A bar chart is a way of showing data as bars.
 
 It is sometimes used to show trend data, and the comparison of multiple data sets side by side.
@@ -13,6 +14,7 @@ It is sometimes used to show trend data, and the comparison of multiple data set
 </div>
 
 ### Example usage
+
 ```javascript
 var myBarChart = new Chart(ctx).Bar(data, options);
 ```
@@ -42,14 +44,19 @@ var data = {
 	]
 };
 ```
-The bar chart has the a very similar data structure to the line chart, and has an array of datasets, each with colours and an array of data. Again, colours are in CSS format.
-We have an array of labels too for display. In the example, we are showing the same data as the previous line chart example.
+
+The bar chart has the a very similar data structure to the line chart, and has an array of datasets, each with colours
+and an array of data. Again, colours are in CSS format.
+We have an array of labels too for display. In the example, we are showing the same data as the previous line chart
+example.
 
 The label key on each dataset is optional, and can be used when generating a scale for the chart.
 
 ### Chart Options
 
-These are the customisation options specific to Bar charts. These options are merged with the [global chart configuration options](#getting-started-global-chart-configuration), and form the options of the chart.
+These are the customisation options specific to Bar charts. These options are merged with
+the [global chart configuration options](#getting-started-global-chart-configuration), and form the options of the
+chart.
 
 ```javascript
 {
@@ -89,7 +96,8 @@ These are the customisation options specific to Bar charts. These options are me
 }
 ```
 
-You can override these for your `Chart` instance by passing a second argument into the `Bar` method as an object with the keys you want to override.
+You can override these for your `Chart` instance by passing a second argument into the `Bar` method as an object with
+the keys you want to override.
 
 For example, we could have a bar chart without a stroke on each bar by doing the following:
 
@@ -101,13 +109,15 @@ new Chart(ctx).Bar(data, {
 //  and the Bar chart defaults but this particular instance will have `barShowStroke` set to false.
 ```
 
-We can also change these defaults values for each Bar type that is created, this object is available at `Chart.defaults.Bar`.
+We can also change these defaults values for each Bar type that is created, this object is available
+at `Chart.defaults.Bar`.
 
 ### Prototype methods
 
 #### .getBarsAtEvent( event )
 
-Calling `getBarsAtEvent(event)` on your Chart instance passing an argument of an event, or jQuery event, will return the bar elements that are at that the same position of that event.
+Calling `getBarsAtEvent(event)` on your Chart instance passing an argument of an event, or jQuery event, will return the
+bar elements that are at that the same position of that event.
 
 ```javascript
 canvas.onclick = function(evt){
@@ -116,11 +126,13 @@ canvas.onclick = function(evt){
 };
 ```
 
-This functionality may be useful for implementing DOM based tooltips, or triggering custom behaviour in your application.
+This functionality may be useful for implementing DOM based tooltips, or triggering custom behaviour in your
+application.
 
 #### .update( )
 
-Calling `update()` on your Chart instance will re-render the chart with any updated values, allowing you to edit the value of multiple existing points, then render those in one animated render loop.
+Calling `update()` on your Chart instance will re-render the chart with any updated values, allowing you to edit the
+value of multiple existing points, then render those in one animated render loop.
 
 ```javascript
 myBarChart.datasets[0].bars[2].value = 50;
@@ -131,7 +143,8 @@ myBarChart.update();
 
 #### .addData( valuesArray, label )
 
-Calling `addData(valuesArray, label)` on your Chart instance passing an array of values for each dataset, along with a label for those bars.
+Calling `addData(valuesArray, label)` on your Chart instance passing an array of values for each dataset, along with a
+label for those bars.
 
 ```javascript
 // The values array passed into addData should be one for each dataset in the chart

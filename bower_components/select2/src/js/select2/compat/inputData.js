@@ -1,7 +1,7 @@
 define([
   'jquery'
 ], function ($) {
-  function InputData (decorated, $element, options) {
+  function InputData(decorated, $element, options) {
     this._currentData = [];
     this._valueSeparator = options.get('valueSeparator') || ',';
 
@@ -19,7 +19,7 @@ define([
   }
 
   InputData.prototype.current = function (_, callback) {
-    function getSelected (data, selectedIds) {
+    function getSelected(data, selectedIds) {
       var selected = [];
 
       if (data.selected || $.inArray(data.id, selectedIds) !== -1) {

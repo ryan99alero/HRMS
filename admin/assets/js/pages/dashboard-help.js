@@ -1,5 +1,5 @@
 'use strict';
-$(document).ready(function() {
+$(document).ready(function () {
 
     // satisfaction-chart
     // support-chart
@@ -7,7 +7,7 @@ $(document).ready(function() {
     // support-chart2
 
     // [ support-chart ] start
-    $(function() {
+    $(function () {
         var options1 = {
             chart: {
                 type: 'area',
@@ -34,7 +34,7 @@ $(document).ready(function() {
                 },
                 y: {
                     title: {
-                        formatter: function(seriesName) {
+                        formatter: function (seriesName) {
                             return ''
                         }
                     }
@@ -48,7 +48,7 @@ $(document).ready(function() {
     });
     // [ support-chart ] end
     // [ support-chart1 ] start
-    $(function() {
+    $(function () {
         var options1 = {
             chart: {
                 type: 'area',
@@ -75,7 +75,7 @@ $(document).ready(function() {
                 },
                 y: {
                     title: {
-                        formatter: function(seriesName) {
+                        formatter: function (seriesName) {
                             return ''
                         }
                     }
@@ -89,7 +89,7 @@ $(document).ready(function() {
     });
     // [ support-chart1 ] end
     // [ support-chart2 ] start
-    $(function() {
+    $(function () {
         var options1 = {
             chart: {
                 type: 'area',
@@ -116,7 +116,7 @@ $(document).ready(function() {
                 },
                 y: {
                     title: {
-                        formatter: function(seriesName) {
+                        formatter: function (seriesName) {
                             return ''
                         }
                     }
@@ -131,7 +131,7 @@ $(document).ready(function() {
     // [ support-chart2 ] end
 
     // [ satisfaction-chart ] start
-    $(function() {
+    $(function () {
         var options = {
             chart: {
                 height: 260,

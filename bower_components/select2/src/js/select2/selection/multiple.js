@@ -3,7 +3,7 @@ define([
   './base',
   '../utils'
 ], function ($, BaseSelection, Utils) {
-  function MultipleSelection ($element, options) {
+  function MultipleSelection($element, options) {
     MultipleSelection.__super__.constructor.apply(this, arguments);
   }
 
@@ -68,9 +68,9 @@ define([
   MultipleSelection.prototype.selectionContainer = function () {
     var $container = $(
       '<li class="select2-selection__choice">' +
-        '<span class="select2-selection__choice__remove" role="presentation">' +
-          '&times;' +
-        '</span>' +
+      '<span class="select2-selection__choice__remove" role="presentation">' +
+      '&times;' +
+      '</span>' +
       '</li>'
     );
 

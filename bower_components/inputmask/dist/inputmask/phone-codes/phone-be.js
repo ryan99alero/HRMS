@@ -6,14 +6,14 @@
 * Version: 3.3.8
 */
 
-!function(factory) {
-    "function" == typeof define && define.amd ? define([ "../inputmask" ], factory) : "object" == typeof exports ? module.exports = factory(require("../inputmask")) : factory(window.Inputmask);
-}(function(Inputmask) {
+!function (factory) {
+    "function" == typeof define && define.amd ? define(["../inputmask"], factory) : "object" == typeof exports ? module.exports = factory(require("../inputmask")) : factory(window.Inputmask);
+}(function (Inputmask) {
     return Inputmask.extendAliases({
         phonebe: {
             alias: "abstractphone",
             countrycode: "32",
-            phoneCodes: [ {
+            phoneCodes: [{
                 mask: "+32(53)##-##-##",
                 cc: "BE",
                 cd: "Belgium",
@@ -238,7 +238,7 @@
                 cc: "BE",
                 cd: "Belgium",
                 city: "Zeebrugge"
-            } ]
+            }]
         }
     }), Inputmask;
 });

@@ -1,5 +1,5 @@
 'use strict';
-$(document).ready(function() {
+$(document).ready(function () {
     var map;
     map = new GMaps({
         el: '#markers-map',

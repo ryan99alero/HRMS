@@ -1,13 +1,13 @@
 'use strict';
-$(document).ready(function() {
-    setTimeout(function() {
+$(document).ready(function () {
+    setTimeout(function () {
         floatchart()
     }, 700);
 });
 
 function floatchart() {
     // [ seo-anlytics1 ] start
-    $(function() {
+    $(function () {
         var options = {
             chart: {
                 type: 'area',
@@ -57,7 +57,7 @@ function floatchart() {
                 },
                 y: {
                     title: {
-                        formatter: function(seriesName) {
+                        formatter: function (seriesName) {
                             return 'Site Analysis :'
                         }
                     }
@@ -72,7 +72,7 @@ function floatchart() {
     });
     // [ seo-anlytics1 ] end
     // [ seo-anlytics2 ] start
-    $(function() {
+    $(function () {
         var options = {
             chart: {
                 type: 'area',
@@ -122,7 +122,7 @@ function floatchart() {
                 },
                 y: {
                     title: {
-                        formatter: function(seriesName) {
+                        formatter: function (seriesName) {
                             return 'Total Sales :'
                         }
                     }
@@ -137,7 +137,7 @@ function floatchart() {
     });
     // [ seo-anlytics2 ] end
     // [ seo-anlytics3 ] start
-    $(function() {
+    $(function () {
         var options = {
             chart: {
                 type: 'area',
@@ -187,7 +187,7 @@ function floatchart() {
                 },
                 y: {
                     title: {
-                        formatter: function(seriesName) {
+                        formatter: function (seriesName) {
                             return 'Total Visits :'
                         }
                     }
@@ -202,7 +202,7 @@ function floatchart() {
     });
     // [ seo-anlytics3 ] end
     // [ seo-anlytics4 ] start
-    $(function() {
+    $(function () {
         var options = {
             chart: {
                 type: 'area',
@@ -252,7 +252,7 @@ function floatchart() {
                 },
                 y: {
                     title: {
-                        formatter: function(seriesName) {
+                        formatter: function (seriesName) {
                             return 'Total Usage :'
                         }
                     }
@@ -267,7 +267,7 @@ function floatchart() {
     });
     // [ seo-anlytics4 ] end
     // [ sec-ecommerce-chart-line ] start
-    $(function() {
+    $(function () {
         var options = {
             chart: {
                 type: 'area',
@@ -311,7 +311,7 @@ function floatchart() {
                 },
                 y: {
                     title: {
-                        formatter: function(seriesName) {
+                        formatter: function (seriesName) {
                             return 'Referral :'
                         }
                     }
@@ -326,7 +326,7 @@ function floatchart() {
     });
     // [ sec-ecommerce-chart-line ] end
     // [ sec-ecommerce-chart-bar ] start
-    $(function() {
+    $(function () {
         var options = {
             chart: {
                 type: 'bar',
@@ -361,7 +361,7 @@ function floatchart() {
                 },
                 y: {
                     title: {
-                        formatter: function(seriesName) {
+                        formatter: function (seriesName) {
                             return 'Affiliate :'
                         }
                     }
@@ -376,7 +376,7 @@ function floatchart() {
     });
     // [ sec-ecommerce-chart-bar ] end
     // [ monthlyprofit-1 ] start
-    $(function() {
+    $(function () {
         var options = {
             chart: {
                 type: 'area',
@@ -420,7 +420,7 @@ function floatchart() {
                 },
                 y: {
                     title: {
-                        formatter: function(seriesName) {
+                        formatter: function (seriesName) {
                             return 'Monthly Profit :'
                         }
                     }
@@ -435,7 +435,7 @@ function floatchart() {
     });
     // [ monthlyprofit-1 ] end
     // [ monthlyprofit-2 ] start
-    $(function() {
+    $(function () {
         var options = {
             chart: {
                 type: 'area',
@@ -479,7 +479,7 @@ function floatchart() {
                 },
                 y: {
                     title: {
-                        formatter: function(seriesName) {
+                        formatter: function (seriesName) {
                             return 'Total Sales :'
                         }
                     }

@@ -1,10 +1,10 @@
-;(function($, document, Math){
-    $.ripple = function(selector, options) {
+;(function ($, document, Math) {
+    $.ripple = function (selector, options) {
 
         var self = this;
 
-        var _log = self.log = function() {
-            if(self.defaults.debug && console && console.log) {
+        var _log = self.log = function () {
+            if (self.defaults.debug && console && console.log) {
                 console.log.apply(console, arguments);
             }
         };
@@ -19,7 +19,7 @@
             multi: false,
 
             duration: 0.7,
-            rate: function(pxPerSecond) {
+            rate: function (pxPerSecond) {
                 return pxPerSecond;
             },
 
@@ -28,7 +28,7 @@
 
         self.defaults = $.extend({}, self.defaults, options);
 
-        var Trigger = function(e) {
+        var Trigger = function (e) {
 
             var $this = $(this);
             var $ripple;
@@ -40,7 +40,7 @@
             settings = $.extend({}, self.defaults, $this.data());
 
             // Create the ripple element
-            if ( settings.multi || (!settings.multi && $this.find(".ripple").length === 0) ) {
+            if (settings.multi || (!settings.multi && $this.find(".ripple").length === 0)) {
                 $ripple = $("<span></span>").addClass("ripple");
                 $ripple.appendTo($this);
 
@@ -58,19 +58,19 @@
 
                 // Give the user the ability to change the rate of the animation
                 // based on element width
-                if(settings.rate && typeof settings.rate == "function") {
+                if (settings.rate && typeof settings.rate == "function") {
 
                     // rate = pixels per second
-                    var rate = Math.round( $ripple.width() / settings.duration );
+                    var rate = Math.round($ripple.width() / settings.duration);
 
                     // new amount of pixels per second
                     var filteredRate = settings.rate(rate);
 
                     // Determine the new duration for the animation
-                    var newDuration = ( $ripple.width() / filteredRate);
+                    var newDuration = ($ripple.width() / filteredRate);
 
                     // Set the new duration if it has not changed
-                    if(settings.duration.toFixed(2) !== newDuration.toFixed(2)) {
+                    if (settings.duration.toFixed(2) !== newDuration.toFixed(2)) {
                         _log('Update: Ripple Duration', {
                             from: settings.duration,
                             to: newDuration
@@ -93,7 +93,7 @@
             }
 
             // Ensure we always have the ripple element
-            if(!settings.multi) {
+            if (!settings.multi) {
                 _log('Set: Ripple Element');
                 $ripple = $this.find(".ripple");
             }
@@ -112,9 +112,9 @@
              * performance. We don't do this on single ripples because once it has rendered, we only
              * need to trigger paints thereafter.
              */
-            if(settings.multi) {
+            if (settings.multi) {
                 _log('Set: Ripple animationend event');
-                $ripple.one('animationend webkitAnimationEnd oanimationend MSAnimationEnd', function() {
+                $ripple.one('animationend webkitAnimationEnd oanimationend MSAnimationEnd', function () {
                     _log('Note: Ripple animation ended');
                     _log('Destroy: Ripple');
                     $(this).remove();

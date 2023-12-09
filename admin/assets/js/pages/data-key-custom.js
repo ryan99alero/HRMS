@@ -1,5 +1,5 @@
-$(document).ready(function() {
-    setTimeout(function() {
+$(document).ready(function () {
+    setTimeout(function () {
 
         // [ Basic Initialisation ]
         $('#basic-key-table').DataTable({

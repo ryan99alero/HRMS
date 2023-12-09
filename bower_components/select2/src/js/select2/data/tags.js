@@ -1,7 +1,7 @@
 define([
   'jquery'
 ], function ($) {
-  function Tags (decorated, $element, options) {
+  function Tags(decorated, $element, options) {
     var tags = options.get('tags');
 
     var createTag = options.get('createTag');
@@ -13,7 +13,7 @@ define([
     var insertTag = options.get('insertTag');
 
     if (insertTag !== undefined) {
-        this.insertTag = insertTag;
+      this.insertTag = insertTag;
     }
 
     decorated.call(this, $element, options);
@@ -40,7 +40,7 @@ define([
       return;
     }
 
-    function wrapper (obj, child) {
+    function wrapper(obj, child) {
       var data = obj.results;
 
       for (var i = 0; i < data.length; i++) {

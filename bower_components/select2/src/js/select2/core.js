@@ -141,7 +141,7 @@ define([
     if (method == 'style') {
       var style = $element.attr('style');
 
-      if (typeof(style) !== 'string') {
+      if (typeof (style) !== 'string') {
         return null;
       }
 
@@ -321,7 +321,7 @@ define([
 
       if (self.isOpen()) {
         if (key === KEYS.ESC || key === KEYS.TAB ||
-            (key === KEYS.UP && evt.altKey)) {
+          (key === KEYS.UP && evt.altKey)) {
           self.close();
 
           evt.preventDefault();
@@ -344,7 +344,7 @@ define([
         }
       } else {
         if (key === KEYS.ENTER || key === KEYS.SPACE ||
-            (key === KEYS.DOWN && evt.altKey)) {
+          (key === KEYS.DOWN && evt.altKey)) {
           self.open();
 
           evt.preventDefault();
@@ -510,7 +510,7 @@ define([
 
   Select2.prototype.data = function () {
     if (this.options.get('debug') &&
-        arguments.length > 0 && window.console && console.warn) {
+      arguments.length > 0 && window.console && console.warn) {
       console.warn(
         'Select2: Data can no longer be set using `select2("data")`. You ' +
         'should consider setting the value instead using `$element.val()`.'
@@ -592,8 +592,8 @@ define([
   Select2.prototype.render = function () {
     var $container = $(
       '<span class="select2 select2-container">' +
-        '<span class="selection"></span>' +
-        '<span class="dropdown-wrapper" aria-hidden="true"></span>' +
+      '<span class="selection"></span>' +
+      '<span class="dropdown-wrapper" aria-hidden="true"></span>' +
       '</span>'
     );
 

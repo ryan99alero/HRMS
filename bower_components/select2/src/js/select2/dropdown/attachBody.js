@@ -2,7 +2,7 @@ define([
   'jquery',
   '../utils'
 ], function ($, Utils) {
-  function AttachBody (decorated, $element, options) {
+  function AttachBody(decorated, $element, options) {
     this.$dropdownParent = options.get('dropdownParent') || $(document.body);
 
     decorated.call(this, $element, options);
@@ -81,44 +81,44 @@ define([
   };
 
   AttachBody.prototype._attachPositioningHandler =
-      function (decorated, container) {
-    var self = this;
+    function (decorated, container) {
+      var self = this;
 
-    var scrollEvent = 'scroll.select2.' + container.id;
-    var resizeEvent = 'resize.select2.' + container.id;
-    var orientationEvent = 'orientationchange.select2.' + container.id;
+      var scrollEvent = 'scroll.select2.' + container.id;
+      var resizeEvent = 'resize.select2.' + container.id;
+      var orientationEvent = 'orientationchange.select2.' + container.id;
 
-    var $watchers = this.$container.parents().filter(Utils.hasScroll);
-    $watchers.each(function () {
-      $(this).data('select2-scroll-position', {
-        x: $(this).scrollLeft(),
-        y: $(this).scrollTop()
+      var $watchers = this.$container.parents().filter(Utils.hasScroll);
+      $watchers.each(function () {
+        $(this).data('select2-scroll-position', {
+          x: $(this).scrollLeft(),
+          y: $(this).scrollTop()
+        });
       });
-    });
 
-    $watchers.on(scrollEvent, function (ev) {
-      var position = $(this).data('select2-scroll-position');
-      $(this).scrollTop(position.y);
-    });
+      $watchers.on(scrollEvent, function (ev) {
+        var position = $(this).data('select2-scroll-position');
+        $(this).scrollTop(position.y);
+      });
 
-    $(window).on(scrollEvent + ' ' + resizeEvent + ' ' + orientationEvent,
-      function (e) {
-      self._positionDropdown();
-      self._resizeDropdown();
-    });
-  };
+      $(window).on(scrollEvent + ' ' + resizeEvent + ' ' + orientationEvent,
+        function (e) {
+          self._positionDropdown();
+          self._resizeDropdown();
+        });
+    };
 
   AttachBody.prototype._detachPositioningHandler =
-      function (decorated, container) {
-    var scrollEvent = 'scroll.select2.' + container.id;
-    var resizeEvent = 'resize.select2.' + container.id;
-    var orientationEvent = 'orientationchange.select2.' + container.id;
+    function (decorated, container) {
+      var scrollEvent = 'scroll.select2.' + container.id;
+      var resizeEvent = 'resize.select2.' + container.id;
+      var orientationEvent = 'orientationchange.select2.' + container.id;
 
-    var $watchers = this.$container.parents().filter(Utils.hasScroll);
-    $watchers.off(scrollEvent);
+      var $watchers = this.$container.parents().filter(Utils.hasScroll);
+      $watchers.off(scrollEvent);
 
-    $(window).off(scrollEvent + ' ' + resizeEvent + ' ' + orientationEvent);
-  };
+      $(window).off(scrollEvent + ' ' + resizeEvent + ' ' + orientationEvent);
+    };
 
   AttachBody.prototype._positionDropdown = function () {
     var $window = $(window);

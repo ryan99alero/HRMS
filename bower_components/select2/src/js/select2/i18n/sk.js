@@ -3,9 +3,15 @@ define(function () {
 
   // use text for the numbers 2 through 4
   var smallNumbers = {
-    2: function (masc) { return (masc ? 'dva' : 'dve'); },
-    3: function () { return 'tri'; },
-    4: function () { return 'štyri'; }
+    2: function (masc) {
+      return (masc ? 'dva' : 'dve');
+    },
+    3: function () {
+      return 'tri';
+    },
+    4: function () {
+      return 'štyri';
+    }
   };
 
   return {

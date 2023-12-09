@@ -2,7 +2,7 @@
  * Belgium-Dutch translation for bootstrap-datepicker
  * Julien Poulin <poulin_julien@hotmail.com>
  */
-;(function($){
+;(function ($) {
   $.fn.datepicker.dates['nl-BE'] = {
     days: ["zondag", "maandag", "dinsdag", "woensdag", "donderdag", "vrijdag", "zaterdag"],
     daysShort: ["zo", "ma", "di", "wo", "do", "vr", "za"],

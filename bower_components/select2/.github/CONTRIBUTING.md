@@ -131,20 +131,20 @@ We use GitHub's pull request system for submitting patches. Here are some
 guidelines to follow when creating the pull request for your fix.
 
 1. Make sure to create a ticket for your pull request. This will serve as the
-bug ticket, and any discussion about the bug will take place there. Your pull
-request will be focused on the specific changes that fix the bug.
+   bug ticket, and any discussion about the bug will take place there. Your pull
+   request will be focused on the specific changes that fix the bug.
 2. Make sure to reference the ticket you are fixing within your pull request.
-This will allow us to close off the ticket once we merge the pull request, or
-follow up on the ticket if there are any related blocking issues.
+   This will allow us to close off the ticket once we merge the pull request, or
+   follow up on the ticket if there are any related blocking issues.
 3. Explain why the specific change was made. Not everyone who is reviewing your
-pull request will be familiar with the problem it is fixing.
+   pull request will be familiar with the problem it is fixing.
 4. Run your tests first. If your tests aren't passing, the pull request won't
-be able to be merged. If you're breaking existing tests, make sure that you
-aren't causing any breaking changes.
+   be able to be merged. If you're breaking existing tests, make sure that you
+   aren't causing any breaking changes.
 5. Only include source changes. While it's not required, only including changes
-from the `src` directory will prevent merge conflicts from occurring. Making
-this happen can be as a simple as not committing changes from the `dist`
-directory.
+   from the `src` directory will prevent merge conflicts from occurring. Making
+   this happen can be as a simple as not committing changes from the `dist`
+   directory.
 
 By following these steps, you will make it easier for your pull request to be
 reviewed and eventually merged.
@@ -158,9 +158,9 @@ Anyone can help the project maintainers triage issues and review pull requests.
 Select2 regularly receives new issues which need to be tested and organized.
 
 When a new issue that comes in that is similar to another existing issue, it
-should be checked to make sure it is not a duplicate.  Duplicates issues should
+should be checked to make sure it is not a duplicate. Duplicates issues should
 be marked by replying to the issue with "Duplicate of #[issue number]" where
-`[issue number]` is the url or issue number for the existing issue.  This will
+`[issue number]` is the url or issue number for the existing issue. This will
 allow the project maintainers to quickly close off additional issues and keep
 the discussion focused within a single issue.
 
@@ -171,8 +171,8 @@ what causes a bug quicker.
 ### Reviewing pull requests
 
 It is very common for pull requests to be opened for issues that contain a clear
-solution to the problem.  These pull requests should be rigorously reviewed by
-the community before being accepted.  If you are not sure about a piece of
+solution to the problem. These pull requests should be rigorously reviewed by
+the community before being accepted. If you are not sure about a piece of
 submitted code, or know of a better way to do something, do not hesitate to make
 a comment on the pull request.
 
@@ -188,17 +188,27 @@ Licensing
 ---------
 
 It should also be made clear that **all code contributed to Select** must be
-licensable under the [MIT license][licensing].  Code that cannot be released
+licensable under the [MIT license][licensing]. Code that cannot be released
 under this license **cannot be accepted** into the project.
 
 [community]: https://select2.github.io/community.html
+
 [grunt]: http://gruntjs.com/
+
 [isolated-case]: http://css-tricks.com/6263-reduced-test-cases/
+
 [issue-search]: https://github.com/select2/select2/search?q=&type=Issues
+
 [issue-tracker]: https://github.com/select2/select2/issues
+
 [jekyll]: https://jekyllrb.com/docs/installation/
+
 [licensing]: https://github.com/select2/select2/blob/master/LICENSE.md
+
 [nodejs]: https://nodejs.org/
+
 [npm]: https://www.npmjs.com/
+
 [reporting-bugs]: #reporting-bugs-with-select2
+
 [requesting-features]: #requesting-features-in-select2

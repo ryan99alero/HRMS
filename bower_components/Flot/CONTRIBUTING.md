@@ -8,7 +8,7 @@ work for us, and a faster and better response.
 Issues are not a way to ask general questions about Flot. If you see unexpected
 behavior but are not 100% certain that it is a bug, please try posting to the
 [forum](http://groups.google.com/group/flot-graphs) first, and confirm that
-what you see is really a Flot problem before creating a new issue for it.  When
+what you see is really a Flot problem before creating a new issue for it. When
 reporting a bug, please include a working demonstration of the problem, if
 possible, or at least a clear description of the options you're using and the
 environment (browser and version, jQuery version, other libraries) that you're
@@ -26,16 +26,16 @@ duplicated effort.
 
 To make merging as easy as possible, please keep these rules in mind:
 
- 1. Submit new features or architectural changes to the *&lt;version&gt;-work*
-    branch for the next major release.  Submit bug fixes to the master branch.
+1. Submit new features or architectural changes to the *&lt;version&gt;-work*
+   branch for the next major release. Submit bug fixes to the master branch.
 
- 2. Divide larger changes into a series of small, logical commits with
-    descriptive messages.
+2. Divide larger changes into a series of small, logical commits with
+   descriptive messages.
 
- 3. Rebase, if necessary, before submitting your pull request, to reduce the
-    work we need to do to merge it.
+3. Rebase, if necessary, before submitting your pull request, to reduce the
+   work we need to do to merge it.
 
- 4. Format your code according to the style guidelines below.
+4. Format your code according to the style guidelines below.
 
 ### Flot Style Guidelines ###
 
@@ -44,7 +44,7 @@ with the following updates and exceptions:
 
 #### Spacing ####
 
-Use four-space indents, no tabs.  Do not add horizontal space around parameter
+Use four-space indents, no tabs. Do not add horizontal space around parameter
 lists, loop definitions, or array/object indices. For example:
 
 ```js
@@ -83,7 +83,7 @@ example:
 Block comments should be wrapped at 80 characters.
 
 Code should attempt to wrap at 80 characters, but may run longer if wrapping
-would hurt readability more than having to scroll horizontally.  This is a
+would hurt readability more than having to scroll horizontally. This is a
 judgement call made on a situational basis.
 
 Statements containing complex logic should not be wrapped arbitrarily if they

@@ -1,6 +1,6 @@
-import { configFromStringAndFormat } from './from-string-and-format';
-import { hooks } from '../utils/hooks';
-import { deprecate } from '../utils/deprecate';
+import {configFromStringAndFormat} from './from-string-and-format';
+import {hooks} from '../utils/hooks';
+import {deprecate} from '../utils/deprecate';
 import getParsingFlags from './parsing-flags';
 
 // iso 8601 regex
@@ -128,9 +128,9 @@ export function configFromRFC2822(config) {
         // TODO: Replace the vanilla JS Date object with an indepentent day-of-week check.
         if (match[1]) { // day of week given
             var momentDate = new Date(match[2]);
-            var momentDay = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'][momentDate.getDay()];
+            var momentDay = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'][momentDate.getDay()];
 
-            if (match[1].substr(0,3) !== momentDay) {
+            if (match[1].substr(0, 3) !== momentDay) {
                 getParsingFlags(config).weekdayMismatch = true;
                 config._isValid = false;
                 return;

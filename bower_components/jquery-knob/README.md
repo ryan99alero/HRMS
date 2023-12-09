@@ -39,6 +39,7 @@ $(".dial").knob({
 The following options are supported :
 
 Behaviors :
+
 * min : min value | default=0.
 * max : max value | default=100.
 * step : step size | default=1.
@@ -49,7 +50,9 @@ Behaviors :
 * rotation : direction of progression | default=clockwise.
 
 UI :
-* cursor : display mode "cursor", cursor size could be changed passing a numeric value to the option, default width is used when passing boolean value "true" | default=gauge.
+
+* cursor : display mode "cursor", cursor size could be changed passing a numeric value to the option, default width is
+  used when passing boolean value "true" | default=gauge.
 * thickness : gauge thickness.
 * lineCap : gauge stroke endings. | default=butt, round=rounded line endings
 * width : dial width.
@@ -75,17 +78,17 @@ Hooks
 
 * 'release' : executed on release
 
-    Parameters :
+  Parameters :
     + value : int, current value
 
 * 'change' : executed at each change of the value
 
-    Parameters :
+  Parameters :
     + value : int, current value
 
 * 'draw' : when drawing the canvas
 
-    Context :
+  Context :
     - this.g : canvas context 2D (see Canvas documentation)
     - this.$ : jQuery wrapped element
     - this.o : options

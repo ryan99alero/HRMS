@@ -7,9 +7,9 @@ var Options = require('select2/options');
 test('single default selection returned', function (assert) {
   var $select = $(
     '<select>' +
-      '<option>One</option>' +
-      '<option>Two</option>' +
-      '<option value="3" selected>Three</option>' +
+    '<option>One</option>' +
+    '<option>Two</option>' +
+    '<option value="3" selected>Three</option>' +
     '</select>'
   );
   var options = new Options({});
@@ -42,9 +42,9 @@ test('single default selection returned', function (assert) {
 test('multiple default selections returned', function (assert) {
   var $select = $(
     '<select multiple>' +
-      '<option selected>One</option>' +
-      '<option>Two</option>' +
-      '<option value="3" selected>Three</option>' +
+    '<option selected>One</option>' +
+    '<option>Two</option>' +
+    '<option value="3" selected>Three</option>' +
     '</select>'
   );
   var options = new Options({});
@@ -81,9 +81,9 @@ module('select2(val)');
 test('single value matches jquery value', function (assert) {
   var $select = $(
     '<select>' +
-      '<option>One</option>' +
-      '<option>Two</option>' +
-      '<option value="3" selected>Three</option>' +
+    '<option>One</option>' +
+    '<option>Two</option>' +
+    '<option value="3" selected>Three</option>' +
     '</select>'
   );
   var options = new Options({});
@@ -108,9 +108,9 @@ test('single value matches jquery value', function (assert) {
 test('multiple value matches the jquery value', function (assert) {
   var $select = $(
     '<select multiple>' +
-      '<option selected>One</option>' +
-      '<option>Two</option>' +
-      '<option value="3" selected>Three</option>' +
+    '<option selected>One</option>' +
+    '<option>Two</option>' +
+    '<option value="3" selected>Three</option>' +
     '</select>'
   );
   var options = new Options({});

@@ -1,13 +1,13 @@
 'use strict';
-$(document).ready(function() {
-    setTimeout(function() {
+$(document).ready(function () {
+    setTimeout(function () {
         floatchart()
     }, 100);
 });
 
 function floatchart() {
     // [ support-chart ] start
-    $(function() {
+    $(function () {
         var options1 = {
             chart: {
                 type: 'area',
@@ -33,7 +33,7 @@ function floatchart() {
                 },
                 y: {
                     title: {
-                        formatter: function(seriesName) {
+                        formatter: function (seriesName) {
                             return 'Ticket '
                         }
                     }
@@ -47,7 +47,7 @@ function floatchart() {
     });
     // [ support-chart ] end
     // [ support-chart1 ] start
-    $(function() {
+    $(function () {
         var options1 = {
             chart: {
                 type: 'area',
@@ -73,7 +73,7 @@ function floatchart() {
                 },
                 y: {
                     title: {
-                        formatter: function(seriesName) {
+                        formatter: function (seriesName) {
                             return 'Ticket '
                         }
                     }
@@ -87,7 +87,7 @@ function floatchart() {
     });
     // [ support-chart1 ] end
     // [ power-card-chart1 ] start
-    $(function() {
+    $(function () {
         var options = {
             chart: {
                 type: 'line',
@@ -122,7 +122,7 @@ function floatchart() {
                 },
                 y: {
                     title: {
-                        formatter: function(seriesName) {
+                        formatter: function (seriesName) {
                             return 'Power'
                         }
                     }
@@ -137,7 +137,7 @@ function floatchart() {
     });
     // [ power-card-chart1 ] end
     // [ power-card-chart3 ] start
-    $(function() {
+    $(function () {
         var options = {
             chart: {
                 type: 'line',
@@ -172,7 +172,7 @@ function floatchart() {
                 },
                 y: {
                     title: {
-                        formatter: function(seriesName) {
+                        formatter: function (seriesName) {
                             return 'Temperature'
                         }
                     }
@@ -187,7 +187,7 @@ function floatchart() {
     });
     // [ power-card-chart3 ] end
     // [ seo-chart1 ] start
-    $(function() {
+    $(function () {
         var options = {
             chart: {
                 type: 'area',
@@ -231,7 +231,7 @@ function floatchart() {
                 },
                 y: {
                     title: {
-                        formatter: function(seriesName) {
+                        formatter: function (seriesName) {
                             return 'Visits :'
                         }
                     }
@@ -246,7 +246,7 @@ function floatchart() {
     });
     // [ seo-chart1 ] end
     // [ seo-chart2 ] start
-    $(function() {
+    $(function () {
         var options = {
             chart: {
                 type: 'bar',
@@ -281,7 +281,7 @@ function floatchart() {
                 },
                 y: {
                     title: {
-                        formatter: function(seriesName) {
+                        formatter: function (seriesName) {
                             return 'Bounce Rate :'
                         }
                     }
@@ -296,7 +296,7 @@ function floatchart() {
     });
     // [ seo-chart2 ] end
     // [ seo-chart3 ] start
-    $(function() {
+    $(function () {
         var options = {
             chart: {
                 type: 'area',
@@ -340,7 +340,7 @@ function floatchart() {
                 },
                 y: {
                     title: {
-                        formatter: function(seriesName) {
+                        formatter: function (seriesName) {
                             return 'Products :'
                         }
                     }

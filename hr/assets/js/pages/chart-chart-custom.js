@@ -1,5 +1,5 @@
 'use strict';
-$(document).ready(function() {
+$(document).ready(function () {
     // [ bar-chart ] start
     var bar = document.getElementById("chart-bar-1").getContext('2d');
     var data1 = {
@@ -9,14 +9,14 @@ $(document).ready(function() {
             data: [25, 45, 74, 85],
             borderColor: '#4680ff',
             backgroundColor: '#4680ff',
-            hoverborderColor:'#4680ff',
+            hoverborderColor: '#4680ff',
             hoverBackgroundColor: '#4680ff',
         }, {
             label: "Data 2",
             data: [30, 52, 65, 65],
             borderColor: '#0e9e4a',
             backgroundColor: '#0e9e4a',
-            hoverborderColor:'#0e9e4a',
+            hoverborderColor: '#0e9e4a',
             hoverBackgroundColor: '#0e9e4a',
         }]
     };
@@ -38,14 +38,14 @@ $(document).ready(function() {
             data: [25, 45, 74, 85],
             borderColor: '#4680ff',
             backgroundColor: '#4680ff',
-            hoverborderColor:'#4680ff',
+            hoverborderColor: '#4680ff',
             hoverBackgroundColor: '#4680ff',
         }, {
             label: "Data 2",
             data: [30, 52, 65, 65],
             borderColor: '#ffba57',
             backgroundColor: '#ffba57',
-            hoverborderColor:'#ffba57',
+            hoverborderColor: '#ffba57',
             hoverBackgroundColor: '#ffba57',
         }]
     };
@@ -76,14 +76,14 @@ $(document).ready(function() {
             data: [25, 45, 74, 85],
             borderColor: '#4680ff',
             backgroundColor: '#4680ff',
-            hoverborderColor:'#4680ff',
+            hoverborderColor: '#4680ff',
             hoverBackgroundColor: '#4680ff',
         }, {
             label: "Data 2",
             data: [30, 52, 65, 65],
             borderColor: '#ff5252',
             backgroundColor: '#ff5252',
-            hoverborderColor:'#ff5252',
+            hoverborderColor: '#ff5252',
             hoverBackgroundColor: '#ff5252',
         }]
     };
@@ -152,9 +152,9 @@ $(document).ready(function() {
             data: [85, 55, 70, 50, 75, 45, 60],
             borderWidth: 1,
             borderColor: '#00bcd4',
-            backgroundColor:'#00bcd4',
+            backgroundColor: '#00bcd4',
             hoverborderColor: '#00bcd4',
-            hoverBackgroundColor:'#00bcd4',
+            hoverBackgroundColor: '#00bcd4',
             fill: 'origin',
         }]
     };
@@ -180,7 +180,7 @@ $(document).ready(function() {
             borderColor: '#9ccc65',
             backgroundColor: '#9ccc65',
             hoverborderColor: '#9ccc65',
-            hoverBackgroundColor:'#9ccc65',
+            hoverBackgroundColor: '#9ccc65',
             fill: 'end',
         }]
     };

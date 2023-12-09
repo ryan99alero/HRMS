@@ -1,5 +1,5 @@
-$(document).ready(function() {
-    setTimeout(function() {
+$(document).ready(function () {
+    setTimeout(function () {
 
         // [ Basic Table Scroll ]
         $('#basic-scroller').DataTable({
@@ -27,7 +27,7 @@ $(document).ready(function() {
             scrollY: 200,
             scrollCollapse: true,
             scroller: true,
-            initComplete: function() {
+            initComplete: function () {
                 this.api().row(1000).scrollTo();
             }
         });

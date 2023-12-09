@@ -159,155 +159,155 @@ test('multiple adds to the old value', function (assert) {
 
 test('duplicates - single - same id on select triggers change',
   function (assert) {
-  var $select = $('#qunit-fixture .duplicates');
+    var $select = $('#qunit-fixture .duplicates');
 
-  var data = new SelectData($select, data);
-  var second = $('#qunit-fixture .duplicates option')[2];
+    var data = new SelectData($select, data);
+    var second = $('#qunit-fixture .duplicates option')[2];
 
-  var changeTriggered = false;
+    var changeTriggered = false;
 
-  assert.equal($select.val(), 'one');
+    assert.equal($select.val(), 'one');
 
-  $select.on('change', function () {
-    changeTriggered = true;
+    $select.on('change', function () {
+      changeTriggered = true;
+    });
+
+    data.select({
+      id: 'one',
+      text: 'Uno',
+      element: second
+    });
+
+    assert.equal(
+      $select.val(),
+      'one',
+      'The value never changed'
+    );
+
+    assert.ok(
+      changeTriggered,
+      'The change event should be triggered'
+    );
+
+    assert.ok(
+      second.selected,
+      'The second duplicate is selected, not the first'
+    );
   });
-
-  data.select({
-    id: 'one',
-    text: 'Uno',
-    element: second
-  });
-
-  assert.equal(
-    $select.val(),
-    'one',
-    'The value never changed'
-  );
-
-  assert.ok(
-    changeTriggered,
-    'The change event should be triggered'
-  );
-
-  assert.ok(
-    second.selected,
-    'The second duplicate is selected, not the first'
-  );
-});
 
 test('duplicates - single - different id on select triggers change',
   function (assert) {
-  var $select = $('#qunit-fixture .duplicates');
+    var $select = $('#qunit-fixture .duplicates');
 
-  var data = new SelectData($select, data);
-  var second = $('#qunit-fixture .duplicates option')[2];
+    var data = new SelectData($select, data);
+    var second = $('#qunit-fixture .duplicates option')[2];
 
-  var changeTriggered = false;
+    var changeTriggered = false;
 
-  $select.val('two');
+    $select.val('two');
 
-  $select.on('change', function () {
-    changeTriggered = true;
+    $select.on('change', function () {
+      changeTriggered = true;
+    });
+
+    data.select({
+      id: 'one',
+      text: 'Uno',
+      element: second
+    });
+
+    assert.equal(
+      $select.val(),
+      'one',
+      'The value changed to the duplicate id'
+    );
+
+    assert.ok(
+      changeTriggered,
+      'The change event should be triggered'
+    );
+
+    assert.ok(
+      second.selected,
+      'The second duplicate is selected, not the first'
+    );
   });
-
-  data.select({
-    id: 'one',
-    text: 'Uno',
-    element: second
-  });
-
-  assert.equal(
-    $select.val(),
-    'one',
-    'The value changed to the duplicate id'
-  );
-
-  assert.ok(
-    changeTriggered,
-    'The change event should be triggered'
-  );
-
-  assert.ok(
-    second.selected,
-    'The second duplicate is selected, not the first'
-  );
-});
 
 test('duplicates - multiple - same id on select triggers change',
-function (assert) {
-  var $select = $('#qunit-fixture .duplicates-multi');
+  function (assert) {
+    var $select = $('#qunit-fixture .duplicates-multi');
 
-  var data = new SelectData($select, data);
-  var second = $('#qunit-fixture .duplicates-multi option')[2];
+    var data = new SelectData($select, data);
+    var second = $('#qunit-fixture .duplicates-multi option')[2];
 
-  var changeTriggered = false;
+    var changeTriggered = false;
 
-  $select.val(['one']);
+    $select.val(['one']);
 
-  $select.on('change', function () {
-    changeTriggered = true;
+    $select.on('change', function () {
+      changeTriggered = true;
+    });
+
+    data.select({
+      id: 'one',
+      text: 'Uno',
+      element: second
+    });
+
+    assert.deepEqual(
+      $select.val(),
+      ['one', 'one'],
+      'The value now has duplicates'
+    );
+
+    assert.ok(
+      changeTriggered,
+      'The change event should be triggered'
+    );
+
+    assert.ok(
+      second.selected,
+      'The second duplicate is selected, not the first'
+    );
   });
-
-  data.select({
-    id: 'one',
-    text: 'Uno',
-    element: second
-  });
-
-  assert.deepEqual(
-    $select.val(),
-    ['one', 'one'],
-    'The value now has duplicates'
-  );
-
-  assert.ok(
-    changeTriggered,
-    'The change event should be triggered'
-  );
-
-  assert.ok(
-    second.selected,
-    'The second duplicate is selected, not the first'
-  );
-});
 
 test('duplicates - multiple - different id on select triggers change',
-function (assert) {
-  var $select = $('#qunit-fixture .duplicates-multi');
+  function (assert) {
+    var $select = $('#qunit-fixture .duplicates-multi');
 
-  var data = new SelectData($select, data);
-  var second = $('#qunit-fixture .duplicates-multi option')[2];
+    var data = new SelectData($select, data);
+    var second = $('#qunit-fixture .duplicates-multi option')[2];
 
-  var changeTriggered = false;
+    var changeTriggered = false;
 
-  $select.val(['two']);
+    $select.val(['two']);
 
-  $select.on('change', function () {
-    changeTriggered = true;
+    $select.on('change', function () {
+      changeTriggered = true;
+    });
+
+    data.select({
+      id: 'one',
+      text: 'Uno',
+      element: second
+    });
+
+    assert.deepEqual(
+      $select.val(),
+      ['two', 'one'],
+      'The value has the new id'
+    );
+
+    assert.ok(
+      changeTriggered,
+      'The change event should be triggered'
+    );
+
+    assert.ok(
+      second.selected,
+      'The second duplicate is selected, not the first'
+    );
   });
-
-  data.select({
-    id: 'one',
-    text: 'Uno',
-    element: second
-  });
-
-  assert.deepEqual(
-    $select.val(),
-    ['two', 'one'],
-    'The value has the new id'
-  );
-
-  assert.ok(
-    changeTriggered,
-    'The change event should be triggered'
-  );
-
-  assert.ok(
-    second.selected,
-    'The second duplicate is selected, not the first'
-  );
-});
 
 module('Data adapter - Select - query');
 
@@ -459,7 +459,7 @@ test('data objects use the text of the option', function (assert) {
 test('select option construction accepts id=0 (zero) value', function (assert) {
   var $select = $('#qunit-fixture .single');
 
-  var selectOptions = [{ id: 0, text: 'Zero Value'}];
+  var selectOptions = [{id: 0, text: 'Zero Value'}];
   var data = new SelectData($select, selectOptions);
 
   var optionElem = data.option(selectOptions[0]);
@@ -474,16 +474,16 @@ test('select option construction accepts id=0 (zero) value', function (assert) {
 
 test('select option construction accepts id="" (empty string) value',
   function (assert) {
-  var $select = $('#qunit-fixture .single');
+    var $select = $('#qunit-fixture .single');
 
-  var selectOptions = [{ id: '', text: 'Empty String'}];
-  var data = new SelectData($select, selectOptions);
+    var selectOptions = [{id: '', text: 'Empty String'}];
+    var data = new SelectData($select, selectOptions);
 
-  var optionElem = data.option(selectOptions[0]);
+    var optionElem = data.option(selectOptions[0]);
 
-  assert.equal(
-    optionElem[0].value,
-    '',
-    'Built option value should be an empty string.'
-  );
-});
+    assert.equal(
+      optionElem[0].value,
+      '',
+      'Built option value should be an empty string.'
+    );
+  });

@@ -1,5 +1,5 @@
-$(document).ready(function() {
-    setTimeout(function() {
+$(document).ready(function () {
+    setTimeout(function () {
         // [ fix-header ]
         $('#fix-header').DataTable({
             fixedHeader: true

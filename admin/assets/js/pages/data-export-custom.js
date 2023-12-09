@@ -1,5 +1,5 @@
-$(document).ready(function() {
-    setTimeout(function() {
+$(document).ready(function () {
+    setTimeout(function () {
 
         // [ HTML5 Export Buttons ]
         $('#basic-btn').DataTable({
@@ -33,9 +33,9 @@ $(document).ready(function() {
             dom: 'Bfrtip',
             buttons: [{
                 extend: 'excelHtml5',
-                customize: function(xlsx) {
+                customize: function (xlsx) {
                     var sheet = xlsx.xl.worksheets['sheet1.xml'];
-                    $('row c[r^="F"]', sheet).each(function() {
+                    $('row c[r^="F"]', sheet).each(function () {
                         if ($('is t', this).text().replace(/[^\d]/g, '') * 1 >= 500000) {
                             $(this).attr('s', '20');
                         }
@@ -49,7 +49,7 @@ $(document).ready(function() {
             dom: 'Bfrtip',
             buttons: [{
                 text: 'JSON',
-                action: function(e, dt, button, config) {
+                action: function (e, dt, button, config) {
                     var data = dt.buttons.exportData();
                     $.fn.dataTable.fileSave(new Blob([JSON.stringify(data)]), 'Export.json');
                 }

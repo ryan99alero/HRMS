@@ -1,13 +1,13 @@
 'use strict';
-$(document).ready(function() {
-    setTimeout(function() {
+$(document).ready(function () {
+    setTimeout(function () {
         floatchart()
     }, 100);
 });
 
 function floatchart() {
     // [ amount-processed ] start
-    $(function() {
+    $(function () {
         var options = {
             chart: {
                 type: 'area',
@@ -51,7 +51,7 @@ function floatchart() {
                 },
                 y: {
                     title: {
-                        formatter: function(seriesName) {
+                        formatter: function (seriesName) {
                             return 'Amount Processed :'
                         }
                     }
@@ -66,7 +66,7 @@ function floatchart() {
     });
     // [ amount-processed ] end
     // [ amount-spent ] start
-    $(function() {
+    $(function () {
         var options = {
             chart: {
                 type: 'bar',
@@ -101,7 +101,7 @@ function floatchart() {
                 },
                 y: {
                     title: {
-                        formatter: function(seriesName) {
+                        formatter: function (seriesName) {
                             return 'Amount Spent :'
                         }
                     }
@@ -116,7 +116,7 @@ function floatchart() {
     });
     // [ amount-spent ] end
     // [ profit-processed ] start
-    $(function() {
+    $(function () {
         var options = {
             chart: {
                 type: 'area',
@@ -160,7 +160,7 @@ function floatchart() {
                 },
                 y: {
                     title: {
-                        formatter: function(seriesName) {
+                        formatter: function (seriesName) {
                             return 'Profit Processed :'
                         }
                     }
@@ -175,7 +175,7 @@ function floatchart() {
     });
     // [ profit-processed ] end
     // [ realtime-visit-chart ] start
-    $(function() {
+    $(function () {
         var lastDate = 0;
         var data = [];
 
@@ -194,6 +194,7 @@ function floatchart() {
                 i++;
             }
         }
+
         getDayWiseTimeSeries(new Date('11 Feb 2017 GMT').getTime(), 10, {
             min: 10,
             max: 90
@@ -211,6 +212,7 @@ function floatchart() {
         function resetData() {
             data = data.slice(data.length - 10, data.length);
         }
+
         var options = {
             chart: {
                 height: 290,
@@ -264,7 +266,7 @@ function floatchart() {
         );
         chart.render();
         var dataPointsLength = 10;
-        window.setInterval(function() {
+        window.setInterval(function () {
             getNewSeries(lastDate, {
                 min: 10,
                 max: 90
@@ -274,7 +276,7 @@ function floatchart() {
                 data: data
             }])
         }, 2000)
-        window.setInterval(function() {
+        window.setInterval(function () {
             resetData()
             chart.updateSeries([{
                 data
@@ -283,7 +285,7 @@ function floatchart() {
     });
     // [ realtime-visit-chart ] end
     // [ seo-anlytics51 ] start
-    $(function() {
+    $(function () {
         var options = {
             chart: {
                 type: 'area',
@@ -333,7 +335,7 @@ function floatchart() {
                 },
                 y: {
                     title: {
-                        formatter: function(seriesName) {
+                        formatter: function (seriesName) {
                             return 'Site Analysis :'
                         }
                     }
@@ -348,7 +350,7 @@ function floatchart() {
     });
     // [ seo-anlytics51 ] end
     // [ traffic-chart1 ] start
-    $(function() {
+    $(function () {
         var options = {
             chart: {
                 height: 250,
@@ -376,7 +378,7 @@ function floatchart() {
     });
     // [ traffic-chart1 ] end
     // [ seo-chart1 ] start
-    $(function() {
+    $(function () {
         var options = {
             chart: {
                 type: 'area',
@@ -420,7 +422,7 @@ function floatchart() {
                 },
                 y: {
                     title: {
-                        formatter: function(seriesName) {
+                        formatter: function (seriesName) {
                             return 'Visits :'
                         }
                     }
@@ -435,7 +437,7 @@ function floatchart() {
     });
     // [ seo-chart1 ] end
     // [ seo-chart2 ] start
-    $(function() {
+    $(function () {
         var options = {
             chart: {
                 type: 'bar',
@@ -470,7 +472,7 @@ function floatchart() {
                 },
                 y: {
                     title: {
-                        formatter: function(seriesName) {
+                        formatter: function (seriesName) {
                             return 'Bounce Rate :'
                         }
                     }
@@ -485,7 +487,7 @@ function floatchart() {
     });
     // [ seo-chart2 ] end
     // [ seo-chart3 ] start
-    $(function() {
+    $(function () {
         var options = {
             chart: {
                 type: 'area',
@@ -529,7 +531,7 @@ function floatchart() {
                 },
                 y: {
                     title: {
-                        formatter: function(seriesName) {
+                        formatter: function (seriesName) {
                             return 'Products :'
                         }
                     }

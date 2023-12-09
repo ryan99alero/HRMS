@@ -1,16 +1,16 @@
-$(document).ready(function() {
-    setTimeout(function() {
+$(document).ready(function () {
+    setTimeout(function () {
         // [ DOM/jquery ]
-        var total,pageTotal;
+        var total, pageTotal;
         var table = $('#dom-jqry').DataTable();
         // [ column Rendering ]
         $('#colum-rendr').DataTable({
             "columnDefs": [{
-                    "render": function(data, type, row) {
-                        return data + ' (' + row[3] + ')';
-                    },
-                    "targets": 0
+                "render": function (data, type, row) {
+                    return data + ' (' + row[3] + ')';
                 },
+                "targets": 0
+            },
                 {
                     "visible": false,
                     "targets": [3]
@@ -46,7 +46,7 @@ $(document).ready(function() {
                 [2, 'asc']
             ],
             "displayLength": 25,
-            "drawCallback": function(settings) {
+            "drawCallback": function (settings) {
                 var api = this.api();
                 var rows = api.rows({
                     page: 'current'
@@ -55,7 +55,7 @@ $(document).ready(function() {
 
                 api.column(2, {
                     page: 'current'
-                }).data().each(function(group, i) {
+                }).data().each(function (group, i) {
                     if (last !== group) {
                         $(rows).eq(i).before(
                             '<tr class="group"><td colspan="5">' + group + '</td></tr>'
@@ -67,7 +67,7 @@ $(document).ready(function() {
             }
         });
         // [ Order by the grouping ]
-        $('#row-grouping tbody').on('click', 'tr.group', function() {
+        $('#row-grouping tbody').on('click', 'tr.group', function () {
             var currentOrder = table.order()[0];
             if (currentOrder[0] === 2 && currentOrder[1] === 'asc') {
                 table.order([2, 'desc']).draw();
@@ -77,23 +77,23 @@ $(document).ready(function() {
         });
         // [ Footer callback ]
         $('#footer-callback').DataTable({
-            "footerCallback": function(row, data, start, end, display) {
+            "footerCallback": function (row, data, start, end, display) {
                 var api = this.api(),
                     data;
 
                 // Remove the formatting to get integer data for summation
-                var intVal = function(i) {
+                var intVal = function (i) {
                     return typeof i === 'string' ?
                         i.replace(/[\$,]/g, '') * 1 :
                         typeof i === 'number' ?
-                        i : 0;
+                            i : 0;
                 };
 
                 // Total over all pages
                 total = api
                     .column(4)
                     .data()
-                    .reduce(function(a, b) {
+                    .reduce(function (a, b) {
                         return intVal(a) + intVal(b);
                     }, 0);
 
@@ -103,7 +103,7 @@ $(document).ready(function() {
                         page: 'current'
                     })
                     .data()
-                    .reduce(function(a, b) {
+                    .reduce(function (a, b) {
                         return intVal(a) + intVal(b);
                     }, 0);
 
@@ -121,7 +121,7 @@ $(document).ready(function() {
         $("div.toolbar").html('<b>Custom tool bar! Text/images etc.</b>');
         // [ custom callback ]
         $('#row-callback').DataTable({
-            "createdRow": function(row, data, index) {
+            "createdRow": function (row, data, index) {
                 if (data[5].replace(/[\$,]/g, '') * 1 > 150000) {
                     $('td', row).eq(5).addClass('highlight');
                 }

@@ -1,8 +1,8 @@
 define(function () {
   // Russian
-  function ending (count, one, couple, more) {
+  function ending(count, one, couple, more) {
     if (count % 10 < 5 && count % 10 > 0 &&
-        count % 100 < 5 || count % 100 > 20) {
+      count % 100 < 5 || count % 100 > 20) {
       if (count % 10 > 1) {
         return couple;
       }

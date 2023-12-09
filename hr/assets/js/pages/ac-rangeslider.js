@@ -1,17 +1,17 @@
 'use strict';
-$(window).on('load', function() {
+$(window).on('load', function () {
     // [ basic-Slider ]
-    $(function() {
+    $(function () {
         var slider = new Slider('#ex1', {
-            formatter: function(value) {
+            formatter: function (value) {
                 return 'Current value: ' + value;
             }
         });
     });
     // [ Selector-Slider ]
-    $(function() {
+    $(function () {
         var slider = new Slider('#ex2', {});
-        var RGBChange = function() {
+        var RGBChange = function () {
             $('#RGB').css('background', 'rgb(' + r.getValue() + ',' + g.getValue() + ',' + b.getValue() + ')')
         };
         var r = new Slider("#R", {
@@ -30,23 +30,23 @@ $(window).on('load', function() {
         });
     });
     // [ Destroy-Slider ]
-    $(function() {
+    $(function () {
         var slider = new Slider('#ex5');
-        $("#destroyEx5Slider").click(function() {
+        $("#destroyEx5Slider").click(function () {
             slider.destroy();
         });
     });
     // [ current-Slider ]
-    $(function() {
+    $(function () {
         var slider = new Slider("#ex6");
-        slider.on("slide", function(sliderValue) {
+        slider.on("slide", function (sliderValue) {
             document.getElementById("ex6SliderVal").textContent = sliderValue;
         });
     });
     // [ Enable-Slider ]
-    $(function() {
+    $(function () {
         var slider = new Slider("#ex7");
-        $("#ex7-enabled").click(function() {
+        $("#ex7-enabled").click(function () {
             if (this.checked) {
                 slider.enable();
             } else {
@@ -55,24 +55,24 @@ $(window).on('load', function() {
         });
     });
     // [ Tooltip-Slider ]
-    $(function() {
+    $(function () {
         var slider = new Slider("#ex8", {
             tooltip: 'always'
         });
     });
     // [ Precision-slider ]
-    $(function() {
+    $(function () {
         var slider = new Slider("#ex9", {
             precision: 2,
             value: 8.115 // Slider will instantiate showing 8.12 due to specified precision
         });
     });
     // [ handlers-slider ]
-    $(function() {
+    $(function () {
         var slider = new Slider("#ex10", {});
     });
     // [ step-slider ]
-    $(function() {
+    $(function () {
         var slider = new Slider("#ex11", {
             step: 20000,
             min: 0,
@@ -80,7 +80,7 @@ $(window).on('load', function() {
         });
     });
     //[ low & high-slider ]
-    $(function() {
+    $(function () {
         var sliderA = new Slider("#ex12a", {
             id: "slider12a",
             min: 0,
@@ -103,7 +103,7 @@ $(window).on('load', function() {
         });
     });
     // [ labels-slider ]
-    $(function() {
+    $(function () {
         var slider = new Slider("#ex13", {
             ticks: [0, 10, 20, 30, 40],
             ticks_labels: ['$0', '$10', '$20', '$30', '$40'],
@@ -111,7 +111,7 @@ $(window).on('load', function() {
         });
     });
     // [ positions-slider ]
-    $(function() {
+    $(function () {
         var slider = new Slider("#ex14", {
             ticks: [0, 10, 20, 30, 40],
             ticks_positions: [0, 30, 60, 70, 90, 100],
@@ -120,7 +120,7 @@ $(window).on('load', function() {
         });
     });
     // [ logarithmic-slider ]
-    $(function() {
+    $(function () {
         var slider = new Slider('#ex15', {
             min: 1000,
             max: 10000000,
@@ -129,7 +129,7 @@ $(window).on('load', function() {
         });
     });
     // [ Focus-slider ]
-    $(function() {
+    $(function () {
         var sliderA = new Slider("#ex16a", {
             min: 0,
             max: 10,
@@ -144,7 +144,7 @@ $(window).on('load', function() {
         });
     });
     // [ Unusual-slider ]
-    $(function() {
+    $(function () {
         var sliderA = new Slider("#ex17a", {
             min: 0,
             max: 10,
@@ -160,7 +160,7 @@ $(window).on('load', function() {
         });
     });
     // [ Accessibility-slider ]
-    $(function() {
+    $(function () {
         var sliderA = new Slider("#ex18a", {
             min: 0,
             max: 10,
@@ -175,8 +175,8 @@ $(window).on('load', function() {
         });
     });
     // [ Hidden-slider ]
-    $(function() {
-        $('#ex20a').on('click', function(e) {
+    $(function () {
+        $('#ex20a').on('click', function (e) {
             $('#ex20a')
                 .parent()
                 .find(' >.well')
@@ -187,7 +187,7 @@ $(window).on('load', function() {
         });
     });
     // [ Highlight-slider ]
-    $(function() {
+    $(function () {
         var slider = new Slider("#ex22", {
             id: 'slider22',
             min: 0,
@@ -195,10 +195,10 @@ $(window).on('load', function() {
             step: 1,
             value: 14,
             rangeHighlights: [{
-                    "start": 2,
-                    "end": 5,
-                    "class": "category1"
-                },
+                "start": 2,
+                "end": 5,
+                "class": "category1"
+            },
                 {
                     "start": 7,
                     "end": 8,
@@ -220,12 +220,12 @@ $(window).on('load', function() {
         });
     });
     // [ Tick-slider ]
-    $(function() {
+    $(function () {
         var slider = new Slider("#ex23", {
             ticks: [0, 1, 2, 3, 4],
             ticks_positions: [0, 30, 70, 90, 100],
             ticks_snap_bounds: 200,
-            formatter: function(value) {
+            formatter: function (value) {
                 return 'Current value: ' + value;
             },
             ticks_tooltip: true,
@@ -233,7 +233,7 @@ $(window).on('load', function() {
         });
     });
     // [ auto-slider ]
-    $(function() {
+    $(function () {
         $("#ex24").slider({});
     });
 });

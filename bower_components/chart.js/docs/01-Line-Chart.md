@@ -2,6 +2,7 @@
 title: Line Chart
 anchor: line-chart
 ---
+
 ###Introduction
 A line chart is a way of plotting data points on a line.
 
@@ -12,9 +13,11 @@ Often, it is used to show trend data, and the comparison of two data sets.
 </div>
 
 ###Example usage
+
 ```javascript
 var myLineChart = new Chart(ctx).Line(data, options);
 ```
+
 ###Data structure
 
 ```javascript
@@ -46,13 +49,17 @@ var data = {
 ```
 
 The line chart requires an array of labels for each of the data points. This is shown on the X axis.
-The data for line charts is broken up into an array of datasets. Each dataset has a colour for the fill, a colour for the line and colours for the points and strokes of the points. These colours are strings just like CSS. You can use RGBA, RGB, HEX or HSL notation.
+The data for line charts is broken up into an array of datasets. Each dataset has a colour for the fill, a colour for
+the line and colours for the points and strokes of the points. These colours are strings just like CSS. You can use
+RGBA, RGB, HEX or HSL notation.
 
 The label key on each dataset is optional, and can be used when generating a scale for the chart.
 
 ### Chart options
 
-These are the customisation options specific to Line charts. These options are merged with the [global chart configuration options](#getting-started-global-chart-configuration), and form the options of the chart.
+These are the customisation options specific to Line charts. These options are merged with
+the [global chart configuration options](#getting-started-global-chart-configuration), and form the options of the
+chart.
 
 ```javascript
 {
@@ -105,7 +112,8 @@ These are the customisation options specific to Line charts. These options are m
 };
 ```
 
-You can override these for your `Chart` instance by passing a second argument into the `Line` method as an object with the keys you want to override.
+You can override these for your `Chart` instance by passing a second argument into the `Line` method as an object with
+the keys you want to override.
 
 For example, we could have a line chart without bezier curves between points by doing the following:
 
@@ -117,14 +125,15 @@ new Chart(ctx).Line(data, {
 // and the Line chart defaults, but this particular instance will have `bezierCurve` set to false.
 ```
 
-We can also change these defaults values for each Line type that is created, this object is available at `Chart.defaults.Line`.
-
+We can also change these defaults values for each Line type that is created, this object is available
+at `Chart.defaults.Line`.
 
 ### Prototype methods
 
 #### .getPointsAtEvent( event )
 
-Calling `getPointsAtEvent(event)` on your Chart instance passing an argument of an event, or jQuery event, will return the point elements that are at that the same position of that event.
+Calling `getPointsAtEvent(event)` on your Chart instance passing an argument of an event, or jQuery event, will return
+the point elements that are at that the same position of that event.
 
 ```javascript
 canvas.onclick = function(evt){
@@ -133,11 +142,13 @@ canvas.onclick = function(evt){
 };
 ```
 
-This functionality may be useful for implementing DOM based tooltips, or triggering custom behaviour in your application.
+This functionality may be useful for implementing DOM based tooltips, or triggering custom behaviour in your
+application.
 
 #### .update( )
 
-Calling `update()` on your Chart instance will re-render the chart with any updated values, allowing you to edit the value of multiple existing points, then render those in one animated render loop.
+Calling `update()` on your Chart instance will re-render the chart with any updated values, allowing you to edit the
+value of multiple existing points, then render those in one animated render loop.
 
 ```javascript
 myLineChart.datasets[0].points[2].value = 50;
@@ -148,7 +159,8 @@ myLineChart.update();
 
 #### .addData( valuesArray, label )
 
-Calling `addData(valuesArray, label)` on your Chart instance passing an array of values for each dataset, along with a label for those points.
+Calling `addData(valuesArray, label)` on your Chart instance passing an array of values for each dataset, along with a
+label for those points.
 
 ```javascript
 // The values array passed into addData should be one for each dataset in the chart

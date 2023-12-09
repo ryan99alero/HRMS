@@ -10,14 +10,14 @@
 
 // Dropdown css
 
-@zindex-dropdown:               1000;
-@dropdown-fallback-border:      #ccc;
+@zindex-dropdown: 1000;
+@dropdown-fallback-border: #ccc;
 
 // Drop shadows
 .box-shadow(@shadow) {
   -webkit-box-shadow: @shadow;
-     -moz-box-shadow: @shadow;
-          box-shadow: @shadow;
+  -moz-box-shadow: @shadow;
+  box-shadow: @shadow;
 }
 
 // The dropdown menu (ul)
@@ -36,10 +36,10 @@
     border: 1px solid @dropdown-fallback-border; // IE8 fallback
     border: 1px solid @dropdown-border;
     border-radius: @border-radius-base;
-    .box-shadow(0 6px 12px rgba(0,0,0,.175));
+    .box-shadow(0 6px 12px rgba(0, 0, 0, .175));
     -webkit-background-clip: padding-box;
-       -moz-background-clip: padding;
-            background-clip: padding-box;
+    -moz-background-clip: padding;
+    background-clip: padding-box;
 
     // Normally inherited from bootstrap's `body`
     color: #333333;

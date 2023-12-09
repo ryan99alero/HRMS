@@ -1,4 +1,4 @@
 <?php
-	$timezone = 'Asia/Manila';
-	date_default_timezone_set($timezone);
+$timezone = 'Asia/Manila';
+date_default_timezone_set($timezone);
 ?>

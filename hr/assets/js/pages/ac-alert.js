@@ -1,34 +1,34 @@
 'use strict';
-$(document).ready(function() {
+$(document).ready(function () {
     // [ sweet-basic ]
-    $('.sweet-basic').on('click', function() {
+    $('.sweet-basic').on('click', function () {
         swal('Hello world!');
     });
     // [ sweet-success ]
-    $('.sweet-success').on('click', function() {
+    $('.sweet-success').on('click', function () {
         swal("Good job!", "You clicked the button!", "success");
     });
     // [ sweet-warning ]
-    $('.sweet-warning').on('click', function() {
+    $('.sweet-warning').on('click', function () {
         swal("Good job!", "You clicked the button!", "warning");
     });
     // [ sweet-error ]
-    $('.sweet-error').on('click', function() {
+    $('.sweet-error').on('click', function () {
         swal("Good job!", "You clicked the button!", "error");
     });
     // [ sweet-info ]
-    $('.sweet-info').on('click', function() {
+    $('.sweet-info').on('click', function () {
         swal("Good job!", "You clicked the button!", "info");
     });
     // [ sweet-multiple ]
-    $('.sweet-multiple').on('click', function() {
+    $('.sweet-multiple').on('click', function () {
         swal({
-                title: "Are you sure?",
-                text: "Once deleted, you will not be able to recover this imaginary file!",
-                icon: "warning",
-                buttons: true,
-                dangerMode: true,
-            })
+            title: "Are you sure?",
+            text: "Once deleted, you will not be able to recover this imaginary file!",
+            icon: "warning",
+            buttons: true,
+            dangerMode: true,
+        })
             .then((willDelete) => {
                 if (willDelete) {
                     swal("Poof! Your imaginary file has been deleted!", {
@@ -42,24 +42,24 @@ $(document).ready(function() {
             });
     });
     // [ sweet-prompt ]
-    $('.sweet-prompt').on('click', function() {
+    $('.sweet-prompt').on('click', function () {
         swal("Write something here:", {
-                content: "input",
-            })
+            content: "input",
+        })
             .then((value) => {
                 swal(`You typed: ${value}`);
             });
     });
     // [ sweet-ajax ]
-    $('.sweet-ajax').on('click', function() {
+    $('.sweet-ajax').on('click', function () {
         swal({
-                text: 'Search for a movie. e.g. "La La Land".',
-                content: "input",
-                button: {
-                    text: "Search!",
-                    closeModal: false,
-                },
-            })
+            text: 'Search for a movie. e.g. "La La Land".',
+            content: "input",
+            button: {
+                text: "Search!",
+                closeModal: false,
+            },
+        })
             .then(name => {
                 if (!name) throw null;
                 return fetch(`https://itunes.apple.com/search?term=${name}&entity=movie`);

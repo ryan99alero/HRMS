@@ -1,5 +1,5 @@
 'use strict';
-$(window).ready(function() {
+$(window).ready(function () {
     function ratingEnable() {
         // [ rating-1to10 ]
         $('#example-1to10').barrating('show', {
@@ -25,7 +25,7 @@ $(window).ready(function() {
             showSelectedRating: false,
             allowEmpty: true,
             emptyValue: '-- no rating selected --',
-            onSelect: function(value, text) {
+            onSelect: function (value, text) {
                 alert('Selected rating: ' + value);
             }
         });
@@ -61,7 +61,7 @@ $(window).ready(function() {
         $('.stars-example-fontawesome-o .current-rating')
             .find('span')
             .html(currentRating);
-        $('.stars-example-fontawesome-o .clear-rating').on('click', function(event) {
+        $('.stars-example-fontawesome-o .clear-rating').on('click', function (event) {
             event.preventDefault();
             $('#example-fontawesome-o')
                 .barrating('clear');
@@ -71,7 +71,7 @@ $(window).ready(function() {
             theme: 'fontawesome-stars-o',
             showSelectedRating: false,
             initialRating: currentRating,
-            onSelect: function(value, text) {
+            onSelect: function (value, text) {
                 if (!value) {
                     $('#example-fontawesome-o')
                         .barrating('clear');
@@ -85,7 +85,7 @@ $(window).ready(function() {
                         .html(value);
                 }
             },
-            onClear: function(value, text) {
+            onClear: function (value, text) {
                 $('.stars-example-fontawesome-o')
                     .find('.current-rating')
                     .removeClass('hidden')
@@ -95,19 +95,21 @@ $(window).ready(function() {
             }
         });
     }
+
     // [ rating-destroy ]
     function ratingDisable() {
         $('select').barrating('destroy');
     }
+
     // [ rating-enable ]
-    $('.rating-enable').on('click', function(event) {
+    $('.rating-enable').on('click', function (event) {
         event.preventDefault();
         ratingEnable();
         $(this).addClass('deactivated');
         $('.rating-disable').removeClass('deactivated');
     });
     // [ rating-disable ]
-    $('.rating-disable').on('click', function(event) {
+    $('.rating-disable').on('click', function (event) {
         event.preventDefault();
         ratingDisable();
         $(this).addClass('deactivated');

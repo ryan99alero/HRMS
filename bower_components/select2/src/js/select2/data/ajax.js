@@ -3,7 +3,7 @@ define([
   '../utils',
   'jquery'
 ], function (ArrayAdapter, Utils, $) {
-  function AjaxAdapter ($element, options) {
+  function AjaxAdapter($element, options) {
     this.ajaxOptions = this._applyDefaults(options.get('ajax'));
 
     if (this.ajaxOptions.processResults != null) {
@@ -64,7 +64,7 @@ define([
       options.data = options.data.call(this.$element, params);
     }
 
-    function request () {
+    function request() {
       var $request = options.transport(options, function (data) {
         var results = self.processResults(data, params);
 

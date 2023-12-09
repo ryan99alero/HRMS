@@ -1,13 +1,13 @@
 'use strict';
-$(document).ready(function() {
+$(document).ready(function () {
     // [ Typeahead ]
     var citynames = new Bloodhound({
         datumTokenizer: Bloodhound.tokenizers.obj.whitespace('name'),
         queryTokenizer: Bloodhound.tokenizers.whitespace,
         prefetch: {
             url: 'assets/json/citynames.json',
-            filter: function(list) {
-                return $.map(list, function(cityname) {
+            filter: function (list) {
+                return $.map(list, function (cityname) {
                     return {
                         name: cityname
                     };
@@ -35,7 +35,7 @@ $(document).ready(function() {
 
     var elt = $('.category-tag');
     elt.tagsinput({
-        tagClass: function(item) {
+        tagClass: function (item) {
             switch (item.continent) {
                 case 'Europe':
                     return 'label label-primary';

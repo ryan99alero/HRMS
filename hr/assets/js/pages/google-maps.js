@@ -1,5 +1,5 @@
 'use strict';
-$(document).ready(function() {
+$(document).ready(function () {
     // [ basic maps ]
     var basic;
     basic = new GMaps({
@@ -44,11 +44,11 @@ $(document).ready(function() {
         lng: 72.866472
     });
     // [ Geocoding form ]
-    $('#geocoding_form').submit(function(e) {
+    $('#geocoding_form').submit(function (e) {
         e.preventDefault();
         GMaps.geocode({
             address: $('#address').val().trim(),
-            callback: function(results, status) {
+            callback: function (results, status) {
                 if (status == 'OK') {
                     var latlng = results[0].geometry.location;
                     mapGeo.setCenter(latlng.lat(), latlng.lng());
@@ -76,7 +76,7 @@ $(document).ready(function() {
         }
     });
     mapT.addMapType("osm", {
-        getTileUrl: function(coord, zoom) {
+        getTileUrl: function (coord, zoom) {
             return "https://a.tile.openstreetmap.org/" + zoom + "/" + coord.x + "/" + coord.y + ".png";
         },
         tileSize: new google.maps.Size(256, 256),
@@ -103,7 +103,7 @@ $(document).ready(function() {
         }
     });
     var labels = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
-    var markers = locations.map(function(location, i) {
+    var markers = locations.map(function (location, i) {
         return new google.maps.Marker({
             position: location,
             label: labels[i % labels.length]

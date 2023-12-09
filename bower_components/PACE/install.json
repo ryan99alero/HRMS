@@ -5,7 +5,9 @@
         "type": "script",
         "src": "./pace.js",
         "moduleType": "global",
-        "exports": ["Pace"]
+        "exports": [
+          "Pace"
+        ]
       },
       {
         "type": "style",

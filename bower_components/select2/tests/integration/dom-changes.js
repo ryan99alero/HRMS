@@ -24,8 +24,8 @@ test('adding a new unselected option changes nothing', function (assert) {
 
   var $select = $(
     '<select>' +
-      '<option>One</option>' +
-      '<option>Two</option>' +
+    '<option>One</option>' +
+    '<option>Two</option>' +
     '</select>'
   );
 
@@ -90,8 +90,8 @@ test('adding a new selected option changes the value', function (assert) {
 
   var $select = $(
     '<select>' +
-      '<option>One</option>' +
-      '<option>Two</option>' +
+    '<option>One</option>' +
+    '<option>Two</option>' +
     '</select>'
   );
 
@@ -156,8 +156,8 @@ test('removing an unselected option changes nothing', function (assert) {
 
   var $select = $(
     '<select>' +
-      '<option>One</option>' +
-      '<option>Two</option>' +
+    '<option>One</option>' +
+    '<option>Two</option>' +
     '</select>'
   );
 
@@ -220,8 +220,8 @@ test('removing a selected option changes the value', function (assert) {
 
   var $select = $(
     '<select>' +
-      '<option>One</option>' +
-      '<option>Two</option>' +
+    '<option>One</option>' +
+    '<option>Two</option>' +
     '</select>'
   );
 

@@ -3,16 +3,16 @@ define([
   '../utils',
   '../keys'
 ], function ($, Utils, KEYS) {
-  function Search (decorated, $element, options) {
+  function Search(decorated, $element, options) {
     decorated.call(this, $element, options);
   }
 
   Search.prototype.render = function (decorated) {
     var $search = $(
       '<li class="select2-search select2-search--inline">' +
-        '<input class="select2-search__field" type="search" tabindex="-1"' +
-        ' autocomplete="off" autocorrect="off" autocapitalize="off"' +
-        ' spellcheck="false" role="textbox" aria-autocomplete="list" />' +
+      '<input class="select2-search__field" type="search" tabindex="-1"' +
+      ' autocomplete="off" autocorrect="off" autocapitalize="off"' +
+      ' spellcheck="false" role="textbox" aria-autocomplete="list" />' +
       '</li>'
     );
 
@@ -171,7 +171,7 @@ define([
     decorated.call(this, data);
 
     this.$selection.find('.select2-selection__rendered')
-                   .append(this.$searchContainer);
+      .append(this.$searchContainer);
 
     this.resizeSearch();
     if (searchHadFocus) {

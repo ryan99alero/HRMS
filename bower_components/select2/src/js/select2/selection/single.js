@@ -4,7 +4,7 @@ define([
   '../utils',
   '../keys'
 ], function ($, BaseSelection, Utils, KEYS) {
-  function SingleSelection () {
+  function SingleSelection() {
     SingleSelection.__super__.constructor.apply(this, arguments);
   }
 
@@ -18,7 +18,7 @@ define([
     $selection.html(
       '<span class="select2-selection__rendered"></span>' +
       '<span class="select2-selection__arrow" role="presentation">' +
-        '<b role="presentation"></b>' +
+      '<b role="presentation"></b>' +
       '</span>'
     );
 

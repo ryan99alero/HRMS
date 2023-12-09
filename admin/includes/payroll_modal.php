@@ -2,26 +2,29 @@
 <div class="modal fade" id="addnew">
     <div class="modal-dialog">
         <div class="modal-content">
-          	<div class="modal-header">
-            	<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-              		<span aria-hidden="true">&times;</span></button>
-            	<h4 class="modal-title"><b>Add Pay Scale</b></h4>
-          	</div>
-          	<div class="modal-body">
-            	<form class="form-horizontal" method="POST" action="payscale_add.php">
-          		  	<div class="form-group">
-                  		<label for="title" class="col-sm-3 control-label">Payscale Title</label>
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title"><b>Add Pay Scale</b></h4>
+            </div>
+            <div class="modal-body">
+                <form class="form-horizontal" method="POST" action="payscale_add.php">
+                    <div class="form-group">
+                        <label for="title" class="col-sm-3 control-label">Payscale Title</label>
 
-                  		<div class="col-sm-9">
-                    		<input type="text" class="form-control" id="title" name="title" required>
-                  		</div>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control" id="title" name="title" required>
+                        </div>
                     </div>
-          	</div>
-          	<div class="modal-footer">
-            	<button type="button" class="btn btn-default btn-flat pull-left" data-dismiss="modal"><i class="fa fa-close"></i> Close</button>
-            	<button type="submit" class="btn btn-primary btn-flat" name="add"><i class="fa fa-save"></i> Save</button>
-            	</form>
-          	</div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default btn-flat pull-left" data-dismiss="modal"><i
+                            class="fa fa-close"></i> Close
+                </button>
+                <button type="submit" class="btn btn-primary btn-flat" name="add"><i class="fa fa-save"></i> Save
+                </button>
+                </form>
+            </div>
         </div>
     </div>
 </div>
@@ -30,154 +33,157 @@
 <div class="modal fade" id="payrolledit">
     <div class="modal-dialog">
         <div class="modal-content">
-          	<div class="modal-header">
-            	<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-              		<span aria-hidden="true">&times;</span></button>
-            	<h4 class="modal-title"><b>Genrate Payroll</b></h4>
-          	</div>
-          	<div class="modal-body">
-            	<form class="form-horizontal payrollFormSubmit" method="POST" action="payroll_edit.php">
-                                <input type="hidden" id="posid" name="id">
-                            <div class="form-group">
-                                <label for="edit_RecId" class="col-sm-3 control-label">User Id</label>
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title"><b>Genrate Payroll</b></h4>
+            </div>
+            <div class="modal-body">
+                <form class="form-horizontal payrollFormSubmit" method="POST" action="payroll_edit.php">
+                    <input type="hidden" id="posid" name="id">
+                    <div class="form-group">
+                        <label for="edit_RecId" class="col-sm-3 control-label">User Id</label>
 
-                                <div class="col-sm-9">
-                                <input type="text" class="form-control" id="edit_RecId" name="RecId" disabled>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label for="edit_Employee_Name" class="col-sm-3 control-label">Employee Name</label>
-
-                                <div class="col-sm-9">
-                                <input type="text" class="form-control" id="edit_Employee_Name" name="Employee_Name" disabled>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label for="edit_designation_name" class="col-sm-3 control-label">Designation Name</label>
-
-                                <div class="col-sm-9">
-                                <input type="text" class="form-control" id="edit_designation_name" name="designation_name" disabled>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label for="edit_shift_name" class="col-sm-3 control-label">Shift Name</label>
-
-                                <div class="col-sm-9">
-                                <input type="text" class="form-control" id="edit_shift_name" name="shift_name" disabled>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label for="edit_pay_name" class="col-sm-3 control-label">Pay Name</label>
-
-                                <div class="col-sm-9">
-                                <input type="text" class="form-control" id="edit_pay_name" name="pay_name" disabled>
-                                </div>
-                            </div>
-                            
-                            <div class="form-group">
-                                <label for="edit_time_in" class="col-sm-3 control-label">Time In</label>
-                                
-                                <div class="col-sm-9">
-                                    <input type="text" class="form-control" id="edit_time_in" name="time_in" disabled>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label for="edit_time_out" class="col-sm-3 control-label">Time Out</label>
-
-                                <div class="col-sm-9">
-                                <input type="text" class="form-control" id="edit_time_out" name="time_out" disabled>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label for="edit_payroll_type" class="col-sm-3 control-label">Payroll Type</label>
-
-                                <div class="col-sm-9">
-                                <input type="text" class="form-control" id="edit_payroll_type" name="payroll_type" disabled>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label for="edit_salary" class="col-sm-3 control-label">Salary</label>
-
-                                <div class="col-sm-9">
-                                    <input type="text" class="form-control" id="edit_salary" name="salary" disabled>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label for="edit_deducted_days" class="col-sm-3 control-label">Deducted Days</label>
-
-                                <div class="col-sm-9">
-                                <input type="text" class="form-control" id="edit_deducted_days" name="deducted_days" disabled>
-                            </div>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control" id="edit_RecId" name="RecId" disabled>
                         </div>
-                        <div class="form-group">
-                                <label for="edit_late" class="col-sm-3 control-label">Late</label>
+                    </div>
+                    <div class="form-group">
+                        <label for="edit_Employee_Name" class="col-sm-3 control-label">Employee Name</label>
 
-                                <div class="col-sm-9">
-                                <input type="text" class="form-control" id="edit_late" name="late" disabled>
-                            </div>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control" id="edit_Employee_Name" name="Employee_Name"
+                                   disabled>
                         </div>
-                        <div class="form-group">
-                            <label for="edit_absent" class="col-sm-3 control-label">Absent</label>
-                            
-                            <div class="col-sm-9">
-                                <input type="text" class="form-control" id="edit_absent" name="absent" disabled>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="edit_Deduction" class="col-sm-3 control-label">Deduction</label>
-                            
-                            <div class="col-sm-9">
-                                <input type="text" class="form-control" id="edit_Deduction" name="Deduction" disabled>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="edit_M_Deducted" class="col-sm-3 control-label">Modify Deduction</label>
-                            
-                            <div class="col-sm-9">
-                                <input type="text" class="form-control" id="edit_M_Deducted" name="M_Deducted">
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="edit_advance" class="col-sm-3 control-label">Advance</label>
+                    </div>
+                    <div class="form-group">
+                        <label for="edit_designation_name" class="col-sm-3 control-label">Designation Name</label>
 
-                            <div class="col-sm-9">
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control" id="edit_designation_name" name="designation_name"
+                                   disabled>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="edit_shift_name" class="col-sm-3 control-label">Shift Name</label>
+
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control" id="edit_shift_name" name="shift_name" disabled>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="edit_pay_name" class="col-sm-3 control-label">Pay Name</label>
+
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control" id="edit_pay_name" name="pay_name" disabled>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="edit_time_in" class="col-sm-3 control-label">Time In</label>
+
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control" id="edit_time_in" name="time_in" disabled>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="edit_time_out" class="col-sm-3 control-label">Time Out</label>
+
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control" id="edit_time_out" name="time_out" disabled>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="edit_payroll_type" class="col-sm-3 control-label">Payroll Type</label>
+
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control" id="edit_payroll_type" name="payroll_type" disabled>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="edit_salary" class="col-sm-3 control-label">Salary</label>
+
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control" id="edit_salary" name="salary" disabled>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="edit_deducted_days" class="col-sm-3 control-label">Deducted Days</label>
+
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control" id="edit_deducted_days" name="deducted_days"
+                                   disabled>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="edit_late" class="col-sm-3 control-label">Late</label>
+
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control" id="edit_late" name="late" disabled>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="edit_absent" class="col-sm-3 control-label">Absent</label>
+
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control" id="edit_absent" name="absent" disabled>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="edit_Deduction" class="col-sm-3 control-label">Deduction</label>
+
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control" id="edit_Deduction" name="Deduction" disabled>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="edit_M_Deducted" class="col-sm-3 control-label">Modify Deduction</label>
+
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control" id="edit_M_Deducted" name="M_Deducted">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="edit_advance" class="col-sm-3 control-label">Advance</label>
+
+                        <div class="col-sm-9">
                             <input type="text" class="form-control" id="edit_advance" name="advance" disabled>
-                            </div>
                         </div>
-                        <div class="form-group">
-                            <label for="edit_M_Advance" class="col-sm-3 control-label">Modify Advance</label>
+                    </div>
+                    <div class="form-group">
+                        <label for="edit_M_Advance" class="col-sm-3 control-label">Modify Advance</label>
 
-                            <div class="col-sm-9">
+                        <div class="col-sm-9">
                             <input type="text" class="form-control" id="edit_M_Advance" name="M_Advance">
-                            </div>
                         </div>
-                            <div class="form-group">
-                                <label for="edit_M_Salary" class="col-sm-3 control-label">Modify Salary</label>
+                    </div>
+                    <div class="form-group">
+                        <label for="edit_M_Salary" class="col-sm-3 control-label">Modify Salary</label>
 
-                                <div class="col-sm-9">
-                                <input type="text" class="form-control" id="edit_M_Salary" name="M_Salary" readonly>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label for="edit_Total_Pay" class="col-sm-3 control-label">Total Pay</label>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control" id="edit_M_Salary" name="M_Salary" readonly>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="edit_Total_Pay" class="col-sm-3 control-label">Total Pay</label>
 
-                                <div class="col-sm-9">
-                                <input type="text" class="form-control" id="edit_Total_Pay" name="Total_Pay" disabled>
-                                </div>
-                            </div>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control" id="edit_Total_Pay" name="Total_Pay" disabled>
+                        </div>
+                    </div>
 
-                                                
-                            <!-- <input type="submit" name="submitRemarks" value="Submit Remarks"> -->
-                                    <?php
-                            
-                                        if ('deduction' === 'mdeduction' && 'totalpay' === 'mtotalpay') {
-                                            echo '<form method="post" action="">
+
+                    <!-- <input type="submit" name="submitRemarks" value="Submit Remarks"> -->
+                    <?php
+
+                    if ('deduction' === 'mdeduction' && 'totalpay' === 'mtotalpay') {
+                        echo '<form method="post" action="">
                                                     <textarea name="remarks" rows="4" cols="50" disabled></textarea>
                                                     <br>
                                                     
                                                 </form>';
-                                        } else {
-                                            echo '<form method="post" action="payroll_edit.php">
+                    } else {
+                        echo '<form method="post" action="payroll_edit.php">
                                             <div class="form-group">
                                                             <label for="label" name="label" class="col-sm-3 control-label">Remarks</label>
 
@@ -190,21 +196,25 @@
                                                 
                                                     
                                                 </form>';
-                                        }
+                    }
 
-                                        if (isset($_POST['submitRemarks'])) {
-                                            // Yeha par aap submit button par click hone par aapke remarks ko handle kar sakte hain
-                                            $submittedRemarks = $_POST['remarks'];
-                                            // Yahan par aap kuch aur actions kar sakte hain, jaise ki remarks ko database mein save karna
-                                        }
-                                    ?>
+                    if (isset($_POST['submitRemarks'])) {
+                        // Yeha par aap submit button par click hone par aapke remarks ko handle kar sakte hain
+                        $submittedRemarks = $_POST['remarks'];
+                        // Yahan par aap kuch aur actions kar sakte hain, jaise ki remarks ko database mein save karna
+                    }
+                    ?>
 
-                        </div>
-                        <div class="modal-footer">
-                                            <button type="button" class="btn btn-default btn-flat pull-left" data-dismiss="modal"><i class="fa fa-close"></i> Close</button>
-                                            <button type="submit" class="payrollFormSubmit-btn btn btn-success btn-flat" name="edit" ><i class="fa fa-check-square-o"></i> Edit Payroll</button>
-            	</form>
-          	</div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default btn-flat pull-left" data-dismiss="modal"><i
+                            class="fa fa-close"></i> Close
+                </button>
+                <button type="submit" class="payrollFormSubmit-btn btn btn-success btn-flat" name="edit"><i
+                            class="fa fa-check-square-o"></i> Edit Payroll
+                </button>
+                </form>
+            </div>
         </div>
     </div>
 </div>
@@ -213,54 +223,56 @@
 <div class="modal fade" id="delete">
     <div class="modal-dialog">
         <div class="modal-content">
-          	<div class="modal-header">
-            	<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-              		<span aria-hidden="true">&times;</span></button>
-            	<h4 class="modal-title"><b>Deleting...</b></h4>
-          	</div>
-          	<div class="modal-body">
-            	<form class="form-horizontal" method="POST" action="payscale_delete.php">
-            		<input type="hidden" id="del_posid" name="id">
-            		<div class="text-center">
-	                	<p>DELETE PAY SCALE</p>
-	                	<h2 id="del_payscale" class="bold"></h2>
-	            	</div>
-          	</div>
-          	<div class="modal-footer">
-            	<button type="button" class="btn btn-default btn-flat pull-left" data-dismiss="modal"><i class="fa fa-close"></i> Close</button>
-            	<button type="submit" class="btn btn-danger btn-flat" name="delete"><i class="fa fa-trash"></i> Delete</button>
-            	</form>
-          	</div>
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title"><b>Deleting...</b></h4>
+            </div>
+            <div class="modal-body">
+                <form class="form-horizontal" method="POST" action="payscale_delete.php">
+                    <input type="hidden" id="del_posid" name="id">
+                    <div class="text-center">
+                        <p>DELETE PAY SCALE</p>
+                        <h2 id="del_payscale" class="bold"></h2>
+                    </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default btn-flat pull-left" data-dismiss="modal"><i
+                            class="fa fa-close"></i> Close
+                </button>
+                <button type="submit" class="btn btn-danger btn-flat" name="delete"><i class="fa fa-trash"></i> Delete
+                </button>
+                </form>
+            </div>
         </div>
     </div>
 </div>
-<script src="https://code.jquery.com/jquery-3.7.0.js" integrity="sha256-JlqSTELeR4TLqP0OG9dxM7yDPqX1ox/HfgiSLBj8+kM=" crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-3.7.0.js" integrity="sha256-JlqSTELeR4TLqP0OG9dxM7yDPqX1ox/HfgiSLBj8+kM="
+        crossorigin="anonymous"></script>
 
 <script>
-    $(document).ready(function() {
+    $(document).ready(function () {
         // Edit button click event
-        $(".payrollFormSubmit-btn").click((function(){
+        $(".payrollFormSubmit-btn").click((function () {
             var remarks = document.getElementById("remarks").value;
             var dec = document.getElementById("edit_Deduction").value;
             var mdec = document.getElementById("edit_M_Deducted").value;
             var tp = document.getElementById("edit_Total_Pay").value;
             var mtp = document.getElementById("edit_M_Salary").value;
-               
 
-            if (dec === mdec){
+
+            if (dec === mdec) {
                 $(".payrollFormSubmit").submit();
-            }
-            else if (remarks == "") {
-                document.getElementById("remarkserror").innerHTML = " Please given Remarks..." ;
+            } else if (remarks == "") {
+                document.getElementById("remarkserror").innerHTML = " Please given Remarks...";
                 return false; // Form submit nahi hoga
-            }
-            else{
+            } else {
                 // return true; // Form submit hoga
-            $(".payrollFormSubmit").submit()
+                $(".payrollFormSubmit").submit()
             }
-          
+
         }))
-        $('.edit').click(function() {
+        $('.edit').click(function () {
             var id = $(this).data('id');
             var RecId = $(this).closest('tr').find('td:eq(0)').text(); // Extract UserP_Id from table
             var Employee_Name = $(this).closest('tr').find('td:eq(1)').text(); // Extract Designation_Id from table
@@ -268,7 +280,7 @@
             var shift_name = $(this).closest('tr').find('td:eq(3)').text(); // Extract Pay_Id from table
             var pay_name = $(this).closest('tr').find('td:eq(4)').text(); // Extract Deduction from table
             var time_in = $(this).closest('tr').find('td:eq(5)').text(); // Extract Deduction from table
-           
+
             var time_out = $(this).closest('tr').find('td:eq(6)').text(); // Extract salary from table
             var payroll_type = $(this).closest('tr').find('td:eq(7)').text(); // Extract salary from table
             var salary = $(this).closest('tr').find('td:eq(8)').text(); // Extract Total_Pay from table
@@ -286,7 +298,7 @@
             $('#edit_Employee_Name').val(Employee_Name);
             $('#edit_designation_name').val(designation_name);
             $('#edit_shift_name').val(shift_name);
-            
+
             $('#edit_pay_name').val(pay_name);
             $('#edit_time_in').val(time_in);
             $('#edit_time_out').val(time_out);
@@ -308,32 +320,32 @@
 </script>
 
 <script>
-document.addEventListener("DOMContentLoaded", function() {
-    var deductionInput = document.getElementById('edit_Deduction');
-    var mDeductionInput = document.getElementById('edit_M_Deducted');
-    var totalpayinput = document.getElementById('edit_Total_Pay');
-    var mtotalpayinput = document.getElementById('edit_M_Salary');
-    var label = document.querySelector('label[name="label"]');
-    var remarksTextarea = document.querySelector('textarea[name="remarks"]');
-    
-    function checkShowTextarea() {
-        if (deductionInput.value === mDeductionInput.value && totalpayinput.value === mtotalpayinput.value) {
-            label.style.display = 'none';
-            remarksTextarea.style.display = 'none';
-        } else {
-            label.style.display = 'block';
-            remarksTextarea.style.display = 'block';
+    document.addEventListener("DOMContentLoaded", function () {
+        var deductionInput = document.getElementById('edit_Deduction');
+        var mDeductionInput = document.getElementById('edit_M_Deducted');
+        var totalpayinput = document.getElementById('edit_Total_Pay');
+        var mtotalpayinput = document.getElementById('edit_M_Salary');
+        var label = document.querySelector('label[name="label"]');
+        var remarksTextarea = document.querySelector('textarea[name="remarks"]');
+
+        function checkShowTextarea() {
+            if (deductionInput.value === mDeductionInput.value && totalpayinput.value === mtotalpayinput.value) {
+                label.style.display = 'none';
+                remarksTextarea.style.display = 'none';
+            } else {
+                label.style.display = 'block';
+                remarksTextarea.style.display = 'block';
+            }
         }
-    }
-    
-    deductionInput.addEventListener('keyup', checkShowTextarea);
-    mDeductionInput.addEventListener('keyup', checkShowTextarea);
-    totalpayinput.addEventListener('keyup', checkShowTextarea);
-    mtotalpayinput.addEventListener('keyup', checkShowTextarea);
-    
-    // Call the function initially to set the initial display state
-    checkShowTextarea();
-});
+
+        deductionInput.addEventListener('keyup', checkShowTextarea);
+        mDeductionInput.addEventListener('keyup', checkShowTextarea);
+        totalpayinput.addEventListener('keyup', checkShowTextarea);
+        mtotalpayinput.addEventListener('keyup', checkShowTextarea);
+
+        // Call the function initially to set the initial display state
+        checkShowTextarea();
+    });
 </script>
 
 <!-- To calculate Total_Pay by subtracting M_Deducted from salary and updating the corresponding input field when the user enters a value for M_Deducted, you can use JavaScript. Here's a script to achieve this: -->

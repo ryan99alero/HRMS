@@ -1,15 +1,15 @@
 'use strict';
-$(document).ready(function() {
-    setTimeout(function() {
+$(document).ready(function () {
+    setTimeout(function () {
         // [ bar-simple ] chart start
         Morris.Bar({
             element: 'morris-bar-chart',
             data: [{
-                    y: '2008',
-                    a: 50,
-                    b: 40,
-                    c: 35,
-                },
+                y: '2008',
+                a: 50,
+                b: 40,
+                c: 35,
+            },
                 {
                     y: '2009',
                     a: 75,
@@ -50,11 +50,11 @@ $(document).ready(function() {
         Morris.Bar({
             element: 'morris-bar-stacked-chart',
             data: [{
-                    y: '2008',
-                    a: 50,
-                    b: 40,
-                    c: 35,
-                },
+                y: '2008',
+                a: 50,
+                b: 40,
+                c: 35,
+            },
                 {
                     y: '2009',
                     a: 75,
@@ -96,10 +96,10 @@ $(document).ready(function() {
         Morris.Area({
             element: 'morris-area-chart',
             data: [{
-                    y: '2006',
-                    a: 0,
-                    b: 0
-                },
+                y: '2006',
+                a: 0,
+                b: 0
+            },
                 {
                     y: '2007',
                     a: 130,
@@ -206,10 +206,10 @@ $(document).ready(function() {
         Morris.Line({
             element: 'morris-line-chart',
             data: [{
-                    y: '2006',
-                    a: 20,
-                    b: 10
-                },
+                y: '2006',
+                a: 20,
+                b: 10
+            },
                 {
                     y: '2007',
                     a: 55,
@@ -257,10 +257,10 @@ $(document).ready(function() {
         Morris.Line({
             element: 'morris-line-smooth-chart',
             data: [{
-                    y: '2006',
-                    a: 100,
-                    b: 90
-                },
+                y: '2006',
+                a: 100,
+                b: 90
+            },
                 {
                     y: '2007',
                     a: 75,
@@ -319,6 +319,7 @@ $(document).ready(function() {
             }
             return ret;
         }
+
         var graph_real = Morris.Line({
             element: 'morris-line-realtime-chart',
             data: data(0),
@@ -342,6 +343,7 @@ $(document).ready(function() {
             nReloads++;
             graph_real.setData(data(5 * nReloads));
         }
+
         setInterval(update, 100);
         // [ line-real-chart ] end
 
@@ -349,9 +351,9 @@ $(document).ready(function() {
         var graph = Morris.Donut({
             element: 'morris-donut-chart',
             data: [{
-                    value: 60,
-                    label: 'Data 1'
-                },
+                value: 60,
+                label: 'Data 1'
+            },
                 {
                     value: 20,
                     label: 'Data 1'
@@ -372,7 +374,7 @@ $(document).ready(function() {
                 '#ffba57',
             ],
             resize: true,
-            formatter: function(x) {
+            formatter: function (x) {
                 return "val : " + x
             }
         });

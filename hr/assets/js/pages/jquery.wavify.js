@@ -3,9 +3,9 @@
 *   Jquery Plugin to make some nice waves
 *   by peacepostman @ crezeo
  */
-(function ( $ ) {
+(function ($) {
 
-    $.fn.wavify = function( options ) {
+    $.fn.wavify = function (options) {
 
         //  Options
         //
@@ -22,7 +22,7 @@
             bones: 3,
             // Color
             color: 'rgba(255,255,255, 0.20)'
-        }, options );
+        }, options);
 
         var wave = this,
             width = $(settings.container).width(),
@@ -33,17 +33,17 @@
 
         //  Set color
         //
-        TweenLite.set(wave, {attr:{fill: settings.color}});
+        TweenLite.set(wave, {attr: {fill: settings.color}});
 
 
         function drawPoints(factor) {
             var points = [];
 
             for (var i = 0; i <= settings.bones; i++) {
-                var x = i/settings.bones * width;
+                var x = i / settings.bones * width;
                 var sinSeed = (factor + (i + i % settings.bones)) * settings.speed * 100;
                 var sinHeight = Math.sin(sinSeed / 100) * settings.amplitude;
-                var yPos = Math.sin(sinSeed / 100) * sinHeight  + settings.height;
+                var yPos = Math.sin(sinSeed / 100) * sinHeight + settings.height;
                 points.push({x: x, y: yPos});
             }
 
@@ -63,14 +63,14 @@
             var prevCp = cp0;
             var inverted = -1;
 
-            for (var i = 1; i < points.length-1; i++) {
+            for (var i = 1; i < points.length - 1; i++) {
                 var cpLength = Math.sqrt(prevCp.x * prevCp.x + prevCp.y * prevCp.y);
                 var cp1 = {
                     x: (points[i].x - prevCp.x) + points[i].x,
                     y: (points[i].y - prevCp.y) + points[i].y
                 };
 
-                SVGString += ' C ' + cp1.x + ' ' + cp1.y + ' ' + cp1.x + ' ' + cp1.y + ' ' + points[i+1].x + ' ' + points[i+1].y;
+                SVGString += ' C ' + cp1.x + ' ' + cp1.y + ' ' + cp1.x + ' ' + cp1.y + ' ' + points[i + 1].x + ' ' + points[i + 1].y;
                 prevCp = cp1;
                 inverted = -inverted;
             }
@@ -87,14 +87,14 @@
             var now = window.Date.now();
 
             if (lastUpdate) {
-                var elapsed = (now-lastUpdate) / 1000;
+                var elapsed = (now - lastUpdate) / 1000;
                 lastUpdate = now;
 
                 totalTime += elapsed;
 
-                var factor = totalTime*Math.PI;
+                var factor = totalTime * Math.PI;
                 TweenMax.to(wave, settings.speed, {
-                    attr:{
+                    attr: {
                         d: drawPath(drawPoints(factor))
                     },
                     ease: Power1.easeInOut
@@ -112,10 +112,10 @@
         //
         function debounce(func, wait, immediate) {
             var timeout;
-            return function() {
+            return function () {
                 var context = this, args = arguments;
                 clearTimeout(timeout);
-                timeout = setTimeout(function() {
+                timeout = setTimeout(function () {
                     timeout = null;
                     if (!immediate) func.apply(context, args);
                 }, wait);
@@ -125,14 +125,14 @@
 
         //  Redraw for resize with debounce
         //
-        var redraw = debounce(function() {
+        var redraw = debounce(function () {
             wave.attr('d', '');
             points = [];
             totalTime = 0;
             width = $(settings.container).width();
             height = $(settings.container).height();
             lastUpdate = false;
-            setTimeout(function(){
+            setTimeout(function () {
                 draw();
             }, 50);
         }, 250);

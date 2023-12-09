@@ -2,7 +2,7 @@ define([
   'jquery',
   './utils'
 ], function ($, Utils) {
-  function Results ($element, options, dataAdapter) {
+  function Results($element, options, dataAdapter) {
     this.$element = $element;
     this.data = dataAdapter;
     this.options = options;
@@ -136,7 +136,7 @@ define([
         var id = '' + item.id;
 
         if ((item.element != null && item.element.selected) ||
-            (item.element == null && $.inArray(id, selectedIds) > -1)) {
+          (item.element == null && $.inArray(id, selectedIds) > -1)) {
           $option.attr('aria-selected', 'true');
         } else {
           $option.attr('aria-selected', 'false');
@@ -431,46 +431,46 @@ define([
 
     this.$results.on('mouseup', '.select2-results__option[aria-selected]',
       function (evt) {
-      var $this = $(this);
+        var $this = $(this);
 
-      var data = $this.data('data');
+        var data = $this.data('data');
 
-      if ($this.attr('aria-selected') === 'true') {
-        if (self.options.get('multiple')) {
-          self.trigger('unselect', {
-            originalEvent: evt,
-            data: data
-          });
-        } else {
-          self.trigger('close', {});
+        if ($this.attr('aria-selected') === 'true') {
+          if (self.options.get('multiple')) {
+            self.trigger('unselect', {
+              originalEvent: evt,
+              data: data
+            });
+          } else {
+            self.trigger('close', {});
+          }
+
+          return;
         }
 
-        return;
-      }
-
-      self.trigger('select', {
-        originalEvent: evt,
-        data: data
+        self.trigger('select', {
+          originalEvent: evt,
+          data: data
+        });
       });
-    });
 
     this.$results.on('mouseenter', '.select2-results__option[aria-selected]',
       function (evt) {
-      var data = $(this).data('data');
+        var data = $(this).data('data');
 
-      self.getHighlightedResults()
+        self.getHighlightedResults()
           .removeClass('select2-results__option--highlighted');
 
-      self.trigger('results:focus', {
-        data: data,
-        element: $(this)
+        self.trigger('results:focus', {
+          data: data,
+          element: $(this)
+        });
       });
-    });
   };
 
   Results.prototype.getHighlightedResults = function () {
     var $highlighted = this.$results
-    .find('.select2-results__option--highlighted');
+      .find('.select2-results__option--highlighted');
 
     return $highlighted;
   };

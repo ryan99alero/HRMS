@@ -1,5 +1,5 @@
-$(document).ready(function() {
-    setTimeout(function() {
+$(document).ready(function () {
+    setTimeout(function () {
         // [ Basic Row Reorder ]
         var basicrow = $('#basic-row-reorder').DataTable({
             rowReorder: true
@@ -29,7 +29,7 @@ $(document).ready(function() {
             rowReorder: true
         });
 
-        rowevents.on('row-reorder', function(e, diff, edit) {
+        rowevents.on('row-reorder', function (e, diff, edit) {
             var result = 'Reorder started on row: ' + edit.triggerRow.data()[1] + '<br>';
 
             for (var i = 0, ien = diff.length; i < ien; i++) {

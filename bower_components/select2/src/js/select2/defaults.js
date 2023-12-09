@@ -35,22 +35,16 @@ define([
 
   './i18n/en'
 ], function ($, require,
-
              ResultsList,
-
              SingleSelection, MultipleSelection, Placeholder, AllowClear,
              SelectionSearch, EventRelay,
-
              Utils, Translation, DIACRITICS,
-
              SelectData, ArrayData, AjaxData, Tags, Tokenizer,
              MinimumInputLength, MaximumInputLength, MaximumSelectionLength,
-
              Dropdown, DropdownSearch, HidePlaceholder, InfiniteScroll,
              AttachBody, MinimumResultsForSearch, SelectOnClose, CloseOnSelect,
-
              EnglishTranslation) {
-  function Defaults () {
+  function Defaults() {
     this.reset();
   }
 
@@ -297,7 +291,7 @@ define([
   };
 
   Defaults.prototype.reset = function () {
-    function stripDiacritics (text) {
+    function stripDiacritics(text) {
       // Used 'uni range + named function' from http://jsperf.com/diacritics/18
       function match(a) {
         return DIACRITICS[a] || a;
@@ -306,7 +300,7 @@ define([
       return text.replace(/[^\u0000-\u007E]/g, match);
     }
 
-    function matcher (params, data) {
+    function matcher(params, data) {
       // Always return the object if there is nothing to compare
       if ($.trim(params.term) === '') {
         return data;

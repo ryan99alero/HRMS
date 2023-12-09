@@ -1,7 +1,7 @@
 'use strict';
-$(document).ready(function() {
+$(document).ready(function () {
     // [ besic-bar-chart ] start
-    setTimeout(function() {
+    setTimeout(function () {
         Highcharts.chart('chart-highchart-bar1', {
             chart: {
                 type: 'column'
@@ -100,7 +100,7 @@ $(document).ready(function() {
                 data: [5, 25, 15, 35, 25, 35, 45, 75]
             }, {
                 name: 'Manufacturing',
-                data: [25, 35, 45, 75, 5, 25, 15, 35, ]
+                data: [25, 35, 45, 75, 5, 25, 15, 35,]
             }, {
                 name: 'Sales & Distribution',
                 data: [45, 75, 25, 5, 15, 55, 5, 25]
@@ -125,7 +125,7 @@ $(document).ready(function() {
         // [ area-zoom-chart ] Start
         $.getJSON(
             'https://cdn.rawgit.com/highcharts/highcharts/057b672172ccc6c08fe7dbb27fc17ebca3f5b770/samples/data/usdeur.json',
-            function(data) {
+            function (data) {
                 Highcharts.chart('chart-highchart-area2', {
                     chart: {
                         zoomType: 'x',

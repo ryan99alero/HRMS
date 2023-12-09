@@ -21,7 +21,7 @@ var arrayOptions = new Options({
   ]
 });
 
-var extraOptions = new Options ({
+var extraOptions = new Options({
   data: [
     {
       id: 'default',
@@ -221,7 +221,7 @@ test('option tags are automatically generated', function (assert) {
   );
 });
 
-test('option tags can receive new data', function(assert) {
+test('option tags can receive new data', function (assert) {
   var $select = $('#qunit-fixture .single');
 
   var data = new ArrayData($select, extraOptions);
@@ -290,29 +290,29 @@ test('optgroup tags have the right properties', function (assert) {
 });
 
 test('existing selections are respected on initialization', function (assert) {
-   var $select = $(
-     '<select>' +
-        '<option>First</option>' +
-        '<option selected>Second</option>' +
-      '</select>'
-    );
+  var $select = $(
+    '<select>' +
+    '<option>First</option>' +
+    '<option selected>Second</option>' +
+    '</select>'
+  );
 
-    var options = new Options({
-      data: [
-        {
-          id: 'Second',
-          text: 'Second'
-        },
-        {
-          id: 'Third',
-          text: 'Third'
-        }
-      ]
-    });
+  var options = new Options({
+    data: [
+      {
+        id: 'Second',
+        text: 'Second'
+      },
+      {
+        id: 'Third',
+        text: 'Third'
+      }
+    ]
+  });
 
-    assert.equal($select.val(), 'Second');
+  assert.equal($select.val(), 'Second');
 
-    var data = new ArrayData($select, options);
+  var data = new ArrayData($select, options);
 
-    assert.equal($select.val(), 'Second');
+  assert.equal($select.val(), 'Second');
 });

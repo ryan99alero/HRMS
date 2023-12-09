@@ -23,7 +23,8 @@
         separator = /[\.\/]/,
         comaseparator = /\s*,\s*/,
         wildcard = "*",
-        fun = function () {},
+        fun = function () {
+        },
         numsort = function (a, b) {
             return a - b;
         },
@@ -64,70 +65,70 @@
 
      = (object) array of returned values from the listeners. Array has two methods `.firstDefined()` and `.lastDefined()` to get first or last not `undefined` value.
     \*/
-        eve = function (name, scope) {
-            var e = events,
-                oldstop = stop,
-                args = Array.prototype.slice.call(arguments, 2),
-                listeners = eve.listeners(name),
-                z = 0,
-                f = false,
-                l,
-                indexed = [],
-                queue = {},
-                out = [],
-                ce = current_event,
-                errors = [];
-            out.firstDefined = firstDefined;
-            out.lastDefined = lastDefined;
-            current_event = name;
-            stop = 0;
-            for (var i = 0, ii = listeners.length; i < ii; i++) if ("zIndex" in listeners[i]) {
-                indexed.push(listeners[i].zIndex);
-                if (listeners[i].zIndex < 0) {
-                    queue[listeners[i].zIndex] = listeners[i];
-                }
+    eve = function (name, scope) {
+        var e = events,
+            oldstop = stop,
+            args = Array.prototype.slice.call(arguments, 2),
+            listeners = eve.listeners(name),
+            z = 0,
+            f = false,
+            l,
+            indexed = [],
+            queue = {},
+            out = [],
+            ce = current_event,
+            errors = [];
+        out.firstDefined = firstDefined;
+        out.lastDefined = lastDefined;
+        current_event = name;
+        stop = 0;
+        for (var i = 0, ii = listeners.length; i < ii; i++) if ("zIndex" in listeners[i]) {
+            indexed.push(listeners[i].zIndex);
+            if (listeners[i].zIndex < 0) {
+                queue[listeners[i].zIndex] = listeners[i];
             }
-            indexed.sort(numsort);
-            while (indexed[z] < 0) {
-                l = queue[indexed[z++]];
-                out.push(l.apply(scope, args));
-                if (stop) {
-                    stop = oldstop;
-                    return out;
-                }
+        }
+        indexed.sort(numsort);
+        while (indexed[z] < 0) {
+            l = queue[indexed[z++]];
+            out.push(l.apply(scope, args));
+            if (stop) {
+                stop = oldstop;
+                return out;
             }
-            for (i = 0; i < ii; i++) {
-                l = listeners[i];
-                if ("zIndex" in l) {
-                    if (l.zIndex == indexed[z]) {
-                        out.push(l.apply(scope, args));
-                        if (stop) {
-                            break;
-                        }
-                        do {
-                            z++;
-                            l = queue[indexed[z]];
-                            l && out.push(l.apply(scope, args));
-                            if (stop) {
-                                break;
-                            }
-                        } while (l)
-                    } else {
-                        queue[l.zIndex] = l;
-                    }
-                } else {
+        }
+        for (i = 0; i < ii; i++) {
+            l = listeners[i];
+            if ("zIndex" in l) {
+                if (l.zIndex == indexed[z]) {
                     out.push(l.apply(scope, args));
                     if (stop) {
                         break;
                     }
+                    do {
+                        z++;
+                        l = queue[indexed[z]];
+                        l && out.push(l.apply(scope, args));
+                        if (stop) {
+                            break;
+                        }
+                    } while (l)
+                } else {
+                    queue[l.zIndex] = l;
+                }
+            } else {
+                out.push(l.apply(scope, args));
+                if (stop) {
+                    break;
                 }
             }
-            stop = oldstop;
-            current_event = ce;
-            return out;
-        };
-        // Undocumented. Debug only.
-        eve._events = events;
+        }
+        stop = oldstop;
+        current_event = ce;
+        return out;
+    };
+    // Undocumented. Debug only.
+    eve._events = events;
     /*\
      * eve.listeners
      [ method ]
@@ -217,7 +218,8 @@
     \*/
     eve.on = function (name, f) {
         if (typeof f != "function") {
-            return function () {};
+            return function () {
+            };
         }
         var names = isArray(name) ? (isArray(name[0]) ? name : [name]) : Str(name).split(comaseparator);
         for (var i = 0, ii = names.length; i < ii; i++) {
@@ -422,5 +424,7 @@
     eve.toString = function () {
         return "You are running Eve " + version;
     };
-    (typeof module != "undefined" && module.exports) ? (module.exports = eve) : (typeof define === "function" && define.amd ? (define("eve", [], function() { return eve; })) : (glob.eve = eve));
+    (typeof module != "undefined" && module.exports) ? (module.exports = eve) : (typeof define === "function" && define.amd ? (define("eve", [], function () {
+        return eve;
+    })) : (glob.eve = eve));
 })(this);

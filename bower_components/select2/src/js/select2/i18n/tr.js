@@ -1,7 +1,7 @@
 define(function () {
   // Turkish
   return {
-    errorLoading: function (){
+    errorLoading: function () {
       return 'Sonuç yüklenemedi';
     },
     inputTooLong: function (args) {

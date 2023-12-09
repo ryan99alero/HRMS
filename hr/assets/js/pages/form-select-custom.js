@@ -1,5 +1,5 @@
 'use strict';
-$(document).ready(function() {
+$(document).ready(function () {
     // [ Single Select ]
     $(".js-example-basic-single").select2();
 
@@ -85,18 +85,19 @@ $(document).ready(function() {
     function formatRepoSelection(repo) {
         return repo.full_name || repo.text;
     }
+
     $(".js-data-example-ajax").select2({
         ajax: {
             url: "https://api.github.com/search/repositories",
             dataType: 'json',
             delay: 250,
-            data: function(params) {
+            data: function (params) {
                 return {
                     q: params.term, // search term
                     page: params.page
                 };
             },
-            processResults: function(data, params) {
+            processResults: function (data, params) {
                 params.page = params.page || 1;
 
                 return {
@@ -108,7 +109,7 @@ $(document).ready(function() {
             },
             cache: true
         },
-        escapeMarkup: function(markup) {
+        escapeMarkup: function (markup) {
             return markup;
         }, // let our custom formatter work
         minimumInputLength: 1,
@@ -128,10 +129,10 @@ $(document).ready(function() {
     $(".js-example-disabled").select2({
         disabled: false
     });
-    $(".js-programmatic-enable").on("click", function() {
+    $(".js-programmatic-enable").on("click", function () {
         $(".js-example-disabled").prop("disabled", false);
     });
-    $(".js-programmatic-disable").on("click", function() {
+    $(".js-programmatic-disable").on("click", function () {
         $(".js-example-disabled").prop("disabled", true);
     });
 });

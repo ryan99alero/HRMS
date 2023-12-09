@@ -1,5 +1,5 @@
-$(document).ready(function() {
-    setTimeout(function() {
+$(document).ready(function () {
+    setTimeout(function () {
         // [ Configuration Option ]
         $('#res-config').DataTable({
             responsive: true,

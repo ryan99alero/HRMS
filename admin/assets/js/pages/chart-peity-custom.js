@@ -1,12 +1,12 @@
 'use strict';
-$(document).ready(function() {
-    setTimeout(function() {
+$(document).ready(function () {
+    setTimeout(function () {
         // [ updating-Chart ] start
         var updatingChart = $(".updating-chart").peity("line", {
             fill: "rgba(240, 70, 107, 0.4)",
             stroke: "rgb(240, 70, 107)"
         });
-        setInterval(function() {
+        setInterval(function () {
             var random = Math.round(Math.random() * 10)
             var values = updatingChart.text().split(",")
             values.shift()
@@ -18,7 +18,7 @@ $(document).ready(function() {
         // [ updating-Chart ] end
 
         // [ updating1-Chart ] start
-        $(document).ready(function() {
+        $(document).ready(function () {
             var updatingChart1 = $(".updating-chart1").peity("line", {
                 fill: "rgba(51, 219, 158, 0.32)",
                 stroke: "rgba(51, 219, 158, 0.90)"

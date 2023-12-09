@@ -25,6 +25,7 @@ $colorpicker-img-path: "../img/bootstrap-colorpicker" !default;
   @include bgImg('saturation.png');
   cursor: crosshair;
   float: left;
+
   i {
     display: block;
     height: 5px;
@@ -35,6 +36,7 @@ $colorpicker-img-path: "../img/bootstrap-colorpicker" !default;
     top: 0;
     left: 0;
     margin: -4px 0 0 -4px;
+
     b {
       display: block;
       height: 5px;

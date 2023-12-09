@@ -4,7 +4,7 @@ namespace SimpleExcel\Writer;
 
 /**
  * Defines SimpleExcel writer interface
- * 
+ *
  * @author  Faisalman
  * @package SimpleExcel
  */
@@ -12,10 +12,13 @@ namespace SimpleExcel\Writer;
 /** define writer interface */
 interface IWriter
 {
-    public function addRow($values);
-    public function saveString();
-    public function saveFile($filename, $target);
-    public function setData($values);
+    public function addRow ($values);
+
+    public function saveString ();
+
+    public function saveFile ($filename, $target);
+
+    public function setData ($values);
 }
 
 ?>

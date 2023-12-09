@@ -32,9 +32,8 @@ can write it as
 There's a complete example below, but you should also check out the
 plugins bundled with Flot.
 
-
 ## Complete example ##
-  
+
 Here is a simple debug plugin which alerts each of the series in the
 plot. It has a single option that control whether it is enabled and
 how much info to output:
@@ -75,7 +74,7 @@ how much info to output:
 
 We also define "name" and "version". It's not used by Flot, but might
 be helpful for other plugins in resolving dependencies.
-  
+
 Put the above in a file named "jquery.flot.debug.js", include it in an
 HTML page and then it can be used with:
 
@@ -85,14 +84,13 @@ HTML page and then it can be used with:
 
 This simple plugin illustrates a couple of points:
 
- - It uses the anonymous function trick to avoid name pollution.
- - It can be enabled/disabled through an option.
- - Variables in the init function can be used to store plot-specific
-   state between the hooks.
+- It uses the anonymous function trick to avoid name pollution.
+- It can be enabled/disabled through an option.
+- Variables in the init function can be used to store plot-specific
+  state between the hooks.
 
 The two last points are important because there may be multiple plots
 on the same page, and you'd want to make sure they are not mixed up.
-
 
 ## Shutting down a plugin ##
 
@@ -111,9 +109,8 @@ but because your event handler is still referencing it, it can't be
 garbage collected yet, and worse, if your handler eventually runs, it
 may overwrite stuff on a completely different plot.
 
- 
 ## Some hints on the options ##
-   
+
 Plugins should always support appropriate options to enable/disable
 them because the plugin user may have several plots on the same page
 where only one should use the plugin. In most cases it's probably a

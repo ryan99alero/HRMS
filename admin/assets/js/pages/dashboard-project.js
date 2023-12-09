@@ -1,13 +1,13 @@
 'use strict';
-$(document).ready(function() {
-    setTimeout(function() {
+$(document).ready(function () {
+    setTimeout(function () {
         floatchart()
     }, 100);
 });
 
 function floatchart() {
     // [ sec-ecommerce-chart-line ] start
-    $(function() {
+    $(function () {
         var options = {
             chart: {
                 type: 'area',
@@ -51,7 +51,7 @@ function floatchart() {
                 },
                 y: {
                     title: {
-                        formatter: function(seriesName) {
+                        formatter: function (seriesName) {
                             return 'Referral :'
                         }
                     }
@@ -66,7 +66,7 @@ function floatchart() {
     });
     // [ sec-ecommerce-chart-line ] end
     // [ sec-ecommerce-chart-bar ] start
-    $(function() {
+    $(function () {
         var options = {
             chart: {
                 type: 'bar',
@@ -101,7 +101,7 @@ function floatchart() {
                 },
                 y: {
                     title: {
-                        formatter: function(seriesName) {
+                        formatter: function (seriesName) {
                             return 'Affiliate :'
                         }
                     }
@@ -116,7 +116,7 @@ function floatchart() {
     });
     // [ sec-ecommerce-chart-bar ] end
     // [ sec-ecommerce-chart-line1 ] start
-    $(function() {
+    $(function () {
         var options = {
             chart: {
                 type: 'area',
@@ -160,7 +160,7 @@ function floatchart() {
                 },
                 y: {
                     title: {
-                        formatter: function(seriesName) {
+                        formatter: function (seriesName) {
                             return 'Referral :'
                         }
                     }
@@ -175,7 +175,7 @@ function floatchart() {
     });
     // [ sec-ecommerce-chart-line1 ] end
     // [ sec-ecommerce-chart-bar1 ] start
-    $(function() {
+    $(function () {
         var options = {
             chart: {
                 type: 'bar',
@@ -210,7 +210,7 @@ function floatchart() {
                 },
                 y: {
                     title: {
-                        formatter: function(seriesName) {
+                        formatter: function (seriesName) {
                             return 'Affiliate :'
                         }
                     }

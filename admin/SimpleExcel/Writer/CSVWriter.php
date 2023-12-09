@@ -4,7 +4,7 @@ namespace SimpleExcel\Writer;
 
 /**
  * SimpleExcel class for writing CSV Spreadsheet
- *  
+ *
  * @author  Faisalman
  * @package SimpleExcel
  */
@@ -12,7 +12,7 @@ class CSVWriter extends BaseWriter implements IWriter
 {
     /**
      * Defines content-type for HTTP header
-     * 
+     *
      * @access  protected
      * @var     string
      */
@@ -20,7 +20,7 @@ class CSVWriter extends BaseWriter implements IWriter
 
     /**
      * Defines delimiter char
-     * 
+     *
      * @access  protected
      * @var     string
      */
@@ -28,18 +28,19 @@ class CSVWriter extends BaseWriter implements IWriter
 
     /**
      * Defines file extension to be used when saving file
-     * 
+     *
      * @access  protected
      * @var     string
      */
     protected $file_extension = 'csv';
-    
+
     /**
      * Get document content as string
-     * 
+     *
      * @return  string  Content of document
      */
-    public function saveString(){
+    public function saveString ()
+    {
         $fp = fopen('php://temp', 'r+');
         foreach ($this->tabl_data as $row) {
             fputcsv($fp, $row, $this->delimiter);
@@ -52,12 +53,14 @@ class CSVWriter extends BaseWriter implements IWriter
 
     /**
      * Set character for delimiter
-     * 
-     * @param   string  $delimiter  Commonly used character can be a comma, semicolon, tab, or space
+     *
+     * @param string $delimiter Commonly used character can be a comma, semicolon, tab, or space
      * @return  void
      */
-    public function setDelimiter($delimiter){
+    public function setDelimiter ($delimiter)
+    {
         $this->delimiter = $delimiter;
     }
 }
+
 ?>

@@ -15,7 +15,10 @@
   ],
   "homepage": "http://rocha.la/jQuery-slimScroll/",
   "authors": [
-    { "name": "Piotr Rochala", "homepage": "http://rocha.la/" }
+    {
+      "name": "Piotr Rochala",
+      "homepage": "http://rocha.la/"
+    }
   ],
   "repository": {
     "type": "git",
@@ -25,7 +28,7 @@
     "jquery.slimscroll.js",
     "jquery.slimscroll.min.js"
   ],
-  "licenses" : [
+  "licenses": [
     {
       "type": "MIT",
       "url": "http://www.opensource.org/licenses/mit-license.php"

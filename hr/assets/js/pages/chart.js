@@ -1,13 +1,13 @@
 'use strict';
-$(document).ready(function() {
-    setTimeout(function() {
+$(document).ready(function () {
+    setTimeout(function () {
         floatchart()
     }, 700);
 });
 
 function floatchart() {
     // [ amount-processed ] start
-    $(function() {
+    $(function () {
         var options = {
             chart: {
                 type: 'area',
@@ -51,7 +51,7 @@ function floatchart() {
                 },
                 y: {
                     title: {
-                        formatter: function(seriesName) {
+                        formatter: function (seriesName) {
                             return 'Amount Processed :'
                         }
                     }
@@ -66,7 +66,7 @@ function floatchart() {
     });
     // [ amount-processed ] end
     // [ amount-spent ] start
-    $(function() {
+    $(function () {
         var options = {
             chart: {
                 type: 'bar',
@@ -101,7 +101,7 @@ function floatchart() {
                 },
                 y: {
                     title: {
-                        formatter: function(seriesName) {
+                        formatter: function (seriesName) {
                             return 'Amount Spent :'
                         }
                     }
@@ -116,7 +116,7 @@ function floatchart() {
     });
     // [ amount-spent ] end
     // [ profit-processed ] start
-    $(function() {
+    $(function () {
         var options = {
             chart: {
                 type: 'area',
@@ -160,7 +160,7 @@ function floatchart() {
                 },
                 y: {
                     title: {
-                        formatter: function(seriesName) {
+                        formatter: function (seriesName) {
                             return 'Profit Processed :'
                         }
                     }
@@ -175,7 +175,7 @@ function floatchart() {
     });
     // [ profit-processed ] end
     // [ sec-ecommerce-chart-line ] start
-    $(function() {
+    $(function () {
         var options = {
             chart: {
                 type: 'area',
@@ -219,7 +219,7 @@ function floatchart() {
                 },
                 y: {
                     title: {
-                        formatter: function(seriesName) {
+                        formatter: function (seriesName) {
                             return 'Referral :'
                         }
                     }
@@ -234,7 +234,7 @@ function floatchart() {
     });
     // [ sec-ecommerce-chart-line ] end
     // [ sec-ecommerce-chart-bar ] start
-    $(function() {
+    $(function () {
         var options = {
             chart: {
                 type: 'bar',
@@ -269,7 +269,7 @@ function floatchart() {
                 },
                 y: {
                     title: {
-                        formatter: function(seriesName) {
+                        formatter: function (seriesName) {
                             return 'Affiliate :'
                         }
                     }
@@ -284,7 +284,7 @@ function floatchart() {
     });
     // [ sec-ecommerce-chart-bar ] end
     // [ seo-ecommerce-barchart ] start
-    $(function() {
+    $(function () {
         var options = {
             chart: {
                 type: 'bar',
@@ -335,7 +335,7 @@ function floatchart() {
                 },
                 y: {
                     title: {
-                        formatter: function(seriesName) {
+                        formatter: function (seriesName) {
                             return 'Active Users :'
                         }
                     }
@@ -350,7 +350,7 @@ function floatchart() {
     });
     // [ seo-ecommerce-barchart ] end
     // [ sal-income ] start
-    $(function() {
+    $(function () {
         var options = {
             chart: {
                 type: 'area',
@@ -393,7 +393,7 @@ function floatchart() {
                 },
                 y: {
                     title: {
-                        formatter: function(seriesName) {
+                        formatter: function (seriesName) {
                             return 'Sale Income :'
                         }
                     }
@@ -408,7 +408,7 @@ function floatchart() {
     });
     // [ sal-income ] end
     // [ rent-income ] start
-    $(function() {
+    $(function () {
         var options = {
             chart: {
                 type: 'area',
@@ -440,7 +440,7 @@ function floatchart() {
             },
             series: [{
                 name: 'series1',
-                data: [9, 54, 25, 66, 41, 66, 41, 89, 25, 66, 41, 89, 25, 44, 12, 36, ]
+                data: [9, 54, 25, 66, 41, 66, 41, 89, 25, 66, 41, 89, 25, 44, 12, 36,]
             }],
             tooltip: {
                 fixed: {
@@ -451,7 +451,7 @@ function floatchart() {
                 },
                 y: {
                     title: {
-                        formatter: function(seriesName) {
+                        formatter: function (seriesName) {
                             return 'Rent Income :'
                         }
                     }
@@ -466,7 +466,7 @@ function floatchart() {
     });
     // [ rent-income ] end
     // [ income-analysis ] start
-    $(function() {
+    $(function () {
         var options = {
             chart: {
                 type: 'area',
@@ -509,7 +509,7 @@ function floatchart() {
                 },
                 y: {
                     title: {
-                        formatter: function(seriesName) {
+                        formatter: function (seriesName) {
                             return 'Income Analysis :'
                         }
                     }
@@ -524,7 +524,7 @@ function floatchart() {
     });
     // [ income-analysis ] end
     // [ sale-report ] start
-    $(function() {
+    $(function () {
         var options = {
             chart: {
                 type: 'bar',
@@ -559,7 +559,7 @@ function floatchart() {
                 },
                 y: {
                     title: {
-                        formatter: function(seriesName) {
+                        formatter: function (seriesName) {
                             return 'Daily Sales :'
                         }
                     }
@@ -572,7 +572,7 @@ function floatchart() {
         var chart = new ApexCharts(document.querySelector("#sale-report-1"), options);
         chart.render();
     });
-    $(function() {
+    $(function () {
         var options = {
             chart: {
                 type: 'bar',
@@ -607,7 +607,7 @@ function floatchart() {
                 },
                 y: {
                     title: {
-                        formatter: function(seriesName) {
+                        formatter: function (seriesName) {
                             return 'Weekly Sales :'
                         }
                     }
@@ -620,7 +620,7 @@ function floatchart() {
         var chart = new ApexCharts(document.querySelector("#sale-report-2"), options);
         chart.render();
     });
-    $(function() {
+    $(function () {
         var options = {
             chart: {
                 type: 'bar',
@@ -655,7 +655,7 @@ function floatchart() {
                 },
                 y: {
                     title: {
-                        formatter: function(seriesName) {
+                        formatter: function (seriesName) {
                             return 'Monthly Sales :'
                         }
                     }
@@ -668,7 +668,7 @@ function floatchart() {
         var chart = new ApexCharts(document.querySelector("#sale-report-3"), options);
         chart.render();
     });
-    $(function() {
+    $(function () {
         var options = {
             chart: {
                 type: 'bar',
@@ -703,7 +703,7 @@ function floatchart() {
                 },
                 y: {
                     title: {
-                        formatter: function(seriesName) {
+                        formatter: function (seriesName) {
                             return 'Yearly Sales :'
                         }
                     }
@@ -718,7 +718,7 @@ function floatchart() {
     });
     // [ sale-report ] end
     // [ this-month ] start
-    $(function() {
+    $(function () {
         var options = {
             chart: {
                 type: 'bar',
@@ -753,7 +753,7 @@ function floatchart() {
                 },
                 y: {
                     title: {
-                        formatter: function(seriesName) {
+                        formatter: function (seriesName) {
                             return 'Income in $'
                         }
                     }
@@ -768,7 +768,7 @@ function floatchart() {
     });
     // [ this-month ] end
     // [ sale-chart1 ] start
-    $(function() {
+    $(function () {
         var options = {
             chart: {
                 type: 'line',
@@ -804,7 +804,7 @@ function floatchart() {
                 },
                 y: {
                     title: {
-                        formatter: function(seriesName) {
+                        formatter: function (seriesName) {
                             return 'Sales Per Day'
                         }
                     }
@@ -819,7 +819,7 @@ function floatchart() {
     });
     // [ sale-chart1 ] end
     // [ sale-chart3 ] start
-    $(function() {
+    $(function () {
         var options = {
             chart: {
                 type: 'line',
@@ -855,7 +855,7 @@ function floatchart() {
                 },
                 y: {
                     title: {
-                        formatter: function(seriesName) {
+                        formatter: function (seriesName) {
                             return 'Orders'
                         }
                     }
@@ -870,7 +870,7 @@ function floatchart() {
     });
     // [ sale-chart3 ] end
     // [ power-card-chart1 ] start
-    $(function() {
+    $(function () {
         var options = {
             chart: {
                 type: 'line',
@@ -905,7 +905,7 @@ function floatchart() {
                 },
                 y: {
                     title: {
-                        formatter: function(seriesName) {
+                        formatter: function (seriesName) {
                             return 'Power'
                         }
                     }
@@ -920,7 +920,7 @@ function floatchart() {
     });
     // [ power-card-chart1 ] end
     // [ power-card-chart2 ] start
-    $(function() {
+    $(function () {
         var options = {
             chart: {
                 type: 'line',
@@ -955,7 +955,7 @@ function floatchart() {
                 },
                 y: {
                     title: {
-                        formatter: function(seriesName) {
+                        formatter: function (seriesName) {
                             return 'Water'
                         }
                     }
@@ -970,7 +970,7 @@ function floatchart() {
     });
     // [ power-card-chart2 ] end
     // [ power-card-chart3 ] start
-    $(function() {
+    $(function () {
         var options = {
             chart: {
                 type: 'line',
@@ -1005,7 +1005,7 @@ function floatchart() {
                 },
                 y: {
                     title: {
-                        formatter: function(seriesName) {
+                        formatter: function (seriesName) {
                             return 'Temperature'
                         }
                     }
@@ -1020,7 +1020,7 @@ function floatchart() {
     });
     // [ power-card-chart3 ] end
     // [ revenue-map ] start
-    $(function() {
+    $(function () {
         var options = {
             chart: {
                 height: 220,
@@ -1076,7 +1076,7 @@ function floatchart() {
     });
     // [ revenue-map ] end
     // [ proj-earning ] start
-    $(function() {
+    $(function () {
         var options = {
             chart: {
                 type: 'bar',
@@ -1136,7 +1136,7 @@ function floatchart() {
                 },
                 y: {
                     title: {
-                        formatter: function(seriesName) {
+                        formatter: function (seriesName) {
                             return 'Total Earnings'
                         }
                     }
@@ -1151,7 +1151,7 @@ function floatchart() {
     });
     // [ proj-earning ] end
     // [ realtime-visit-chart ] start
-    $(function() {
+    $(function () {
         var lastDate = 0;
         var data = [];
 
@@ -1170,6 +1170,7 @@ function floatchart() {
                 i++;
             }
         }
+
         getDayWiseTimeSeries(new Date('11 Feb 2017 GMT').getTime(), 10, {
             min: 10,
             max: 90
@@ -1187,6 +1188,7 @@ function floatchart() {
         function resetData() {
             data = data.slice(data.length - 10, data.length);
         }
+
         var options = {
             chart: {
                 height: 230,
@@ -1240,7 +1242,7 @@ function floatchart() {
         );
         chart.render();
         var dataPointsLength = 10;
-        window.setInterval(function() {
+        window.setInterval(function () {
             getNewSeries(lastDate, {
                 min: 10,
                 max: 90
@@ -1250,7 +1252,7 @@ function floatchart() {
                 data: data
             }])
         }, 2000)
-        window.setInterval(function() {
+        window.setInterval(function () {
             resetData()
             chart.updateSeries([{
                 data
@@ -1259,7 +1261,7 @@ function floatchart() {
     });
     // [ realtime-visit-chart ] end
     // [ seo-anlytics1 ] start
-    $(function() {
+    $(function () {
         var options = {
             chart: {
                 type: 'area',
@@ -1309,7 +1311,7 @@ function floatchart() {
                 },
                 y: {
                     title: {
-                        formatter: function(seriesName) {
+                        formatter: function (seriesName) {
                             return 'Site Analysis :'
                         }
                     }
@@ -1324,7 +1326,7 @@ function floatchart() {
     });
     // [ seo-anlytics1 ] end
     // [ seo-anlytics2 ] start
-    $(function() {
+    $(function () {
         var options = {
             chart: {
                 type: 'area',
@@ -1374,7 +1376,7 @@ function floatchart() {
                 },
                 y: {
                     title: {
-                        formatter: function(seriesName) {
+                        formatter: function (seriesName) {
                             return 'Total Sales :'
                         }
                     }
@@ -1389,7 +1391,7 @@ function floatchart() {
     });
     // [ seo-anlytics2 ] end
     // [ seo-anlytics3 ] start
-    $(function() {
+    $(function () {
         var options = {
             chart: {
                 type: 'area',
@@ -1439,7 +1441,7 @@ function floatchart() {
                 },
                 y: {
                     title: {
-                        formatter: function(seriesName) {
+                        formatter: function (seriesName) {
                             return 'Total Visits :'
                         }
                     }
@@ -1454,7 +1456,7 @@ function floatchart() {
     });
     // [ seo-anlytics3 ] end
     // [ seo-anlytics4 ] start
-    $(function() {
+    $(function () {
         var options = {
             chart: {
                 type: 'area',
@@ -1504,7 +1506,7 @@ function floatchart() {
                 },
                 y: {
                     title: {
-                        formatter: function(seriesName) {
+                        formatter: function (seriesName) {
                             return 'Total Usage :'
                         }
                     }
@@ -1519,7 +1521,7 @@ function floatchart() {
     });
     // [ seo-anlytics4 ] end
     // [ total-value-graph-1 ] start
-    $(function() {
+    $(function () {
         var options = {
             chart: {
                 type: 'area',
@@ -1558,7 +1560,7 @@ function floatchart() {
                 },
                 y: {
                     title: {
-                        formatter: function(seriesName) {
+                        formatter: function (seriesName) {
                             return 'Total Sales'
                         }
                     }
@@ -1573,7 +1575,7 @@ function floatchart() {
     });
     // [ total-value-graph-1 ] end
     // [ total-value-graph-2 ] start
-    $(function() {
+    $(function () {
         var options = {
             chart: {
                 type: 'area',
@@ -1612,7 +1614,7 @@ function floatchart() {
                 },
                 y: {
                     title: {
-                        formatter: function(seriesName) {
+                        formatter: function (seriesName) {
                             return 'Total Comment'
                         }
                     }
@@ -1627,7 +1629,7 @@ function floatchart() {
     });
     // [ total-value-graph-2 ] end
     // [ total-value-graph-3 ] start
-    $(function() {
+    $(function () {
         var options = {
             chart: {
                 type: 'area',
@@ -1666,7 +1668,7 @@ function floatchart() {
                 },
                 y: {
                     title: {
-                        formatter: function(seriesName) {
+                        formatter: function (seriesName) {
                             return 'Income Status'
                         }
                     }
@@ -1681,7 +1683,7 @@ function floatchart() {
     });
     // [ total-value-graph-3 ] end
     // [ total-value-graph-4 ] start
-    $(function() {
+    $(function () {
         var options = {
             chart: {
                 type: 'area',
@@ -1720,7 +1722,7 @@ function floatchart() {
                 },
                 y: {
                     title: {
-                        formatter: function(seriesName) {
+                        formatter: function (seriesName) {
                             return 'Total Visitors'
                         }
                     }
@@ -1735,7 +1737,7 @@ function floatchart() {
     });
     // [ total-value-graph-4 ] end
     // [ monthlyprofit-1 ] start
-    $(function() {
+    $(function () {
         var options = {
             chart: {
                 type: 'area',
@@ -1779,7 +1781,7 @@ function floatchart() {
                 },
                 y: {
                     title: {
-                        formatter: function(seriesName) {
+                        formatter: function (seriesName) {
                             return 'Monthly Profit :'
                         }
                     }
@@ -1794,7 +1796,7 @@ function floatchart() {
     });
     // [ monthlyprofit-1 ] end
     // [ monthlyprofit-2 ] start
-    $(function() {
+    $(function () {
         var options = {
             chart: {
                 type: 'area',
@@ -1838,7 +1840,7 @@ function floatchart() {
                 },
                 y: {
                     title: {
-                        formatter: function(seriesName) {
+                        formatter: function (seriesName) {
                             return 'Total Sales :'
                         }
                     }
@@ -1853,7 +1855,7 @@ function floatchart() {
     });
     // [ monthlyprofit-2 ] end
     // [ monthlyprofit-3 ] start
-    $(function() {
+    $(function () {
         var options = {
             chart: {
                 type: 'area',
@@ -1897,7 +1899,7 @@ function floatchart() {
                 },
                 y: {
                     title: {
-                        formatter: function(seriesName) {
+                        formatter: function (seriesName) {
                             return 'Unique Visitors :'
                         }
                     }
@@ -1912,7 +1914,7 @@ function floatchart() {
     });
     // [ monthlyprofit-3 ] end
     // [ seo-chart1 ] start
-    $(function() {
+    $(function () {
         var options = {
             chart: {
                 type: 'area',
@@ -1956,7 +1958,7 @@ function floatchart() {
                 },
                 y: {
                     title: {
-                        formatter: function(seriesName) {
+                        formatter: function (seriesName) {
                             return 'Visits :'
                         }
                     }
@@ -1971,7 +1973,7 @@ function floatchart() {
     });
     // [ seo-chart1 ] end
     // [ seo-chart2 ] start
-    $(function() {
+    $(function () {
         var options = {
             chart: {
                 type: 'bar',
@@ -2006,7 +2008,7 @@ function floatchart() {
                 },
                 y: {
                     title: {
-                        formatter: function(seriesName) {
+                        formatter: function (seriesName) {
                             return 'Bounce Rate :'
                         }
                     }
@@ -2021,7 +2023,7 @@ function floatchart() {
     });
     // [ seo-chart2 ] end
     // [ seo-chart3 ] start
-    $(function() {
+    $(function () {
         var options = {
             chart: {
                 type: 'area',
@@ -2036,7 +2038,7 @@ function floatchart() {
             colors: ["#ff5252"],
             fill: {
                 type: 'solid',
-                opacity:0,
+                opacity: 0,
             },
             markers: {
                 size: 2,
@@ -2065,7 +2067,7 @@ function floatchart() {
                 },
                 y: {
                     title: {
-                        formatter: function(seriesName) {
+                        formatter: function (seriesName) {
                             return 'Products :'
                         }
                     }
@@ -2080,7 +2082,7 @@ function floatchart() {
     });
     // [ seo-chart3 ] end
     // [ client-map-1 ] start
-    $(function() {
+    $(function () {
         var options = {
             chart: {
                 type: 'area',
@@ -2119,7 +2121,7 @@ function floatchart() {
                 },
                 y: {
                     title: {
-                        formatter: function(seriesName) {
+                        formatter: function (seriesName) {
                             return 'Activity'
                         }
                     }
@@ -2134,7 +2136,7 @@ function floatchart() {
     });
     // [ client-map-1 ] end
     // [ client-map-2 ] start
-    $(function() {
+    $(function () {
         var options = {
             chart: {
                 type: 'area',
@@ -2178,7 +2180,7 @@ function floatchart() {
                 },
                 y: {
                     title: {
-                        formatter: function(seriesName) {
+                        formatter: function (seriesName) {
                             return 'Activity :'
                         }
                     }
@@ -2193,7 +2195,7 @@ function floatchart() {
     });
     // [ client-map-2 ] end
     // [ client-map-3 ] start
-    $(function() {
+    $(function () {
         var options = {
             chart: {
                 type: 'bar',
@@ -2228,7 +2230,7 @@ function floatchart() {
                 },
                 y: {
                     title: {
-                        formatter: function(seriesName) {
+                        formatter: function (seriesName) {
                             return 'Activity :'
                         }
                     }
@@ -2243,7 +2245,7 @@ function floatchart() {
     });
     // [ client-map-3 ] end
     // [ tot-lead ] start
-    $(function() {
+    $(function () {
         var options = {
             chart: {
                 type: 'area',
@@ -2277,7 +2279,7 @@ function floatchart() {
                 },
                 y: {
                     title: {
-                        formatter: function(seriesName) {
+                        formatter: function (seriesName) {
                             return 'Total Leads :'
                         }
                     }
@@ -2292,7 +2294,7 @@ function floatchart() {
     });
     // [ tot-lead ] end
     // [ tot-vendor ] start
-    $(function() {
+    $(function () {
         var options = {
             chart: {
                 type: 'area',
@@ -2315,7 +2317,7 @@ function floatchart() {
             },
             series: [{
                 name: 'series1',
-                data: [25, 44, 12, 36, 9, 54, 25, 66, 41, 89, 25,  66, 41, 50]
+                data: [25, 44, 12, 36, 9, 54, 25, 66, 41, 89, 25, 66, 41, 50]
             }],
             tooltip: {
                 fixed: {
@@ -2326,7 +2328,7 @@ function floatchart() {
                 },
                 y: {
                     title: {
-                        formatter: function(seriesName) {
+                        formatter: function (seriesName) {
                             return 'Total Vendors :'
                         }
                     }
@@ -2341,7 +2343,7 @@ function floatchart() {
     });
     // [ tot-vendor ] end
     // [ invoice-gen ] start
-    $(function() {
+    $(function () {
         var options = {
             chart: {
                 type: 'area',
@@ -2375,7 +2377,7 @@ function floatchart() {
                 },
                 y: {
                     title: {
-                        formatter: function(seriesName) {
+                        formatter: function (seriesName) {
                             return 'Invoice Generate :'
                         }
                     }
@@ -2393,12 +2395,12 @@ function floatchart() {
     // ===================================================================
     // ===================================================================
     // [ peity-chart ] start
-    $(function() {
+    $(function () {
         $(".data-attributes").peity("donut");
     });
     // [ peity-chart ] end
     // [ Support tracker ] start
-    $(function() {
+    $(function () {
         var options = {
             chart: {
                 type: 'line',
@@ -2423,7 +2425,7 @@ function floatchart() {
                 },
                 y: {
                     title: {
-                        formatter: function(seriesName) {
+                        formatter: function (seriesName) {
                             return 'hii'
                         }
                     }
@@ -2438,7 +2440,7 @@ function floatchart() {
     });
     // [ Support tracker ] end
     // [ Support tracker ] start
-    $(function() {
+    $(function () {
         var options = {
             chart: {
                 height: 120,
@@ -2476,7 +2478,7 @@ function floatchart() {
     });
     // [ Support tracker ] end
     // [ Transection ] start
-    $(function() {
+    $(function () {
         var options1 = {
             chart: {
                 type: 'bar',
@@ -2509,7 +2511,7 @@ function floatchart() {
                 },
                 y: {
                     title: {
-                        formatter: function(seriesName) {
+                        formatter: function (seriesName) {
                             return 'Inbound'
                         }
                     }
@@ -2552,7 +2554,7 @@ function floatchart() {
                 },
                 y: {
                     title: {
-                        formatter: function(seriesName) {
+                        formatter: function (seriesName) {
                             return 'Outbound'
                         }
                     }
@@ -2566,7 +2568,7 @@ function floatchart() {
     });
     // [ Transection ] end
     // [ order join chart ] start
-    $(function() {
+    $(function () {
         var spark1 = {
             chart: {
                 type: 'line',
@@ -2595,7 +2597,7 @@ function floatchart() {
                 },
                 y: {
                     title: {
-                        formatter: function(seriesName) {
+                        formatter: function (seriesName) {
                             return ''
                         }
                     }
@@ -2636,7 +2638,7 @@ function floatchart() {
                 },
                 y: {
                     title: {
-                        formatter: function(seriesName) {
+                        formatter: function (seriesName) {
                             return ''
                         }
                     }
@@ -2677,7 +2679,7 @@ function floatchart() {
                 },
                 y: {
                     title: {
-                        formatter: function(seriesName) {
+                        formatter: function (seriesName) {
                             return ''
                         }
                     }
@@ -2718,7 +2720,7 @@ function floatchart() {
                 },
                 y: {
                     title: {
-                        formatter: function(seriesName) {
+                        formatter: function (seriesName) {
                             return ''
                         }
                     }
@@ -2759,7 +2761,7 @@ function floatchart() {
                 },
                 y: {
                     title: {
-                        formatter: function(seriesName) {
+                        formatter: function (seriesName) {
                             return ''
                         }
                     }
@@ -2800,7 +2802,7 @@ function floatchart() {
                 },
                 y: {
                     title: {
-                        formatter: function(seriesName) {
+                        formatter: function (seriesName) {
                             return ''
                         }
                     }
@@ -2816,7 +2818,7 @@ function floatchart() {
     });
     // [ order join chart ] end
     // [ Session chart ] start
-    $(function() {
+    $(function () {
         function generateDatasehratheat(count, yrange) {
             var i = 0;
             var series = [];
@@ -2832,6 +2834,7 @@ function floatchart() {
             }
             return series;
         }
+
         var options = {
             chart: {
                 height: 400,
@@ -2842,12 +2845,12 @@ function floatchart() {
             },
             colors: ["#4680ff"],
             series: [{
-                    name: 'Metric1',
-                    data: generateDatasehratheat(12, {
-                        min: 0,
-                        max: 90
-                    })
-                },
+                name: 'Metric1',
+                data: generateDatasehratheat(12, {
+                    min: 0,
+                    max: 90
+                })
+            },
                 {
                     name: 'Metric2',
                     data: generateDatasehratheat(12, {
@@ -2949,7 +2952,7 @@ function floatchart() {
     });
     // [ Session chart ] end
     // [ horizontal-bar-chart ] start
-    $(function() {
+    $(function () {
         var options = {
             chart: {
                 height: 350,
@@ -2999,7 +3002,7 @@ function floatchart() {
     });
     // [ horizontal-bar-chart ] end
     // [ coversions-chart ] start
-    $(function() {
+    $(function () {
         var options1 = {
             chart: {
                 type: 'bar',
@@ -3031,7 +3034,7 @@ function floatchart() {
                 },
                 y: {
                     title: {
-                        formatter: function(seriesName) {
+                        formatter: function (seriesName) {
                             return ''
                         }
                     }
@@ -3045,7 +3048,7 @@ function floatchart() {
     });
     // [ coversions-chart ] end
     // [ satisfaction-chart ] start
-    $(function() {
+    $(function () {
         var options = {
             chart: {
                 height: 260,
@@ -3088,7 +3091,7 @@ function floatchart() {
     });
     // [ satisfaction-chart ] end
     // [ traffic-chart1 ] start
-    $(function() {
+    $(function () {
         var options = {
             chart: {
                 height: 275,
@@ -3116,7 +3119,7 @@ function floatchart() {
     });
     // [ traffic-chart1 ] end
     // [ time-chart ] start
-    $(function() {
+    $(function () {
         var options = {
             chart: {
                 height: 210,
@@ -3156,7 +3159,7 @@ function floatchart() {
     });
     // [ time-chart ] end
     // [ sale-chart ] start
-    $(function() {
+    $(function () {
         var options1 = {
             chart: {
                 type: 'bar',
@@ -3188,7 +3191,7 @@ function floatchart() {
                 },
                 y: {
                     title: {
-                        formatter: function(seriesName) {
+                        formatter: function (seriesName) {
                             return ''
                         }
                     }
@@ -3202,7 +3205,7 @@ function floatchart() {
     });
     // [ sale-chart ] end
     // [ coversions-char1t ] start
-    $(function() {
+    $(function () {
         var options1 = {
             chart: {
                 type: 'bar',
@@ -3234,7 +3237,7 @@ function floatchart() {
                 },
                 y: {
                     title: {
-                        formatter: function(seriesName) {
+                        formatter: function (seriesName) {
                             return ''
                         }
                     }
@@ -3248,7 +3251,7 @@ function floatchart() {
     });
     // [ coversions-chart1 ] end
     // [ revenue-chart ] start
-    $(function() {
+    $(function () {
         var options = {
             chart: {
                 height: 240,
@@ -3269,7 +3272,7 @@ function floatchart() {
     });
     // [ revenue-chart ] end
     // [ market-chart ] start
-    $(function() {
+    $(function () {
         var options = {
             chart: {
                 height: 200,
@@ -3317,7 +3320,7 @@ function floatchart() {
     });
     // [ market-chart ] end
     // [ type-chart ] start
-    $(function() {
+    $(function () {
         var options = {
             chart: {
                 height: 200,
@@ -3345,7 +3348,7 @@ function floatchart() {
     });
     // [ type-chart ] end
     // [ traffic-chart ] start
-    $(function() {
+    $(function () {
         var options1 = {
             chart: {
                 type: 'bar',
@@ -3396,7 +3399,7 @@ function floatchart() {
                 },
                 y: {
                     title: {
-                        formatter: function(seriesName) {
+                        formatter: function (seriesName) {
                             return 'Click '
                         }
                     }
@@ -3410,7 +3413,7 @@ function floatchart() {
     });
     // [ traffic-chart ] end
     // [ support-chart ] start
-    $(function() {
+    $(function () {
         var options1 = {
             chart: {
                 type: 'area',
@@ -3436,7 +3439,7 @@ function floatchart() {
                 },
                 y: {
                     title: {
-                        formatter: function(seriesName) {
+                        formatter: function (seriesName) {
                             return 'Ticket '
                         }
                     }
@@ -3450,7 +3453,7 @@ function floatchart() {
     });
     // [ support-chart ] end
     // [ average-chart ] start
-    $(function() {
+    $(function () {
         var btcchartoption1 = {
             chart: {
                 type: 'area',
@@ -3491,7 +3494,7 @@ function floatchart() {
                 },
                 y: {
                     title: {
-                        formatter: function(seriesName) {
+                        formatter: function (seriesName) {
                             return '$'
                         }
                     }
@@ -3541,7 +3544,7 @@ function floatchart() {
                 },
                 y: {
                     title: {
-                        formatter: function(seriesName) {
+                        formatter: function (seriesName) {
                             return '$'
                         }
                     }
@@ -3592,7 +3595,7 @@ function floatchart() {
                 },
                 y: {
                     title: {
-                        formatter: function(seriesName) {
+                        formatter: function (seriesName) {
                             return '$'
                         }
                     }
@@ -3643,7 +3646,7 @@ function floatchart() {
                 },
                 y: {
                     title: {
-                        formatter: function(seriesName) {
+                        formatter: function (seriesName) {
                             return '$'
                         }
                     }

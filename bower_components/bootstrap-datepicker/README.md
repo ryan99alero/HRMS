@@ -25,7 +25,8 @@ Please note: It might take a few hours until a new version is available on cdnjs
 
 ## Development
 
-Once you cloned the repo, you'll need to install [grunt](https://gruntjs.com/) and the development dependencies using a package manager:
+Once you cloned the repo, you'll need to install [grunt](https://gruntjs.com/) and the development dependencies using a
+package manager:
 
 * [yarn](https://yarnpkg.com/) (recommended):
 

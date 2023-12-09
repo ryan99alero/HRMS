@@ -1,11 +1,11 @@
-$(document).ready(function() {
-    setTimeout(function() {
+$(document).ready(function () {
+    setTimeout(function () {
         // [ Custom button ]
         $('#custom-btn').DataTable({
             dom: 'Bfrtip',
             buttons: [{
                 text: 'My Custom button',
-                action: function(e, dt, node, config) {
+                action: function (e, dt, node, config) {
                     alert('Button activated');
                 }
             }]
@@ -32,7 +32,7 @@ $(document).ready(function() {
             buttons: [{
                 text: 'Button <u>1</u>',
                 key: '1',
-                action: function(e, dt, node, config) {
+                action: function (e, dt, node, config) {
                     alert('Button 1 activated');
                 }
             }, {
@@ -41,7 +41,7 @@ $(document).ready(function() {
                     altKey: true,
                     key: '2'
                 },
-                action: function(e, dt, node, config) {
+                action: function (e, dt, node, config) {
                     alert('Button 2 activated');
                 }
             }]
@@ -55,12 +55,12 @@ $(document).ready(function() {
                 text: 'Table control',
                 buttons: [{
                     text: 'Toggle start date',
-                    action: function(e, dt, node, config) {
+                    action: function (e, dt, node, config) {
                         dt.column(-2).visible(!dt.column(-2).visible());
                     }
                 }, {
                     text: 'Toggle salary',
-                    action: function(e, dt, node, config) {
+                    action: function (e, dt, node, config) {
                         dt.column(-1).visible(!dt.column(-1).visible());
                     }
                 }, 'colvis']
@@ -72,7 +72,7 @@ $(document).ready(function() {
             dom: 'Bfrtip',
             buttons: [{
                 text: 'Button 1',
-                action: function(e, dt, node, config) {
+                action: function (e, dt, node, config) {
                     alert('Button 1 clicked on');
                 }
             }]

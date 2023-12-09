@@ -1,24 +1,20 @@
 {
-
-    "predef" : [
-      "require",
-      "define"
-    ],
-    "jquery": true,
-    "browser": true,
-
-    "eqeqeq": true,
-    "freeze": true,
-
-    "latedef": false,
-    "undef": true,
-    "unused": false,
-    "immed": true,
-    "trailing": true,
-    "maxcomplexity": 50,
-
-
-    "-W014": false,
-    "-W065": false,
-    "-W069": false,
-    "-W100": false }
+  "predef": [
+    "require",
+    "define"
+  ],
+  "jquery": true,
+  "browser": true,
+  "eqeqeq": true,
+  "freeze": true,
+  "latedef": false,
+  "undef": true,
+  "unused": false,
+  "immed": true,
+  "trailing": true,
+  "maxcomplexity": 50,
+  "-W014": false,
+  "-W065": false,
+  "-W069": false,
+  "-W100": false
+}

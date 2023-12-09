@@ -1,5 +1,5 @@
-$(document).ready(function() {
-    setTimeout(function() {
+$(document).ready(function () {
+    setTimeout(function () {
         // [ left-right-fix
         var table = $('#left-right-fix').DataTable({
             scrollY: "300px",

@@ -1,5 +1,5 @@
-$(document).ready(function() {
-    setTimeout(function() {
+$(document).ready(function () {
+    setTimeout(function () {
 
         // [ dom table ]
         $('#dom-table').DataTable();
@@ -27,12 +27,12 @@ $(document).ready(function() {
             ["Bradley Greer", "Software Engineer", "London", "2558", "2012/10/13", "$132,000"],
             ["Dai Rios", "Personnel Lead", "Edinburgh", "2290", "2012/09/26", "$217,500"],
         ];
-        
-		$('#jsource-table').DataTable({
+
+        $('#jsource-table').DataTable({
             data: dataSet,
             columns: [{
-                    title: "Name"
-                },
+                title: "Name"
+            },
                 {
                     title: "Position"
                 },

@@ -11,7 +11,8 @@ test('current is required', function (assert) {
 
   assert.throws(
     function () {
-      data.current(function () {});
+      data.current(function () {
+      });
     },
     'current has no default implementation'
   );
@@ -22,7 +23,8 @@ test('query is required', function (assert) {
 
   assert.throws(
     function () {
-      data.query({}, function () {});
+      data.query({}, function () {
+      });
     },
     'query has no default implementation'
   );

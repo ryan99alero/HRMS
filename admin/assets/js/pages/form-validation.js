@@ -1,10 +1,10 @@
 'use strict';
-$(document).ready(function() {
-    $(function() {
+$(document).ready(function () {
+    $(function () {
         // [ Add phone validator ]
         $.validator.addMethod(
             'phone_format',
-            function(value, element) {
+            function (value, element) {
                 return this.optional(element) || /^\(\d{3}\)[ ]\d{3}\-\d{4}$/.test(value);
             },
             'Invalid phone number.'
@@ -83,7 +83,7 @@ $(document).ready(function() {
                     error.addClass('jquery-validation-error small form-text invalid-feedback')
                 );
             },
-            highlight: function(element) {
+            highlight: function (element) {
                 var $el = $(element);
                 var $parent = $el.parents('.form-group');
 
@@ -94,7 +94,7 @@ $(document).ready(function() {
                     $el.parent().addClass('is-invalid');
                 }
             },
-            unhighlight: function(element) {
+            unhighlight: function (element) {
                 $(element).parents('.form-group').find('.is-invalid').removeClass('is-invalid');
             }
         });

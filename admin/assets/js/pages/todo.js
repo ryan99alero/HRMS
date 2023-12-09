@@ -1,12 +1,13 @@
 'use strict';
-$(document).ready(function() {
-    $('button#create-task').on('click', function() {
+$(document).ready(function () {
+    $('button#create-task').on('click', function () {
         $(".md-form-control").removeClass("md-valid");
         if ('.nothing-message') {
             $('.nothing-message').hide('slide', {
                 direction: 'left'
             }, 300)
-        };
+        }
+        ;
         var task = $('input[name=task-insert]').val();
         if (task.length == 0) {
             alert('please enter a task');
@@ -18,23 +19,23 @@ $(document).ready(function() {
             $('.task-headline').fadeIn();
         }
     });
-    $(document).on('click', 'li', function() {
+    $(document).on('click', 'li', function () {
         $(this).toggleClass('complete');
-    });    
-    $(document).on('dblclick', '#task-container li', function() {
+    });
+    $(document).on('dblclick', '#task-container li', function () {
         $(this).remove();
     });
-    $('button#clear-all-tasks').on('click', function() {
+    $('button#clear-all-tasks').on('click', function () {
         $('#task-list li').remove();
         $('.task-headline').fadeOut();
         $('#controls').fadeOut();
         $('.nothing-message').show('fast');
     });
-    $(".icofont icofont-ui-delete").on("click", function() {
+    $(".icofont icofont-ui-delete").on("click", function () {
         $(this).parent().parent().parent().fadeOut();
     });
     var i = 7;
-    $("#add-btn").on("click", function() {
+    $("#add-btn").on("click", function () {
         $(".md-form-control").removeClass("md-valid");
         var task = $('.add_task_todo').val();
         if (task == "") {
@@ -46,10 +47,10 @@ $(document).ready(function() {
             $('.add_task_todo').val('');
         }
     });
-    $(".delete_todolist").on("click", function() {
+    $(".delete_todolist").on("click", function () {
         $(this).parent().parent().fadeOut();
     });
-    $(".btn_save").on("click", function() {
+    $(".btn_save").on("click", function () {
         $(".md-form-control").removeClass("md-valid");
         var saveTask = $('.save_task_todo').val();
         if (saveTask == "") {
@@ -62,10 +63,10 @@ $(document).ready(function() {
             $("#flipFlop").modal('hide');
         }
     });
-    $(".close_btn").on("click", function() {
+    $(".close_btn").on("click", function () {
         $('.save_task_todo').val('');
     });
-    $(".delete_todo").on("click", function() {
+    $(".delete_todo").on("click", function () {
         $(this).parent().parent().parent().parent().fadeOut();
     });
 });
@@ -73,7 +74,8 @@ $(document).ready(function() {
 function delete_todo(e) {
     $('#' + e).fadeOut();
 }
-$('.to-do-list input[type=checkbox]').on("click", function() {
+
+$('.to-do-list input[type=checkbox]').on("click", function () {
     if ($(this).prop('checked'))
         $(this).parent().addClass('done-task');
     else
@@ -86,7 +88,8 @@ function check_task(elem) {
     else
         $('#checkbox' + elem).parent().removeClass('done-task');
 }
-$('.to-do-label input[type=checkbox]').on('click', function() {
+
+$('.to-do-label input[type=checkbox]').on('click', function () {
     if ($(this).prop('checked'))
         $(this).parent().addClass('done-task');
     else

@@ -1,5 +1,5 @@
 'use strict';
-$(document).ready(function() {
+$(document).ready(function () {
     // [ date masking ]
     $('.date').mask('00/00/0000');
     // [ date2 masking ]

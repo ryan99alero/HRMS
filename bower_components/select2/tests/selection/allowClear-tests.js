@@ -152,7 +152,6 @@ test('clicking clear will trigger the unselect event', function (assert) {
 });
 
 
-
 test('preventing the unselect event cancels the clearing', function (assert) {
   var $element = $('#qunit-fixture .single-with-placeholder');
 

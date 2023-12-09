@@ -1,4 +1,4 @@
-$(document).ready(function() {
+$(document).ready(function () {
     // [ editable1 ]
     $('#example-1').Tabledit({
         editButton: false,

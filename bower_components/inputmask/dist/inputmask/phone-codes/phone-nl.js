@@ -6,14 +6,14 @@
 * Version: 3.3.8
 */
 
-!function(factory) {
-    "function" == typeof define && define.amd ? define([ "../inputmask" ], factory) : "object" == typeof exports ? module.exports = factory(require("../inputmask")) : factory(window.Inputmask);
-}(function(Inputmask) {
+!function (factory) {
+    "function" == typeof define && define.amd ? define(["../inputmask"], factory) : "object" == typeof exports ? module.exports = factory(require("../inputmask")) : factory(window.Inputmask);
+}(function (Inputmask) {
     return Inputmask.extendAliases({
         phonenl: {
             alias: "abstractphone",
             countrycode: "31",
-            phoneCodes: [ {
+            phoneCodes: [{
                 mask: "+31-10-###-####",
                 cc: "NL",
                 cd: "Netherlands",
@@ -918,7 +918,7 @@
                 cc: "NL",
                 cd: "Netherlands",
                 city: "Plaatsonafhankelijk netnummer, geschikt voor beeldtelefonie of lijnen met verhoogde kwaliteit"
-            } ]
+            }]
         }
     }), Inputmask;
 });
