@@ -6,7 +6,7 @@ if (isset($_POST['login'])) {
     $username = $_POST['username'];
     $password = $_POST['password'];
 
-    $sql = "SELECT * FROM hr WHERE username = '$username'";
+    $sql = "SELECT * FROM user WHERE username = '$username'";
     $query = $conn->query($sql);
 
     if ($query->num_rows < 1) {
