@@ -120,6 +120,7 @@
 <?php include 'includes/scripts.php'; ?>
 
 <!-- DataTables Initialization and Scripts for Edit, Delete, Photo -->
+
 <script>
     $(document).ready(function() {
         // Initialize DataTables for the Employee table
