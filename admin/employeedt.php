@@ -40,13 +40,23 @@
                             <table id="Employee" class="table table-bordered table-hover">
                                 <thead>
                                 <tr>
+                                    <!-- <th>ID</th>                  -->
+                                    <th>User ID</th>
                                     <th>Employee ID</th>
-                                    <th>Photo</th>
                                     <th>Name</th>
-                                    <th>Position</th>
-                                    <th>Schedule</th>
-                                    <th>Member Since</th>
-                                    <th>Tools</th>
+                                    <th>CNIC No.</th>
+                                    <th>Gmail</th>
+                                    <th>Designation</th>
+                                    <th>Pay</th>
+                                    <th>Shift</th>
+                                    <th>Gender</th>
+                                    <th>Address</th>
+                                    <th>Contact</th>
+                                    <th>Salary</th>
+                                    <th>Advance</th>
+                                    <th>Working Days</th>
+                                    <th>Status</th>
+                                    <th style="width: 150px;text-align:center;">Action</th>
                                 </tr>
                                 </thead>
                                 <tbody>
