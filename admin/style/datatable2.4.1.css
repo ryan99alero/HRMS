@@ -201,13 +201,13 @@ div.dataTables_layout_cell div.dt-buttons {
 
 div.dataTables_layout_cell div.dt-buttons.buttons-right {
     float: none
-/*}
+
 .table-bordered tr:nth-child(even) {
-    background-color: #dc1111; !* Light gray background for even rows *!
+    background-color: #dc1111;
 }
 .table-bordered tr:nth-child(odd) {
-    background-color: white; !* White background for odd rows *!
-}*/
+    background-color: white;
+}
 div.dt-buttons > .dt-button, div.dt-buttons > div.dt-button-split .dt-button {
     position: relative;
     display: inline-block;
