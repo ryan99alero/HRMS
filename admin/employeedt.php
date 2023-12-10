@@ -51,7 +51,58 @@
                                 </thead>
                                 <tbody>
                                 <?php
-                                // Your existing PHP code to fetch and display employee data
+                                $sql = "call `StrProc_SelectUserProfileInfo`(0)";
+                                $query = $conn->query($sql);
+                                while ($row = $query->fetch_assoc()) {
+                                    ?>
+                                    <tr>
+
+                                        <td><?php echo $row['RecId']; ?></td>
+                                        <td><?php echo $row['Employee_Id']; ?></td>
+                                        <td><?php echo $row['PersonName']; ?></td>
+                                        <td><?php echo $row['CNIC']; ?></td>
+                                        <td><?php echo $row['Gmail']; ?></td>
+                                        <td><?php echo $row['designation_name']; ?></td>
+                                        <td><?php echo $row['pay_name']; ?></td>
+                                        <td><?php echo $row['shift_name']; ?></td>
+                                        <td><?php echo $row['Gender']; ?></td>
+                                        <td><?php echo $row['address']; ?></td>
+                                        <td><?php echo $row['contact']; ?></td>
+                                        <td><?php echo $row['salary']; ?></td>
+                                        <td><?php echo $row['Advance']; ?></td>
+                                        <td><?php echo $row['workingDays']; ?></td>
+                                        <td>
+                                            <?php
+                                            if ($row['isactive'] != 0) {
+                                                echo "<span class='badge badge-success' style='background-color:green'>Active</span>";
+                                            } else {
+                                                echo "<span class='badge badge-danger' style='background-color:Red'>Deactive</span>";
+                                            };
+                                            ?>
+                                        </td>
+                                        <td>
+                                            <a class=" edit " style='border-radius:8px;color:white;cursor: pointer;'
+                                               data-id="<?php echo $row['RecId']; ?>">
+                                                <button style="border-radius:8px;border:none;background-color:#4680ff;">
+                                                    <i class="fa fa-edit"></i></button>
+                                            </a>
+
+                                            <a class=" advance " style='border-radius:8px;color:white;cursor: pointer;'
+                                               data-id="<?php echo $row['RecId']; ?>">
+                                                <button style="border-radius:8px;border:none;background-color:orange;">
+                                                    <i class="fa fa-money"></i></button>
+                                            </a>
+
+                                            <a class=" payroll " style='border-radius:8px;color:white;cursor: pointer;'
+                                               data-id="<?php echo $row['RecId']; ?>">
+                                                <button style="border-radius:8px;border:none;background-color:#dd4b39;">
+                                                    <i class="fa fa-vcard"></i></button>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                    <?php
+                                }
+                                // $query->free();
                                 ?>
                                 </tbody>
                             </table>
