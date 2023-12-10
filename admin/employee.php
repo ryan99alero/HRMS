@@ -24,22 +24,22 @@
         <!-- Main content -->
         <section class="content">
             <?php
-            if (isset($_SESSION['error'])) {
+            if(isset($_SESSION['error'])){
                 echo "
             <div class='alert alert-danger alert-dismissible'>
               <button type='button' class='close' data-dismiss='alert' aria-hidden='true'>&times;</button>
               <h4><i class='icon fa fa-warning'></i> Error!</h4>
-              " . $_SESSION['error'] . "
+              ".$_SESSION['error']."
             </div>
           ";
                 unset($_SESSION['error']);
             }
-            if (isset($_SESSION['success'])) {
+            if(isset($_SESSION['success'])){
                 echo "
             <div class='alert alert-success alert-dismissible'>
               <button type='button' class='close' data-dismiss='alert' aria-hidden='true'>&times;</button>
               <h4><i class='icon fa fa-check'></i> Success!</h4>
-              " . $_SESSION['success'] . "
+              ".$_SESSION['success']."
             </div>
           ";
                 unset($_SESSION['success']);
@@ -49,14 +49,13 @@
                 <div class="col-xs-12">
                     <div class="box">
                         <div class="box-header with-border">
-                            <a href="#addnew" data-toggle="modal" class="btn btn-primary btn-sm btn-flat"
-                               style='border-radius:8px;background-color:#4680ff;'><i class="fa fa-plus"></i> New</a>
+                            <a href="#addnew" data-toggle="modal" class="btn btn-primary btn-sm btn-flat" style='border-radius:8px;background-color:#4680ff;'><i class="fa fa-plus"></i> New</a>
                         </div>
                         <div class="box-body table-responsive">
                             <table style="width: 100%; table-layout: fixed;" class="dt table table-bordered ">
                                 <thead class="">
                                 <tr>
-                                    <!-- <th>ID</th>                  -->
+                                    <!-- <th>ID</th> -->
                                     <th>User ID</th>
                                     <th>Employee ID</th>
                                     <th>Name</th>
@@ -65,7 +64,7 @@
                                     <th>Designation</th>
                                     <th>Pay</th>
                                     <th>Shift</th>
-                                    <th>Gender</th>
+                                    <th>Gender</th>ss
                                     <th>Address</th>
                                     <th>Contact</th>
                                     <th>Salary</th>
@@ -77,9 +76,10 @@
                                 </thead>
                                 <tbody>
                                 <?php
+                                //$sql = "SELECT *, employees.id AS empid FROM employees LEFT JOIN position ON position.id=employees.position_id LEFT JOIN schedules ON schedules.id=employees.schedule_id";
                                 $sql = "call `StrProc_SelectUserProfileInfo`(0)";
                                 $query = $conn->query($sql);
-                                while ($row = $query->fetch_assoc()) {
+                                while($row = $query->fetch_assoc()){
                                     ?>
                                     <tr>
 
@@ -99,31 +99,16 @@
                                         <td><?php echo $row['workingDays']; ?></td>
                                         <td>
                                             <?php
-                                            if ($row['isactive'] != 0) {
-                                                echo "<span class='badge badge-success' style='background-color:green'>Active</span>";
-                                            } else {
-                                                echo "<span class='badge badge-danger' style='background-color:Red'>Deactive</span>";
-                                            };
+                                            if($row['isactive'] != 0){ echo "<span class='badge badge-success' style='background-color:green'>Active</span>";
+                                            }else {echo "<span class='badge badge-danger' style='background-color:Red'>Deactive</span>";};
                                             ?>
                                         </td>
                                         <td>
-                                            <a class=" edit " style='border-radius:8px;color:white;cursor: pointer;'
-                                               data-id="<?php echo $row['RecId']; ?>">
-                                                <button style="border-radius:8px;border:none;background-color:#4680ff;">
-                                                    <i class="fa fa-edit"></i></button>
-                                            </a>
+                                            <a class=" edit "  style='border-radius:8px;color:white;cursor: pointer;' data-id="<?php echo $row['RecId']; ?>"><button style="border-radius:8px;border:none;background-color:#4680ff;"><i class="fa fa-edit"></i></button></a>
 
-                                            <a class=" advance " style='border-radius:8px;color:white;cursor: pointer;'
-                                               data-id="<?php echo $row['RecId']; ?>">
-                                                <button style="border-radius:8px;border:none;background-color:orange;">
-                                                    <i class="fa fa-money"></i></button>
-                                            </a>
+                                            <a class=" advance "  style='border-radius:8px;color:white;cursor: pointer;' data-id="<?php echo $row['RecId']; ?>"><button style="border-radius:8px;border:none;background-color:orange;"><i class="fa fa-money"></i></button></a>
 
-                                            <a class=" payroll " style='border-radius:8px;color:white;cursor: pointer;'
-                                               data-id="<?php echo $row['RecId']; ?>">
-                                                <button style="border-radius:8px;border:none;background-color:#dd4b39;">
-                                                    <i class="fa fa-vcard"></i></button>
-                                            </a>
+                                            <a class=" payroll "  style='border-radius:8px;color:white;cursor: pointer;' data-id="<?php echo $row['RecId']; ?>"><button style="border-radius:8px;border:none;background-color:#dd4b39;"><i class="fa fa-vcard"></i></button></a>
                                         </td>
                                     </tr>
                                     <?php
@@ -141,13 +126,13 @@
 
     <?php include 'includes/footer.php'; ?>
     <?php include 'includes/employee_modal.php'; ?>
-    <?php include 'includes/advance_modal.php'; ?>
-    <?php include 'includes/specpayroll_modal.php'; ?>
+    <?php  include 'includes/advance_modal.php'; ?>
+    <?php  include 'includes/specpayroll_modal.php';?>
 
 </div>
 <?php include 'includes/scripts.php'; ?>
 
-<script src="JS/jquery3.7.0.js"></script>
+<script scr="JS/jquery3.7.0.js"></script>
 
 <script src="JS/datatable1.13.6.js"></script>
 
@@ -164,7 +149,7 @@
 <script>
 
 
-    $(function () {
+    $(function(){
 
         $('.dt').DataTable({
             dom: "'<'row'l>Bfrtip'",
@@ -177,7 +162,7 @@
                     extend: 'pdf',
                     title: 'Employee List',
                     orientation: 'landscape', // Set the orientation to landscape
-                    customize: function (doc) {
+                    customize: function(doc) {
                         // Customize the PDF document if needed
                         // For example, you can set the page size, margins, etc.
                         doc.pageSize = 'legal';
@@ -197,7 +182,7 @@
                 {
                     extend: 'excel',
                     title: 'Employee List',
-                    customize: function (xlsx) {
+                    customize: function(xlsx) {
                         // Specify the column index you want to hide (0-based index)
                         var columnIndexToHide = 15; // Change to the index of the column you want to hide
                         var sheet = xlsx.xl.worksheets['sheet1.xml'];
@@ -216,7 +201,7 @@
         });
 
 
-        $(document).on('click', '.edit', function (e) {
+        $(document).on('click','.edit', function(e){
             //e.preventDefault();
             $('#edit').modal('show');
             var id = $(this).data('id');
@@ -232,7 +217,7 @@
             $(".PayId option:selected").removeAttr("selected");
             $(".ShiftID option:selected").removeAttr("selected");
             $(".workingDays option:selected").removeAttr("selected");
-            setTimeout(function () {
+            setTimeout(function() {
                 $(`.Sex option[data-current|='${tempGender}']`).attr('selected', 'selected');
                 $(`.DesID option[data-current|='${tempDes}']`).attr('selected', 'selected');
                 $(`.PayId option[data-current|='${tempSalaryType}']`).attr('selected', 'selected');
@@ -245,15 +230,15 @@
 
         // });
 
-        $(document).on('click', '.advance', function (e) {
+        $(document).on('click','.advance', function(e){
             e.preventDefault();
             let empID = $(this).data('id');
             $.ajax({
                 type: 'POST',
                 url: 'getPayableAmount.php',
-                data: {id: empID},
+                data: {id:empID},
                 dataType: 'json',
-                success: function (response) {
+                success: function(response){
                     $('.UpId').val(empID);
                     $('#UpId').val(response.UpId);
                     $('#PayableAmount').val(response);
@@ -263,9 +248,10 @@
             $.ajax({
                 type: 'POST',
                 url: 'getAdvanceData.php',
-                data: {id: empID}, // Pass the employee ID
+                data: { id: empID }, // Pass the employee ID
                 dataType: 'json',
-                success: function (data) {
+                success: function (data)
+                {
                     var tbody = $('#employeeTable tbody');
                     tbody.empty(); // Clear existing data
 
@@ -291,16 +277,16 @@
             });
         })
 
-        $(document).on('click', '.payroll', function (e) {
+        $(document).on('click','.payroll', function(e){
             e.preventDefault();
             let empID = $(this).data('id');
             $('#payroll').modal('show');
             $.ajax({
                 type: 'POST',
                 url: 'getSpecialPayrollEmpDetails.php',
-                data: {id: empID},
+                data: {id:empID},
                 dataType: 'json',
-                success: function (response) {
+                success: function(response){
                     //debugger
                     $('.posid').val(empID);
                     $('#edit_Employee_Name').val(response.Employee_Name);
@@ -325,7 +311,7 @@
         })
 
 
-        $('.addnew').click(function (e) {
+        $('.addnew').click(function(e){
             e.preventDefault();
             $('#addnew').modal('show');
             var id = $(this).data('id');
@@ -333,13 +319,13 @@
         });
     });
 
-    function getRow(id) {
+    function getRow(id){
         $.ajax({
             type: 'POST',
             url: 'employee_row.php',
-            data: {id: id},
+            data: {id:id},
             dataType: 'json',
-            success: function (response) {
+            success: function(response){
                 $('#posid').val(response.id);
                 $('#edit_title').val(response.description);
                 $('#edit_rate').val(response.rate);
