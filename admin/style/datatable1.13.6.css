@@ -12,7 +12,7 @@
     --dt-html-background: rgb(33, 37, 41)
 }
 
-table.dataTable td.dt-control {dssss
+table.dataTable td.dt-control {
     text-align: center;
     cursor: pointer
 }
@@ -228,12 +228,12 @@ table.dataTable {
     border-collapse: separate;
     border-spacing: 0
 }
-.table-bordered tr:nth-child(even) {
-        background-color: #f60c0c; /* Light gray background for even rows */
+/*.table-bordered tr:nth-child(even) {
+        background-color: #f60c0c; !* Light gray background for even rows *!
     }
 .table-bordered tr:nth-child(odd) {
-        background-color: white; /* White background for odd rows */
-    }
+        background-color: white; !* White background for odd rows *!
+    }*/
 
 
 table.dataTable thead th, table.dataTable tfoot th {
