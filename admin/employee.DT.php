@@ -28,17 +28,32 @@
 
         <!-- Main content -->
         <section class="content">
-            <!-- Your existing PHP and HTML content here -->
+            <!-- Your existing PHP code for alerts -->
 
             <div class="row">
                 <div class="col-xs-12">
                     <div class="box">
                         <div class="box-header with-border">
-                            <!-- Your existing buttons and other elements here -->
+                            <!-- Your existing buttons for New and Import -->
                         </div>
                         <div class="box-body">
-                            <table id="Employee" class="table table-bordered">
-                                <!-- Your existing table structure here -->
+                            <table id="Employee" class="table table-bordered table-hover">
+                                <thead>
+                                <tr>
+                                    <th>Employee ID</th>
+                                    <th>Photo</th>
+                                    <th>Name</th>
+                                    <th>Position</th>
+                                    <th>Schedule</th>
+                                    <th>Member Since</th>
+                                    <th>Tools</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <?php
+                                // Your existing PHP code to fetch and display employee data
+                                ?>
+                                </tbody>
                             </table>
                         </div>
                     </div>
@@ -51,16 +66,65 @@
     <?php include 'includes/employee_modal.php'; ?>
 </div>
 
-<!-- Your existing script for handling buttons and modals -->
-<script>
-    $(function(){
-        // Your existing JavaScript code
+<?php include 'includes/scripts.php'; ?>
 
+<!-- DataTables Initialization and Scripts for Edit, Delete, Photo -->
+<script>
+    $(document).ready(function() {
         // Initialize DataTables for the Employee table
-        $('#Employee').DataTable();
+        $('#Employee').DataTable({
+            "responsive": true,
+            "autoWidth": false
+            // Add other DataTables options here as needed
+        });
+
+        // Script for handling the edit button click
+        $('.edit').click(function(e){
+            e.preventDefault();
+            $('#edit').modal('show');
+            var id = $(this).data('id');
+            getRow(id);
+        });
+
+        // Script for handling the delete button click
+        $('.delete').click(function(e){
+            e.preventDefault();
+            $('#delete').modal('show');
+            var id = $(this).data('id');
+            getRow(id);
+        });
+
+        // Script for handling the photo click
+        $('.photo').click(function(e){
+            e.preventDefault();
+            var id = $(this).data('id');
+            getRow(id);
+        });
+
+        // Function to fetch row data
+        function getRow(id){
+            $.ajax({
+                type: 'POST',
+                url: 'employee_row.php',
+                data: {id:id},
+                dataType: 'json',
+                success: function(response){
+                    $('.empid').val(response.empid);
+                    $('.employee_id').html(response.employee_id);
+                    $('.del_employee_name').html(response.firstname+' '+response.lastname);
+                    $('#employee_name').html(response.firstname+' '+response.lastname);
+                    $('#edit_firstname').val(response.firstname);
+                    $('#edit_lastname').val(response.lastname);
+                    $('#edit_address').val(response.address);
+                    $('#datepicker_edit').val(response.birthdate);
+                    $('#edit_contact').val(response.contact_info);
+                    $('#position_val').val(response.position_id).html(response.description);
+                    $('#schedule_val').val(response.schedule_id).html(response.time_in+' - '+response.time_out);
+                }
+            });
+        }
     });
 </script>
 
-<?php include 'includes/scripts.php'; ?>
 </body>
 </html>
