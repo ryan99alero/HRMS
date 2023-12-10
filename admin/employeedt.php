@@ -34,11 +34,12 @@
                 <div class="col-xs-12">
                     <div class="box">
                         <div class="box-header with-border">
-                            <!-- Your existing buttons for New and Import -->
+                            <a href="#addnew" data-toggle="modal" class="btn btn-primary btn-sm btn-flat"
+                               style='border-radius:8px;background-color:#4680ff;'><i class="fa fa-plus"></i> New</a>
                         </div>
-                        <div class="box-body">
-                            <table id="Employee" class="table table-bordered table-hover">
-                                <thead>
+                        <div class="box-body table-responsive">
+                            <table style="width: 100%; table-layout: fixed;" class="dt table table-bordered ">
+                                <thead class="">
                                 <tr>
                                     <!-- <th>ID</th>                  -->
                                     <th>User ID</th>
