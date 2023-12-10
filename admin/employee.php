@@ -54,7 +54,7 @@
                         <div class="box-body table-responsive">
                             <table style="width: 100%; table-layout: fixed;" class="dt table table-bordered ">
                                 <thead class="">
-                                <tr>
+                                <tr >
                                     <!-- <th>ID</th> -->
                                     <th>User ID</th>
                                     <th>Employee ID</th>

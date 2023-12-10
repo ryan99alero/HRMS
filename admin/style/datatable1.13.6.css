@@ -229,7 +229,7 @@ table.dataTable {
     border-spacing: 0
 }
 .table-bordered tr:nth-child(even) {
-        background-color: #f2f2f2; /* Light gray background for even rows */
+        background-color: #f60c0c; /* Light gray background for even rows */
     }
 .table-bordered tr:nth-child(odd) {
         background-color: white; /* White background for odd rows */
