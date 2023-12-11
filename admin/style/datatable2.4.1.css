@@ -3,7 +3,10 @@
         transform: rotate(360deg)
     }
 }
-
+TR.odd
+{
+    background-color: cadetblue !important;
+}
 @-o-keyframes dtb-spinner {
     100% {
         -o-transform: rotate(360deg);
