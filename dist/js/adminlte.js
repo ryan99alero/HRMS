@@ -8,7 +8,7 @@
 * @Support <https://www.almsaeedstudio.com>
 * @Email   <abdullah@almsaeedstudio.com>
 * @version 2.4.0
-* @repository git://github.com/almasaeed2010/AdminLTE.git
+* @repository git://dsvffffffffffvvv
 * @license MIT <http://opensource.org/licenses/MIT>
 */
 
