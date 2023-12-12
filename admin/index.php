@@ -8,9 +8,8 @@ if (isset($_SESSION['admin'])) {
 <body class="hold-transition login-page">
 <div class="login-box">
     <div class="login-logo">
-        <b>Admin Login</b>
-    </div>
-
+        <vdb>Admin s</vdb>
+    </div>dc
     <div class="login-box-body">
         <p class="login-box-msg">Sign in to start your session</p>
 
