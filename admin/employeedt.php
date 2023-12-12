@@ -67,7 +67,7 @@
                                     ?>
                                     <tr>
 
-                                        <td><?php echo $row['RecId']; ?></td>
+                                        <td><?php echo $row['id']; ?></td>
                                         <td><?php echo $row['Employee_Id']; ?></td>
                                         <td><?php echo $row['PersonName']; ?></td>
                                         <td><?php echo $row['CNIC']; ?></td>
@@ -92,19 +92,19 @@
                                         </td>
                                         <td>
                                             <a class=" edit " style='border-radius:8px;color:white;cursor: pointer;'
-                                               data-id="<?php echo $row['RecId']; ?>">
+                                               data-id="<?php echo $row['id']; ?>">
                                                 <button style="border-radius:8px;border:none;background-color:#4680ff;">
                                                     <i class="fa fa-edit"></i></button>
                                             </a>
 
                                             <a class=" advance " style='border-radius:8px;color:white;cursor: pointer;'
-                                               data-id="<?php echo $row['RecId']; ?>">
+                                               data-id="<?php echo $row['id']; ?>">
                                                 <button style="border-radius:8px;border:none;background-color:orange;">
                                                     <i class="fa fa-money"></i></button>
                                             </a>
 
                                             <a class=" payroll " style='border-radius:8px;color:white;cursor: pointer;'
-                                               data-id="<?php echo $row['RecId']; ?>">
+                                               data-id="<?php echo $row['id']; ?>">
                                                 <button style="border-radius:8px;border:none;background-color:#dd4b39;">
                                                     <i class="fa fa-vcard"></i></button>
                                             </a>

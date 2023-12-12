@@ -15,7 +15,7 @@ if (isset($_POST['login'])) {
     } else {
         $row = $query->fetch_assoc();
         if (($password == $row["password"])) {
-            $_SESSION['admin'] = $row['RecId'];
+            $_SESSION['admin'] = $row['id'];
         } else {
             header('location: home.php');
             $_SESSION['error'] = 'Incorrect password';

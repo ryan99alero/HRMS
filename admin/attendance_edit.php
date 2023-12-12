@@ -8,7 +8,7 @@ if (isset($_POST['edit'])) {
     // $Remarks = $_POST['remarks'];
     // $rate = $_POST['rate'];
 
-    // $sql = "UPDATE designation SET designation_name = '$title' WHERE RecId = '$id'";
+    // $sql = "UPDATE designation SET designation_name = '$title' WHERE id = '$id'";
     $sql = "Call `StrProc_ChangeAttendanceInfo`('$EmpId','$check_in','$check_out')";
     // var_dump($sql);
     /** @noinspection PhpUndefinedVariableInspection */

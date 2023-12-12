@@ -15,7 +15,7 @@ $data = array();
 if ($result->num_rows > 0) {
     while ($row = $result->fetch_assoc()) {
         $data[] = array(
-            'RecId' => $row['RecId'],
+            'id' => $row['id'],
             'Employee_Id' => $row['Employee_Id'],
             'firstname' => $row['firstname'],
             'lastname' => $row['lastname'],

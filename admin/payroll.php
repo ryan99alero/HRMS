@@ -93,7 +93,7 @@ $range_from = date('m/d/Y', strtotime('-30 day', strtotime($range_to)));
                                 while ($row = $query->fetch_assoc()) {
                                     echo "
                         <tr>
-                         <td>" . $row['RecId'] . "</td>
+                         <td>" . $row['id'] . "</td>
                          <td>" . $row['Employee_Name'] . "</td>
                          <td>" . $row['designation_name'] . "</td>
                          <td>" . $row['shift_name'] . "</td>

@@ -80,7 +80,7 @@
                                     //$status = ($row['status'])?'<span class="label label-warning pull-right">ontime</span>':'<span class="label label-danger pull-right">late</span>';
                                     echo "
                         <tr>
-                          <td class='hidden'>" . $row['RecId'] . "</td>
+                          <td class='hidden'>" . $row['id'] . "</td>
                           <td>" . $row['Employee_Id'] . "</td>
                           <td>" . $row['PersonName'] . "</td>
                           <td>" . $row['Shift_Name'] . "</td>

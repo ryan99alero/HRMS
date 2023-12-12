@@ -74,8 +74,8 @@
                            <td>" . $row['time_out'] . "</td>
                            <td>" . $row['grace_time'] . "</td>
                            <td>
-                             <button class='btn btn-success btn-sm edit btn-flat' style='border-radius:8px;' data-id='" . $row['RecId'] . "'><i class='fa fa-edit'></i> Edit</button>
-                             <button class='btn btn-danger btn-sm delete btn-flat' style='border-radius:8px;' data-id='" . $row['RecId'] . "'><i class='fa fa-trash'></i> Delete</button>
+                             <button class='btn btn-success btn-sm edit btn-flat' style='border-radius:8px;' data-id='" . $row['id'] . "'><i class='fa fa-edit'></i> Edit</button>
+                             <button class='btn btn-danger btn-sm delete btn-flat' style='border-radius:8px;' data-id='" . $row['id'] . "'><i class='fa fa-trash'></i> Delete</button>
                            </td>
                          </tr>
                        ";

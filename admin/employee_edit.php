@@ -2,7 +2,7 @@
 include 'includes/session.php';
 
 if (isset($_POST['edit'])) {
-    $RecId = $_POST['UpId'];
+    $id = $_POST['UpId'];
     $Employee_Id = $_POST['EmpID'];
     $firstname = $_POST['Fname'];
     $lastname = $_POST['Lname'];
@@ -18,7 +18,7 @@ if (isset($_POST['edit'])) {
     $workingDays = $_POST['workingDays'];
 
     // $sql = "UPDATE user_profile SET firstname = '$firstname', lastname = '$lastname', address = '$address', birthdate = '$birthdate', contact_info = '$contact', gender = '$gender', position_id = '$position', schedule_id = '$schedule' WHERE id = '$empid'";
-    $sql = "call `StrProc_ChangeUserProfileInfo`('$RecId','$Designation_Id',
+    $sql = "call `StrProc_ChangeUserProfileInfo`('$id','$Designation_Id',
 		'$Employee_Id',
 		'$firstname',
 		'$lastname',

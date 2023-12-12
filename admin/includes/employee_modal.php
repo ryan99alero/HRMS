@@ -135,7 +135,7 @@ $query7 = $conn->query($sql);
                                 <?php
                                 while ($Grow = $query->fetch_assoc()) {
                                     echo "
-                            <option value='" . $Grow['RecId'] . "'>" . $Grow['Gender'] . "</option>
+                            <option value='" . $Grow['id'] . "'>" . $Grow['Gender'] . "</option>
 
                           ";
                                 }
@@ -154,7 +154,7 @@ $query7 = $conn->query($sql);
                                 <?php
                                 while ($drow2 = $query2->fetch_assoc()) {
                                     echo "
-                            <option value='" . $drow2['RecId'] . "'>" . $drow2['designation_name'] . "</option>
+                            <option value='" . $drow2['id'] . "'>" . $drow2['designation_name'] . "</option>
                           ";
                                 }
                                 // $query->free();
@@ -172,7 +172,7 @@ $query7 = $conn->query($sql);
                                 <?php
                                 while ($prow4 = $query4->fetch_assoc()) {
                                     echo "
-                            <option value='" . $prow4['RecId'] . "'>" . $prow4['pay_name'] . "</option>
+                            <option value='" . $prow4['id'] . "'>" . $prow4['pay_name'] . "</option>
                           ";
                                 }
                                 // $query->free();
@@ -190,10 +190,10 @@ $query7 = $conn->query($sql);
                                 <?php
                                 while ($srow6 = $query6->fetch_assoc()) {
                                     echo "
-                            <option value='" . $srow6['RecId'] . "'>" . $srow6['shift_name'] . "</option>
+                            <option value='" . $srow6['id'] . "'>" . $srow6['shift_name'] . "</option>
                           ";
                                     echo "
-                            <option value='" . $srow6['RecId'] . "'>" . $srow6['shift_name'] . "'>" . $srow6['time_in'] . ' - ' . $srow6['time_out'] . '-' . $srow6['grace_time'] . "</option>
+                            <option value='" . $srow6['id'] . "'>" . $srow6['shift_name'] . "'>" . $srow6['time_in'] . ' - ' . $srow6['time_out'] . '-' . $srow6['grace_time'] . "</option>
                           ";
                                 }
                                 ?>
@@ -299,7 +299,7 @@ $query7 = $conn->query($sql);
                                 <?php
                                 while ($Grow1 = $query1->fetch_assoc()) {
                                     echo "
-                              <option value='" . $Grow1['RecId'] . "' data-value='" . $Grow1['RecId'] . "' data-current='" . $Grow1['Gender'] . "'>" . $Grow1['Gender'] . "</option>
+                              <option value='" . $Grow1['id'] . "' data-value='" . $Grow1['id'] . "' data-current='" . $Grow1['Gender'] . "'>" . $Grow1['Gender'] . "</option>
                             ";
                                 }
                                 // $query->free();
@@ -314,7 +314,7 @@ $query7 = $conn->query($sql);
                                 <?php
                                 while ($drow3 = $query3->fetch_assoc()) {
                                     echo "
-                              <option value='" . $drow3['RecId'] . "' data-value='" . $drow3['RecId'] . "' data-current='" . $drow3['designation_name'] . "'>" . $drow3['designation_name'] . "</option>
+                              <option value='" . $drow3['id'] . "' data-value='" . $drow3['id'] . "' data-current='" . $drow3['designation_name'] . "'>" . $drow3['designation_name'] . "</option>
                             ";
                                 }
                                 // $query->free();
@@ -330,7 +330,7 @@ $query7 = $conn->query($sql);
                                 <?php
                                 while ($prow5 = $query5->fetch_assoc()) {
                                     echo "
-                              <option value='" . $prow5['RecId'] . "' data-value='" . $prow5['RecId'] . "' data-current='" . $prow5['pay_name'] . "'>" . $prow5['pay_name'] . "</option>
+                              <option value='" . $prow5['id'] . "' data-value='" . $prow5['id'] . "' data-current='" . $prow5['pay_name'] . "'>" . $prow5['pay_name'] . "</option>
                             ";
                                 }
                                 // $query->free();
@@ -346,10 +346,10 @@ $query7 = $conn->query($sql);
                                 <?php
                                 while ($srow7 = $query7->fetch_assoc()) {
                                     echo "
-                              <option value='" . $srow7['RecId'] . "' data-value='" . $srow7['RecId'] . "' data-current='" . $srow7['shift_name'] . "'>" . $srow7['shift_name'] . "</option>
+                              <option value='" . $srow7['id'] . "' data-value='" . $srow7['id'] . "' data-current='" . $srow7['shift_name'] . "'>" . $srow7['shift_name'] . "</option>
                             ";
                                     echo "
-                              <option value='" . $srow7['RecId'] . "' data-value='" . $srow7['RecId'] . "' data-current='" . $srow7['shift_name'] . "'>" . $srow7['shift_name'] . "</option>
+                              <option value='" . $srow7['id'] . "' data-value='" . $srow7['id'] . "' data-current='" . $srow7['shift_name'] . "'>" . $srow7['shift_name'] . "</option>
                             ";
                                 }
                                 ?>
@@ -433,7 +433,7 @@ $query7 = $conn->query($sql);
 
                 if (response.length >= 1) {
                     // Get data from the row or wherever it's stored
-                    var UpId = response[0].RecId;
+                    var UpId = response[0].id;
                     var EmpID = response[0].Employee_Id;
                     var Fname = response[0].firstname;
                     var Lname = response[0].lastname;

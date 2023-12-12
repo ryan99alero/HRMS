@@ -4,7 +4,7 @@ include 'includes/session.php';
 if (isset($_POST['delete'])) {
     $id = $_POST['id'];
 
-    // $sql = "DELETE FROM pay_scale WHERE RecId = '$id'";
+    // $sql = "DELETE FROM pay_scale WHERE id = '$id'";
     $sql = "call `StrProc_UpdatePayScaleInfo`('$id')";
     if ($conn->query($sql)) {
         $_SESSION['success'] = 'Payscale deleted successfully';

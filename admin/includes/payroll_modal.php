@@ -42,10 +42,10 @@
                 <form class="form-horizontal payrollFormSubmit" method="POST" action="payroll_edit.php">
                     <input type="hidden" id="posid" name="id">
                     <div class="form-group">
-                        <label for="edit_RecId" class="col-sm-3 control-label">User Id</label>
+                        <label for="edit_id" class="col-sm-3 control-label">User Id</label>
 
                         <div class="col-sm-9">
-                            <input type="text" class="form-control" id="edit_RecId" name="RecId" disabled>
+                            <input type="text" class="form-control" id="edit_id" name="id" disabled>
                         </div>
                     </div>
                     <div class="form-group">
@@ -274,7 +274,7 @@
         }))
         $('.edit').click(function () {
             var id = $(this).data('id');
-            var RecId = $(this).closest('tr').find('td:eq(0)').text(); // Extract UserP_Id from table
+            var id = $(this).closest('tr').find('td:eq(0)').text(); // Extract UserP_Id from table
             var Employee_Name = $(this).closest('tr').find('td:eq(1)').text(); // Extract Designation_Id from table
             var designation_name = $(this).closest('tr').find('td:eq(2)').text(); // Extract Shift_Id from table
             var shift_name = $(this).closest('tr').find('td:eq(3)').text(); // Extract Pay_Id from table
@@ -294,7 +294,7 @@
             var M_Salary = $(this).closest('tr').find('td:eq(16)').text(); // Extract M_Salary from table
             var Total_Pay = $(this).closest('tr').find('td:eq(17)').text(); // Extract Total_Pay from table
             $('#posid').val(id);
-            $('#edit_RecId').val(RecId);
+            $('#edit_id').val(id);
             $('#edit_Employee_Name').val(Employee_Name);
             $('#edit_designation_name').val(designation_name);
             $('#edit_shift_name').val(shift_name);

@@ -50,10 +50,10 @@
                 <form class="form-horizontal" method="POST" action="holiday_edit.php">
                     <input type="hidden" id="posid" name="id">
                     <div class="form-group">
-                        <label for="RecId" class="col-sm-3 control-label">ID</label>
+                        <label for="id" class="col-sm-3 control-label">ID</label>
 
                         <div class="col-sm-9">
-                            <input type="text" class="form-control" id="RecId" name="RecId" readonly>
+                            <input type="text" class="form-control" id="id" name="id" readonly>
                         </div>
                     </div>
 
@@ -139,11 +139,11 @@
         // Edit button click event
         $('.edit').click(function () {
             var id = $(this).data('id');
-            var RecId = $(this).closest('tr').find('td:eq(0)').text(); // Extract title from table
+            var id = $(this).closest('tr').find('td:eq(0)').text(); // Extract title from table
             var Title = $(this).closest('tr').find('td:eq(1)').text(); // Extract title from table
             var Holiday_Date = $(this).closest('tr').find('td:eq(2)').text(); // Extract title from table
             $('#posid').val(id);
-            $('#RecId').val(RecId);
+            $('#id').val(id);
             $('#Title').val(Title);
             $('#Holiday_Date').val(Holiday_Date);
             $('#edit').modal('show');

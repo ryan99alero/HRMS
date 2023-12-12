@@ -11,12 +11,12 @@
                 <form class="form-horizontal payrollFormSubmit" method="POST" action="payroll_edit.php">
                     <input type="hidden" class="posid" name="id">
                     <div class="form-group">
-                        <label for="edit_RecId" class="col-sm-3 control-label">User Id</label>
+                        <label for="edit_id" class="col-sm-3 control-label">User Id</label>
 
                         <div class="col-sm-9">
-                            <!-- <input type="text" class="form-control" id="edit_RecId" name="RecId" disabled> -->
-                            <input type="text" class="form-control posid" id="posid" name="RecId"
-                                   value="<?php echo $RecId; ?>" disabled>
+                            <!-- <input type="text" class="form-control" id="edit_id" name="id" disabled> -->
+                            <input type="text" class="form-control posid" id="posid" name="id"
+                                   value="<?php echo $id; ?>" disabled>
                         </div>
                     </div>
                     <div class="form-group">

@@ -20,7 +20,7 @@ if (isset($_POST['login'])) {
         $row = $result->fetch_assoc();
         // Use password_verify to check the hashed password
         if (password_verify($password, $row["password"])) {
-            $_SESSION['admin'] = $row['RecId']; // Set session variable
+            $_SESSION['admin'] = $row['id']; // Set session variable
             header('location: home.php'); // Redirect to home page
             exit();
         } else {

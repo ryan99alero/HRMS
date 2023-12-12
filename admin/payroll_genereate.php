@@ -104,7 +104,7 @@ $range_from = date('m/d/Y', strtotime('-30 day', strtotime($range_to)));
                                 while ($row = $query->fetch_assoc()) {
                                     echo "
                        <tr>
-                         <td>" . $row['RecId'] . "</td>
+                         <td>" . $row['id'] . "</td>
                          <td>" . $row['Employee_Name'] . "</td>
                          <td>" . $row['designation_name'] . "</td>
                          <td>" . $row['shift_name'] . "</td>
@@ -122,7 +122,7 @@ $range_from = date('m/d/Y', strtotime('-30 day', strtotime($range_to)));
                          <td>" . $row['M_Advance'] . "</td>
                          <td>" . $row['M_Salary'] . "</td>
                          <td>" . $row['Total_Pay'] . "</td>
-                         <td>" . "<button class='btn btn-success btn-sm edit btn-flat edit-button' style='border-radius:8px;' data-id='" . $row['RecId'] . "'><i class='fa fa-edit'></i> Edit</button>" . "
+                         <td>" . "<button class='btn btn-success btn-sm edit btn-flat edit-button' style='border-radius:8px;' data-id='" . $row['id'] . "'><i class='fa fa-edit'></i> Edit</button>" . "
                          </td>
                         </tr>
                      ";
@@ -133,7 +133,7 @@ $range_from = date('m/d/Y', strtotime('-30 day', strtotime($range_to)));
                                 //  _||_
                                 //  \  /
                                 //   \/
-                                //  <td>". ($row['updated_on'] != null ? ""  : "<button class='btn btn-success btn-sm edit btn-flat edit-button' style='border-radius:8px;' data-id='".$row['RecId']."'><i class='fa fa-edit'></i> Edit</button>") . "
+                                //  <td>". ($row['updated_on'] != null ? ""  : "<button class='btn btn-success btn-sm edit btn-flat edit-button' style='border-radius:8px;' data-id='".$row['id']."'><i class='fa fa-edit'></i> Edit</button>") . "
                                 //  </td>
 
 
