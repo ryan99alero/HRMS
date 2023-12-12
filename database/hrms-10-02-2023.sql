@@ -42,7 +42,7 @@ BEGIN
         a.check_out     = check_out,
         a.updated_by    = 1,
         a.updated_on    = CURRENT_TIMESTAMP
-    WHERE a.RecId = EmpId
+    WHERE a.id = EmpId
       AND a.isactive = 1;
     COMMIT;
 END$$
@@ -131,7 +131,7 @@ BEGIN
                       ORDER BY 1 ASC);
 
     SELECT a.Net_Salary as PayableAmount
-    FROM (SELECT up.RecId                                                                                 AS EMPID,
+    FROM (SELECT up.id                                                                                 AS EMPID,
                  up.salary,
                  FLOOR(DeductedDaysBecauseOfLateArrival)                                                  AS DeductionDays,
                  NoOfLates                                                                                AS TotalLate,
@@ -173,16 +173,16 @@ BEGIN
                                       ELSE '0' END)))                                      NoOfLates
                 FROM attendance a
                          JOIN user_profile up ON up.Employee_Id = a.Employee_Id
-                         JOIN shift s ON s.RecId = up.shift_id
-                         JOIN designation d ON d.RecId = up.Designation_Id
-                         JOIN pay_scale pp ON pp.RecId = up.payscale_id
+                         JOIN shift s ON s.id = up.shift_id
+                         JOIN designation d ON d.id = up.Designation_Id
+                         JOIN pay_scale pp ON pp.id = up.payscale_id
                 WHERE a.isactive = 1
                   AND a.Employee_Id = EmpId
                 GROUP BY up.Employee_Id) AS a
                    JOIN user_profile up ON up.Employee_Id = a.EMPID
-                   JOIN shift s ON s.RecId = up.shift_id
-                   JOIN designation d ON d.RecId = up.Designation_Id
-                   JOIN pay_scale pp ON pp.RecId = up.payscale_id) as A;
+                   JOIN shift s ON s.id = up.shift_id
+                   JOIN designation d ON d.id = up.Designation_Id
+                   JOIN pay_scale pp ON pp.id = up.payscale_id) as A;
 END$$
 
 CREATE
@@ -198,7 +198,7 @@ BEGIN
                    JOIN
                user_profile AS up ON up.Employee_Id = a.Employee_Id
                    JOIN
-               shift AS s ON up.shift_id = s.RecId
+               shift AS s ON up.shift_id = s.id
           WHERE a.isactive = 1
             AND s.isactive = 1
             AND up.isactive = 1
@@ -222,7 +222,7 @@ BEGIN
                    JOIN
                user_profile AS up ON up.Employee_Id = a.Employee_Id
                    JOIN
-               shift AS s ON up.shift_id = s.RecId
+               shift AS s ON up.shift_id = s.id
           WHERE a.isactive = 1
             AND s.isactive = 1
             AND up.isactive = 1
@@ -246,7 +246,7 @@ BEGIN
                    JOIN
                user_profile AS up ON up.Employee_Id = a.Employee_Id
                    JOIN
-               shift AS s ON up.shift_id = s.RecId
+               shift AS s ON up.shift_id = s.id
           WHERE a.isactive = 1
             AND s.isactive = 1
             AND up.isactive = 1
@@ -282,10 +282,10 @@ BEGIN
 
 -- Declare cursor
     DECLARE empCursor CURSOR FOR
-        SELECT up.RecId                                                                                          AS EMPID,
-               d.RecId,
-               s.RecId                                                                                           AS Shift,
-               pp.RecId,
+        SELECT up.id                                                                                          AS EMPID,
+               d.id,
+               s.id                                                                                           AS Shift,
+               pp.id,
                TIME(s.time_in)                                                                                   AS TimeIn,
                TIME(s.time_out)                                                                                  AS TimeOut,
                up.salary,
@@ -335,15 +335,15 @@ BEGIN
                                     ELSE '0' END)))                                      NoOfLates
               FROM attendance a
                        JOIN user_profile up ON up.Employee_Id = a.Employee_Id
-                       JOIN shift s ON s.RecId = up.shift_id
-                       JOIN designation d ON d.RecId = up.Designation_Id
-                       JOIN pay_scale pp ON pp.RecId = up.payscale_id
+                       JOIN shift s ON s.id = up.shift_id
+                       JOIN designation d ON d.id = up.Designation_Id
+                       JOIN pay_scale pp ON pp.id = up.payscale_id
               WHERE a.isactive = 1
               GROUP BY up.Employee_Id) AS a
                  JOIN user_profile up ON up.Employee_Id = a.EMPID
-                 JOIN shift s ON s.RecId = up.shift_id
-                 JOIN designation d ON d.RecId = up.Designation_Id
-                 JOIN pay_scale pp ON pp.RecId = up.payscale_id;
+                 JOIN shift s ON s.id = up.shift_id
+                 JOIN designation d ON d.id = up.Designation_Id
+                 JOIN pay_scale pp ON pp.id = up.payscale_id;
 
 -- Declare continue handler for cursor
     DECLARE CONTINUE HANDLER FOR NOT FOUND SET done = 1;
@@ -524,7 +524,7 @@ BEGIN
     -- END IF;
 
 -- Show Data
-    SELECT pr.RecId,
+    SELECT pr.id,
            CONCAT(up.firstname, ' ', up.lastname) AS Employee_Name,
            d.designation_name,
            s.shift_name,
@@ -544,11 +544,11 @@ BEGIN
            pr.Total_Pay,
            pr.updated_on
     FROM payroll pr
-             JOIN user_profile up ON up.RecId = pr.UserP_Id
-             JOIN designation d ON d.RecId = pr.Designation_Id
-             JOIN shift s ON s.RecId = pr.Shift_Id
-             JOIN pay_scale ps ON ps.RecId = pr.Pay_Id
-             JOIN payroll_type pt ON pt.RecId = pr.PayRoll_Type
+             JOIN user_profile up ON up.id = pr.UserP_Id
+             JOIN designation d ON d.id = pr.Designation_Id
+             JOIN shift s ON s.id = pr.Shift_Id
+             JOIN pay_scale ps ON ps.id = pr.Pay_Id
+             JOIN payroll_type pt ON pt.id = pr.PayRoll_Type
     WHERE MONTH(pr.created_on) = MONTH(NOW())
       AND pr.isactive = 1
       AND d.isactive = 1
@@ -561,7 +561,7 @@ CREATE
     DEFINER = `root`@`localhost` PROCEDURE `sp_getEmpInfoByUserID`(IN `EmpId` INT)
 BEGIN
     SELECT ps.pay_name,
-           up.RecId,
+           up.id,
            up.Employee_Id,
            up.firstname,
            up.lastname,
@@ -574,10 +574,10 @@ BEGIN
            s.shift_name,
            up.workingDays
     FROM `user_profile` up
-             JOIN shift s on s.RecId = up.shift_id
-             JOIN designation d on d.RecId = up.Designation_Id
-             JOIN tbl_gender g on g.RecId = up.gender
-             join pay_scale ps on ps.RecId = up.payscale_id
+             JOIN shift s on s.id = up.shift_id
+             JOIN designation d on d.id = up.Designation_Id
+             JOIN tbl_gender g on g.id = up.gender
+             join pay_scale ps on ps.id = up.payscale_id
     WHERE up.Employee_Id = EmpId;
 END$$
 
@@ -660,7 +660,7 @@ BEGIN
                       ORDER BY 1 ASC);
 
 
-    SELECT up.RecId                                                                                 AS RecId,
+    SELECT up.id                                                                                 AS id,
            concat(up.firstname, ' ', up.lastname)                                                   as Employee_Name,
            dn                                                                                       as designation_name,
            s.shift_name                                                                             as shift_name,
@@ -717,18 +717,18 @@ BEGIN
                                 ELSE '0' END)))                                      NoOfLates
           FROM attendance a
                    JOIN user_profile up ON up.Employee_Id = a.Employee_Id
-                   JOIN shift s ON s.RecId = up.shift_id
-                   JOIN designation d ON d.RecId = up.Designation_Id
-                   JOIN pay_scale pp ON pp.RecId = up.payscale_id
+                   JOIN shift s ON s.id = up.shift_id
+                   JOIN designation d ON d.id = up.Designation_Id
+                   JOIN pay_scale pp ON pp.id = up.payscale_id
           WHERE a.isactive = 1
             AND a.Employee_Id = SP_EmpID
             AND MONTH(a.check_in_date) = '08'-- MONTH(CURRENT_DATE)
             AND YEAR(a.check_in_date) = '2023'-- YEAR(CURRENT_DATE)
           GROUP BY up.Employee_Id) AS a
              JOIN user_profile up ON up.Employee_Id = a.EMPID
-             JOIN shift s ON s.RecId = up.shift_id
-             JOIN designation d ON d.RecId = up.Designation_Id
-             JOIN pay_scale pp ON pp.RecId = up.payscale_id;
+             JOIN shift s ON s.id = up.shift_id
+             JOIN designation d ON d.id = up.Designation_Id
+             JOIN pay_scale pp ON pp.id = up.payscale_id;
 END$$
 
 CREATE
@@ -773,7 +773,7 @@ BEGIN
 END$$
 
 CREATE
-    DEFINER = `root`@`localhost` PROCEDURE `sp_Special_PayrollGenerator`(IN `UserRecID` INT, IN `EmpId` INT)
+    DEFINER = `root`@`localhost` PROCEDURE `sp_Special_PayrollGenerator`(IN `Userid` INT, IN `EmpId` INT)
 BEGIN
     DECLARE CONTINUE HANDLER FOR SQLEXCEPTION
         BEGIN
@@ -781,7 +781,7 @@ BEGIN
         END;
     START TRANSACTION;
 
-    UPDATE user_profile up JOIN payroll pr ON up.RecId = pr.UserP_Id
+    UPDATE user_profile up JOIN payroll pr ON up.id = pr.UserP_Id
     SET up.isactive = 0,
         up.Advance  = (up.Advance - pr.Advance)
     WHERE up.Employee_Id = EmpId
@@ -791,7 +791,7 @@ BEGIN
     SET @DaysInCurrentMonth = DAY(LAST_DAY(CURRENT_DATE));
 
 
-    -- SET @HolidayCount = (SELECT COUNT(RecId) FROM holidays h WHERE MONTH(h.Holiday_Date) =  MONTH(CURRENT_DATE)
+    -- SET @HolidayCount = (SELECT COUNT(id) FROM holidays h WHERE MONTH(h.Holiday_Date) =  MONTH(CURRENT_DATE)
     --      AND YEAR(h.Holiday_Date) = YEAR(CURRENT_DATE));
 -- Check if records exist for the current month
 -- SET @isExist = (SELECT COUNT(*) FROM `payroll` WHERE MONTH(created_on) = MONTH(CURRENT_DATE));
@@ -888,10 +888,10 @@ BEGIN
         INSERT INTO payroll(UserP_Id, Designation_Id, Shift_Id, Pay_Id, time_in, time_out, PayRoll_Type, salary,
                             deducted_days, late, absent, Deduction, M_Deducted, Advance, M_Advance, M_Salary, Total_Pay,
                             created_by, updated_by)
-        SELECT up.RecId                                                                                 AS EMPID,
-               d.RecId,
-               s.RecId                                                                                  AS Shift,
-               pp.RecId,
+        SELECT up.id                                                                                 AS EMPID,
+               d.id,
+               s.id                                                                                  AS Shift,
+               pp.id,
                TIME(s.time_in)                                                                          AS TimeIn,
                TIME(s.time_out)                                                                         AS TimeOut,
                2,
@@ -913,8 +913,8 @@ BEGIN
                FLOOR(up.salary - FLOOR((up.salary / @DaysInCurrentMonth) * FLOOR(DeductedDaysBecauseOfLateArrival)) -
                      up.Advance - FLOOR((up.salary / @DaysInCurrentMonth) * (SystemWorkingDays - AttendedDays))
                )                                                                                        AS MSalary,
-               UserRecID,
-               UserRecID
+               Userid,
+               Userid
         FROM (SELECT @SatSunOff                                                       AS SatSunOff,
                      @SundayOff                                                       AS SunOff,
                      CASE WHEN up.workingDays = 5 THEN @SatSunOff ELSE @SundayOff END AS SystemWorkingDays,
@@ -945,22 +945,22 @@ BEGIN
                                     ELSE '0' END)))                                      NoOfLates
               FROM attendance a
                        JOIN user_profile up ON up.Employee_Id = a.Employee_Id
-                       JOIN shift s ON s.RecId = up.shift_id
-                       JOIN designation d ON d.RecId = up.Designation_Id
-                       JOIN pay_scale pp ON pp.RecId = up.payscale_id
+                       JOIN shift s ON s.id = up.shift_id
+                       JOIN designation d ON d.id = up.Designation_Id
+                       JOIN pay_scale pp ON pp.id = up.payscale_id
               WHERE a.isactive = 1
                 AND a.Employee_Id = EmpId
                 AND MONTH(a.check_in_date) = '08'-- MONTH(CURRENT_DATE)
                 AND YEAR(a.check_in_date) = '2023'-- YEAR(CURRENT_DATE)
               GROUP BY up.Employee_Id) AS a
                  JOIN user_profile up ON up.Employee_Id = a.EMPID
-                 JOIN shift s ON s.RecId = up.shift_id
-                 JOIN designation d ON d.RecId = up.Designation_Id
-                 JOIN pay_scale pp ON pp.RecId = up.payscale_id;
+                 JOIN shift s ON s.id = up.shift_id
+                 JOIN designation d ON d.id = up.Designation_Id
+                 JOIN pay_scale pp ON pp.id = up.payscale_id;
     END IF;
 
 -- Show Data
-    SELECT pr.RecId,
+    SELECT pr.id,
            CONCAT(up.firstname, ' ', up.lastname) AS Employee_Name,
            d.designation_name,
            s.shift_name,
@@ -980,11 +980,11 @@ BEGIN
            pr.Total_Pay,
            pr.updated_on
     FROM payroll pr
-             JOIN user_profile up ON up.RecId = pr.UserP_Id
-             JOIN designation d ON d.RecId = pr.Designation_Id
-             JOIN shift s ON s.RecId = pr.Shift_Id
-             JOIN pay_scale ps ON ps.RecId = pr.Pay_Id
-             JOIN payroll_type pt ON pt.RecId = pr.PayRoll_Type
+             JOIN user_profile up ON up.id = pr.UserP_Id
+             JOIN designation d ON d.id = pr.Designation_Id
+             JOIN shift s ON s.id = pr.Shift_Id
+             JOIN pay_scale ps ON ps.id = pr.Pay_Id
+             JOIN payroll_type pt ON pt.id = pr.PayRoll_Type
     WHERE MONTH(pr.created_on) = MONTH(NOW())
       AND pr.isactive = 1
       AND d.isactive = 1
@@ -1005,8 +1005,8 @@ BEGIN
     START TRANSACTION;
 
     -- Declare variables to store previous datetime values
-    SET @checkinold = (SELECT date(a.check_in) FROM attendance a WHERE a.RecId = EmpId);
-    SET @checkoutold = (SELECT date(a.check_out) FROM attendance a WHERE a.RecId = EmpId);
+    SET @checkinold = (SELECT date(a.check_in) FROM attendance a WHERE a.id = EmpId);
+    SET @checkoutold = (SELECT date(a.check_out) FROM attendance a WHERE a.id = EmpId);
     -- Convert the input time strings to TIME format
     SET @newCheckInTime = STR_TO_DATE(check_in, '%H:%i:%s');
     SET @newCheckOutTime = STR_TO_DATE(check_out, '%H:%i:%s');
@@ -1017,7 +1017,7 @@ BEGIN
         a.check_out  = CONCAT(@checkoutold, ' ', @newCheckOutTime),
         a.updated_by = 1,
         a.updated_on = CURRENT_TIMESTAMP
-    WHERE a.RecId = EmpId
+    WHERE a.id = EmpId
       AND a.isactive = 1;
     COMMIT;
 END$$
@@ -1037,7 +1037,7 @@ BEGIN
         ad.AmoutDate  = AmountDate,
         ad.updated_by = 1,
         ad.updated_on = CURRENT_TIMESTAMP
-    WHERE ad.RecId = adv_Id
+    WHERE ad.id = adv_Id
       AND ad.isactive = 1;
     COMMIT;
 END$$
@@ -1053,11 +1053,11 @@ BEGIN
 
     START TRANSACTION;
 
-    SET @checkindata = (Select a.check_in FROM attendance a WHERE a.RecId = EmpId);
-    SET @checkoutdata = (Select a.check_in FROM attendance a WHERE a.RecId = EmpId);
+    SET @checkindata = (Select a.check_in FROM attendance a WHERE a.id = EmpId);
+    SET @checkoutdata = (Select a.check_in FROM attendance a WHERE a.id = EmpId);
     -- Declare variables to store previous datetime values
-    SET @checkinold = (SELECT date(a.check_in) FROM attendance a WHERE a.RecId = EmpId);
-    SET @checkoutold = (SELECT date(a.check_out) FROM attendance a WHERE a.RecId = EmpId);
+    SET @checkinold = (SELECT date(a.check_in) FROM attendance a WHERE a.id = EmpId);
+    SET @checkoutold = (SELECT date(a.check_out) FROM attendance a WHERE a.id = EmpId);
     -- Convert the input time strings to TIME format
     SET @newCheckInTime = STR_TO_DATE(check_in, '%H:%i:%s');
     SET @newCheckOutTime = STR_TO_DATE(check_out, '%H:%i:%s');
@@ -1068,10 +1068,10 @@ BEGIN
         a.check_out  = CONCAT(@checkoutold, ' ', @newCheckOutTime),
         a.updated_by = 1,
         a.updated_on = CURRENT_TIMESTAMP
-    WHERE a.RecId = EmpId
+    WHERE a.id = EmpId
       AND a.isactive = 1;
 
-    SET @UserStr = (SELECT CONCAT(u.username, ' (', u.RecId, ')') FROM user u WHERE u.RecId = 1);
+    SET @UserStr = (SELECT CONCAT(u.username, ' (', u.id, ')') FROM user u WHERE u.id = 1);
     SET @LogMsg = '';
 
 
@@ -1106,7 +1106,7 @@ BEGIN
     SET d.designation_name = designation_name,
         d.updated_by       = 1,
         d.updated_on       = CURRENT_TIMESTAMP
-    WHERE d.RecId = Desig_Id
+    WHERE d.id = Desig_Id
       AND d.isactive = 1;
     COMMIT;
 END$$
@@ -1124,7 +1124,7 @@ BEGIN
         h.Holiday_Date = HolidayDate,
         h.updated_by   = 1,
         h.updated_on   = CURRENT_TIMESTAMP
-    WHERE h.RecId = HoliId
+    WHERE h.id = HoliId
       AND h.isactive = 1;
     COMMIT;
 END$$
@@ -1146,7 +1146,7 @@ BEGIN
         pr.Remarks    = Remarks,
         pr.updated_by = 1,
         pr.updated_on = CURRENT_TIMESTAMP
-    WHERE pr.RecId = PayRoll_Id
+    WHERE pr.id = PayRoll_Id
       AND pr.isactive = 1;
     COMMIT;
 END$$
@@ -1163,7 +1163,7 @@ BEGIN
     SET ps.pay_name   = pay_name,
         ps.updated_by = 1,
         ps.updated_on = CURRENT_TIMESTAMP
-    WHERE ps.RecId = PaySca_Id
+    WHERE ps.id = PaySca_Id
       AND ps.isactive = 1;
     COMMIT;
 END$$
@@ -1181,7 +1181,7 @@ BEGIN
         pa.Permission_Id = Permission_Id,
         pa.updated_by    = 1,
         pa.updated_on    = CURRENT_TIMESTAMP
-    WHERE pa.RecId = PermAssi_Id
+    WHERE pa.id = PermAssi_Id
       AND pa.isactive = 1;
     COMMIT;
 END$$
@@ -1205,7 +1205,7 @@ BEGIN
         p.method           = method,
         p.updated_by       = 1,
         p.updated_on       = CURRENT_TIMESTAMP
-    WHERE p.RecId = Perm_Id
+    WHERE p.id = Perm_Id
       AND p.isactive = 1;
     COMMIT;
 END$$
@@ -1223,7 +1223,7 @@ BEGIN
         ra.User_Id    = User_Id,
         ra.updated_by = 1,
         ra.updated_on = CURRENT_TIMESTAMP
-    WHERE ra.RecId = RoleAssi_Id
+    WHERE ra.id = RoleAssi_Id
       AND ra.isactive = 1;
     COMMIT;
 END$$
@@ -1240,7 +1240,7 @@ BEGIN
     SET r.role_name  = role_name,
         r.updated_by = 1,
         r.updated_on = CURRENT_TIMESTAMP
-    WHERE r.RecId = Roles_Id
+    WHERE r.id = Roles_Id
       AND r.isactive = 1;
     COMMIT;
 END$$
@@ -1262,7 +1262,7 @@ BEGIN
         s.grace_time = grace_time,
         s.updated_by = 1,
         s.updated_on = CURRENT_TIMESTAMP
-    WHERE s.RecId = Shift_Id
+    WHERE s.id = Shift_Id
       AND s.isactive = 1;
     COMMIT;
 END$$
@@ -1270,7 +1270,7 @@ END$$
 CREATE
     DEFINER = `root`@`localhost` PROCEDURE `StrProc_ChangeUserInfo`(IN `UId` INT, IN `Role_Id` INT, IN `UserP_Id` INT,
                                                                     IN `username` VARCHAR(50),
-                                                                    IN `password` VARCHAR(50))
+                                                                    IN `password` VARCHAR(100))
 BEGIN
     DECLARE CONTINUE HANDLER FOR SQLEXCEPTION
         BEGIN
@@ -1284,7 +1284,7 @@ BEGIN
         u.password   = password,
         u.updated_by = 1,
         u.updated_on = CURRENT_TIMESTAMP
-    WHERE u.RecId = UId
+    WHERE u.id = UId
       AND u.isactive = 1;
     COMMIT;
 END$$
@@ -1322,7 +1322,7 @@ BEGIN
         up.workingDays    = workingDays,
         up.updated_by     = 1,
         up.updated_on     = CURRENT_TIMESTAMP
-    WHERE up.RecId = UpId
+    WHERE up.id = UpId
       AND up.isactive = 1;
     COMMIT;
 END$$
@@ -1335,7 +1335,7 @@ BEGIN
             ROLLBACK;
         END;
     START TRANSACTION;
-    SELECT ad.RecId, ad.Up_Id, ad.Amount, ad.AmoutDate FROM advance as ad WHERE ad.isactive = 1;
+    SELECT ad.id, ad.Up_Id, ad.Amount, ad.AmoutDate FROM advance as ad WHERE ad.isactive = 1;
     COMMIT;
 END$$
 
@@ -1347,7 +1347,7 @@ BEGIN
             ROLLBACK;
         END;
     START TRANSACTION;
-    SELECT a.RecId,
+    SELECT a.id,
            a.User_Id,
            a.check_in,
            a.check_out,
@@ -1358,10 +1358,10 @@ BEGIN
            a.created_on,
            a.updated_on
     FROM attendance as a
-             JOIN user as u ON a.User_Id = u.RecId
-             JOIN user as u1 ON a.created_by = u1.RecId
-             JOIN user as u2 ON a.updated_by = u2.RecId
-    WHERE a.RecId = AtenId
+             JOIN user as u ON a.User_Id = u.id
+             JOIN user as u1 ON a.created_by = u1.id
+             JOIN user as u2 ON a.updated_by = u2.id
+    WHERE a.id = AtenId
       AND a.isactive = 1
       AND u.isactive = 1
       AND u1.isactive = 1
@@ -1377,7 +1377,7 @@ BEGIN
             ROLLBACK;
         END;
     START TRANSACTION;
-    SELECT d.RecId, d.designation_name FROM designation as d WHERE d.isactive = 1;
+    SELECT d.id, d.designation_name FROM designation as d WHERE d.isactive = 1;
     COMMIT;
 END$$
 
@@ -1389,7 +1389,7 @@ BEGIN
             ROLLBACK;
         END;
     START TRANSACTION;
-    SELECT g.RecId, g.Gender FROM tbl_gender as g WHERE g.isactive;
+    SELECT g.id, g.Gender FROM tbl_gender as g WHERE g.isactive;
     COMMIT;
 END$$
 
@@ -1401,7 +1401,7 @@ BEGIN
             ROLLBACK;
         END;
     START TRANSACTION;
-    SELECT h.RecId, h.Title, h.Holiday_Date FROM holidays as h WHERE h.isactive = 1;
+    SELECT h.id, h.Title, h.Holiday_Date FROM holidays as h WHERE h.isactive = 1;
     COMMIT;
 END$$
 
@@ -1413,7 +1413,7 @@ BEGIN
             ROLLBACK;
         END;
     START TRANSACTION;
-    SELECT pr.RecId,
+    SELECT pr.id,
            pr.UserP_Id,
            pr.Designation_Id,
            pr.Shift_Id,
@@ -1427,13 +1427,13 @@ BEGIN
            pr.created_on,
            pr.updated_on
     FROM payroll as pr
-             JOIN user_profile as up ON pr.UserP_Id = up.RecId
-             JOIN designation as d ON pr.Designation_Id = d.RecId
-             JOIN shift as s ON pr.Shift_Id = s.RecId
-             JOIN pay_scale as ps ON pr.Pay_Id = ps.RecId
-             JOIN user as u ON ps.created_by = u.RecId
-             JOIN user as u1 ON ps.updated_by = u1.RecId
-    WHERE pr.RecId = PayRoll_Id
+             JOIN user_profile as up ON pr.UserP_Id = up.id
+             JOIN designation as d ON pr.Designation_Id = d.id
+             JOIN shift as s ON pr.Shift_Id = s.id
+             JOIN pay_scale as ps ON pr.Pay_Id = ps.id
+             JOIN user as u ON ps.created_by = u.id
+             JOIN user as u1 ON ps.updated_by = u1.id
+    WHERE pr.id = PayRoll_Id
       AND ps.isactive = 1
       AND up.isactive = 1
       AND d.isactive = 1
@@ -1452,8 +1452,8 @@ BEGIN
             ROLLBACK;
         END;
     START TRANSACTION;
-/*SELECT ps.RecId,ps.pay_name,ps.isactive,ps.created_by,ps.updated_by,ps.created_on,ps.updated_on FROM pay_scale as ps  JOIN user as u ON ps.created_by = u.RecId JOIN user as u1 ON ps.updated_by = u1.RecId WHERE ps.RecId = PaySca_Id AND ps.isactive = 1 AND u.isactive = 1 AND u1.isactive = 1;*/
-    SELECT ps.RecId, ps.pay_name FROM pay_scale as ps WHERE ps.isactive = 1;
+/*SELECT ps.id,ps.pay_name,ps.isactive,ps.created_by,ps.updated_by,ps.created_on,ps.updated_on FROM pay_scale as ps  JOIN user as u ON ps.created_by = u.id JOIN user as u1 ON ps.updated_by = u1.id WHERE ps.id = PaySca_Id AND ps.isactive = 1 AND u.isactive = 1 AND u1.isactive = 1;*/
+    SELECT ps.id, ps.pay_name FROM pay_scale as ps WHERE ps.isactive = 1;
     COMMIT;
 END$$
 
@@ -1465,7 +1465,7 @@ BEGIN
             ROLLBACK;
         END;
     START TRANSACTION;
-    SELECT pa.RecId,
+    SELECT pa.id,
            pa.Role_Id,
            pa.Permission_Id,
            pa.isactive,
@@ -1474,11 +1474,11 @@ BEGIN
            pa.created_on,
            pa.updated_on
     FROM permission_assign as pa
-             JOIN role as r ON pa.Role_Id = r.RecId
-             JOIN permission as p ON pa.Permission_Id = p.RecId
-             JOIN user as u ON pa.created_by = u.RecId
-             JOIN user as u1 ON pa.updated_by = u1.RecId
-    WHERE pa.RecId = PermAssi_Id
+             JOIN role as r ON pa.Role_Id = r.id
+             JOIN permission as p ON pa.Permission_Id = p.id
+             JOIN user as u ON pa.created_by = u.id
+             JOIN user as u1 ON pa.updated_by = u1.id
+    WHERE pa.id = PermAssi_Id
       AND pa.isactive = 1
       AND r.isactive = 1
       AND p.isactive = 1
@@ -1495,7 +1495,7 @@ BEGIN
             ROLLBACK;
         END;
     START TRANSACTION;
-    SELECT p.RecId,
+    SELECT p.id,
            p.permisssion_name,
            p.controller,
            p.action,
@@ -1510,9 +1510,9 @@ BEGIN
            p.created_on,
            p.updated_on
     FROM permission as p
-             JOIN user as u ON p.created_by = u.RecId
-             JOIN user as u1 ON p.updated_by = u1.RecId
-    WHERE p.RecId = Perm_Id
+             JOIN user as u ON p.created_by = u.id
+             JOIN user as u1 ON p.updated_by = u1.id
+    WHERE p.id = Perm_Id
       AND p.isactive = 1
       AND u.isactive = 1
       AND u1.isactive = 1;
@@ -1527,8 +1527,8 @@ BEGIN
             ROLLBACK;
         END;
     START TRANSACTION;
-/*SELECT r.RecId,r.role_name,r.isactive,r.created_by,r.updated_by,r.created_on,r.updated_on FROM role as r JOIN user as u ON r.created_by = u.RecId JOIN user as u1 ON r.updated_by = u1.RecId WHERE r.RecId = Roles_Id AND r.isactive = 1 AND u.isactive = 1 AND u1.isactive = 1;*/
-    SELECT r.RecId, r.role_name FROM role as r WHERE isactive = 1;
+/*SELECT r.id,r.role_name,r.isactive,r.created_by,r.updated_by,r.created_on,r.updated_on FROM role as r JOIN user as u ON r.created_by = u.id JOIN user as u1 ON r.updated_by = u1.id WHERE r.id = Roles_Id AND r.isactive = 1 AND u.isactive = 1 AND u1.isactive = 1;*/
+    SELECT r.id, r.role_name FROM role as r WHERE isactive = 1;
     COMMIT;
 END$$
 
@@ -1540,7 +1540,7 @@ BEGIN
             ROLLBACK;
         END;
     START TRANSACTION;
-    SELECT RecId, shift_name FROM shift WHERE isactive = 1;
+    SELECT id, shift_name FROM shift WHERE isactive = 1;
     COMMIT;
 END$$
 
@@ -1552,7 +1552,7 @@ BEGIN
             ROLLBACK;
         END;
     START TRANSACTION;
-    SELECT u.RecId,
+    SELECT u.id,
            u.Role_Id,
            u.UserP_Id,
            u.username,
@@ -1563,9 +1563,9 @@ BEGIN
            u.created_on,
            u.updated_on
     FROM user as u
-             LEFT JOIN role as r ON u.Role_Id = r.RecId
-             JOIN user_profile as up ON u.UserP_Id = up.RecId
-    WHERE u.RecId = UId
+             LEFT JOIN role as r ON u.Role_Id = r.id
+             JOIN user_profile as up ON u.UserP_Id = up.id
+    WHERE u.id = UId
       AND u.isactive = 1
       AND r.isactive = 1
       AND up.isactive = 1;
@@ -1577,7 +1577,7 @@ CREATE
 BEGIN
     SELECT *
     FROM user as u
-             JOIN user_profile as up ON u.UserP_Id = up.RecId
+             JOIN user_profile as up ON u.UserP_Id = up.id
     WHERE u.isactive = 1
       AND up.isactive = 1
       AND u.username = username
@@ -1592,7 +1592,7 @@ BEGIN
             ROLLBACK;
         END;
     START TRANSACTION;
-    SELECT up.RecId,
+    SELECT up.id,
            up.Designation_Id,
            up.Employee_Id,
            up.firstname,
@@ -1613,10 +1613,10 @@ BEGIN
            up.created_on,
            up.updated_on
     FROM user_profile as up
-             JOIN designation as d ON up.Designation_Id = d.RecId
-             JOIN shift as s ON up.shift_id = s.RecId
-             JOIN pay_scale as p ON up.payscale_id = p.RecId
-    WHERE up.RecId = UpId
+             JOIN designation as d ON up.Designation_Id = d.id
+             JOIN shift as s ON up.shift_id = s.id
+             JOIN pay_scale as p ON up.payscale_id = p.id
+    WHERE up.id = UpId
       AND up.isactive = 1
       AND d.isactive = 1
       AND s.isactive = 1
@@ -1634,7 +1634,7 @@ BEGIN
     START TRANSACTION;
     UPDATE user_profile up
     SET up.Advance = (up.Advance + Amount)
-    WHERE up.RecId = UpId
+    WHERE up.id = UpId
       AND up.isactive = 1;
 
     -- Insert the Amount into the advance table
@@ -1861,16 +1861,16 @@ BEGIN
     IF adv_Id != 0 THEN
         SELECT up.firstname, ad.Amount, ad.AmountDate
         FROM advance as ad
-                 JOIN user_profile up ON up.RecId = ad.Up_Id
+                 JOIN user_profile up ON up.id = ad.Up_Id
         WHERE ad.isactive = 1
           AND MONTH(ad.AmountDate) = month(CURRENT_DATE)
           AND YEAR(ad.AmountDate) = YEAR(CURRENT_DATE)
           AND up.isactive = 1
           AND ad.Up_Id = adv_Id;
     ELSE
-        SELECT ad.RecId, up.firstname, ad.Amount, ad.AmountDate
+        SELECT ad.id, up.firstname, ad.Amount, ad.AmountDate
         FROM advance as ad
-                 JOIN user_profile up ON up.RecId = ad.Up_Id
+                 JOIN user_profile up ON up.id = ad.Up_Id
         WHERE ad.isactive = 1
           AND up.isactive = 1;
     END IF;
@@ -1887,7 +1887,7 @@ BEGIN
     START TRANSACTION;
     UPDATE attendance AS a
         JOIN user_profile AS up ON up.Employee_Id = a.Employee_Id
-        JOIN shift AS s ON up.shift_id = s.RecId
+        JOIN shift AS s ON up.shift_id = s.id
     SET a.over_time =
             CASE
                 WHEN time(a.check_out) > time(s.time_out) THEN TIMEDIFF(time(a.check_out), time(s.time_out))
@@ -1897,7 +1897,7 @@ BEGIN
       AND s.isactive = 1
       AND up.isactive = 1;
 
-    SELECT a.RecId,
+    SELECT a.id,
            a.Employee_Id,
            CONCAT(up.firstname, ' ', up.lastname) as PersonName,
            TIME_FORMAT(TIME(a.check_in), '%r')    AS Check_In,
@@ -1928,7 +1928,7 @@ BEGIN
              JOIN
          user_profile AS up ON up.Employee_Id = a.Employee_Id
              JOIN
-         shift AS s ON up.shift_id = s.RecId
+         shift AS s ON up.shift_id = s.id
     WHERE a.isactive = 1
       AND s.isactive = 1
       AND up.isactive = 1;
@@ -1944,9 +1944,9 @@ BEGIN
         END;
     START TRANSACTION;
     IF Desig_Id != 0 THEN
-        SELECT d.RecId, d.designation_name FROM designation as d WHERE d.RecId = Desig_Id AND d.isactive = 1;
+        SELECT d.id, d.designation_name FROM designation as d WHERE d.id = Desig_Id AND d.isactive = 1;
     ELSE
-        SELECT d.RecId, d.designation_name FROM designation as d WHERE d.isactive = 1;
+        SELECT d.id, d.designation_name FROM designation as d WHERE d.isactive = 1;
     END IF;
     COMMIT;
 END$$
@@ -1960,9 +1960,9 @@ BEGIN
         END;
     START TRANSACTION;
     IF HoliId != 0 THEN
-        SELECT h.RecId, h.Title, h.Holiday_Date FROM holidays as h WHERE h.RecId = HoliId AND h.isactive = 1;
+        SELECT h.id, h.Title, h.Holiday_Date FROM holidays as h WHERE h.id = HoliId AND h.isactive = 1;
     ELSE
-        SELECT h.RecId, h.Title, h.Holiday_Date FROM holidays as h WHERE h.isactive = 1;
+        SELECT h.id, h.Title, h.Holiday_Date FROM holidays as h WHERE h.isactive = 1;
     END IF;
     COMMIT;
 END$$
@@ -2076,13 +2076,13 @@ BEGIN
                      END)                                                         AS NoOfLates
           FROM attendance a
                    JOIN user_profile up ON up.Employee_Id = a.Employee_Id
-                   JOIN shift s ON s.RecId = up.shift_id
-                   JOIN designation d ON d.RecId = up.Designation_Id
+                   JOIN shift s ON s.id = up.shift_id
+                   JOIN designation d ON d.id = up.Designation_Id
           WHERE a.isactive = 1
           GROUP BY up.Employee_Id) AS a
              JOIN user_profile up ON up.Employee_Id = a.EMPID
-             JOIN shift s ON s.RecId = up.shift_id
-             JOIN designation d ON d.RecId = up.Designation_Id;
+             JOIN shift s ON s.id = up.shift_id
+             JOIN designation d ON d.id = up.Designation_Id;
     COMMIT;
 END$$
 
@@ -2095,9 +2095,9 @@ BEGIN
         END;
     START TRANSACTION;
     IF PaySca_Id != 0 THEN
-        SELECT ps.RecId, ps.pay_name FROM pay_scale as ps WHERE ps.RecId = PaySca_Id AND ps.isactive = 1;
+        SELECT ps.id, ps.pay_name FROM pay_scale as ps WHERE ps.id = PaySca_Id AND ps.isactive = 1;
     ELSE
-        SELECT ps.RecId, ps.pay_name FROM pay_scale as ps WHERE ps.isactive = 1;
+        SELECT ps.id, ps.pay_name FROM pay_scale as ps WHERE ps.isactive = 1;
     END IF;
     COMMIT;
 END$$
@@ -2111,12 +2111,12 @@ BEGIN
         END;
     START TRANSACTION;
     IF PermAssi_Id != 0 THEN
-        SELECT pa.RecId, pa.Role_Id, pa.Permission_Id
+        SELECT pa.id, pa.Role_Id, pa.Permission_Id
         FROM permission_assign as pa
-        WHERE pa.RecId = PermAssi_Id
+        WHERE pa.id = PermAssi_Id
           AND pa.isactive = 1;
     ELSE
-        SELECT pa.RecId, pa.Role_Id, pa.Permission_Id FROM permission_assign as pa WHERE pa.isactive = 1;
+        SELECT pa.id, pa.Role_Id, pa.Permission_Id FROM permission_assign as pa WHERE pa.isactive = 1;
     END IF;
     COMMIT;
 END$$
@@ -2130,7 +2130,7 @@ BEGIN
         END;
     START TRANSACTION;
     IF Perm_Id != 0 THEN
-        SELECT p.RecId,
+        SELECT p.id,
                p.permisssion_name,
                p.controller,
                p.action,
@@ -2140,10 +2140,10 @@ BEGIN
                p.sort,
                p.parent_id
         FROM permission as p
-        WHERE p.RecId = Perm_Id
+        WHERE p.id = Perm_Id
           AND p.isactive = 1;
     ELSE
-        SELECT p.RecId,
+        SELECT p.id,
                p.permisssion_name,
                p.controller,
                p.action,
@@ -2167,9 +2167,9 @@ BEGIN
         END;
     START TRANSACTION;
     IF RoleAssi_Id != 0 THEN
-        SELECT ra.RecId, ra.Role_Id, ra.User_Id FROM role_assign as ra WHERE ra.RecId = RoleAssi_Id AND ra.isactive = 1;
+        SELECT ra.id, ra.Role_Id, ra.User_Id FROM role_assign as ra WHERE ra.id = RoleAssi_Id AND ra.isactive = 1;
     ELSE
-        SELECT ra.RecId, ra.Role_Id, ra.User_Id FROM role_assign as ra WHERE ra.isactive = 1;
+        SELECT ra.id, ra.Role_Id, ra.User_Id FROM role_assign as ra WHERE ra.isactive = 1;
     END IF;
     COMMIT;
 END$$
@@ -2183,12 +2183,12 @@ BEGIN
         END;
     START TRANSACTION;
     IF Roles_Id != 0 THEN
-        SELECT r.RecId, r.role_name
+        SELECT r.id, r.role_name
         FROM role as r
         WHERE r.isactive = 1
-          AND r.RecId = Roles_Id;
+          AND r.id = Roles_Id;
     ELSE
-        SELECT r.RecId, r.role_name
+        SELECT r.id, r.role_name
         FROM role as r
         WHERE r.isactive = 1;
     END IF;
@@ -2204,12 +2204,12 @@ BEGIN
         END;
     START TRANSACTION;
     IF Shift_Id != 0 THEN
-        SELECT s.RecId, s.shift_name, s.time_in, s.time_out, s.grace_time
+        SELECT s.id, s.shift_name, s.time_in, s.time_out, s.grace_time
         FROM shift as s
-        WHERE s.RecId = Shift_Id
+        WHERE s.id = Shift_Id
           AND s.isactive = 1;
     ELSE
-        SELECT s.RecId, s.shift_name, s.time_in, s.time_out, s.grace_time FROM shift as s WHERE s.isactive = 1;
+        SELECT s.id, s.shift_name, s.time_in, s.time_out, s.grace_time FROM shift as s WHERE s.isactive = 1;
     END IF;
     COMMIT;
 END$$
@@ -2223,11 +2223,11 @@ BEGIN
         END;
     START TRANSACTION;
     IF UId != 0 THEN
-        SELECT u.RecId, u.Role_Id, u.UserP_Id, u.username, u.password
+        SELECT u.id, u.Role_Id, u.UserP_Id, u.username, u.password
         FROM user as u
-        WHERE u.RecId = UId AND u.isactive = 1;
+        WHERE u.id = UId AND u.isactive = 1;
     ELSE
-        SELECT u.RecId, u.Role_Id, u.UserP_Id, u.username, u.password FROM user as u WHERE u.isactive = 1;
+        SELECT u.id, u.Role_Id, u.UserP_Id, u.username, u.password FROM user as u WHERE u.isactive = 1;
     END IF;
     COMMIT;
 END$$
@@ -2241,7 +2241,7 @@ BEGIN
         END;
     START TRANSACTION;
     IF UpId != 0 THEN
-        SELECT up.RecId,
+        SELECT up.id,
                up.Employee_Id,
                d.designation_name,
                ps.pay_name,
@@ -2256,14 +2256,14 @@ BEGIN
                up.Advance,
                up.isactive
         FROM user_profile as up
-                 JOIN designation as d On up.Designation_Id = d.RecId
-                 JOIN pay_scale as ps ON up.payscale_id = ps.recId
-                 JOIN shift as s ON up.shift_id = s.RecId
-                 jOIN tbl_gender as g ON up.gender = g.RecId
-        WHERE up.RecId = UpId;
--- SELECT up.RecId,up.Designation_Id,up.Employee_Id,up.firstname,up.lastname,up.address,up.contact,up.gender,up.shift_id,up.payscale_id,up.salary,up.Advance FROM user_profile as up WHERE up.RecId = UpId AND up.isactive = 1;
+                 JOIN designation as d On up.Designation_Id = d.id
+                 JOIN pay_scale as ps ON up.payscale_id = ps.id
+                 JOIN shift as s ON up.shift_id = s.id
+                 jOIN tbl_gender as g ON up.gender = g.id
+        WHERE up.id = UpId;
+-- SELECT up.id,up.Designation_Id,up.Employee_Id,up.firstname,up.lastname,up.address,up.contact,up.gender,up.shift_id,up.payscale_id,up.salary,up.Advance FROM user_profile as up WHERE up.id = UpId AND up.isactive = 1;
     ELSE
-        SELECT up.RecId,
+        SELECT up.id,
                up.Employee_Id,
                d.designation_name,
                ps.pay_name,
@@ -2279,11 +2279,11 @@ BEGIN
                up.Advance,
                up.isactive
         FROM user_profile as up
-                 JOIN designation as d On up.Designation_Id = d.RecId
-                 JOIN pay_scale as ps ON up.payscale_id = ps.recId
-                 JOIN shift as s ON up.shift_id = s.RecId
-                 jOIN tbl_gender as g ON up.gender = g.RecId;
--- SELECT up.RecId,up.Designation_Id,up.Employee_Id,up.firstname,up.lastname,up.address,up.contact,up.gender,up.shift_id,up.payscale_id,up.salary,up.Advance FROM user_profile as up WHERE up.isactive = 1;
+                 JOIN designation as d On up.Designation_Id = d.id
+                 JOIN pay_scale as ps ON up.payscale_id = ps.id
+                 JOIN shift as s ON up.shift_id = s.id
+                 jOIN tbl_gender as g ON up.gender = g.id;
+-- SELECT up.id,up.Designation_Id,up.Employee_Id,up.firstname,up.lastname,up.address,up.contact,up.gender,up.shift_id,up.payscale_id,up.salary,up.Advance FROM user_profile as up WHERE up.isactive = 1;
     END IF;
     COMMIT;
 END$$
@@ -2296,7 +2296,7 @@ BEGIN
             ROLLBACK;
         END;
     START TRANSACTION;
-    UPDATE advance as ad SET ad.isactive = 0, ad.updated_on = CURRENT_TIMESTAMP WHERE ad.RecId = adv_Id;
+    UPDATE advance as ad SET ad.isactive = 0, ad.updated_on = CURRENT_TIMESTAMP WHERE ad.id = adv_Id;
     COMMIT;
 END$$
 
@@ -2308,7 +2308,7 @@ BEGIN
             ROLLBACK;
         END;
     START TRANSACTION;
-    UPDATE attendance as a SET a.isactive = 0, a.updated_on=CURRENT_TIMESTAMP WHERE a.RecId = AtenId;
+    UPDATE attendance as a SET a.isactive = 0, a.updated_on=CURRENT_TIMESTAMP WHERE a.id = AtenId;
     COMMIT;
 END$$
 
@@ -2320,7 +2320,7 @@ BEGIN
             ROLLBACK;
         END;
     START TRANSACTION;
-    UPDATE designation as d SET d.isactive = 0, d.updated_on = CURRENT_TIMESTAMP WHERE d.RecId = Desig_Id;
+    UPDATE designation as d SET d.isactive = 0, d.updated_on = CURRENT_TIMESTAMP WHERE d.id = Desig_Id;
     COMMIT;
 END$$
 
@@ -2332,7 +2332,7 @@ BEGIN
             ROLLBACK;
         END;
     START TRANSACTION;
-    UPDATE holidays SET isactive = 0 WHERE RecId = HoliId;
+    UPDATE holidays SET isactive = 0 WHERE id = HoliId;
     COMMIT;
 END$$
 
@@ -2344,7 +2344,7 @@ BEGIN
             ROLLBACK;
         END;
     START TRANSACTION;
-    UPDATE payroll as pr SET pr.isactive = 0, pr.updated_on = CURRENT_TIMESTAMP WHERE pr.RecId = PayRoll_Id;
+    UPDATE payroll as pr SET pr.isactive = 0, pr.updated_on = CURRENT_TIMESTAMP WHERE pr.id = PayRoll_Id;
     COMMIT;
 END$$
 
@@ -2356,7 +2356,7 @@ BEGIN
             ROLLBACK;
         END;
     START TRANSACTION;
-    UPDATE pay_scale as ps SET ps.isactive = 0, ps.updated_on = CURRENT_TIMESTAMP WHERE ps.RecId = PaySca_Id;
+    UPDATE pay_scale as ps SET ps.isactive = 0, ps.updated_on = CURRENT_TIMESTAMP WHERE ps.id = PaySca_Id;
     COMMIT;
 END$$
 
@@ -2368,7 +2368,7 @@ BEGIN
             ROLLBACK;
         END;
     START TRANSACTION;
-    UPDATE permission_assign as pa SET pa.isactive = 0, pa.updated_on = CURRENT_TIMESTAMP WHERE pa.RecId = PermAssi_Id;
+    UPDATE permission_assign as pa SET pa.isactive = 0, pa.updated_on = CURRENT_TIMESTAMP WHERE pa.id = PermAssi_Id;
     COMMIT;
 END$$
 
@@ -2380,7 +2380,7 @@ BEGIN
             ROLLBACK;
         END;
     START TRANSACTION;
-    UPDATE permission as p SET p.isactive = 0, p.updated_on = CURRENT_TIMESTAMP WHERE p.RecId = Perm_Id;
+    UPDATE permission as p SET p.isactive = 0, p.updated_on = CURRENT_TIMESTAMP WHERE p.id = Perm_Id;
     COMMIT;
 END$$
 
@@ -2392,7 +2392,7 @@ BEGIN
             ROLLBACK;
         END;
     START TRANSACTION;
-    UPDATE role as r SET r.isactive = 0, r.updated_on = CURRENT_TIMESTAMP WHERE r.RecId = Roles_Id;
+    UPDATE role as r SET r.isactive = 0, r.updated_on = CURRENT_TIMESTAMP WHERE r.id = Roles_Id;
     COMMIT;
 END$$
 
@@ -2404,7 +2404,7 @@ BEGIN
             ROLLBACK;
         END;
     START TRANSACTION;
-    UPDATE shift as s SET s.isactive = 0, s.updated_on = CURRENT_TIMESTAMP WHERE s.RecId = Shift_Id;
+    UPDATE shift as s SET s.isactive = 0, s.updated_on = CURRENT_TIMESTAMP WHERE s.id = Shift_Id;
     COMMIT;
 END$$
 
@@ -2416,7 +2416,7 @@ BEGIN
             ROLLBACK;
         END;
     START TRANSACTION;
-    UPDATE user as u SET u.isactive = 0, u.updated_on = CURRENT_TIMESTAMP WHERE u.RecId = UId;
+    UPDATE user as u SET u.isactive = 0, u.updated_on = CURRENT_TIMESTAMP WHERE u.id = UId;
     COMMIT;
 END$$
 
@@ -2428,7 +2428,7 @@ BEGIN
             ROLLBACK;
         END;
     START TRANSACTION;
-    UPDATE user_profile as up SET up.isactive = 0, up.updated_on = CURRENT_TIMESTAMP WHERE up.RecId = UPId;
+    UPDATE user_profile as up SET up.isactive = 0, up.updated_on = CURRENT_TIMESTAMP WHERE up.id = UPId;
     COMMIT;
 END$$
 
@@ -2510,7 +2510,7 @@ BEGIN
                       ORDER BY 1 ASC);
 
     SELECT a.Net_Salary as PayableAmount
-    FROM (SELECT up.RecId                                                                           AS EMPID,
+    FROM (SELECT up.id                                                                           AS EMPID,
                  up.salary,
                  FLOOR(DeductedDaysBecauseOfLateArrival)                                            AS DeductionDays,
                  NoOfLates                                                                          AS TotalLate,
@@ -2551,16 +2551,16 @@ BEGIN
                                       ELSE '0' END)))                                      NoOfLates
                 FROM attendance a
                          JOIN user_profile up ON up.Employee_Id = a.Employee_Id
-                         JOIN shift s ON s.RecId = up.shift_id
-                         JOIN designation d ON d.RecId = up.Designation_Id
-                         JOIN pay_scale pp ON pp.RecId = up.payscale_id
+                         JOIN shift s ON s.id = up.shift_id
+                         JOIN designation d ON d.id = up.Designation_Id
+                         JOIN pay_scale pp ON pp.id = up.payscale_id
                 WHERE a.isactive = 1
                   AND a.Employee_Id = EmpId
                 GROUP BY up.Employee_Id) AS a
                    JOIN user_profile up ON up.Employee_Id = a.EMPID
-                   JOIN shift s ON s.RecId = up.shift_id
-                   JOIN designation d ON d.RecId = up.Designation_Id
-                   JOIN pay_scale pp ON pp.RecId = up.payscale_id) as A;
+                   JOIN shift s ON s.id = up.shift_id
+                   JOIN designation d ON d.id = up.Designation_Id
+                   JOIN pay_scale pp ON pp.id = up.payscale_id) as A;
 END$$
 
 CREATE
@@ -2641,7 +2641,7 @@ BEGIN
                       ORDER BY 1 ASC);
 
     SELECT a.Net_Salary as PayableAmount
-    FROM (SELECT up.RecId                                                                           AS EMPID,
+    FROM (SELECT up.id                                                                           AS EMPID,
                  up.salary,
                  FLOOR(DeductedDaysBecauseOfLateArrival)                                            AS DeductionDays,
                  NoOfLates                                                                          AS TotalLate,
@@ -2682,16 +2682,16 @@ BEGIN
                                       ELSE '0' END)))                                      NoOfLates
                 FROM attendance a
                          JOIN user_profile up ON up.Employee_Id = a.Employee_Id
-                         JOIN shift s ON s.RecId = up.shift_id
-                         JOIN designation d ON d.RecId = up.Designation_Id
-                         JOIN pay_scale pp ON pp.RecId = up.payscale_id
+                         JOIN shift s ON s.id = up.shift_id
+                         JOIN designation d ON d.id = up.Designation_Id
+                         JOIN pay_scale pp ON pp.id = up.payscale_id
                 WHERE a.isactive = 1
                   AND a.Employee_Id = EmpId
                 GROUP BY up.Employee_Id) AS a
                    JOIN user_profile up ON up.Employee_Id = a.EMPID
-                   JOIN shift s ON s.RecId = up.shift_id
-                   JOIN designation d ON d.RecId = up.Designation_Id
-                   JOIN pay_scale pp ON pp.RecId = up.payscale_id) as A;
+                   JOIN shift s ON s.id = up.shift_id
+                   JOIN designation d ON d.id = up.Designation_Id
+                   JOIN pay_scale pp ON pp.id = up.payscale_id) as A;
 END$$
 
 CREATE
@@ -2700,7 +2700,7 @@ BEGIN
 
     UPDATE attendance AS a
         JOIN user_profile AS up ON up.Employee_Id = a.Employee_Id
-        JOIN shift AS s ON up.shift_id = s.RecId
+        JOIN shift AS s ON up.shift_id = s.id
     SET a.over_time =
             CASE
                 WHEN time(a.check_out) > time(s.time_out) THEN TIMEDIFF(time(a.check_out), time(s.time_out))
@@ -2744,7 +2744,7 @@ BEGIN
              JOIN
          user_profile AS up ON up.Employee_Id = a.Employee_Id
              JOIN
-         shift AS s ON up.shift_id = s.RecId
+         shift AS s ON up.shift_id = s.id
     WHERE a.isactive = 1
       AND s.isactive = 1
       AND up.isactive = 1;
@@ -2757,7 +2757,7 @@ BEGIN
 
     UPDATE attendance AS a
         JOIN user_profile AS up ON up.Employee_Id = a.Employee_Id
-        JOIN shift AS s ON up.shift_id = s.RecId
+        JOIN shift AS s ON up.shift_id = s.id
     SET a.over_time =
             CASE
                 WHEN time(a.check_out) > time(s.time_out) THEN TIMEDIFF(time(a.check_out), time(s.time_out))
@@ -2801,7 +2801,7 @@ BEGIN
              JOIN
          user_profile AS up ON up.Employee_Id = a.Employee_Id
              JOIN
-         shift AS s ON up.shift_id = s.RecId
+         shift AS s ON up.shift_id = s.id
     WHERE a.isactive = 1
       AND s.isactive = 1
       AND up.isactive = 1;
@@ -2891,13 +2891,13 @@ BEGIN
                          END)                                                         AS NoOfLates
               FROM attendance a
                        JOIN user_profile up ON up.Employee_Id = a.Employee_Id
-                       JOIN shift s ON s.RecId = up.shift_id
-                       JOIN designation d ON d.RecId = up.Designation_Id
+                       JOIN shift s ON s.id = up.shift_id
+                       JOIN designation d ON d.id = up.Designation_Id
               WHERE a.isactive = 1
               GROUP BY up.Employee_Id) AS a
                  JOIN user_profile up ON up.Employee_Id = a.EMPID
-                 JOIN shift s ON s.RecId = up.shift_id
-                 JOIN designation d ON d.RecId = up.Designation_Id;
+                 JOIN shift s ON s.id = up.shift_id
+                 JOIN designation d ON d.id = up.Designation_Id;
     -- ___________________________________________________________________________________________________________________________________Talha/Abdullah Query End
 
 
@@ -2931,7 +2931,7 @@ CREATE
     DEFINER = `root`@`localhost` PROCEDURE `TEMP_StrProc_SelectPayRollInfo`(IN `PayRoll_Id` INT)
 BEGIN
     IF PayRoll_Id != 0 THEN
-        SELECT pr.RecId,
+        SELECT pr.id,
                up.firstname,
                d.designation_name,
                s.shift_name,
@@ -2940,13 +2940,13 @@ BEGIN
                up.salary,
                pr.Total_Pay
         FROM payroll as pr
-                 JOIN user_profile as up ON pr.UserP_Id = up.RecId
-                 JOIN designation as d ON pr.Designation_Id = d.RecId
-                 JOIN shift as s ON pr.Shift_Id = s.RecId
-                 JOIN pay_scale as ps ON pr.Pay_Id = ps.RecId
-                 JOIN user as u ON ps.created_by = u.RecId
-                 JOIN user as u1 ON ps.updated_by = u1.RecId
-        WHERE pr.RecId = PayRoll_Id
+                 JOIN user_profile as up ON pr.UserP_Id = up.id
+                 JOIN designation as d ON pr.Designation_Id = d.id
+                 JOIN shift as s ON pr.Shift_Id = s.id
+                 JOIN pay_scale as ps ON pr.Pay_Id = ps.id
+                 JOIN user as u ON ps.created_by = u.id
+                 JOIN user as u1 ON ps.updated_by = u1.id
+        WHERE pr.id = PayRoll_Id
           AND ps.isactive = 1
           AND up.isactive = 1
           AND d.isactive = 1
@@ -2955,7 +2955,7 @@ BEGIN
           AND u.isactive = 1
           AND u1.isactive = 1;
     ELSE
-        SELECT pr.RecId,
+        SELECT pr.id,
                up.firstname,
                d.designation_name,
                s.shift_name,
@@ -2964,12 +2964,12 @@ BEGIN
                up.salary,
                pr.Total_Pay
         FROM payroll as pr
-                 JOIN user_profile as up ON pr.UserP_Id = up.RecId
-                 JOIN designation as d ON pr.Designation_Id = d.RecId
-                 JOIN shift as s ON pr.Shift_Id = s.RecId
-                 JOIN pay_scale as ps ON pr.Pay_Id = ps.RecId
-                 JOIN user as u ON ps.created_by = u.RecId
-                 JOIN user as u1 ON ps.updated_by = u1.RecId
+                 JOIN user_profile as up ON pr.UserP_Id = up.id
+                 JOIN designation as d ON pr.Designation_Id = d.id
+                 JOIN shift as s ON pr.Shift_Id = s.id
+                 JOIN pay_scale as ps ON pr.Pay_Id = ps.id
+                 JOIN user as u ON ps.created_by = u.id
+                 JOIN user as u1 ON ps.updated_by = u1.id
         WHERE ps.isactive = 1
           AND up.isactive = 1
           AND d.isactive = 1
@@ -2981,7 +2981,7 @@ BEGIN
 END$$
 
 CREATE
-    DEFINER = `root`@`localhost` PROCEDURE `Temp_s_PayrollGenerator`(IN `UserRecID` INT)
+    DEFINER = `root`@`localhost` PROCEDURE `Temp_s_PayrollGenerator`(IN `Userid` INT)
 BEGIN
     DECLARE CONTINUE HANDLER FOR SQLEXCEPTION
         BEGIN
@@ -3070,10 +3070,10 @@ BEGIN
         -- Insert data into payroll table
         INSERT INTO payroll(UserP_Id, Designation_Id, Shift_Id, Pay_Id, time_in, time_out, salary, deducted_days, late,
                             absent, Deduction, M_Deducted, M_Salary, Total_Pay, created_by, updated_by)
-        SELECT up.RecId                                                                                            AS EMPID,
-               d.RecId,
-               s.RecId                                                                                             AS Shift,
-               pp.RecId,
+        SELECT up.id                                                                                            AS EMPID,
+               d.id,
+               s.id                                                                                             AS Shift,
+               pp.id,
                TIME(s.time_in)                                                                                     AS TimeIn,
                TIME(s.time_out)                                                                                    AS TimeOut,
                up.salary,
@@ -3097,8 +3097,8 @@ BEGIN
                      FLOOR((up.salary / @DaysInAugust) * FLOOR(DeductedDaysBecauseOfLateArrival)) -
                      FLOOR((up.salary / @DaysInAugust) * (SystemWorkingDays - AttendedDays))
                )                                                                                                   AS MSalary,
-               UserRecID,
-               UserRecID
+               Userid,
+               Userid
         FROM (SELECT @SatSunOff                                                       AS SatSunOff,
                      @SundayOff                                                       AS SunOff,
                      CASE WHEN up.workingDays = 5 THEN @SatSunOff ELSE @SundayOff END AS SystemWorkingDays,
@@ -3129,19 +3129,19 @@ BEGIN
                                     ELSE '0' END)))                                      NoOfLates
               FROM attendance a
                        JOIN user_profile up ON up.Employee_Id = a.Employee_Id
-                       JOIN shift s ON s.RecId = up.shift_id
-                       JOIN designation d ON d.RecId = up.Designation_Id
-                       JOIN pay_scale pp ON pp.RecId = up.payscale_id
+                       JOIN shift s ON s.id = up.shift_id
+                       JOIN designation d ON d.id = up.Designation_Id
+                       JOIN pay_scale pp ON pp.id = up.payscale_id
               WHERE a.isactive = 1
               GROUP BY up.Employee_Id) AS a
                  JOIN user_profile up ON up.Employee_Id = a.EMPID
-                 JOIN shift s ON s.RecId = up.shift_id
-                 JOIN designation d ON d.RecId = up.Designation_Id
-                 JOIN pay_scale pp ON pp.RecId = up.payscale_id;
+                 JOIN shift s ON s.id = up.shift_id
+                 JOIN designation d ON d.id = up.Designation_Id
+                 JOIN pay_scale pp ON pp.id = up.payscale_id;
     END IF;
 
 -- Show Data
-    SELECT pr.RecId,
+    SELECT pr.id,
            CONCAT(up.firstname, ' ', up.lastname) AS Employee_Name,
            d.designation_name,
            s.shift_name,
@@ -3159,10 +3159,10 @@ BEGIN
            pr.Total_Pay,
            pr.updated_on
     FROM payroll pr
-             JOIN user_profile up ON up.RecId = pr.UserP_Id
-             JOIN designation d ON d.RecId = pr.Designation_Id
-             JOIN shift s ON s.RecId = pr.Shift_Id
-             JOIN pay_scale ps ON ps.RecId = pr.Pay_Id
+             JOIN user_profile up ON up.id = pr.UserP_Id
+             JOIN designation d ON d.id = pr.Designation_Id
+             JOIN shift s ON s.id = pr.Shift_Id
+             JOIN pay_scale ps ON ps.id = pr.Pay_Id
     WHERE MONTH(pr.created_on) = MONTH(NOW())
       AND pr.isactive = 1
       AND d.isactive = 1
@@ -3200,13 +3200,13 @@ FROM attendance AS a
          JOIN
      user_profile AS up ON up.Employee_Id = a.Employee_Id
          JOIN
-     shift AS s ON up.shift_id = s.RecId
+     shift AS s ON up.shift_id = s.id
 WHERE a.isactive = 1
   AND s.isactive = 1
   AND up.isactive = 1$$
 
 CREATE
-    DEFINER = `root`@`localhost` PROCEDURE `Test2_STR_GeneratePayRollInfo`(IN `UserRecID` INT)
+    DEFINER = `root`@`localhost` PROCEDURE `Test2_STR_GeneratePayRollInfo`(IN `Userid` INT)
 BEGIN
     -- Calculate the number of days in the previous month (August)
     SET @DaysInAugust = DAY(LAST_DAY(DATE_SUB(CURRENT_DATE, INTERVAL 1 MONTH)));
@@ -3290,10 +3290,10 @@ BEGIN
         -- Insert data into payroll table
         INSERT INTO payroll(UserP_Id, Designation_Id, Shift_Id, Pay_Id, time_in, time_out, salary, deducted_days, late,
                             absent, Deduction, M_Deducted, M_Salary, Total_Pay, created_by, updated_by)
-        SELECT up.RecId                                                                           AS EMPID,
-               d.RecId,
-               s.RecId                                                                            AS Shift,
-               pp.RecId,
+        SELECT up.id                                                                           AS EMPID,
+               d.id,
+               s.id                                                                            AS Shift,
+               pp.id,
                TIME(s.time_in)                                                                    AS TimeIn,
                TIME(s.time_out)                                                                   AS TimeOut,
                up.salary,
@@ -3312,8 +3312,8 @@ BEGIN
                FLOOR(up.salary - FLOOR((up.salary / @DaysInAugust) * FLOOR(DeductedDaysBecauseOfLateArrival)) -
                      FLOOR((up.salary / @DaysInAugust) * (SystemWorkingDays - AttendedDays))
                )                                                                                  AS MSalary,
-               UserRecID,
-               UserRecID
+               Userid,
+               Userid
         FROM (SELECT @SatSunOff                                                       AS SatSunOff,
                      @SundayOff                                                       AS SunOff,
                      CASE WHEN up.workingDays = 5 THEN @SatSunOff ELSE @SundayOff END AS SystemWorkingDays,
@@ -3344,19 +3344,19 @@ BEGIN
                                     ELSE '0' END)))                                      NoOfLates
               FROM attendance a
                        JOIN user_profile up ON up.Employee_Id = a.Employee_Id
-                       JOIN shift s ON s.RecId = up.shift_id
-                       JOIN designation d ON d.RecId = up.Designation_Id
-                       JOIN pay_scale pp ON pp.RecId = up.payscale_id
+                       JOIN shift s ON s.id = up.shift_id
+                       JOIN designation d ON d.id = up.Designation_Id
+                       JOIN pay_scale pp ON pp.id = up.payscale_id
               WHERE a.isactive = 1
               GROUP BY up.Employee_Id) AS a
                  JOIN user_profile up ON up.Employee_Id = a.EMPID
-                 JOIN shift s ON s.RecId = up.shift_id
-                 JOIN designation d ON d.RecId = up.Designation_Id
-                 JOIN pay_scale pp ON pp.RecId = up.payscale_id;
+                 JOIN shift s ON s.id = up.shift_id
+                 JOIN designation d ON d.id = up.Designation_Id
+                 JOIN pay_scale pp ON pp.id = up.payscale_id;
     END IF;
 
 -- Show Data
-    SELECT pr.RecId,
+    SELECT pr.id,
            CONCAT(up.firstname, ' ', up.lastname) AS Employee_Name,
            d.designation_name,
            s.shift_name,
@@ -3373,10 +3373,10 @@ BEGIN
            pr.Total_Pay,
            pr.updated_on
     FROM payroll pr
-             JOIN user_profile up ON up.RecId = pr.UserP_Id
-             JOIN designation d ON d.RecId = pr.Designation_Id
-             JOIN shift s ON s.RecId = pr.Shift_Id
-             JOIN pay_scale ps ON ps.RecId = pr.Pay_Id
+             JOIN user_profile up ON up.id = pr.UserP_Id
+             JOIN designation d ON d.id = pr.Designation_Id
+             JOIN shift s ON s.id = pr.Shift_Id
+             JOIN pay_scale ps ON ps.id = pr.Pay_Id
     WHERE MONTH(pr.created_on) = MONTH(NOW())
       AND pr.isactive = 1
       AND d.isactive = 1
@@ -3387,19 +3387,19 @@ CREATE
     DEFINER = `root`@`localhost` PROCEDURE `Test_For_Roles`(IN `Roles_Id` INT)
 BEGIN
     IF Roles_Id != 0 THEN
-        SELECT r.RecId, r.role_name, r.isactive, r.created_by, r.updated_by, r.created_on, r.updated_on
+        SELECT r.id, r.role_name, r.isactive, r.created_by, r.updated_by, r.created_on, r.updated_on
         FROM role as r
-                 JOIN user as u ON r.created_by = u.RecId
-                 JOIN user as u1 ON r.updated_by = u1.RecId
+                 JOIN user as u ON r.created_by = u.id
+                 JOIN user as u1 ON r.updated_by = u1.id
         WHERE r.isactive = 1
           AND u.isactive = 1
           AND u1.isactive = 1
-          AND r.RecId = Roles_Id;
+          AND r.id = Roles_Id;
     ELSE
-        SELECT r.RecId, r.role_name, r.isactive, r.created_by, r.updated_by, r.created_on, r.updated_on
+        SELECT r.id, r.role_name, r.isactive, r.created_by, r.updated_by, r.created_on, r.updated_on
         FROM role as r
-                 JOIN user as u ON r.created_by = u.RecId
-                 JOIN user as u1 ON r.updated_by = u1.RecId
+                 JOIN user as u ON r.created_by = u.id
+                 JOIN user as u1 ON r.updated_by = u1.id
         WHERE r.isactive = 1
           AND u.isactive = 1
           AND u1.isactive = 1;
@@ -3416,7 +3416,7 @@ DELIMITER ;
 
 CREATE TABLE `advance`
 (
-    `RecId`      int(11)    NOT NULL,
+    `id`      int(11)    NOT NULL,
     `Up_Id`      int(11)    NOT NULL,
     `Amount`     double              DEFAULT 0,
     `AmountDate` date       NOT NULL,
@@ -3432,7 +3432,7 @@ CREATE TABLE `advance`
 -- Dumping data for table `advance`
 --
 
-INSERT INTO `advance` (`RecId`, `Up_Id`, `Amount`, `AmountDate`, `isactive`, `created_by`, `updated_by`, `created_on`,
+INSERT INTO `advance` (`id`, `Up_Id`, `Amount`, `AmountDate`, `isactive`, `created_by`, `updated_by`, `created_on`,
                        `updated_on`)
 VALUES (1, 14, 9000, '2023-09-21', 1, 1, NULL, '2023-09-21 21:45:10', NULL),
        (2, 14, 35, '2023-09-25', 1, 1, NULL, '2023-09-25 19:54:02', NULL),
@@ -3467,15 +3467,15 @@ CREATE TRIGGER `advance_update_trigger`
     FOR EACH ROW
 BEGIN
 
-    Set @User = (select CONCAT(u.username, ' (', u.RecId, ')') from user u where u.RecId = NEW.updated_by);
+    Set @User = (select CONCAT(u.username, ' (', u.id, ')') from user u where u.id = NEW.updated_by);
     SET @GUser = '';
 
     IF NEW.Amount != OLD.Amount THEN
-        Set @usrp = (select CONCAT(up.firstname, ' (', up.RecId, ')') from user_profile up WHERE up.RecId = OLD.Up_Id);
+        Set @usrp = (select CONCAT(up.firstname, ' (', up.id, ')') from user_profile up WHERE up.id = OLD.Up_Id);
         SET @GUser = CONCAT(@GUser, ' ', CONCAT(@User, ' Approved Advance Amount: ', NEW.Amount, ' For ',
-                                                (select CONCAT(up.firstname, ' (', up.RecId, ')')
+                                                (select CONCAT(up.firstname, ' (', up.id, ')')
                                                  from user_profile up
-                                                 WHERE up.RecId = NEW.Up_Id)));
+                                                 WHERE up.id = NEW.Up_Id)));
     END IF;
 
     IF NEW.Up_Id != OLD.Up_Id THEN
@@ -3483,7 +3483,7 @@ BEGIN
     END IF;
 
 
-    insert into logs(Log_Description, TBL_Name, created_by, created_on) value (@GUser, 'Advance', NEW.RecId, CURRENT_TIMESTAMP);
+    insert into logs(Log_Description, TBL_Name, created_by, created_on) value (@GUser, 'Advance', NEW.id, CURRENT_TIMESTAMP);
 END
 $$
 DELIMITER ;
@@ -3496,7 +3496,7 @@ DELIMITER ;
 
 CREATE TABLE `attendance`
 (
-    `RecId`         int(10)  NOT NULL,
+    `id`         int(10)  NOT NULL,
     `Employee_Id`   int(11)  NOT NULL,
     `DeviceNo`      int(11)    DEFAULT NULL,
     `check_in`      datetime   DEFAULT NULL,
@@ -3515,7 +3515,7 @@ CREATE TABLE `attendance`
 -- Dumping data for table `attendance`
 --
 
-INSERT INTO `attendance` (`RecId`, `Employee_Id`, `DeviceNo`, `check_in`, `check_in_date`, `check_out`, `over_time`,
+INSERT INTO `attendance` (`id`, `Employee_Id`, `DeviceNo`, `check_in`, `check_in_date`, `check_out`, `over_time`,
                           `isactive`, `created_by`, `updated_by`, `created_on`, `updated_on`)
 VALUES (1, 14, NULL, '2023-08-01 11:30:31', '2023-08-01', '2023-08-01 10:30:35', '00:00:00', 1, 1, 1,
         '2023-09-26 19:52:24', '2023-10-02 20:49:40'),
@@ -4219,7 +4219,7 @@ VALUES (1, 14, NULL, '2023-08-01 11:30:31', '2023-08-01', '2023-08-01 10:30:35',
         '2023-09-26 19:52:25', '2023-09-28 00:31:04'),
        (351, 28, NULL, '2023-08-19 11:34:34', '2023-08-19', '2023-08-19 20:36:40', '00:06:40', 1, 1, 1,
         '2023-09-26 19:52:25', '2023-09-28 00:31:04');
-INSERT INTO `attendance` (`RecId`, `Employee_Id`, `DeviceNo`, `check_in`, `check_in_date`, `check_out`, `over_time`,
+INSERT INTO `attendance` (`id`, `Employee_Id`, `DeviceNo`, `check_in`, `check_in_date`, `check_out`, `over_time`,
                           `isactive`, `created_by`, `updated_by`, `created_on`, `updated_on`)
 VALUES (352, 28, NULL, '2023-08-21 12:48:15', '2023-08-21', '2023-08-21 20:56:24', '00:26:24', 1, 1, 1,
         '2023-09-26 19:52:25', '2023-09-28 00:31:04'),
@@ -4921,7 +4921,7 @@ VALUES (352, 28, NULL, '2023-08-21 12:48:15', '2023-08-21', '2023-08-21 20:56:24
         '2023-09-26 19:52:25', '2023-09-28 00:31:05'),
        (701, 45, NULL, '2023-08-09 15:17:02', '2023-08-09', '2023-08-10 01:02:05', '00:00:00', 1, 1, 1,
         '2023-09-26 19:52:25', '2023-09-28 00:31:05');
-INSERT INTO `attendance` (`RecId`, `Employee_Id`, `DeviceNo`, `check_in`, `check_in_date`, `check_out`, `over_time`,
+INSERT INTO `attendance` (`id`, `Employee_Id`, `DeviceNo`, `check_in`, `check_in_date`, `check_out`, `over_time`,
                           `isactive`, `created_by`, `updated_by`, `created_on`, `updated_on`)
 VALUES (702, 45, NULL, '2023-08-11 15:46:17', '2023-08-10', '2023-08-12 01:22:45', '00:00:00', 1, 1, 1,
         '2023-09-26 19:52:26', '2023-09-28 00:31:05'),
@@ -5426,7 +5426,7 @@ VALUES (702, 45, NULL, '2023-08-11 15:46:17', '2023-08-10', '2023-08-12 01:22:45
 
 CREATE TABLE `designation`
 (
-    `RecId`            int(10)     NOT NULL,
+    `id`            int(10)     NOT NULL,
     `designation_name` varchar(50) NOT NULL,
     `isactive`         tinyint(1) DEFAULT 1,
     `created_by`       int(10)     NOT NULL,
@@ -5440,7 +5440,7 @@ CREATE TABLE `designation`
 -- Dumping data for table `designation`
 --
 
-INSERT INTO `designation` (`RecId`, `designation_name`, `isactive`, `created_by`, `updated_by`, `created_on`,
+INSERT INTO `designation` (`id`, `designation_name`, `isactive`, `created_by`, `updated_by`, `created_on`,
                            `updated_on`)
 VALUES (1, 'Inovi Technology', 1, 1, 1, '2023-08-31 10:51:56', '2023-10-02 20:44:21'),
        (2, 'Inovi Solution', 1, 1, 1, '2023-09-06 22:03:39', '2023-09-26 19:27:21'),
@@ -5489,7 +5489,7 @@ VALUES (1, 'IVMS-4200', 'XYZ', 'XYZ', 'XYZ', 'XYZ', 'XYZ', 'XYZ', 1, 1, 1, '2023
 
 CREATE TABLE `holidays`
 (
-    `RecId`        int(10)     NOT NULL,
+    `id`        int(10)     NOT NULL,
     `Title`        varchar(50) NOT NULL,
     `Holiday_Date` date        NOT NULL,
     `isactive`     tinyint(1)  NOT NULL DEFAULT 1,
@@ -5504,7 +5504,7 @@ CREATE TABLE `holidays`
 -- Dumping data for table `holidays`
 --
 
-INSERT INTO `holidays` (`RecId`, `Title`, `Holiday_Date`, `isactive`, `created_by`, `updated_by`, `created_on`,
+INSERT INTO `holidays` (`id`, `Title`, `Holiday_Date`, `isactive`, `created_by`, `updated_by`, `created_on`,
                         `updated_on`)
 VALUES (1, 'Saturday', '2023-09-15', 1, 1, 1, '2023-09-26 21:14:19', '2023-10-02 20:42:04'),
        (2, 'Sunday', '2023-09-20', 1, 1, 1, '2023-09-26 21:14:20', '2023-09-28 00:25:38'),
@@ -5528,7 +5528,7 @@ VALUES (1, 'Saturday', '2023-09-15', 1, 1, 1, '2023-09-26 21:14:19', '2023-10-02
 
 CREATE TABLE `logs`
 (
-    `RecID`           int(11)  NOT NULL,
+    `id`           int(11)  NOT NULL,
     `Log_Description` text       DEFAULT NULL,
     `TBL_Name`        text     NOT NULL,
     `isactive`        tinyint(1) DEFAULT 1,
@@ -5541,7 +5541,7 @@ CREATE TABLE `logs`
 -- Dumping data for table `logs`
 --
 
-INSERT INTO `logs` (`RecID`, `Log_Description`, `TBL_Name`, `isactive`, `created_by`, `created_on`)
+INSERT INTO `logs` (`id`, `Log_Description`, `TBL_Name`, `isactive`, `created_by`, `created_on`)
 VALUES (1, '', 'UserProfile', 1, 1, '2023-09-26 22:43:11'),
        (2, 'Admin (1) has changed attendance record 2023-08-01 of check_out to 2023-08-01 21:30:00', 'Attendance', 1, 1,
         '2023-09-26 23:16:38'),
@@ -5793,7 +5793,7 @@ VALUES (1, '', 'UserProfile', 1, 1, '2023-09-26 22:43:11'),
 
 CREATE TABLE `payroll`
 (
-    `RecId`          int(10)  NOT NULL,
+    `id`          int(10)  NOT NULL,
     `UserP_Id`       int(10)  NOT NULL,
     `Designation_Id` int(10)  NOT NULL,
     `Shift_Id`       int(10)  NOT NULL,
@@ -5831,7 +5831,7 @@ CREATE TRIGGER `payroll_update_trigger`
     FOR EACH ROW
 BEGIN
 
-    Set @User = (select CONCAT(u.username, ' (', u.RecId, ')') from user u where u.RecId = NEW.updated_by);
+    Set @User = (select CONCAT(u.username, ' (', u.id, ')') from user u where u.id = NEW.updated_by);
     SET @MSG = '';
     IF NEW.M_Deducted != OLD.M_Deducted THEN
         SET @MSG = CONCAT(@User, ' has changed Deduction record from ', OLD.M_Deducted, ' To ', New.M_Deducted);
@@ -5845,7 +5845,7 @@ BEGIN
         SET @MSG = CONCAT(@MSG, ' And changed Salary record from ', OLD.M_Salary, ' To ', NEW.M_Salary);
     END IF;
 
-    insert into logs(Log_Description, TBL_Name, created_by, created_on) value (@MSG, 'PayRoll', NEW.RecId, CURRENT_TIMESTAMP);
+    insert into logs(Log_Description, TBL_Name, created_by, created_on) value (@MSG, 'PayRoll', NEW.id, CURRENT_TIMESTAMP);
 END
 $$
 DELIMITER ;
@@ -5858,7 +5858,7 @@ DELIMITER ;
 
 CREATE TABLE `payroll_type`
 (
-    `RecId`       int(11)      NOT NULL,
+    `id`       int(11)      NOT NULL,
     `Name`        varchar(50)  NOT NULL,
     `Description` varchar(255) NOT NULL,
     `isactive`    tinyint(1)   NOT NULL DEFAULT 1,
@@ -5873,7 +5873,7 @@ CREATE TABLE `payroll_type`
 -- Dumping data for table `payroll_type`
 --
 
-INSERT INTO `payroll_type` (`RecId`, `Name`, `Description`, `isactive`, `created_by`, `updated_by`, `created_on`,
+INSERT INTO `payroll_type` (`id`, `Name`, `Description`, `isactive`, `created_by`, `updated_by`, `created_on`,
                             `updated_on`)
 VALUES (1, 'Regular Payroll', 'Payroll For Regular Base', 1, 1, NULL, '2023-09-16 00:48:26', NULL),
        (2, 'Special Payroll', 'Payroll for instant termination', 1, 1, 1, '2023-09-18 20:52:41', NULL);
@@ -5886,7 +5886,7 @@ VALUES (1, 'Regular Payroll', 'Payroll For Regular Base', 1, 1, NULL, '2023-09-1
 
 CREATE TABLE `pay_scale`
 (
-    `RecId`      int(10)     NOT NULL,
+    `id`      int(10)     NOT NULL,
     `pay_name`   varchar(50) NOT NULL,
     `isactive`   tinyint(1) DEFAULT 1,
     `created_by` int(10)     NOT NULL,
@@ -5900,7 +5900,7 @@ CREATE TABLE `pay_scale`
 -- Dumping data for table `pay_scale`
 --
 
-INSERT INTO `pay_scale` (`RecId`, `pay_name`, `isactive`, `created_by`, `updated_by`, `created_on`, `updated_on`)
+INSERT INTO `pay_scale` (`id`, `pay_name`, `isactive`, `created_by`, `updated_by`, `created_on`, `updated_on`)
 VALUES (1, 'Monthly', 1, 1, 1, '2023-08-09 00:00:00', '2023-08-22 11:48:07'),
        (2, 'Hourly', 1, 1, NULL, '2023-09-01 22:00:06', '2023-09-12 10:35:18');
 
@@ -5912,7 +5912,7 @@ VALUES (1, 'Monthly', 1, 1, 1, '2023-08-09 00:00:00', '2023-08-22 11:48:07'),
 
 CREATE TABLE `permission`
 (
-    `RecId`            int(11)     NOT NULL,
+    `id`            int(11)     NOT NULL,
     `permisssion_name` varchar(50) NOT NULL,
     `controller`       varchar(50) NOT NULL,
     `action`           varchar(50) NOT NULL,
@@ -5933,7 +5933,7 @@ CREATE TABLE `permission`
 -- Dumping data for table `permission`
 --
 
-INSERT INTO `permission` (`RecId`, `permisssion_name`, `controller`, `action`, `parameters`, `method`, `icon`, `sort`,
+INSERT INTO `permission` (`id`, `permisssion_name`, `controller`, `action`, `parameters`, `method`, `icon`, `sort`,
                           `Permission_Id`, `isactive`, `created_by`, `updated_by`, `created_on`, `updated_on`)
 VALUES (1, 'HR', 'HR', 'POST', 'EDIT', 'GET', 'MENU', 1, 1, 1, 1, NULL, '2023-08-31 18:17:57', NULL);
 
@@ -5945,7 +5945,7 @@ VALUES (1, 'HR', 'HR', 'POST', 'EDIT', 'GET', 'MENU', 1, 1, 1, 1, NULL, '2023-08
 
 CREATE TABLE `permission_assign`
 (
-    `RecId`         int(10)  NOT NULL,
+    `id`         int(10)  NOT NULL,
     `Role_Id`       int(10)  NOT NULL,
     `Permission_Id` int(10)  NOT NULL,
     `isactive`      tinyint(1) DEFAULT 1,
@@ -5960,7 +5960,7 @@ CREATE TABLE `permission_assign`
 -- Dumping data for table `permission_assign`
 --
 
-INSERT INTO `permission_assign` (`RecId`, `Role_Id`, `Permission_Id`, `isactive`, `created_by`, `updated_by`,
+INSERT INTO `permission_assign` (`id`, `Role_Id`, `Permission_Id`, `isactive`, `created_by`, `updated_by`,
                                  `created_on`, `updated_on`)
 VALUES (1, 1, 1, 1, 1, 1, '2023-08-09 00:00:00', '2023-08-09 00:00:00');
 
@@ -5972,7 +5972,7 @@ VALUES (1, 1, 1, 1, 1, 1, '2023-08-09 00:00:00', '2023-08-09 00:00:00');
 
 CREATE TABLE `role`
 (
-    `RecId`      int(10)     NOT NULL,
+    `id`      int(10)     NOT NULL,
     `role_name`  varchar(50) NOT NULL,
     `isactive`   tinyint(1) DEFAULT 1,
     `created_by` int(10)     NOT NULL,
@@ -5986,7 +5986,7 @@ CREATE TABLE `role`
 -- Dumping data for table `role`
 --
 
-INSERT INTO `role` (`RecId`, `role_name`, `isactive`, `created_by`, `updated_by`, `created_on`, `updated_on`)
+INSERT INTO `role` (`id`, `role_name`, `isactive`, `created_by`, `updated_by`, `created_on`, `updated_on`)
 VALUES (1, 'HR Manager', 1, 1, NULL, '2023-08-31 09:11:29', NULL);
 
 -- --------------------------------------------------------
@@ -5997,7 +5997,7 @@ VALUES (1, 'HR Manager', 1, 1, NULL, '2023-08-31 09:11:29', NULL);
 
 CREATE TABLE `shift`
 (
-    `RecId`      int(10)     NOT NULL,
+    `id`      int(10)     NOT NULL,
     `shift_name` varchar(50) NOT NULL,
     `time_in`    time        NOT NULL,
     `time_out`   time        NOT NULL,
@@ -6014,7 +6014,7 @@ CREATE TABLE `shift`
 -- Dumping data for table `shift`
 --
 
-INSERT INTO `shift` (`RecId`, `shift_name`, `time_in`, `time_out`, `grace_time`, `isactive`, `created_by`, `updated_by`,
+INSERT INTO `shift` (`id`, `shift_name`, `time_in`, `time_out`, `grace_time`, `isactive`, `created_by`, `updated_by`,
                      `created_on`, `updated_on`)
 VALUES (1, '(I-T)Morning(11:30am to 8:30pm)', '11:30:00', '20:30:00', '00:15:00', 1, 1, NULL, '2023-08-31 08:56:28',
         NULL),
@@ -6039,7 +6039,7 @@ VALUES (1, '(I-T)Morning(11:30am to 8:30pm)', '11:30:00', '20:30:00', '00:15:00'
 
 CREATE TABLE `tbl_gender`
 (
-    `RecId`      int(10)     NOT NULL,
+    `id`      int(10)     NOT NULL,
     `Gender`     varchar(10) NOT NULL,
     `isactive`   tinyint(1)  NOT NULL DEFAULT 1,
     `created_by` int(2)      NOT NULL,
@@ -6053,7 +6053,7 @@ CREATE TABLE `tbl_gender`
 -- Dumping data for table `tbl_gender`
 --
 
-INSERT INTO `tbl_gender` (`RecId`, `Gender`, `isactive`, `created_by`, `updated_by`, `created_on`, `updated_on`)
+INSERT INTO `tbl_gender` (`id`, `Gender`, `isactive`, `created_by`, `updated_by`, `created_on`, `updated_on`)
 VALUES (1, 'Male', 1, 1, 1, '2023-08-24 11:09:14', '2023-08-24 11:09:14'),
        (2, 'Female', 1, 1, 1, '2023-08-24 11:09:14', '2023-08-24 11:09:14'),
        (3, 'Other', 1, 1, 1, '2023-08-24 11:15:03', '2023-08-24 11:15:03');
@@ -6141,11 +6141,11 @@ DELIMITER ;
 
 CREATE TABLE `user`
 (
-    `RecId`      int(10)     NOT NULL,
+    `id`      int(10)     NOT NULL,
     `UserP_Id`   int(10)     NOT NULL,
     `Role_Id`    int(10)     NOT NULL,
     `username`   varchar(50) NOT NULL,
-    `password`   varchar(50) NOT NULL,
+    `password`   varchar(100) NOT NULL,
     `isactive`   tinyint(1) DEFAULT 1,
     `created_by` int(10)     NOT NULL,
     `updated_by` int(10)    DEFAULT NULL,
@@ -6158,7 +6158,7 @@ CREATE TABLE `user`
 -- Dumping data for table `user`
 --
 
-INSERT INTO `user` (`RecId`, `UserP_Id`, `Role_Id`, `username`, `password`, `isactive`, `created_by`, `updated_by`,
+INSERT INTO `user` (`id`, `UserP_Id`, `Role_Id`, `username`, `password`, `isactive`, `created_by`, `updated_by`,
                     `created_on`, `updated_on`)
 VALUES (1, 43, 1, 'Admin', '123', 1, 1, NULL, '2023-08-31 09:09:39', NULL);
 
@@ -6170,7 +6170,7 @@ VALUES (1, 43, 1, 'Admin', '123', 1, 1, NULL, '2023-08-31 09:09:39', NULL);
 
 CREATE TABLE `user_profile`
 (
-    `RecId`          int(10)      NOT NULL,
+    `id`          int(10)      NOT NULL,
     `Employee_Id`    varchar(50)  NOT NULL,
     `firstname`      varchar(50)  NOT NULL,
     `lastname`       varchar(50)  NOT NULL,
@@ -6198,7 +6198,7 @@ CREATE TABLE `user_profile`
 -- Dumping data for table `user_profile`
 --
 
-INSERT INTO `user_profile` (`RecId`, `Employee_Id`, `firstname`, `lastname`, `gender`, `CNIC`, `Gmail`, `contact`,
+INSERT INTO `user_profile` (`id`, `Employee_Id`, `firstname`, `lastname`, `gender`, `CNIC`, `Gmail`, `contact`,
                             `address`, `Designation_Id`, `payscale_id`, `shift_id`, `workingDays`, `salary`, `Advance`,
                             `Cheak_value`, `isactive`, `created_by`, `updated_by`, `created_on`, `updated_on`)
 VALUES (1, '1', 'Syed Arsalan', ' AHMED 1', 1, '4240164872311', 'ghi@gmail.com', '03152155245', 'Karachi Sindh', 1, 1,
@@ -6387,7 +6387,7 @@ CREATE TRIGGER `userprofile_update_trigger`
     ON `user_profile`
     FOR EACH ROW
 BEGIN
-    Set @User = (select CONCAT(u.username, ' (', u.RecId, ')') from user u where u.RecId = NEW.updated_by);
+    Set @User = (select CONCAT(u.username, ' (', u.id, ')') from user u where u.id = NEW.updated_by);
     SET @GUser = CONCAT(@User, '');
 
     IF NEW.firstname != OLD.firstname THEN
@@ -6399,9 +6399,9 @@ BEGIN
     END IF;
 
     IF NEW.gender != OLD.gender THEN
-        Set @gen = (select CONCAT(g.Gender, ' (', g.RecId, ')') from tbl_gender g WHERE g.RecId = OLD.gender);
+        Set @gen = (select CONCAT(g.Gender, ' (', g.id, ')') from tbl_gender g WHERE g.id = OLD.gender);
         Set @GUser = CONCAT(@GUser, ' And changed Gender record from ', @gen, ' To ',
-                            (select CONCAT(g.Gender, ' (', g.RecId, ')') from tbl_gender g WHERE g.RecId = NEW.gender));
+                            (select CONCAT(g.Gender, ' (', g.id, ')') from tbl_gender g WHERE g.id = NEW.gender));
     END IF;
 
     IF NEW.CNIC != OLD.CNIC THEN
@@ -6421,30 +6421,30 @@ BEGIN
     END IF;
 
     IF NEW.Designation_Id != OLD.Designation_Id THEN
-        Set @desi = (select CONCAT(d.designation_name, ' (', d.RecId, ')')
+        Set @desi = (select CONCAT(d.designation_name, ' (', d.id, ')')
                      from designation d
-                     WHERE d.RecId = OLD.Designation_Id);
+                     WHERE d.id = OLD.Designation_Id);
         Set @GUser =
-                CONCAT(@GUser, ' And changed Designatiom record ', NEW.RecId, ' of Designation from ', @desi, ' To ',
-                       (select CONCAT(d.designation_name, ' (', d.RecId, ')')
+                CONCAT(@GUser, ' And changed Designatiom record ', NEW.id, ' of Designation from ', @desi, ' To ',
+                       (select CONCAT(d.designation_name, ' (', d.id, ')')
                         from designation d
-                        WHERE d.RecId = NEW.Designation_Id));
+                        WHERE d.id = NEW.Designation_Id));
     END IF;
 
     IF NEW.payscale_id != OLD.payscale_id THEN
-        Set @pay = (select CONCAT(ps.pay_name, ' (', ps.RecId, ')') from pay_scale ps WHERE ps.RecId = OLD.payscale_id);
+        Set @pay = (select CONCAT(ps.pay_name, ' (', ps.id, ')') from pay_scale ps WHERE ps.id = OLD.payscale_id);
         Set @GUser = CONCAT(@GUser, ' And changed PayScale record from ', @pay, ' To ',
-                            (select CONCAT(ps.pay_name, ' (', ps.RecId, ')')
+                            (select CONCAT(ps.pay_name, ' (', ps.id, ')')
                              from pay_scale ps
-                             WHERE ps.RecId = NEW.payscale_id));
+                             WHERE ps.id = NEW.payscale_id));
     END IF;
 
     IF NEW.shift_id != OLD.shift_id THEN
-        Set @shft = (select CONCAT(s.shift_name, ' (', s.RecId, ')') from shift s WHERE s.RecId = OLD.shift_id);
+        Set @shft = (select CONCAT(s.shift_name, ' (', s.id, ')') from shift s WHERE s.id = OLD.shift_id);
         Set @GUser = CONCAT(@GUser, ' And changed Shift record from ', @shft, ' To ',
-                            (select CONCAT(s.shift_name, ' (', s.RecId, ')')
+                            (select CONCAT(s.shift_name, ' (', s.id, ')')
                              from shift s
-                             WHERE s.RecId = NEW.shift_id));
+                             WHERE s.id = NEW.shift_id));
     END IF;
 
     IF NEW.workingDays != OLD.workingDays THEN
@@ -6456,7 +6456,7 @@ BEGIN
         Set @GUser = CONCAT(@GUser, ' And changed Salary record Name from ', OLD.salary, ' To ', NEW.salary);
     END IF;
 
-    insert into logs(Log_Description, TBL_Name, created_by, created_on) value (@GUser, 'UserProfile', NEW.RecId, CURRENT_TIMESTAMP);
+    insert into logs(Log_Description, TBL_Name, created_by, created_on) value (@GUser, 'UserProfile', NEW.id, CURRENT_TIMESTAMP);
 
 END
 $$
@@ -6470,7 +6470,7 @@ DELIMITER ;
 -- Indexes for table `advance`
 --
 ALTER TABLE `advance`
-    ADD PRIMARY KEY (`RecId`),
+    ADD PRIMARY KEY (`id`),
     ADD KEY `advance_ibfk_1` (`Up_Id`),
     ADD KEY `advance_ibfk_2` (`created_by`),
     ADD KEY `advance_ibfk_3` (`updated_by`);
@@ -6479,7 +6479,7 @@ ALTER TABLE `advance`
 -- Indexes for table `attendance`
 --
 ALTER TABLE `attendance`
-    ADD PRIMARY KEY (`RecId`),
+    ADD PRIMARY KEY (`id`),
     ADD KEY `created_by` (`created_by`),
     ADD KEY `updated_by` (`updated_by`),
     ADD KEY `Device_Id` (`DeviceNo`);
@@ -6488,7 +6488,7 @@ ALTER TABLE `attendance`
 -- Indexes for table `designation`
 --
 ALTER TABLE `designation`
-    ADD PRIMARY KEY (`RecId`),
+    ADD PRIMARY KEY (`id`),
     ADD KEY `updated_by` (`updated_by`),
     ADD KEY `created_by` (`created_by`);
 
@@ -6502,7 +6502,7 @@ ALTER TABLE `devicetable`
 -- Indexes for table `holidays`
 --
 ALTER TABLE `holidays`
-    ADD PRIMARY KEY (`RecId`),
+    ADD PRIMARY KEY (`id`),
     ADD KEY `holidays_ibfk_1` (`created_by`),
     ADD KEY `holidays_ibfk_2` (`updated_by`);
 
@@ -6510,13 +6510,13 @@ ALTER TABLE `holidays`
 -- Indexes for table `logs`
 --
 ALTER TABLE `logs`
-    ADD PRIMARY KEY (`RecID`);
+    ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `payroll`
 --
 ALTER TABLE `payroll`
-    ADD PRIMARY KEY (`RecId`),
+    ADD PRIMARY KEY (`id`),
     ADD KEY `UserP_Id` (`UserP_Id`),
     ADD KEY `Designation_Id` (`Designation_Id`),
     ADD KEY `Shift_Id` (`Shift_Id`),
@@ -6529,13 +6529,13 @@ ALTER TABLE `payroll`
 -- Indexes for table `payroll_type`
 --
 ALTER TABLE `payroll_type`
-    ADD PRIMARY KEY (`RecId`);
+    ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `pay_scale`
 --
 ALTER TABLE `pay_scale`
-    ADD PRIMARY KEY (`RecId`),
+    ADD PRIMARY KEY (`id`),
     ADD KEY `updated_by` (`updated_by`),
     ADD KEY `created_by` (`created_by`);
 
@@ -6543,7 +6543,7 @@ ALTER TABLE `pay_scale`
 -- Indexes for table `permission`
 --
 ALTER TABLE `permission`
-    ADD PRIMARY KEY (`RecId`),
+    ADD PRIMARY KEY (`id`),
     ADD KEY `created_by` (`created_by`),
     ADD KEY `updated_by` (`updated_by`);
 
@@ -6551,7 +6551,7 @@ ALTER TABLE `permission`
 -- Indexes for table `permission_assign`
 --
 ALTER TABLE `permission_assign`
-    ADD PRIMARY KEY (`RecId`),
+    ADD PRIMARY KEY (`id`),
     ADD KEY `Permission_Id` (`Permission_Id`),
     ADD KEY `Role_Id` (`Role_Id`),
     ADD KEY `updated_by` (`updated_by`),
@@ -6561,7 +6561,7 @@ ALTER TABLE `permission_assign`
 -- Indexes for table `role`
 --
 ALTER TABLE `role`
-    ADD PRIMARY KEY (`RecId`),
+    ADD PRIMARY KEY (`id`),
     ADD KEY `created_by` (`created_by`),
     ADD KEY `updated_by` (`updated_by`);
 
@@ -6569,7 +6569,7 @@ ALTER TABLE `role`
 -- Indexes for table `shift`
 --
 ALTER TABLE `shift`
-    ADD PRIMARY KEY (`RecId`),
+    ADD PRIMARY KEY (`id`),
     ADD KEY `created_by` (`created_by`),
     ADD KEY `updated_by` (`updated_by`);
 
@@ -6577,13 +6577,13 @@ ALTER TABLE `shift`
 -- Indexes for table `tbl_gender`
 --
 ALTER TABLE `tbl_gender`
-    ADD PRIMARY KEY (`RecId`);
+    ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `user`
 --
 ALTER TABLE `user`
-    ADD PRIMARY KEY (`RecId`),
+    ADD PRIMARY KEY (`id`),
     ADD UNIQUE KEY `username` (`username`),
     ADD KEY `UserP_Id` (`UserP_Id`),
     ADD KEY `Role_Id` (`Role_Id`);
@@ -6592,7 +6592,7 @@ ALTER TABLE `user`
 -- Indexes for table `user_profile`
 --
 ALTER TABLE `user_profile`
-    ADD PRIMARY KEY (`RecId`),
+    ADD PRIMARY KEY (`id`),
     ADD UNIQUE KEY `Employee_Id` (`Employee_Id`),
     ADD KEY `Designation_Id` (`Designation_Id`),
     ADD KEY `shift_id` (`shift_id`),
@@ -6607,21 +6607,21 @@ ALTER TABLE `user_profile`
 -- AUTO_INCREMENT for table `advance`
 --
 ALTER TABLE `advance`
-    MODIFY `RecId` int(11) NOT NULL AUTO_INCREMENT,
+    MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,
     AUTO_INCREMENT = 23;
 
 --
 -- AUTO_INCREMENT for table `attendance`
 --
 ALTER TABLE `attendance`
-    MODIFY `RecId` int(10) NOT NULL AUTO_INCREMENT,
+    MODIFY `id` int(10) NOT NULL AUTO_INCREMENT,
     AUTO_INCREMENT = 949;
 
 --
 -- AUTO_INCREMENT for table `designation`
 --
 ALTER TABLE `designation`
-    MODIFY `RecId` int(10) NOT NULL AUTO_INCREMENT,
+    MODIFY `id` int(10) NOT NULL AUTO_INCREMENT,
     AUTO_INCREMENT = 6;
 
 --
@@ -6635,83 +6635,83 @@ ALTER TABLE `devicetable`
 -- AUTO_INCREMENT for table `holidays`
 --
 ALTER TABLE `holidays`
-    MODIFY `RecId` int(10) NOT NULL AUTO_INCREMENT,
+    MODIFY `id` int(10) NOT NULL AUTO_INCREMENT,
     AUTO_INCREMENT = 14;
 
 --
 -- AUTO_INCREMENT for table `logs`
 --
 ALTER TABLE `logs`
-    MODIFY `RecID` int(11) NOT NULL AUTO_INCREMENT,
+    MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,
     AUTO_INCREMENT = 162;
 
 --
 -- AUTO_INCREMENT for table `payroll`
 --
 ALTER TABLE `payroll`
-    MODIFY `RecId` int(10) NOT NULL AUTO_INCREMENT;
+    MODIFY `id` int(10) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `payroll_type`
 --
 ALTER TABLE `payroll_type`
-    MODIFY `RecId` int(11) NOT NULL AUTO_INCREMENT,
+    MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,
     AUTO_INCREMENT = 3;
 
 --
 -- AUTO_INCREMENT for table `pay_scale`
 --
 ALTER TABLE `pay_scale`
-    MODIFY `RecId` int(10) NOT NULL AUTO_INCREMENT,
+    MODIFY `id` int(10) NOT NULL AUTO_INCREMENT,
     AUTO_INCREMENT = 3;
 
 --
 -- AUTO_INCREMENT for table `permission`
 --
 ALTER TABLE `permission`
-    MODIFY `RecId` int(11) NOT NULL AUTO_INCREMENT,
+    MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,
     AUTO_INCREMENT = 2;
 
 --
 -- AUTO_INCREMENT for table `permission_assign`
 --
 ALTER TABLE `permission_assign`
-    MODIFY `RecId` int(10) NOT NULL AUTO_INCREMENT,
+    MODIFY `id` int(10) NOT NULL AUTO_INCREMENT,
     AUTO_INCREMENT = 2;
 
 --
 -- AUTO_INCREMENT for table `role`
 --
 ALTER TABLE `role`
-    MODIFY `RecId` int(10) NOT NULL AUTO_INCREMENT,
+    MODIFY `id` int(10) NOT NULL AUTO_INCREMENT,
     AUTO_INCREMENT = 2;
 
 --
 -- AUTO_INCREMENT for table `shift`
 --
 ALTER TABLE `shift`
-    MODIFY `RecId` int(10) NOT NULL AUTO_INCREMENT,
+    MODIFY `id` int(10) NOT NULL AUTO_INCREMENT,
     AUTO_INCREMENT = 10;
 
 --
 -- AUTO_INCREMENT for table `tbl_gender`
 --
 ALTER TABLE `tbl_gender`
-    MODIFY `RecId` int(10) NOT NULL AUTO_INCREMENT,
+    MODIFY `id` int(10) NOT NULL AUTO_INCREMENT,
     AUTO_INCREMENT = 4;
 
 --
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-    MODIFY `RecId` int(10) NOT NULL AUTO_INCREMENT,
+    MODIFY `id` int(10) NOT NULL AUTO_INCREMENT,
     AUTO_INCREMENT = 2;
 
 --
 -- AUTO_INCREMENT for table `user_profile`
 --
 ALTER TABLE `user_profile`
-    MODIFY `RecId` int(10) NOT NULL AUTO_INCREMENT,
+    MODIFY `id` int(10) NOT NULL AUTO_INCREMENT,
     AUTO_INCREMENT = 96;
 
 --
@@ -6722,97 +6722,97 @@ ALTER TABLE `user_profile`
 -- Constraints for table `advance`
 --
 ALTER TABLE `advance`
-    ADD CONSTRAINT `advance_ibfk_1` FOREIGN KEY (`Up_Id`) REFERENCES `user_profile` (`RecId`),
-    ADD CONSTRAINT `advance_ibfk_2` FOREIGN KEY (`created_by`) REFERENCES `user` (`RecId`),
-    ADD CONSTRAINT `advance_ibfk_3` FOREIGN KEY (`updated_by`) REFERENCES `user` (`RecId`);
+    ADD CONSTRAINT `advance_ibfk_1` FOREIGN KEY (`Up_Id`) REFERENCES `user_profile` (`id`),
+    ADD CONSTRAINT `advance_ibfk_2` FOREIGN KEY (`created_by`) REFERENCES `user` (`id`),
+    ADD CONSTRAINT `advance_ibfk_3` FOREIGN KEY (`updated_by`) REFERENCES `user` (`id`);
 
 --
 -- Constraints for table `attendance`
 --
 ALTER TABLE `attendance`
-    ADD CONSTRAINT `attendance_ibfk_2` FOREIGN KEY (`created_by`) REFERENCES `user` (`RecId`),
-    ADD CONSTRAINT `attendance_ibfk_3` FOREIGN KEY (`updated_by`) REFERENCES `user` (`RecId`);
+    ADD CONSTRAINT `attendance_ibfk_2` FOREIGN KEY (`created_by`) REFERENCES `user` (`id`),
+    ADD CONSTRAINT `attendance_ibfk_3` FOREIGN KEY (`updated_by`) REFERENCES `user` (`id`);
 
 --
 -- Constraints for table `designation`
 --
 ALTER TABLE `designation`
-    ADD CONSTRAINT `designation_ibfk_1` FOREIGN KEY (`updated_by`) REFERENCES `user` (`RecId`),
-    ADD CONSTRAINT `designation_ibfk_2` FOREIGN KEY (`created_by`) REFERENCES `user` (`RecId`);
+    ADD CONSTRAINT `designation_ibfk_1` FOREIGN KEY (`updated_by`) REFERENCES `user` (`id`),
+    ADD CONSTRAINT `designation_ibfk_2` FOREIGN KEY (`created_by`) REFERENCES `user` (`id`);
 
 --
 -- Constraints for table `holidays`
 --
 ALTER TABLE `holidays`
-    ADD CONSTRAINT `holidays_ibfk_1` FOREIGN KEY (`created_by`) REFERENCES `user` (`RecId`),
-    ADD CONSTRAINT `holidays_ibfk_2` FOREIGN KEY (`updated_by`) REFERENCES `user` (`RecId`);
+    ADD CONSTRAINT `holidays_ibfk_1` FOREIGN KEY (`created_by`) REFERENCES `user` (`id`),
+    ADD CONSTRAINT `holidays_ibfk_2` FOREIGN KEY (`updated_by`) REFERENCES `user` (`id`);
 
 --
 -- Constraints for table `payroll`
 --
 ALTER TABLE `payroll`
-    ADD CONSTRAINT `payroll_ibfk_1` FOREIGN KEY (`UserP_Id`) REFERENCES `user_profile` (`RecId`),
-    ADD CONSTRAINT `payroll_ibfk_2` FOREIGN KEY (`Designation_Id`) REFERENCES `designation` (`RecId`),
-    ADD CONSTRAINT `payroll_ibfk_3` FOREIGN KEY (`Shift_Id`) REFERENCES `shift` (`RecId`),
-    ADD CONSTRAINT `payroll_ibfk_4` FOREIGN KEY (`Pay_Id`) REFERENCES `pay_scale` (`RecId`),
-    ADD CONSTRAINT `payroll_ibfk_5` FOREIGN KEY (`created_by`) REFERENCES `user` (`RecId`),
-    ADD CONSTRAINT `payroll_ibfk_6` FOREIGN KEY (`updated_by`) REFERENCES `user` (`RecId`),
-    ADD CONSTRAINT `payroll_ibfk_7` FOREIGN KEY (`PayRoll_Type`) REFERENCES `payroll_type` (`RecId`);
+    ADD CONSTRAINT `payroll_ibfk_1` FOREIGN KEY (`UserP_Id`) REFERENCES `user_profile` (`id`),
+    ADD CONSTRAINT `payroll_ibfk_2` FOREIGN KEY (`Designation_Id`) REFERENCES `designation` (`id`),
+    ADD CONSTRAINT `payroll_ibfk_3` FOREIGN KEY (`Shift_Id`) REFERENCES `shift` (`id`),
+    ADD CONSTRAINT `payroll_ibfk_4` FOREIGN KEY (`Pay_Id`) REFERENCES `pay_scale` (`id`),
+    ADD CONSTRAINT `payroll_ibfk_5` FOREIGN KEY (`created_by`) REFERENCES `user` (`id`),
+    ADD CONSTRAINT `payroll_ibfk_6` FOREIGN KEY (`updated_by`) REFERENCES `user` (`id`),
+    ADD CONSTRAINT `payroll_ibfk_7` FOREIGN KEY (`PayRoll_Type`) REFERENCES `payroll_type` (`id`);
 
 --
 -- Constraints for table `pay_scale`
 --
 ALTER TABLE `pay_scale`
-    ADD CONSTRAINT `pay_scale_ibfk_1` FOREIGN KEY (`updated_by`) REFERENCES `user` (`RecId`),
-    ADD CONSTRAINT `pay_scale_ibfk_2` FOREIGN KEY (`created_by`) REFERENCES `user` (`RecId`);
+    ADD CONSTRAINT `pay_scale_ibfk_1` FOREIGN KEY (`updated_by`) REFERENCES `user` (`id`),
+    ADD CONSTRAINT `pay_scale_ibfk_2` FOREIGN KEY (`created_by`) REFERENCES `user` (`id`);
 
 --
 -- Constraints for table `permission`
 --
 ALTER TABLE `permission`
-    ADD CONSTRAINT `permission_ibfk_1` FOREIGN KEY (`created_by`) REFERENCES `user` (`RecId`),
-    ADD CONSTRAINT `permission_ibfk_2` FOREIGN KEY (`updated_by`) REFERENCES `user` (`RecId`);
+    ADD CONSTRAINT `permission_ibfk_1` FOREIGN KEY (`created_by`) REFERENCES `user` (`id`),
+    ADD CONSTRAINT `permission_ibfk_2` FOREIGN KEY (`updated_by`) REFERENCES `user` (`id`);
 
 --
 -- Constraints for table `permission_assign`
 --
 ALTER TABLE `permission_assign`
-    ADD CONSTRAINT `permission_assign_ibfk_2` FOREIGN KEY (`Role_Id`) REFERENCES `role` (`RecId`),
-    ADD CONSTRAINT `permission_assign_ibfk_3` FOREIGN KEY (`Permission_Id`) REFERENCES `permission` (`RecId`),
-    ADD CONSTRAINT `permission_assign_ibfk_4` FOREIGN KEY (`Role_Id`) REFERENCES `role` (`RecId`),
-    ADD CONSTRAINT `permission_assign_ibfk_5` FOREIGN KEY (`updated_by`) REFERENCES `user` (`RecId`),
-    ADD CONSTRAINT `permission_assign_ibfk_6` FOREIGN KEY (`created_by`) REFERENCES `user` (`RecId`);
+    ADD CONSTRAINT `permission_assign_ibfk_2` FOREIGN KEY (`Role_Id`) REFERENCES `role` (`id`),
+    ADD CONSTRAINT `permission_assign_ibfk_3` FOREIGN KEY (`Permission_Id`) REFERENCES `permission` (`id`),
+    ADD CONSTRAINT `permission_assign_ibfk_4` FOREIGN KEY (`Role_Id`) REFERENCES `role` (`id`),
+    ADD CONSTRAINT `permission_assign_ibfk_5` FOREIGN KEY (`updated_by`) REFERENCES `user` (`id`),
+    ADD CONSTRAINT `permission_assign_ibfk_6` FOREIGN KEY (`created_by`) REFERENCES `user` (`id`);
 
 --
 -- Constraints for table `role`
 --
 ALTER TABLE `role`
-    ADD CONSTRAINT `role_ibfk_1` FOREIGN KEY (`created_by`) REFERENCES `user` (`RecId`),
-    ADD CONSTRAINT `role_ibfk_2` FOREIGN KEY (`updated_by`) REFERENCES `user` (`RecId`);
+    ADD CONSTRAINT `role_ibfk_1` FOREIGN KEY (`created_by`) REFERENCES `user` (`id`),
+    ADD CONSTRAINT `role_ibfk_2` FOREIGN KEY (`updated_by`) REFERENCES `user` (`id`);
 
 --
 -- Constraints for table `shift`
 --
 ALTER TABLE `shift`
-    ADD CONSTRAINT `shift_ibfk_1` FOREIGN KEY (`created_by`) REFERENCES `user` (`RecId`),
-    ADD CONSTRAINT `shift_ibfk_2` FOREIGN KEY (`updated_by`) REFERENCES `user` (`RecId`);
+    ADD CONSTRAINT `shift_ibfk_1` FOREIGN KEY (`created_by`) REFERENCES `user` (`id`),
+    ADD CONSTRAINT `shift_ibfk_2` FOREIGN KEY (`updated_by`) REFERENCES `user` (`id`);
 
 --
 -- Constraints for table `user`
 --
 ALTER TABLE `user`
-    ADD CONSTRAINT `user_ibfk_1` FOREIGN KEY (`UserP_Id`) REFERENCES `user_profile` (`RecId`),
-    ADD CONSTRAINT `user_ibfk_2` FOREIGN KEY (`Role_Id`) REFERENCES `role` (`RecId`),
-    ADD CONSTRAINT `user_ibfk_3` FOREIGN KEY (`Role_Id`) REFERENCES `role` (`RecId`);
+    ADD CONSTRAINT `user_ibfk_1` FOREIGN KEY (`UserP_Id`) REFERENCES `user_profile` (`id`),
+    ADD CONSTRAINT `user_ibfk_2` FOREIGN KEY (`Role_Id`) REFERENCES `role` (`id`),
+    ADD CONSTRAINT `user_ibfk_3` FOREIGN KEY (`Role_Id`) REFERENCES `role` (`id`);
 
 --
 -- Constraints for table `user_profile`
 --
 ALTER TABLE `user_profile`
-    ADD CONSTRAINT `user_profile_ibfk_1` FOREIGN KEY (`Designation_Id`) REFERENCES `designation` (`RecId`),
-    ADD CONSTRAINT `user_profile_ibfk_2` FOREIGN KEY (`shift_id`) REFERENCES `shift` (`RecId`),
-    ADD CONSTRAINT `user_profile_ibfk_3` FOREIGN KEY (`payscale_id`) REFERENCES `pay_scale` (`RecId`),
-    ADD CONSTRAINT `user_profile_ibfk_4` FOREIGN KEY (`gender`) REFERENCES `tbl_gender` (`RecId`);
+    ADD CONSTRAINT `user_profile_ibfk_1` FOREIGN KEY (`Designation_Id`) REFERENCES `designation` (`id`),
+    ADD CONSTRAINT `user_profile_ibfk_2` FOREIGN KEY (`shift_id`) REFERENCES `shift` (`id`),
+    ADD CONSTRAINT `user_profile_ibfk_3` FOREIGN KEY (`payscale_id`) REFERENCES `pay_scale` (`id`),
+    ADD CONSTRAINT `user_profile_ibfk_4` FOREIGN KEY (`gender`) REFERENCES `tbl_gender` (`id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT = @OLD_CHARACTER_SET_CLIENT */;
