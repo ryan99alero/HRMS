@@ -2,6 +2,7 @@
 ini_set('display_errors', 1);
 error_reporting(E_ALL); ?>
 <?php include 'session.php'; ?>
+<?php session_start(); ?>
 <aside class="main-sidebar">
     <!-- sidebar: style can be found in sidebar.less -->
     <section class="sidebar">
