@@ -1,6 +1,7 @@
 <?php
 ini_set('display_errors', 1);
 error_reporting(E_ALL); ?>
+<?php include 'session.php'; ?>
 <header class="main-header">
     <!-- Logo -->
     <a href="index2.html" class="logo">
