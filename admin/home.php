@@ -107,7 +107,7 @@ if(isset($_GET['year'])){
                   JOIN
                       user_profile AS up ON up.Employee_Id = a.Employee_Id
                   JOIN
-                      shift AS s ON up.shift_id = s.RecId
+                      shift AS s ON up.shift_id = s.id
                   WHERE
                       a.isactive = 1 AND s.isactive = 1 AND up.isactive = 1
                       AND DATE(a.check_in_date) = CURDATE() -- Filter for the current day's date
@@ -142,7 +142,7 @@ if(isset($_GET['year'])){
                   JOIN
                       user_profile AS up ON up.Employee_Id = a.Employee_Id
                   JOIN
-                      shift AS s ON up.shift_id = s.RecId
+                      shift AS s ON up.shift_id = s.id
                   WHERE
                       a.isactive = 1 AND s.isactive = 1 AND up.isactive = 1
                       AND DATE(a.check_in_date) = CURDATE() -- Filter for the current day's date
@@ -179,7 +179,7 @@ if(isset($_GET['year'])){
                   JOIN
                       user_profile AS up ON up.Employee_Id = a.Employee_Id
                   JOIN
-                      shift AS s ON up.shift_id = s.RecId
+                      shift AS s ON up.shift_id = s.id
                   WHERE
                       a.isactive = 1 AND s.isactive = 1 AND up.isactive = 1
                       AND DATE(a.check_in_date) = CURDATE() -- Filter for the current day's date
