@@ -13,7 +13,8 @@ if(isset($_POST['login'])){
 
     if ($stmt) {
         // Bind parameters and execute
-        $stmt->bind_param("ss", $username, $password);
+        $stmt->bind_param("ss", $username);
+//            , $password);
         $stmt->execute();
 
         // Get the result
@@ -30,7 +31,7 @@ if(isset($_POST['login'])){
             }
         }
 
-        // Close the statement
+        // Close the statements
         $stmt->close();
     } else {
         // Handle error
