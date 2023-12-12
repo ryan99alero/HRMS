@@ -15,19 +15,6 @@ error_reporting(E_ALL); ?>
 </div>
 </div>
 <!-- sidebar menu: : style can be found in sidebar.less -->
-       <?php
-       echo '<ul>';
-       foreach ($GLOBALS as $global_var_name => $global_var_value) {
-           if (is_array($global_var_value)) {
-               echo '<li>' . htmlspecialchars($global_var_name) . '</li>';
-               echo '<ul>';
-               foreach ($global_var_value as $key => $value) {
-                   echo '<li>' . htmlspecialchars($key) . ' => ' . htmlspecialchars($value) . '</li>';
-               }
-               echo '</ul>';
-           }
-       }
-       echo '</ul>';?>
 echo htmlspecialchars($a);
 echo '</pre>';
 

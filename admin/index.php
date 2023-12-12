@@ -13,7 +13,7 @@ if (isset($_SESSION['admin'])) {
     <div class="login-box-body">
         <p class="login-box-msg">Sign in to start your session</p>
 
-        <form action="login2.php" method="POST">
+        <form action="login.php" method="POST">
             <div class="form-group has-feedback">
                 <label>
                     <input type="text" class="form-control" name="username" placeholder="input Username" required autofocus>
