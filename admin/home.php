@@ -6,20 +6,19 @@ include "includes/conn.php";
 include '../timezone.php';
 $today = date('Y-m-d');
 $year = date('Y');
-if (isset($_GET['year'])) {
+if(isset($_GET['year'])){
     $year = $_GET['year'];
 }
 ?>
 <?php include 'includes/header.php'; ?>
 <head>
     <style>
-        .small-box {
+        .small-box{
             border-radius: 20px;
         }
-
-        .small-box-footer {
-            border-bottom-left-radius: 20px;
-            border-bottom-right-radius: 20px;
+        .small-box-footer{
+            border-bottom-left-radius:20px ;
+            border-bottom-right-radius:20px ;
         }
     </style>
 </head>
@@ -45,22 +44,22 @@ if (isset($_GET['year'])) {
         <!-- Main content -->
         <section class="content">
             <?php
-            if (isset($_SESSION['error'])) {
+            if(isset($_SESSION['error'])){
                 echo "
             <div class='alert alert-danger alert-dismissible'>
               <button type='button' class='close' data-dismiss='alert' aria-hidden='true'>&times;</button>
               <h4><i class='icon fa fa-warning'></i> Error!</h4>
-              " . $_SESSION['error'] . "
+              ".$_SESSION['error']."
             </div>
           ";
                 unset($_SESSION['error']);
             }
-            if (isset($_SESSION['success'])) {
+            if(isset($_SESSION['success'])){
                 echo "
             <div class='alert alert-success alert-dismissible'>
               <button type='button' class='close' data-dismiss='alert' aria-hidden='true'>&times;</button>
               <h4><i class='icon fa fa-check'></i> Success!</h4>
-              " . $_SESSION['success'] . "
+              ".$_SESSION['success']."
             </div>
           ";
                 unset($_SESSION['success']);
@@ -79,7 +78,7 @@ if (isset($_GET['year'])) {
                             $query = $conn->query($sql);
 
 
-                            echo "<h3>" . $query->num_rows . "</h3>";
+                            echo "<h3>".$query->num_rows."</h3>";
                             ?>
 
                             <p>Total Employees</p>
@@ -87,8 +86,7 @@ if (isset($_GET['year'])) {
                         <div class="icon">
                             <i class="ion ion-person-stalker"></i>
                         </div>
-                        <a href="employee.php" class="small-box-footer">More info <i
-                                    class="fa fa-arrow-circle-right"></i></a>
+                        <a href="employee.php" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
                     </div>
                 </div>
                 <!-- ./col -->
@@ -109,22 +107,21 @@ if (isset($_GET['year'])) {
                   JOIN
                       user_profile AS up ON up.Employee_Id = a.Employee_Id
                   JOIN
-                      shift AS s ON up.shift_id = s.id
+                      shift AS s ON up.shift_id = s.RecId
                   WHERE
                       a.isactive = 1 AND s.isactive = 1 AND up.isactive = 1
                       AND DATE(a.check_in_date) = CURDATE() -- Filter for the current day's date
               ) AS OnTimeEntries;";
                             $query = $conn->query($sqla);
                             $row = $query->fetch_assoc();
-                            echo "<h3>" . $row['OnTimeCount'] . "</h3>";
+                            echo "<h3>".$row['OnTimeCount']."</h3>";
                             ?>
                             <p>On Time Employees</p>
                         </div>
                         <div class="icon">
                             <i class="ion ion-pie-graph"></i>
                         </div>
-                        <a href="attendance.php" class="small-box-footer">More info <i
-                                    class="fa fa-arrow-circle-right"></i></a>
+                        <a href="attendance.php" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
                     </div>
                 </div>
                 <!-- ./col -->
@@ -145,7 +142,7 @@ if (isset($_GET['year'])) {
                   JOIN
                       user_profile AS up ON up.Employee_Id = a.Employee_Id
                   JOIN
-                      shift AS s ON up.shift_id = s.id
+                      shift AS s ON up.shift_id = s.RecId
                   WHERE
                       a.isactive = 1 AND s.isactive = 1 AND up.isactive = 1
                       AND DATE(a.check_in_date) = CURDATE() -- Filter for the current day's date
@@ -154,15 +151,14 @@ if (isset($_GET['year'])) {
               ) AS LateEntries;";
                             $query = $conn->query($sqlb);
                             $row = $query->fetch_assoc();
-                            echo "<h3>" . $row['LateCount'] . "</h3>";
+                            echo "<h3>".$row['LateCount']."</h3>";
                             ?>
                             <p>Late Coming Employees</p>
                         </div>
                         <div class="icon">
                             <i class="ion ion-clock"></i>
                         </div>
-                        <a href="attendance.php" class="small-box-footer">More info <i
-                                    class="fa fa-arrow-circle-right"></i></a>
+                        <a href="attendance.php" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
                     </div>
                 </div>
                 <!-- ./col -->
@@ -183,7 +179,7 @@ if (isset($_GET['year'])) {
                   JOIN
                       user_profile AS up ON up.Employee_Id = a.Employee_Id
                   JOIN
-                      shift AS s ON up.shift_id = s.id
+                      shift AS s ON up.shift_id = s.RecId
                   WHERE
                       a.isactive = 1 AND s.isactive = 1 AND up.isactive = 1
                       AND DATE(a.check_in_date) = CURDATE() -- Filter for the current day's date
@@ -191,15 +187,14 @@ if (isset($_GET['year'])) {
               ) AS AbsentEntries;";
                             $query = $conn->query($sqlc);
                             $row = $query->fetch_assoc();
-                            echo "<h3>" . $row['AbsentCount'] . "</h3>";
+                            echo "<h3>".$row['AbsentCount']."</h3>";
                             ?>
                             <p>Absent Employees</p>
                         </div>
                         <div class="icon">
                             <i class="ion ion-alert-circled"></i>
                         </div>
-                        <a href="attendance.php" class="small-box-footer">More info <i
-                                    class="fa fa-arrow-circle-right"></i></a>
+                        <a href="attendance.php" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
                     </div>
                 </div>
                 <!-- ./col -->
@@ -216,10 +211,10 @@ if (isset($_GET['year'])) {
                                         <label>Select Year: </label>
                                         <select class="form-control input-sm" id="select_year">
                                             <?php
-                                            for ($i = 2015; $i <= 2065; $i++) {
-                                                $selected = ($i == $year) ? 'selected' : '';
+                                            for($i=2015; $i<=2065; $i++){
+                                                $selected = ($i==$year)?'selected':'';
                                                 echo "
-                            <option value='" . $i . "' " . $selected . ">" . $i . "</option>
+                            <option value='".$i."' ".$selected.">".$i."</option>
                           ";
                                             }
                                             ?>
@@ -262,11 +257,11 @@ if (isset($_GET['year'])) {
 
 <!-- Chart Data -->
 <?php
-$and = 'AND YEAR(date) = ' . $year;
+$and = 'AND YEAR(date) = '.$year;
 $months = array();
 $ontime = array();
 $late = array();
-for ($m = 1; $m <= 12; $m++) {
+for( $m = 1; $m <= 12; $m++ ) {
 
 }
 
@@ -278,63 +273,63 @@ $ontime = json_encode($ontime);
 <!-- End Chart Data -->
 <?php include 'includes/scripts.php'; ?>
 <script>
-    $(function () {
+    $(function(){
         var barChartCanvas = $('#barChart').get(0).getContext('2d')
         var barChart = new Chart(barChartCanvas)
         var barChartData = {
-            labels: <?php echo $months; ?>,
+            labels  : <?php echo $months; ?>,
             datasets: [
                 {
-                    label: 'Late',
-                    fillColor: 'rgba(210, 214, 222, 1)',
-                    strokeColor: 'rgba(210, 214, 222, 1)',
-                    pointColor: 'rgba(210, 214, 222, 1)',
-                    pointStrokeColor: '#c1c7d1',
-                    pointHighlightFill: '#fff',
+                    label               : 'Late',
+                    fillColor           : 'rgba(210, 214, 222, 1)',
+                    strokeColor         : 'rgba(210, 214, 222, 1)',
+                    pointColor          : 'rgba(210, 214, 222, 1)',
+                    pointStrokeColor    : '#c1c7d1',
+                    pointHighlightFill  : '#fff',
                     pointHighlightStroke: 'rgba(220,220,220,1)',
-                    data: <?php echo $late; ?>
+                    data                : <?php echo $late; ?>
                 },
                 {
-                    label: 'Ontime',
-                    fillColor: 'rgba(60,141,188,0.9)',
-                    strokeColor: 'rgba(60,141,188,0.8)',
-                    pointColor: '#3b8bba',
-                    pointStrokeColor: 'rgba(60,141,188,1)',
-                    pointHighlightFill: '#fff',
+                    label               : 'Ontime',
+                    fillColor           : 'rgba(60,141,188,0.9)',
+                    strokeColor         : 'rgba(60,141,188,0.8)',
+                    pointColor          : '#3b8bba',
+                    pointStrokeColor    : 'rgba(60,141,188,1)',
+                    pointHighlightFill  : '#fff',
                     pointHighlightStroke: 'rgba(60,141,188,1)',
-                    data: <?php echo $ontime; ?>
+                    data                : <?php echo $ontime; ?>
                 }
             ]
         }
-        barChartData.datasets[1].fillColor = '#00a65a'
+        barChartData.datasets[1].fillColor   = '#00a65a'
         barChartData.datasets[1].strokeColor = '#00a65a'
-        barChartData.datasets[1].pointColor = '#00a65a'
-        var barChartOptions = {
+        barChartData.datasets[1].pointColor  = '#00a65a'
+        var barChartOptions                  = {
             //Boolean - Whether the scale should start at zero, or an order of magnitude down from the lowest value
-            scaleBeginAtZero: true,
+            scaleBeginAtZero        : true,
             //Boolean - Whether grid lines are shown across the chart
-            scaleShowGridLines: true,
+            scaleShowGridLines      : true,
             //String - Colour of the grid lines
-            scaleGridLineColor: 'rgba(0,0,0,.05)',
+            scaleGridLineColor      : 'rgba(0,0,0,.05)',
             //Number - Width of the grid lines
-            scaleGridLineWidth: 1,
+            scaleGridLineWidth      : 1,
             //Boolean - Whether to show horizontal lines (except X axis)
             scaleShowHorizontalLines: true,
             //Boolean - Whether to show vertical lines (except Y axis)
-            scaleShowVerticalLines: true,
+            scaleShowVerticalLines  : true,
             //Boolean - If there is a stroke on each bar
-            barShowStroke: true,
+            barShowStroke           : true,
             //Number - Pixel width of the bar stroke
-            barStrokeWidth: 2,
+            barStrokeWidth          : 2,
             //Number - Spacing between each of the X value sets
-            barValueSpacing: 5,
+            barValueSpacing         : 5,
             //Number - Spacing between data sets within X values
-            barDatasetSpacing: 1,
+            barDatasetSpacing       : 1,
             //String - A legend template
-            legendTemplate: '<ul class="<%=name.toLowerCase()%>-legend"><% for (var i=0; i<datasets.length; i++){%><li><span style="background-color:<%=datasets[i].fillColor%>"></span><%if(datasets[i].label){%><%=datasets[i].label%><%}%></li><%}%></ul>',
+            legendTemplate          : '<ul class="<%=name.toLowerCase()%>-legend"><% for (var i=0; i<datasets.length; i++){%><li><span style="background-color:<%=datasets[i].fillColor%>"></span><%if(datasets[i].label){%><%=datasets[i].label%><%}%></li><%}%></ul>',
             //Boolean - whether to make the chart responsive
-            responsive: true,
-            maintainAspectRatio: true
+            responsive              : true,
+            maintainAspectRatio     : true
         }
 
         barChartOptions.datasetFill = false
@@ -343,13 +338,15 @@ $ontime = json_encode($ontime);
     });
 </script>
 <script>
-    $(function () {
-        $('#select_year').change(function () {
-            window.location.href = 'home.php?year=' + $(this).val();
+    $(function(){
+        $('#select_year').change(function(){
+            window.location.href = 'home.php?year='+$(this).val();
         });
     });
 </script>
 <!-- ------------------ ----------------------------------------->
+
+
 
 
 <!-- ------------------ ---pie charts---------------------------------->
@@ -359,10 +356,10 @@ $ontime = json_encode($ontime);
     function generatePieChart(percentage, onTimeToday, lateToday) {
         // Set up the data for the pie chart
         var data = {
-            labels: ['On Time Percentage', 'On Time Today', 'Late Today'],
+            labels: ['On Time Percentage','On Time Today', 'Late Today'],
             datasets: [{
                 data: [percentage, onTimeToday, lateToday],
-                backgroundColor: ['#00a65a', '#ffba57', '#f56954'],
+                backgroundColor: ['#00a65a','#ffba57', '#f56954'],
             }]
         };
 
@@ -389,7 +386,7 @@ $ontime = json_encode($ontime);
     // Example usage:
     var onTimePercentage = <?php echo $percentage; ?>;
     var onTimeToday = <?php echo $query->num_rows; ?>;
-    var lateToday = <?php echo $query->num_rows; ?>;
+    var lateToday = <?php echo $querya->num_rows; ?>;
 
     // Call the function with the data to generate the pie chart
     generatePieChart(onTimePercentage, onTimeToday, lateToday);
@@ -398,15 +395,16 @@ $ontime = json_encode($ontime);
 <!-- ------------------------Line charts------------------------- -->
 
 
+
 <script>
     function generatelineChart(percentage, onTimeToday, lateToday) {
         // Set up the data for the pie chart
         var data = {
-            labels: ['On Time Percentage', 'On Time Today', 'Late Today'],
+            labels: ['On Time Percentage','On Time Today', 'Late Today'],
             datasets: [{
-                label: 'Today Table',
+                label:'Today Table',
                 data: [percentage, onTimeToday, lateToday],
-                backgroundColor: ['#00a65a', '#ffba57', '#f56954'],
+                backgroundColor: ['#00a65a','#ffba57', '#f56954'],
             }]
         };
 
@@ -443,15 +441,16 @@ $ontime = json_encode($ontime);
 <!-- ------------------------------bar charts-------------------------- -->
 
 
+
 <script>
     function generatebarChart(percentage, onTimeToday, lateToday) {
         // Set up the data for the pie chart
         var data = {
-            labels: ['On Time Percentage', 'On Time Today', 'Late Today'],
+            labels: ['On Time Percentage','On Time Today', 'Late Today'],
             datasets: [{
-                label: 'Today Table',
+                label:'Today Table',
                 data: [percentage, onTimeToday, lateToday],
-                backgroundColor: ['#00a65a', '#ffba57', '#f56954'],
+                backgroundColor: ['#00a65a','#ffba57', '#f56954'],
             }]
         };
 
@@ -496,7 +495,7 @@ $ontime = json_encode($ontime);
 <!-- ----------------------------------------------------------------------- -->
 
 <script>
-    $(function () {
+    $(function() {
         var options = {
             chart: {
                 height: 350,
@@ -529,7 +528,7 @@ $ontime = json_encode($ontime);
                 data: [35, 41, 36, 26, 45, 48, 52, 65, 85, 98, 45, 65]
             }],
             xaxis: {
-                categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+                categories: ['Jan','Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug','Sep','Oct','Nov','Dec'],
             },
             yaxis: {
                 title: {
@@ -542,7 +541,7 @@ $ontime = json_encode($ontime);
             },
             tooltip: {
                 y: {
-                    formatter: function (val) {
+                    formatter: function(val) {
                         return "$ " + val + " thousands"
                     }
                 }
@@ -559,15 +558,15 @@ $ontime = json_encode($ontime);
 <!-- -------------------------------testing----------------------------------------- -->
 
 <script>
-    $(function () {
+    $(function() {
         var options = {
             chart: {
                 height: 320,
                 type: 'pie',
             },
-            labels: ['On Time Percentage', 'On Time Today', 'Late Today'],
+            labels: ['On Time Percentage','On Time Today', 'Late Today'],
             series: [44, 55, 13],
-            colors: ["#0e9e4a", "#ffba57", "#ff5252"],
+            colors: [ "#0e9e4a", "#ffba57", "#ff5252"],
             legend: {
                 show: true,
                 position: 'bottom',
