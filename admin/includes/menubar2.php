@@ -15,6 +15,12 @@ error_reporting(E_ALL); ?>
 </div>
 </div>
 <!-- sidebar menu: : style can be found in sidebar.less -->
+       <?php
+        $a = print_r(var_dump($GLOBALS),1);
+        echo '<pre>';?>
+echo htmlspecialchars($a);
+echo '</pre>';
+
 <ul class="sidebar-menu" data-widget="tree">
     <li class="header">REPORTS</li>
     <li class=""><a href="/home.php"><i class="fa fa-dashboard"></i> <span>Dashboard</span></a></li>
