@@ -6,7 +6,7 @@ if (isset($_POST['login'])) {
     $username = $_POST['username'];
     $password = $_POST['password'];
 
-    $sql = "SELECT * FROM user WHERE username = '$username'";
+    //$sql = "SELECT * FROM user WHERE username = '$username'";
     //$sql = "call 'StrProc_getUserLoginInfo'('".$_POST["username"]."','".$_POST["password"]."')";
     $query = $conn->query($sql);
 
@@ -34,7 +34,8 @@ if(isset($_POST['login'])){
     $username = $_POST['username'];
     $password = $_POST['password'];
 
-    $sql = "SELECT * FROM user WHERE username = '$username'";
+    //$sql = "SELECT * FROM user WHERE username = '$username'";
+    $sql = "call 'StrProc_getUserLoginInfo'('".$_POST["username"]."','".$_POST["password"]."')";
     $query = $conn->query($sql);
 
     if($query->num_rows < 1){
