@@ -15,11 +15,15 @@ if (isset($_SESSION['admin'])) {
 
         <form action="login2.php" method="POST">
             <div class="form-group has-feedback">
-                <input type="text" class="form-control" name="username" placeholder="input Username" required autofocus>
+                <label>
+                    <input type="text" class="form-control" name="username" placeholder="input Username" required autofocus>
+                </label>
                 <span class="glyphicon glyphicon-user form-control-feedback"></span>
             </div>
             <div class="form-group has-feedback">
-                <input type="password" class="form-control" name="password" placeholder="input Password" required>
+                <label>
+                    <input type="password" class="form-control" name="password" placeholder="input Password" required>
+                </label>
                 <span class="glyphicon glyphicon-lock form-control-feedback"></span>
             </div>
             <div class="row">

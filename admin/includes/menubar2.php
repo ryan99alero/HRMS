@@ -17,10 +17,10 @@ error_reporting(E_ALL); ?>
 <!-- sidebar menu: : style can be found in sidebar.less -->
 <ul class="sidebar-menu" data-widget="tree">
     <li class="header">REPORTS</li>
-    <li class=""><a href="home.php"><i class="fa fa-dashboard"></i> <span>Dashboard</span></a></li>
+    <li class=""><a href="/home.php"><i class="fa fa-dashboard"></i> <span>Dashboard</span></a></li>
     <li class="header">MANAGE</li>
 
-    <li><a href="attendance.php"><i class="fa fa-calendar"></i> <span>Attendance</span></a></li>
+    <li><a href="/attendance.php"><i class="fa fa-calendar"></i> <span>Attendance</span></a></li>
     <li class="treeview">
         <a href="#">
             <i class="fa fa-users"></i>
@@ -30,11 +30,11 @@ error_reporting(E_ALL); ?>
             </span>
         </a>
         <ul class="treeview-menu">
-            <li><a href="employee.php"><i class="fa fa-circle-o"></i> Employee List</a></li>
-            <li><a href="employee_import.php"><i class="fa fa-circle-o"></i> Employee Import</a></li>
-            <li><a href="overtime.php"><i class="fa fa-circle-o"></i> Overtime</a></li>
-            <li><a href="cashadvance.php"><i class="fa fa-circle-o"></i> Cash Advance</a></li>
-            <li><a href="schedule.php"><i class="fa fa-circle-o"></i> Schedules</a></li>
+            <li><a href="/employee.php"><i class="fa fa-circle-o"></i> Employee List</a></li>
+            <li><a href="/employee_import.php"><i class="fa fa-circle-o"></i> Employee Import</a></li>
+            <li><a href="/overtime.php"><i class="fa fa-circle-o"></i> Overtime</a></li>
+            <li><a href="/cashadvance.php"><i class="fa fa-circle-o"></i> Cash Advance</a></li>
+            <li><a href="/schedule.php"><i class="fa fa-circle-o"></i> Schedules</a></li>
         </ul>
     </li>
     <li><a href="deduction.php"><i class="fa fa-file-text"></i> Deductions</a></li>
