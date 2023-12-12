@@ -24,7 +24,7 @@ if(!isset($_SESSION['admin']) || trim($_SESSION['admin']) == ''){
 }
 
 // Use prepared statement for security
-$sql = "SELECT * FROM admin WHERE id = ?";
+$sql = "SELECT * FROM user WHERE id = ?";
 $stmt = $conn->prepare($sql);
 
 if($stmt){
