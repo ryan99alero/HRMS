@@ -18,7 +18,7 @@ echo 'Admin session value: ' . $_SESSION['admin'] . '<br>';
 $sql = "SELECT * FROM user WHERE id = ?";
 
 echo 'SQL Query: ' . htmlspecialchars($sql) . '<br>'; // Outputs the statement object
-
+var_dump($sql)
 
 $stmt = $conn->prepare($sql);
 
