@@ -3,18 +3,18 @@
 # Script to create environment variables for database connection
 
 # Define the file path
-ENV_FILE="/opt/RandTimeAttendance/config/DB_Environment_Variables.env"
+ENV_FILE="/etc/environment.d/DB_Environment_Variables.env"
 
 # Create the directory if it doesn't exist
-mkdir -p /opt/RandTimeAttendance/config
+mkdir -p /etc/environment.d
 
 # Prompt for environment variable values
 read -rp "Enter DB_PASS: " db_pass
 
 # Set environment variable values
 db_host="127.0.0.1"
-db_name="TimeAttendance"
-db_user="root"
+db_name="attendance"
+db_user="phpmyadmin"
 
 # Write the environment variables to the file
 echo "DB_HOST='$db_host'" > "$ENV_FILE"
