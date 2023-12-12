@@ -3,7 +3,7 @@
 # Script to create environment variables for database connection
 
 # Define the file path
-ENV_FILE="/etc/environment.d/DB_Environment_Variables.env"
+ENV_FILE="/etc/environment.d/DB_Environment_Variables.conf"
 
 # Create the directory if it doesn't exist
 mkdir -p /etc/environment.d

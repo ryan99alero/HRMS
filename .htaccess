@@ -1,0 +1,4 @@
+SetEnv DB_HOST='127.0.0.1'
+SetEnv DB_NAME='attendance'
+SetEnv DB_USER='phpmyadmin'
+SetEnv DB_PASS='KnzudGNfJoiQgKv3nUNY37'
