@@ -6,7 +6,8 @@ if(isset($_POST['login'])){
     $username = $_POST['username'];
     $password = $_POST['password'];
 
-    $sql = "SELECT * FROM admin WHERE username = '$username'";
+    $sql = "SELECT * FROM user WHERE username = '$username'";
+    //$sql = "call 'StrProc_getUserLoginInfo'('".$_POST["username"]."','".$_POST["password"]."')";
     $query = $conn->query($sql);
 
     if($query->num_rows < 1){
@@ -14,17 +15,18 @@ if(isset($_POST['login'])){
     }
     else{
         $row = $query->fetch_assoc();
-        if(password_verify($password, $row['password'])){
-            $_SESSION['admin'] = $row['id'];
+        if(($password == $row["password"])){
+            $_SESSION['admin'] = $row['RecId'];
         }
         else{
+            header('location: home.php');
             $_SESSION['error'] = 'Incorrect password';
         }
     }
 
 }
 else{
-    $_SESSION['error'] = 'Input admin credentials first';
+    $_SESSION['error'] = 'Input user credentials first';
 }
 
 header('location: index.php');
