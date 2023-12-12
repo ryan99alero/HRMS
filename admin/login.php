@@ -1,35 +1,5 @@
 <?php
-/*session_start();
-include 'includes/conn.php';
 
-if (isset($_POST['login'])) {
-    $username = $_POST['username'];
-    $password = $_POST['password'];
-
-    //$sql = "SELECT * FROM user WHERE username = '$username'";
-    //$sql = "call 'StrProc_getUserLoginInfo'('".$_POST["username"]."','".$_POST["password"]."')";
-    $query = $conn->query($sql);
-
-    if ($query->num_rows < 1) {
-        $_SESSION['error'] = 'Cannot find account with the username';
-    } else {
-        $row = $query->fetch_assoc();
-        if (($password == $row["password"])) {
-            $_SESSION['admin'] = $row['id'];
-        } else {
-            header('location: home.php');
-            $_SESSION['error'] = 'Incorrect password';
-        }
-    }
-
-} else {
-    $_SESSION['error'] = 'Input user credentials first';
-}
-
-header('location: index.php');*/
-
-ini_set('display_errors', 1);
-error_reporting(E_ALL);
 session_start();
 include 'includes/conn.php';
 
@@ -48,12 +18,9 @@ if(isset($_POST['login'])){
 
         // Get the result
         $result = $stmt->get_result();
-        echo 'username Object: '; // Outputs the statement object
-        var_dump($username); // Outputs the result object
-        echo 'password Object: '; // Outputs the statement object
-        var_dump($password); // Outputs the result object
+
         if ($result->num_rows < 1) {
-            $_SESSION['error'] = 'Cannot find account with the username';
+            $_SESSION['error'] = 'Username ' . htmlspecialchars($username) . ' does not exist';
         } else {
             $row = $result->fetch_assoc();
             if (password_verify($password, $row['password'])) {
