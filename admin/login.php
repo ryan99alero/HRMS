@@ -20,7 +20,7 @@ if(isset($_POST['login'])){
     else{
         $row = $result->fetch_assoc();
         if(password_verify($password, $row["password"])){
-            $_SESSION['admin'] = $row['RecId'];
+            $_SESSION['admin'] = $row['id'];
         }
         else{
             $_SESSION['error'] = 'Incorrect password';
