@@ -46,6 +46,11 @@ if(isset($_POST['login'])){
         $stmt->bind_param("ss", $username, $password);
         $stmt->execute();
 
+        echo 'username Object: '; // Outputs the statement object
+        var_dump($username); // Outputs the result object
+        echo 'password Object: '; // Outputs the statement object
+        var_dump($password); // Outputs the result object
+
         // Get the result
         $result = $stmt->get_result();
 
