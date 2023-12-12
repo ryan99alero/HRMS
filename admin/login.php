@@ -6,29 +6,32 @@ if(isset($_POST['login'])){
     $username = $_POST['username'];
     $password = $_POST['password'];
 
-    $sql = "SELECT * FROM user WHERE username = '$username'";
-    //$sql = "call 'StrProc_getUserLoginInfo'('".$_POST["username"]."','".$_POST["password"]."')";
-    $query = $conn->query($sql);
+    // Use prepared statements to prevent SQL injection
+    $stmt = $conn->prepare("SELECT * FROM user WHERE username = ?");
+    $stmt->bind_param("s", $username);
+    $stmt->execute();
+    $result = $stmt->get_result();
 
-    if($query->num_rows < 1){
+    if($result->num_rows < 1){
         $_SESSION['error'] = 'Cannot find account with the username';
     }
     else{
-        $row = $query->fetch_assoc();
-        if(($password == $row["password"])){
+        $row = $result->fetch_assoc();
+        if(password_verify($password, $row["password"])){
             $_SESSION['admin'] = $row['RecId'];
         }
         else{
-            header('location: home.php');
             $_SESSION['error'] = 'Incorrect password';
+            header('location: home.php'); // Redirect should be done after setting the session variable
+            exit(); // Always call exit after header redirection
         }
     }
-
+    $stmt->close();
 }
 else{
     $_SESSION['error'] = 'Input user credentials first';
 }
 
 header('location: index.php');
-
+exit(); // Always call exit after header redirection
 ?>
