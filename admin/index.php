@@ -42,14 +42,14 @@ if(isset($_SESSION['admin'])){
     if(isset($_SESSION['error'])){
         echo "
   				<div class='callout callout-danger text-center mt20'>
-			  		<p>".$_SESSION['error']."</p> 
+			  		<p>" . $_SESSION['error'] . "</p> 
 			  	</div>
   			";
         unset($_SESSION['error']);
     }
     ?>
 </div>
-s
-<?php include 'includes/scripts.php' ?s
+
+<?php include 'includes/scripts.php' ?>
 </body>
 </html>

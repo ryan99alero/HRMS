@@ -1,6 +1,6 @@
 <?php
 session_start();
-if (isset($_SESSION['admin'])) {
+if(isset($_SESSION['admin'])){
     header('location:home.php');
 }
 ?>
@@ -25,27 +25,24 @@ if (isset($_SESSION['admin'])) {
             </div>
             <div class="row">
                 <div class="col-xs-4">
-                    <button type="submit" class="btn btn-primary btn-block btn-flat" name="login"><i
-                                class="fa fa-sign-in"></i> Sign In
-                    </button>
+                    <button type="submit" class="btn btn-primary btn-block btn-flat" name="login"><i class="fa fa-sign-in"></i> Sign In</button>
                 </div>
                 <div class="col-xs-2">
                     <!-- <button type="submit" class="btn btn-primary btn-block btn-flat" name="login"><i class="fa fa-sign-in"></i> Sign In</button> -->
                 </div>
                 <div class="col-xs-6">
                     <a href="../admin/index.php">
-                        <btn class="btn btn-success btn-block btn-flat"><i class="fa fa-sign-in"></i> Sign In to Admin
-                        </btn>
+                        <btn  class="btn btn-success btn-block btn-flat"><i class="fa fa-sign-in"></i> Sign In to Admin</btn>
                     </a>
                 </div>
             </div>
         </form>
     </div>
     <?php
-    if (isset($_SESSION['error'])) {
+    if(isset($_SESSION['error'])){
         echo "
   				<div class='callout callout-danger text-center mt20'>
-			  		<p>" . $_SESSION['error'] . "</p> 
+			  		<p>".$_SESSION['error']."</p> 
 			  	</div>
   			";
         unset($_SESSION['error']);
