@@ -49,7 +49,7 @@ if(isset($_SESSION['admin'])){
     }
     ?>
 </div>
-
-<?php include 'includes/scripts.php' ?>
+s
+<?php include 'includes/scripts.php' ?s
 </body>
 </html>
