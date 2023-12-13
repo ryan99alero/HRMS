@@ -12,7 +12,7 @@ ini_set('error_log', '/path/to/error_log.txt'); // Update with your actual serve
         echo $_SESSION['admin'];
     }
 
-	$sql = "SELECT * FROM user WHERE RecId = '".$_SESSION['admin']."'";
+	$sql = "SELECT * FROM user WHERE id = '".$_SESSION['admin']."'";
 	$query = $conn->query($sql);
 	$user = $query->fetch_assoc();
 
