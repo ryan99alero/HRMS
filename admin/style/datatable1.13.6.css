@@ -21,6 +21,7 @@ table.dataTable td.dt-control:before {
     display: inline-block;
     color: rgba(0, 0, 0, 0.5);
     content: "►"
+}
 
 table.dataTable tr.dt-hasChild td.dt-control:before {
     content: "▼"
@@ -228,13 +229,6 @@ table.dataTable {
     border-collapse: separate;
     border-spacing: 0
 }
-.table-bordered tr:nth-child(even) {
-        background-color: #f60c0c;
-    }
-.table-bordered tr:nth-child(odd) {
-        background-color: white;
-    }
-
 
 table.dataTable thead th, table.dataTable tfoot th {
     font-weight: bold
