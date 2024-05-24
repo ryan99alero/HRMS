@@ -2,7 +2,7 @@
 global $conn;
 include 'includes/session.php';
 include 'includes/header.php';
-include "conn.php";
+include "includes/conn.php";
 include 'includes/navbar.php';
 include 'includes/menubar.php';
 
