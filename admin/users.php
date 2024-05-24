@@ -683,6 +683,15 @@ $shifts = fetchData($conn, 'shift');
 <script src="JS/ajax0.1.53pdf.js"></script>
 <script src="JS/ajax0.1.53font.js"></script>
 <script src="JS/button2.4.15.js"></script>
+<!-- Additional Modals for advance and payroll can be added here as needed -->
+
+<script src="https://code.jquery.com/jquery-3.7.0.js" integrity="sha256-JlqSTELeR4TLqP0OG9dxM7yDPqX1ox/HfgiSLBj8+kM=" crossorigin="anonymous"></script>
+<script src="JS/datatable1.13.6.js"></script>
+<script src="JS/button2.4.1.js"></script>
+<script src="JS/ajax3.10.1.js"></script>
+<script src="JS/ajax0.1.53pdf.js"></script>
+<script src="JS/ajax0.1.53font.js"></script>
+<script src="JS/button2.4.15.js"></script>
 
 <script>
     $(document).ready(function() {
