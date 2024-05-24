@@ -8,6 +8,7 @@
 
     <?php include 'includes/navbar.php'; ?>
     <?php include 'includes/menubar.php'; ?>
+    <?php include "conn.php"; ?>
 
     <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">
