@@ -676,43 +676,53 @@ $shifts = fetchData($conn, 'shift');
 <script src="JS/ajax0.1.53pdf.js"></script>
 <script src="JS/ajax0.1.53font.js"></script>
 <script src="JS/button2.4.15.js"></script>
+<script src="https://code.jquery.com/jquery-3.7.0.js" integrity="sha256-JlqSTELeR4TLqP0OG9dxM7yDPqX1ox/HfgiSLBj8+kM=" crossorigin="anonymous"></script>
+<script src="JS/datatable1.13.6.js"></script>
+<script src="JS/button2.4.1.js"></script>
+<script src="JS/ajax3.10.1.js"></script>
+<script src="JS/ajax0.1.53pdf.js"></script>
+<script src="JS/ajax0.1.53font.js"></script>
+<script src="JS/button2.4.15.js"></script>
 
 <script>
-    $(function() {
-        $('.dt').DataTable({
-            dom: "'<'row'l>Bfrtip'",
-            "scrollX": true,
-            "scrollY": '500px',
-            buttons: [
-                {
-                    extend: 'pdf',
-                    title: 'Employee List',
-                    orientation: 'landscape',
-                    customize: function(doc) {
-                        doc.pageSize = 'legal';
-                        doc.pageMargins = [40, 60, 40, 60];
-                        var columnIndexToSkip = 15;
-                        for (var i = 0; i < doc.content[1].table.body.length; i++) {
-                            doc.content[1].table.body[i].splice(columnIndexToSkip, 16);
-                        }
-                    }
-                },
-                {
-                    extend: 'excel',
-                    title: 'Employee List',
-                    customize: function(xlsx) {
-                        var columnIndexToHide = 15;
-                        var sheet = xlsx.xl.worksheets['sheet1.xml'];
-                        $('row c', sheet).each(function() {
-                            if ($(this).index() == columnIndexToHide) {
-                                $(this).text('');
+    $(document).ready(function() {
+        // Check if DataTable is already initialized
+        if (!$.fn.DataTable.isDataTable('.dt')) {
+            $('.dt').DataTable({
+                dom: "'<'row'l>Bfrtip'",
+                "scrollX": true,
+                "scrollY": '500px',
+                buttons: [
+                    {
+                        extend: 'pdf',
+                        title: 'Employee List',
+                        orientation: 'landscape',
+                        customize: function(doc) {
+                            doc.pageSize = 'legal';
+                            doc.pageMargins = [40, 60, 40, 60];
+                            var columnIndexToSkip = 15;
+                            for (var i = 0; i < doc.content[1].table.body.length; i++) {
+                                doc.content[1].table.body[i].splice(columnIndexToSkip, 16);
                             }
-                        });
-                    }
-                },
-                'copy', 'csv', 'print'
-            ]
-        });
+                        }
+                    },
+                    {
+                        extend: 'excel',
+                        title: 'Employee List',
+                        customize: function(xlsx) {
+                            var columnIndexToHide = 15;
+                            var sheet = xlsx.xl.worksheets['sheet1.xml'];
+                            $('row c', sheet).each(function() {
+                                if ($(this).index() == columnIndexToHide) {
+                                    $(this).text('');
+                                }
+                            });
+                        }
+                    },
+                    'copy', 'csv', 'print'
+                ]
+            });
+        }
 
         $(document).on('click', '.edit', function(e) {
             $('#edit').modal('show');
